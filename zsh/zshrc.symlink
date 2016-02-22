@@ -7,7 +7,10 @@ for config ($ZSH/**/*.zsh) source $config
     if [[ -a ~/.localrc ]]; then
         source ~/.localrc
     fi
+;
 
+# Initialize autocomplete
+autoload -U compinit && compinit
 
 # Base16 Shell
 export THEME="base16-atelierlakeside"

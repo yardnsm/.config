@@ -3,6 +3,7 @@
 # Load Colors
 autoload -U colors && colors
 setopt promptsubst
+autoload -U promptinit && promptinit
 
 # Symbols
 local PROMPT_SYMBOL="❯"
@@ -16,7 +17,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]$DIRTY_SYMBOL "
 
 # The prompt
 PROMPT='
-$(user_host)${current_dir}$(_git_prompt_info)
+$(user_host)${current_dir}$(git_prompt_info)
 ${arrow} '
 
 # Right prompt, show time
@@ -29,6 +30,7 @@ local arrow="%(?.%{$fg[cyan]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
 # user@host for SSH connections
 function user_host() {
 
+    # Make the color red if is root
     if [[ $USER == "root" ]]; then
     	USER_COLOR="red"
     else
@@ -46,10 +48,10 @@ function user_host() {
 }
 
 # Put the symbol before branch
-function _git_prompt_info() {
+function git_prompt_info() {
 	ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
 	ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-	echo "$(parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+	echo "$(parse_git_dirty)$(git_needs_push)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 # Checks if working tree is dirty
@@ -71,4 +73,14 @@ parse_git_dirty() {
 	else
 		echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
 	fi
+}
+
+# Check if git needs push
+git_needs_push() {
+  if [[ $(git cherry -v @{upstream} 2>/dev/null) == "" ]]
+  then
+    echo ""
+  else
+    echo "%{$fg_bold[magenta]%}☁%f "
+  fi
 }

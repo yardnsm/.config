@@ -3,8 +3,8 @@
 # --------------------------------------------- #
 # | IMPOTING STUFF FROM _setup
 # --------------------------------------------- #
-source _setup/utils/messages.sh
-source _setup/utils/ask.sh
+source ./_setup/utils/messages.sh
+source ./_setup/utils/ask.sh
 
 # --------------------------------------------- #
 # | CHECK IF XCODE CLI TOOLS ARE INSTALLED
@@ -20,6 +20,7 @@ fi
 
 # Print welcome message
 print_welcome
+sleep 1
 
 # --------------------------------------------- #
 # | CONFIRMATION

@@ -1,5 +1,5 @@
-# Setting Homebrew path
-export PATH=/usr/local/sbin:$PATH
+# Setting Path: Hombrew and $DOTFILES/bin folder
+export PATH=/usr/local/sbin:$DOTFILES/bin:$PATH
 
 # Setting Android SDK Path
 export ANDROID_HOME=/usr/local/opt/android-sdk
