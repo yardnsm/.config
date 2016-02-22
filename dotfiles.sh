@@ -11,7 +11,7 @@ source _setup/utils/ask.sh
 # --------------------------------------------- #
 
 # Some info message
-print_info $'Hey! This will install the WHOLE Dotfiles configurations. \n Fire up \'dotfiles-menu\' to select what to install.'
+print_info $"Hey! This will install the WHOLE Dotfiles configurations."
 
 # Wait for 2 sec. (cool)
 sleep 2
@@ -28,13 +28,15 @@ print_divider
 
 # Print some info
 print_info_secondary $'This proccess will setup the following:
-  1) Setup shell configurations (symlink)
-  2) Setup git configurations (symlink)
-  3) Add \'bin\' folder to PATH
+  1) Install Xcode command-line tools
+  2) Setup shell configurations
+  3) Setup git configurations
   4) Setup Atom configurations (symlink)
   5) Setup OSX configurations
-  6) Install Homebrew and dependencies
-  7) Install Brew-Cask, Applications and their settings'
+  6) Install Homebrew and Cask
+  7) Install Homebrew dependencies
+  8) Install Applications
+  9) Set applications settings'
 
 # Ask if it's okay
 ask_for_confirmation "Continue? "
