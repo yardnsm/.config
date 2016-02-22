@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# ------
+# dotfiles-menu - Menu for main dotfiles tasks
+# ------
+
+# --------------------------------------------- #
+# | SHOW THE MENU
+# --------------------------------------------- #
+
+# Prompt
+PS3="Your selection, sir?"
+
+# The options
+options=(
+
+    $'Setup shell configurations (symlink)'
+    $'Setup git configurations (symlink)'
+    $'Add \'bin\' folder to PATH \n'
+
+    $'Setup Atom configurations (symlink) \n'
+
+    $'Setup OSX configurations'
+    $'Install Homebrew and dependencies'
+    $'Install Brew-Cask, Applications and their settings \n'
+
+)
+
+# The menu
+echo "Please select an option"
+echo "------------------"
+echo " "
+select opt in "${options[@]}"
+do
+	case $opt in
+
+        $'Setup shell configurations (symlink)')
+			echo 'todo'
+			;;
+
+        $'Setup git configurations (symlink)')
+    		echo 'todo'
+    		;;
+
+        $'Add \'bin\' folder to PATH \n')
+    		echo 'todo'
+    		;;
+
+        $'Setup Atom configurations (symlink)')
+    		echo 'todo'
+    		;;
+
+        $'Setup OSX configurations')
+    		echo 'todo'
+    		;;
+
+        $'Install Homebrew and dependencies')
+    		echo 'todo'
+    		;;
+
+        $'Install Brew-Cask, Applications and their settings \n')
+    		echo 'todo'
+    		;;
+
+	esac
+done
