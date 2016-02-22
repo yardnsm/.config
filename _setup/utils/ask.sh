@@ -3,23 +3,28 @@
 # --------------------------------------------- #
 # | QUESTIONS
 # --------------------------------------------- #
+
+# Check if the last reply is yes
 answer_is_yes() {
     [[ "$REPLY" =~ ^[Yy]$ ]] \
         && return 0 \
         || return 1
 }
 
+# Ask a question
 ask() {
     print_question "$1"
     read
 }
 
+# Ask a question for confirmation
 ask_for_confirmation() {
     print_question "$1 (y/n) "
     read -n 1
     printf "\n"
 }
 
+# Get the last answer
 get_answer() {
     printf "$REPLY"
 }
@@ -27,6 +32,8 @@ get_answer() {
 # --------------------------------------------- #
 # | PERMISSIONS
 # --------------------------------------------- #
+
+# Ask for sudo permission
 ask_for_sudo() {
 
     # Ask for the administrator password

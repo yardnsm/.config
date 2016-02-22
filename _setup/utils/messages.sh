@@ -24,15 +24,6 @@ print_in_yellow() {
 }
 
 # --------------------------------------------- #
-# | DIVIDER
-# --------------------------------------------- #
-
-print_divider() {
-    echo ""
-    echo $'\n  ---------------------'
-}
-
-# --------------------------------------------- #
 # | MESSAGES
 # --------------------------------------------- #
 
@@ -56,6 +47,15 @@ print_success() {
     print_in_green "  [yay] $1\n"
 }
 
+# Print the message based the last exit
+print_result() {
+    [ $1 -eq 0 ] \
+        && print_success "$2" \
+        || print_error "$2"
+
+    return $1
+}
+
 # Print dotfiles Welcome message
 print_welcome() {
     echo "   _____        _    __ _ _            "
@@ -68,4 +68,7 @@ print_welcome() {
 
     print_in_yellow "  YardNsm's Dotfiles - Version 1.0"; echo ""
     print_in_purple "  Currently compatible with OSX Only"
+
+    echo ""
+    echo $'\n  ---------------------'
 }

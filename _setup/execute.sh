@@ -1,50 +1,41 @@
 #!/bin/bash
 
-# IMPOTING STUFF FROM _setup
+# Imprting Stuff fro _setup
 source _setup/utils/messages.sh
 source _setup/utils/ask.sh
 
-# --------------------------------------------- #
-# | Install Xcode command-line tools
-# --------------------------------------------- #
-print_info "Install Xcode command-line tools"
+# Important Variables
+DOTFILES=$HOME/dotfiles
+
+# Initializing git modules
+git submodule update --init --recursive
+print_result $? 'Initializing git modules'
 
 # --------------------------------------------- #
 # | Setup shell configurations
 # --------------------------------------------- #
 print_info "Setup shell configurations"
 
-# --------------------------------------------- #
-# | Setup git configurations
-# --------------------------------------------- #
-print_info "Setup git configurations"
+# Change shell to zsh
+
+if ! [ $SHELL = $(which zsh) ]; then
+    chsh -s $(which zsh)
+    print_result $? 'Changed shell to zsh'
+fi
 
 # --------------------------------------------- #
-# | Setup Atom configurations (symlink)
+# | Creating symlinks
 # --------------------------------------------- #
-print_info "Setup Atom configurations (symlink)"
+print_info "Creating symlinks"
 
-# --------------------------------------------- #
-# | Setup OSX configurations
-# --------------------------------------------- #
-print_info "Setup OSX configurations"
-
-# --------------------------------------------- #
-# | Install Homebrew and Cask
-# --------------------------------------------- #
-print_info "Install Homebrew and Cask"
-
-# --------------------------------------------- #
-# | Install Homebrew dependencies
-# --------------------------------------------- #
-print_info "Install Homebrew dependencies"
-
-# --------------------------------------------- #
-# | Install Applications
-# --------------------------------------------- #
-print_info "Install Applications"
-
-# --------------------------------------------- #
-# | Set applications settings
-# --------------------------------------------- #
-print_info "Set applications settings"
+# symlinking process
+linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
+for file in $linkables ; do
+    target="$HOME/.$( basename $file ".symlink" )"
+    if [ -e $target ]; then
+        print_error "~${target#$HOME} already exists... Skipping."
+    else
+        ln -s $file $target
+        print_result $? "Creating symlink for $file"
+    fi
+done
