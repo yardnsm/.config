@@ -3,11 +3,12 @@ export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
 
 # Source all .zsh files inside the ZSH directory
-for config ($ZSH/**/*.zsh) source $config
-    if [[ -a ~/.localrc ]]; then
-        source ~/.localrc
-    fi
-;
+for config ($ZSH/**/*.zsh) source $config;
+
+# Source ~/.localrc if exists
+if [ -a ~/.localrc ]; then
+    source ~/.localrc
+fi
 
 # Initialize autocomplete
 autoload -U compinit && compinit
