@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # --------------------------------------------- #
-# | IMPOTING STUFF FROM _setup
+# | Import stuff from _setup
 # --------------------------------------------- #
 source ./_setup/utils/messages.sh
 source ./_setup/utils/ask.sh
 
 # --------------------------------------------- #
-# | CHECK IF XCODE CLI TOOLS ARE INSTALLED
+# | Check if Xcode CLI is installed
 # --------------------------------------------- #
 if ! xcode-select --print-path &> /dev/null; then
     print_error "Xcode Command Line tools are not installed!"
@@ -15,7 +15,7 @@ if ! xcode-select --print-path &> /dev/null; then
 fi
 
 # --------------------------------------------- #
-# | SHOW WELCOME INFO
+# | Show welcome message
 # --------------------------------------------- #
 
 # Print welcome message
@@ -23,19 +23,19 @@ print_welcome
 sleep 1
 
 # --------------------------------------------- #
-# | CONFIRMATION
+# | Confirmation before starting
 # --------------------------------------------- #
 
 # Print some info
 print_info_secondary $'This proccess will setup the following:
   * Setup shell configurations
-  * Setup git configurations
-  * Setup Atom configurations
+  * Symlink all the files that end with *.symlink
   * Setup OSX configurations
   * Install Homebrew and Cask
   * Install Homebrew dependencies
   * Install Applications
-  * Set applications settings'
+  * Set applications settings
+  * Many more.. Or not.. I just dont want to change this text every time I add something new..'
 
 # Ask if it's okay
 ask_for_confirmation "Continue? "
@@ -46,9 +46,6 @@ if answer_is_yes; then
     # Get sudo permissions
     ask_for_sudo
 
-    # Show text
-    print_info "Executing..."
-
     # Let's begin..
-    ./_setup/execute.sh
+    source ./_setup/execute.sh
 fi

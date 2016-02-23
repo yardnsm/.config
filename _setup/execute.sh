@@ -1,11 +1,18 @@
 #!/bin/bash
 
+# --------------------------------------------- #
+# | Dotfile's main setup
+# --------------------------------------------- #
+
 # Imprting Stuff from _setup
 source ./_setup/utils/messages.sh
 source ./_setup/utils/ask.sh
 
 # Important Variables
 DOTFILES=$HOME/dotfiles
+
+# Show text
+print_info "Setting up main stuf.."
 
 # Initializing git modules
 git submodule update --init --recursive
@@ -40,3 +47,9 @@ for file in $linkables ; do
         print_result $? "Creating symlink for $file"
     fi
 done
+
+# --------------------------------------------- #
+# | Setting up OSX
+# --------------------------------------------- #
+print_info "Setup OSX configurations"
+source ./osx/setup.sh
