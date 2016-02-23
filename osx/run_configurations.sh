@@ -107,7 +107,7 @@ execute 'defaults write com.apple.dock tilesize -int 30' \
 'Set Dock icon size'
 
 execute 'defaults write com.apple.dock dashboard-in-overlay -bool true' \
-'Do not shoe Dashboard as space'
+'Do not show Dashboard as space'
 
 # --------------------------------------------- #
 # | Safari
@@ -154,7 +154,7 @@ execute 'defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
 'Open and save files as UTF-8 encoded in TextEdit'
 
 execute 'defaults write com.apple.TextEdit RichText -' \
-'Use plain text mode for new documents  in TextEdit'
+'Use plain text mode for new documents in TextEdit'
 
 execute 'defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true' \
 'Prevent Photos from opening automatically when devices are plugged in'

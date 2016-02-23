@@ -8,6 +8,15 @@ source ./_setup/utils/ask.sh
 source ./_setup/utils/commands.sh
 source ./_setup/variables.sh
 
+
+# --------------------------------------------- #
+# | First Check that we're on a Mac
+# --------------------------------------------- #
+if ! [ "$(uname -s)" == "Darwin" ]; then
+    print_error "Sorry, these dotfiles are mac-only"
+    exit 1
+fi
+
 # --------------------------------------------- #
 # | Check if Xcode CLI is installed
 # --------------------------------------------- #

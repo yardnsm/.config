@@ -10,7 +10,7 @@ print_info "Setting up installation"
 # Initializing git modules
 git submodule update --init --recursive
 print_result $? "Initializing git modules"
-print_success "Everything is OK!"; sleep 2
+print_success "Everything is OK!"
 
 # --------------------------------------------- #
 # | Setup shell configurations
@@ -46,13 +46,6 @@ done
 # | Setting up OSX
 # --------------------------------------------- #
 print_info "Setup OSX configurations"
-
-# First Check that we're on a Mac
-if ! [ "$(uname -s)" == "Darwin" ]; then
-    print_error "I SAID AT THE BEGINING THAT THESE DOTFILES ARE COMPATIBLE WITH MAC ONLY!"
-    print_error "Sorry, Exiting..."
-    exit 1
-fi
 source ./osx/run_configurations.sh
 
 # --------------------------------------------- #
