@@ -54,6 +54,9 @@ source ./osx/run_configurations.sh
 print_info "Installing Homebrew and Cask"
 source ./osx/homebrew/install_homebrew_cask.sh
 
+# Source the homebrew utils file
+source ./osx/utils.sh
+
 # --------------------------------------------- #
 # | Installing Homebrew dependencies
 # --------------------------------------------- #
