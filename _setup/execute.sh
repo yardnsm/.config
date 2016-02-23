@@ -51,10 +51,10 @@ done
 print_info "Setup OSX configurations"
 
 # First Check that we're on a Mac
-if [ "$(uname -s)" == "Darwin" ]; then
+if ! [ "$(uname -s)" == "Darwin" ]; then
     print_error "I SAID AT THE BEGINING THAT THESE DOTFILES ARE COMPATIBLE WITH MAC ONLY!"
     print_error "Sorry, Exiting..."
-    exit 1;
+    exit 1
 fi
 source ./osx/run_configurations.sh
 
