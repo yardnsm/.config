@@ -5,6 +5,7 @@
 # --------------------------------------------- #
 source ./_setup/utils/messages.sh
 source ./_setup/utils/ask.sh
+source ./_setup/variables.sh
 
 # --------------------------------------------- #
 # | Check if Xcode CLI is installed
