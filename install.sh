@@ -19,6 +19,7 @@ fi
 # --------------------------------------------- #
 
 # Print welcome message
+sleep 1
 print_welcome
 sleep 1
 

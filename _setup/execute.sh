@@ -49,4 +49,38 @@ done
 # | Setting up OSX
 # --------------------------------------------- #
 print_info "Setup OSX configurations"
-source ./osx/setup.sh
+source ./osx/run_configurations.sh
+
+# --------------------------------------------- #
+# | Installing Homebrew and Cask
+# --------------------------------------------- #
+print_info "Installing Homebrew and Cask"
+source ./osx/homebrew/install_homebrew_cask.sh
+
+# --------------------------------------------- #
+# | Installing Homebrew dependencies
+# --------------------------------------------- #
+print_info "Installing Homebrew dependencies"
+source ./osx/homebrew/install_dependencies.sh
+
+# --------------------------------------------- #
+# | Installing Applications
+# --------------------------------------------- #
+print_info "Installing Applications"
+source ./osx/applications/install_applications.sh
+
+# --------------------------------------------- #
+# | Setting applications settings
+# --------------------------------------------- #
+print_info "Setting applications settings"
+source ./osx/applications/set_applications_settings.sh
+
+# --------------------------------------------- #
+# | Finito
+# --------------------------------------------- #
+print_info "Cleaning up..."
+source ./_setup/clean.sh
+
+# Say that we done
+print_info_secondary "DONE. Enjoy your new system :)"
+print_info_secondary "* Review the console for errors *"
