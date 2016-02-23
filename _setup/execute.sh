@@ -87,4 +87,4 @@ source ./_setup/clean.sh
 
 # Say that we done
 print_info_secondary "DONE. Enjoy your new system :)
- Review the console for errors"
+ It is recommended to restart the system"
