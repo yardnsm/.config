@@ -26,7 +26,6 @@ print_in_yellow() {
 # --------------------------------------------- #
 # | MESSAGES
 # --------------------------------------------- #
-
 print_error() {
     print_in_red "  [damn it] $1 $2\n"
 }
@@ -46,6 +45,10 @@ print_question() {
 print_success() {
     print_in_green "  [yay] $1\n"
 }
+
+# --------------------------------------------- #
+# | MISC
+# --------------------------------------------- #
 
 # Print the message based the last exit
 print_result() {

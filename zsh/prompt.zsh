@@ -2,7 +2,6 @@
 
 # Load Colors
 autoload -U colors && colors
-setopt promptsubst
 autoload -U promptinit && promptinit
 
 # Symbols

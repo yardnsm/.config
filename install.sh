@@ -27,15 +27,7 @@ sleep 1
 # --------------------------------------------- #
 
 # Print some info
-print_info_secondary $'This proccess will setup the following:
-  * Setup shell configurations
-  * Symlink all the files that end with *.symlink
-  * Setup OSX configurations
-  * Install Homebrew and Cask
-  * Install Homebrew dependencies
-  * Install Applications
-  * Set applications settings
-  * Many more.. Or not.. I just dont want to change this text every time I add something new..'
+print_info_secondary $'This proccess will setup the dotfiles repository: symlink files, change configurations, etc.'
 
 # Ask if it's okay
 ask_for_confirmation "Continue? "

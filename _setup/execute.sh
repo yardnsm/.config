@@ -3,16 +3,13 @@
 # --------------------------------------------- #
 # | Dotfile's main setup
 # --------------------------------------------- #
-
 # Imprting Stuff from _setup
 source ./_setup/utils/messages.sh
 source ./_setup/utils/ask.sh
-
-# Important Variables
-DOTFILES=$HOME/dotfiles
+source ./_setup/variables.sh
 
 # Show text
-print_info "Setting up main stuf.."
+print_info "Setting up installation"
 
 # Initializing git modules
 git submodule update --init --recursive
