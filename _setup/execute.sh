@@ -49,6 +49,13 @@ done
 # | Setting up OSX
 # --------------------------------------------- #
 print_info "Setup OSX configurations"
+
+# First Check that we're on a Mac
+if [ "$(uname -s)" == "Darwin" ]; then
+    print_error "I SAID AT THE BEGINING THAT THESE DOTFILES ARE COMPATIBLE WITH MAC ONLY!"
+    print_error "Sorry, Exiting..."
+    exit 1;
+fi
 source ./osx/run_configurations.sh
 
 # --------------------------------------------- #
@@ -82,5 +89,5 @@ print_info "Cleaning up..."
 source ./_setup/clean.sh
 
 # Say that we done
-print_info_secondary "DONE. Enjoy your new system :)"
-print_info_secondary "* Review the console for errors *"
+print_info_secondary "DONE. Enjoy your new system :)
+ Review the console for errors"
