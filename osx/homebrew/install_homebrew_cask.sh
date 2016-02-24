@@ -12,6 +12,9 @@ print_result $? 'Homebrew'
 # | Install Cask
 # --------------------------------------------- #
 if ! cmd_exists 'brew cask'; then
-    brew install caskroom/cask/brew-cask &> /dev/null && brew tap caskroom/cask &> /dev/null
+    brew install caskroom/cask/brew-cask &> /dev/null
+    brew tap caskroom/cask &> /dev/null
+    brew tap caskroom/versions &> /dev/null
+    brew tap caskroom/fonts &> /dev/null
 fi
-print_result $? 'Cask'
+print_result $? 'Cask, Cask fonts, Cask versions'

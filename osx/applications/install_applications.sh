@@ -19,6 +19,11 @@ brew_install 'Caffeine' 'caffeine' 'cask'
 brew_install 'IntelliJ IDEA' 'intellij-idea' 'cask'
 brew_install 'Adobe Photoshop CC' 'adobe-photoshop-cc' 'cask'
 
+# --------------------------------------------- #
+# | Install Fonts
+# --------------------------------------------- #
+brew_install 'Hack font' 'font-hack' 'cask'
+
 #########
 # FROM OTHER SOURCES:
 ################
