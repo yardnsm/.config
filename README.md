@@ -5,7 +5,7 @@ My personal dotfiles
 
 ## TO-DO:
 - [ ] add in osx configurations, to remove the shdow from screenshots and save as PNG
-- [ ] add a rain drop when the repository need pull
+- [x] add an indicator when the repository needs pull
 - [ ] add a sync and an update script inside BIN
 - [ ] review the osx configurations file again
 - [ ] add NPM installs and ignore files
