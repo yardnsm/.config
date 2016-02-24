@@ -1,9 +1,9 @@
 # Atom
-atom.symlink/.apm
-atom.symlink/.node-gyp
-atom.symlink/.storage
-atom.symlink/blob-store
-atom.symlink/compile-cache/
-atom.symlink/packages
-atom.symlink/storage
-atom.symlink/themes
+symlinks/atom/atom.symlink/.apm
+symlinks/atom/atom.symlink/.node-gyp
+symlinks/atom/atom.symlink/.storage
+symlinks/atom/atom.symlink/blob-store
+symlinks/atom/atom.symlink/compile-cache/
+symlinks/atom/atom.symlink/packages
+symlinks/atom/atom.symlink/storage
+symlinks/atom/atom.symlink/themes
