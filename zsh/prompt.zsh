@@ -83,15 +83,15 @@ parse_git_dirty() {
 # Check git remote status
 function git_remote_status() {
 
-    local git_local=$(git rev-parse @)
-    local git_remote=$(git rev-parse @{u})
-    local git_base=$(git merge-base @ @{u})
+    local git_local=$(command git rev-parse @)
+    local git_remote=$(command git rev-parse @{u})
+    local git_base=$(command git merge-base @ @{u})
 
-    if [ git_local = git_remote ]; then
+    if [[ ${git_local} = ${git_remote} ]]; then
         echo ""
-    elif [ git_local = git_base ]; then
+    elif [[ ${git_local} = ${git_base} ]]; then
         echo "$ZSH_THEME_GIT_NEEDS_PULL"
-    elif [ git_remote = git_base ]; then
+    elif [[ ${git_remote} = ${git_base} ]]; then
         echo "$ZSH_THEME_GIT_NEEDS_PUSH"
     else
         echo "$ZSH_THEME_GIT_DIVERGED"
