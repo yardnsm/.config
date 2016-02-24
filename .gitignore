@@ -1,4 +1,4 @@
-# Atom
+# Ignoring Atom's other junk to not accidentally sync 'em with github 
 symlinks/atom/atom.symlink/.apm
 symlinks/atom/atom.symlink/.node-gyp
 symlinks/atom/atom.symlink/.storage
