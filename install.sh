@@ -13,7 +13,7 @@ source ./_setup/variables.sh
 # | First Check that we're on a Mac
 # --------------------------------------------- #
 if ! [ "$(uname -s)" == "Darwin" ]; then
-    print_error "Sorry, these dotfiles are mac-only"
+    print_error "Sorry brah, these dotfiles are mac-only"
     exit 1
 fi
 
