@@ -9,6 +9,7 @@ brew_install 'Google Chrome' 'google-chrome' 'cask'
 brew_install 'iTerm 2' 'iterm2' 'cask'
 brew_install 'Github Desktop' 'github-desktop' 'cask'
 brew_install 'Caprine' 'caprine' 'cask'
+brew_install 'Spectacle' 'spectacle' 'cask'
 brew_install 'VLC' 'vlc' 'cask'
 brew_install 'Scroll Reverser' 'scroll-reverser' 'cask'
 brew_install 'Puush' 'puush' 'cask'
@@ -16,6 +17,7 @@ brew_install 'Recordit' 'recordit' 'cask'
 brew_install 'Transmission' 'transmission' 'cask'
 brew_install 'Caffeine' 'caffeine' 'cask'
 brew_install 'IntelliJ IDEA' 'intellij-idea' 'cask'
+brew_install 'Adobe Photoshop CC' 'adobe-photoshop-cc' 'cask'
 
 #########
 # FROM OTHER SOURCES:

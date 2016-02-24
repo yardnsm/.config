@@ -158,3 +158,11 @@ execute 'defaults write com.apple.TextEdit RichText -' \
 
 execute 'defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true' \
 'Prevent Photos from opening automatically when devices are plugged in'
+
+# --------------------------------------------- #
+# | Time Machine
+# --------------------------------------------- #
+print_info_secondary "Time Machine"
+
+execute 'defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true' \
+'Prevent Time Machine from prompting to use new hard drives as backup volume'
