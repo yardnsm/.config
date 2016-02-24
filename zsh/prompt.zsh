@@ -111,17 +111,21 @@ function git_remote_status() {
 # =============
 # 'git fetch' takes some time, so we do that in thr background.
 # How? glad you asked.
+# Basically, we are starting a function in the background. When it
+# ends, we reset the prompt. Sounds like fun? yea, I know.
+#
+# http://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
 ASYNC_PROC=0
 function precmd() {
     function async {
 
-        # Fetch the data and update the prompt
+        # Fetch the data
         git fetch 2> /dev/null
 
-        # Save the prompt in a temp file so the parent shell can read it.
+        # Save the prompt in a temp file so the parent shell can read it
         printf "%s" $PROMPT > "${HOME}/.zsh_tmp_prompt"
 
-        # Signal the parent shell to update the prompt.
+        # Signal the parent shell to update the prompt
         kill -s USR2 $$
 
         # Kill child if necessary
@@ -130,7 +134,7 @@ function precmd() {
         fi
     }
 
-    # Build the prompt in a background job.
+    # Build the prompt in a background job
     async &!
     ASYNC_PROC=$!
 }
