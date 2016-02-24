@@ -6,7 +6,7 @@ export ZSH=$DOTFILES/zsh
 for config ($ZSH/**/*.zsh) source $config;
 
 # Source ~/.localrc if exists
-if [ -a ~/.localrc ]; then
+if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
 
