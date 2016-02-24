@@ -16,7 +16,7 @@ local DIVERGED_SYMBOL="[DIVERGED]"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$reset_color"
 ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]$CLEAN_SYMBOL "
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]$DIRTY_SYMBOL "
-ZSH_THEME_GIT_NEEDS_PULL="$fg[lightred]$NEEDS_PULL_SYMBOL "
+ZSH_THEME_GIT_NEEDS_PULL="$fg[red]$NEEDS_PULL_SYMBOL "
 ZSH_THEME_GIT_NEEDS_PUSH="$fg_bold[magenta]$NEEDS_PUSH_SYMBOL "
 ZSH_THEME_GIT_DIVERGED="$fg_bold[red]$DIVERGED_SYMBOL "
 
@@ -80,6 +80,15 @@ parse_git_dirty() {
 	fi
 }
 
+# Check if git needs a push
+function git_needs_push() {
+    if [[ $(git cherry -v @{upstream} 2> /dev/null) == "" ]]; then
+        echo ""
+    else
+        echo "$ZSH_THEME_GIT_NEEDS_PUSH"
+    fi
+}
+
 # Check git remote status
 function git_remote_status() {
 
@@ -96,4 +105,38 @@ function git_remote_status() {
     else
         echo "$ZSH_THEME_GIT_DIVERGED"
     fi
+}
+
+# Async task to show git remote data
+# =============
+# 'git fetch' takes some time, so we do that in thr background.
+# How? glad you asked.
+ASYNC_PROC=0
+function precmd() {
+    function async {
+
+        # Fetch the data and update the prompt
+        git fetch 2> /dev/null
+
+        # Save the prompt in a temp file so the parent shell can read it.
+        printf "%s" $PROMPT > "${HOME}/.zsh_tmp_prompt"
+
+        # Signal the parent shell to update the prompt.
+        kill -s USR2 $$
+
+        # Kill child if necessary
+        if [[ "${ASYNC_PROC}" != 0 ]]; then
+            kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+        fi
+    }
+
+    # Build the prompt in a background job.
+    async &!
+    ASYNC_PROC=$!
+}
+
+# For the async prompt
+function TRAPUSR2 {
+    PROMPT=$(cat "${HOME}/.zsh_tmp_prompt")
+    zle && zle reset-prompt
 }
