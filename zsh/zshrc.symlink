@@ -13,7 +13,7 @@ fi
 # Initialize autocomplete
 autoload -U compinit && compinit
 
-# Base16 Shell
+# Base16 Shell Theme
 export THEME="base16-atelierlakeside"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"

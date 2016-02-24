@@ -80,15 +80,6 @@ parse_git_dirty() {
 	fi
 }
 
-# Check if git needs a push
-function git_needs_push() {
-    if [[ $(git cherry -v @{upstream} 2> /dev/null) == "" ]]; then
-        echo ""
-    else
-        echo "$ZSH_THEME_GIT_NEEDS_PUSH"
-    fi
-}
-
 # Check git remote status
 function git_remote_status() {
 
