@@ -70,7 +70,7 @@ print_info "Installing Applications"
 source ./osx/applications/install_applications.sh
 
 # --------------------------------------------- #
-# | Setting applications settings
+# | Changing applications settings
 # --------------------------------------------- #
 print_info "Setting applications settings"
 source ./osx/applications/set_applications_settings.sh
@@ -83,4 +83,5 @@ source ./_setup/clean.sh
 
 # Say that we done
 print_info_secondary "DONE. Enjoy your new system :)
+ Go to '~/.dotfiles/_misc' for manuall installs
  It is recommended to restart the system"
