@@ -9,10 +9,8 @@ My personal dotfiles
 - [x] create a dictionary script inside BIN (tells about the shell design)
 - [x] review the osx configurations file again
 - [x] add userscripts
-- [ ] add NPM installs and ignore files
-- [ ] configure 'gitconfig'
-- [ ] add more git aliases
-- [ ] add more symlinks (bowerrc, etc.)
+- [x] add NPM installs and ignore files
+- [x] configure 'gitconfig'
 - [ ] add applications
 - [ ] add applications settings
 - [ ] make this README more fancy

@@ -13,6 +13,12 @@ print_info "Setup shell configurations"
 source ./_setup/misc/shell.sh
 
 # --------------------------------------------- #
+# | Setup the local gitconfig
+# --------------------------------------------- #
+print_info "Setup Local gitconfig"
+source ./_setup/misc/gitconfig.sh
+
+# --------------------------------------------- #
 # | Creating symlinks
 # --------------------------------------------- #
 print_info "Creating symlinks"

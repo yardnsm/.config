@@ -1,4 +1,4 @@
-# Ignoring Atom's other junk to not accidentally sync 'em with github 
+# Ignoring Atom's other junk to not accidentally sync 'em with github
 symlinks/atom/atom.symlink/.apm
 symlinks/atom/atom.symlink/.node-gyp
 symlinks/atom/atom.symlink/.storage
@@ -7,3 +7,6 @@ symlinks/atom/atom.symlink/compile-cache/
 symlinks/atom/atom.symlink/packages
 symlinks/atom/atom.symlink/storage
 symlinks/atom/atom.symlink/themes
+
+# Local gitconfig
+symlinks/git/gitconfig.local.symlink

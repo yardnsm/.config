@@ -1,0 +1,31 @@
+[include]
+        path = ~/.gitconfig.local # Include the local gitconfig
+
+[alias]
+    cm = !git add -A && git commit -m
+
+[push]
+    default = current # Push will only do the current branch, not all branches
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = auto
+
+[color "branch"]
+    current = green bold
+    local = green
+    remote = yellow
+
+[color "diff"]
+    frag = magenta
+    meta = yellow
+    new = green
+    old = red
+
+[color "status"]
+    added = green reverse
+    changed = yellow reverse
+    untracked = red reverse

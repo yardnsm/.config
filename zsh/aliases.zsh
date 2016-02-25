@@ -18,8 +18,6 @@ alias glog="git l"
 alias git-undo='git reset --soft HEAD~1'
 alias git-count='git shortlog -sn'
 alias git-undopush="git push -f origin HEAD^:master"
-
-# Git, add all and commit
 alias gitac='git add . ; git commit'
 
 # ls
