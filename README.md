@@ -6,7 +6,7 @@ Hi, this is my dotfiles. A collection of zsh, git and OSX configurations. I buil
 ![the final product](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/terminal.png)
 
 ## Installation
-**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC AT THE MOMENT**
+**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC OSX AT THE MOMENT**
 
 First, make sure that you have Xcode Command Line Tools installed:
 
@@ -14,7 +14,7 @@ First, make sure that you have Xcode Command Line Tools installed:
 xcode-select --install
 ```
 
-Then, clone the dotfiles repository. you can clone it anywhere: the symbolic links will be created in your home directory (~/).
+Then, clone the dotfiles repository. You can clone it anywhere: the symbolic links will be created in your home directory (~/).
 After that, run the `install` script.
 
 **Before** you run the script, I strongly recommend to check what it does. Make sure to check the setup files (located in `_setup`)
@@ -44,5 +44,5 @@ __(Coming Soon)__
 - [ ] add applications settings
 - [ ] add a sync script inside 'bin'
 - [ ] add an update script inside 'bin'
-- [ ] (?) add a backup script inside 'bin'
+- [ ] add a backup script inside 'bin' (?)
 - [ ] add support for ubuntu (do ton of refactor before)
