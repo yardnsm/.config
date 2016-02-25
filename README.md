@@ -39,6 +39,7 @@ __(Coming Soon)__
 __(Coming Soon)__
 
 ## TO-DO:
+- [ ] Improve README, update pictures
 - [ ] add applications
 - [ ] add applications settings
 - [ ] add a sync and an update script inside BIN
