@@ -42,5 +42,7 @@ __(Coming Soon)__
 - [ ] Improve README, update pictures
 - [ ] add applications
 - [ ] add applications settings
-- [ ] add a sync and an update script inside BIN
+- [ ] add a sync script inside 'bin'
+- [ ] add an update script inside 'bin'
+- [ ] (?) add a backup script inside 'bin'
 - [ ] add support for ubuntu (do ton of refactor before)
