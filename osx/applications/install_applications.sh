@@ -40,3 +40,4 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 5) Divvy
 # 6) Transmit
 # 7) Proxy.app
+# 8) iStat Mini
