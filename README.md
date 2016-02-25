@@ -1,18 +1,45 @@
 # YardNsm's Dotfiles
-My personal dotfiles
+Whoo-Hoo! Can't believe I finished it..
 
-![The final product](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/terminal.png)
+Hi, this is my dotfiles. A collection of zsh, git and OSX configurations. I built this repo from scratch, while focus on organization.
+
+![the final product](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/terminal.png)
+
+## Installation
+**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC AT THE MOMENT**
+
+First, make sure that you have Xcode Command Line Tools installed:
+
+```
+xcode-select --install
+```
+
+Then, clone the dotfiles repository. you can clone it anywhere: the symbolic links will be created in your home directory (~/).
+After that, run the `install` script.
+
+**Before** you run the script, I strongly recommend to check what it does. Make sure to check the setup files (located in `_setup`)
+
+```
+# Clone this repo
+git clone https://github.com/yardnsm/dotfiles.git ~/.dotfiles
+
+# Run the installer!
+cd ~/.dotfiles
+./install.sh
+```
+
+Follow the instruction on the screen, and you good to go.
+
+![installer](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/install.png)
+
+## The prompt
+__(Coming Soon)__
+
+## OSX Setup
+__(Coming Soon)__
 
 ## TO-DO:
-- [x] add in osx configurations, to remove the shdow from screenshots and save as PNG
-- [x] add an indicator when the repository needs pull
-- [x] create a dictionary script inside BIN (tells about the shell design)
-- [x] review the osx configurations file again
-- [x] add userscripts
-- [x] add NPM installs and ignore files
-- [x] configure 'gitconfig'
 - [ ] add applications
 - [ ] add applications settings
-- [ ] make this README more fancy
 - [ ] add a sync and an update script inside BIN
 - [ ] add support for ubuntu (do ton of refactor before)
