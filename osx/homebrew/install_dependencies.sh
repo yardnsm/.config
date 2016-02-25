@@ -3,9 +3,9 @@
 # --------------------------------------------- #
 # | Install dependencies
 # --------------------------------------------- #
-brew_install 'Node' 'node'
-brew_install 'wget' 'wget'
-brew_install 'OpenSSL' 'openssl'
-brew_install 'MongoDB' 'mongo'
-brew_install 'FFmpeg' 'ffmpeg'
-brew_install 'Android SDK' 'android-sdk'
+brew_install 'node'
+brew_install 'wget'
+brew_install 'openssl'
+brew_install 'mongo'
+brew_install 'ffmpeg'
+brew_install 'android-sdk'

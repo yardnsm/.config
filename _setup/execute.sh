@@ -3,44 +3,20 @@
 # --------------------------------------------- #
 # | Dotfile's main setup
 # --------------------------------------------- #
-
-# Show text
 print_info "Setting up installation"
-
-# Initializing git modules
-git submodule update --init --recursive
-print_result $? "Initializing git modules"
-print_success "Everything is OK!"
+source ./_setup/misc/preinstall.sh
 
 # --------------------------------------------- #
 # | Setup shell configurations
 # --------------------------------------------- #
 print_info "Setup shell configurations"
-
-# Change shell to zsh if needed
-if ! [ $SHELL = $(which zsh) ]; then
-    chsh -s $(which zsh)
-    print_result $? "Changed shell to ZSH"
-else
-    print_success "ZSH is already your shell, horray!"
-fi
+source ./_setup/misc/shell.sh
 
 # --------------------------------------------- #
 # | Creating symlinks
 # --------------------------------------------- #
 print_info "Creating symlinks"
-
-# symlinking process
-linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
-for file in $linkables ; do
-    target="$HOME/.$( basename $file ".symlink" )"
-    if [ -e $target ]; then
-        print_error "~${target#$HOME} already exists, Skipping."
-    else
-        ln -s $file $target
-        print_result $? "Creating symlink for $file"
-    fi
-done
+source ./_setup/misc/symlink.sh
 
 # --------------------------------------------- #
 # | Setting up OSX
@@ -53,9 +29,6 @@ source ./osx/run_configurations.sh
 # --------------------------------------------- #
 print_info "Installing Homebrew and Cask"
 source ./osx/homebrew/install_homebrew_cask.sh
-
-# Source the homebrew utils file
-source ./osx/utils.sh
 
 # --------------------------------------------- #
 # | Installing Homebrew dependencies
@@ -76,10 +49,16 @@ print_info "Setting applications settings"
 source ./osx/applications/set_applications_settings.sh
 
 # --------------------------------------------- #
+# | Run the 'misc' script
+# --------------------------------------------- #
+print_info "Running miscellaneous"
+source ./_setup/misc/misc.sh
+
+# --------------------------------------------- #
 # | Finito
 # --------------------------------------------- #
 print_info "Cleaning up..."
-source ./_setup/clean.sh
+source ./_setup/misc/cleanup.sh
 
 # Say that we done
 print_info_secondary "DONE. Enjoy your new system :)
