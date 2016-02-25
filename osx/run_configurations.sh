@@ -17,11 +17,23 @@ execute 'defaults write com.apple.menuextra.battery ShowPercent -string "YES"' \
 execute 'defaults write com.apple.CrashReporter UseUNC 1' \
 'Make crash reports appear as notifications'
 
+execute 'defaults write com.apple.LaunchServices LSQuarantine -bool false' \
+'Disable "Are you sure you want to open this application?" dialog'
+
 execute 'defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true' \
 'Automatically quit the printer app once the print jobs are completed'
 
+execute 'defaults write com.apple.screencapture disable-shadow -bool true' \
+'Disable shadow in screenshots'
+
+execute 'defaults write com.apple.screencapture type -string "png"' \
+'Save screenshots as PNGs'
+
 execute 'defaults write com.apple.screencapture location -string "$HOME/Desktop"' \
 'Save screenshots to the Desktop'
+
+execute 'defaults write NSGlobalDomain AppleFontSmoothing -int 2' \
+'Enable subpixel font rendering on non-Apple LCDs'
 
 execute 'defaults write NSGlobalDomain AppleShowScrollBars -string "Always"' \
 'Always show scrollbars'
@@ -55,12 +67,23 @@ execute 'defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool
 execute 'defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false' \
 'Disable smart dashes'
 
-execute 'defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false' \
-'Disable auto-correct'
-
 execute 'defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true &&
         defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144' \
 'Use scroll gesture with the Ctrl (^) modifier key to zoom'
+
+# --------------------------------------------- #
+# | Language and Region
+# --------------------------------------------- #
+print_info_secondary "Language and Region"
+
+execute 'defaults write NSGlobalDomain AppleLanguages -array "en"' \
+'Set language'
+
+execute 'defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"' \
+'Set measurement units'
+
+execute 'defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false' \
+'Disable auto-correct'
 
 # --------------------------------------------- #
 # | Finder
