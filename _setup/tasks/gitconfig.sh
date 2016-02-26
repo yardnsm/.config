@@ -13,11 +13,9 @@ if answer_is_yes; then
     # Ask details
     ask 'What is your github author name? '
     git_authorname=$(get_answer)
-    ask 'What is your github user name? '
-    git_username=$(get_answer)
     ask 'What is your github author email? '
     git_authoremail=$(get_answer)
 
     # Create it
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/USERNAME/$git_username/g" symlinks/git/gitconfig.local.symlink.dis > symlinks/git/gitconfig.local.symlink
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" symlinks/git/gitconfig.local.symlink.placeholder > symlinks/git/gitconfig.local.symlink
 fi
