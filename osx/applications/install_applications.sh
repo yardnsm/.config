@@ -41,3 +41,4 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 6) Transmit
 # 7) Proxy.app
 # 8) iStat Mini
+# 9) Paragon NTFS
