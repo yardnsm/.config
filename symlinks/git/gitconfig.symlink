@@ -1,11 +1,11 @@
 [include]
-        path = ~/.gitconfig.local # Include the local gitconfig
+        path = ~/.gitconfig.local
 
 [alias]
     cm = !git add -A && git commit -m
 
 [push]
-    default = simple # Push will only do the current branch, not all branches
+    default = simple
 
 [color]
     diff = auto
