@@ -1,5 +1,14 @@
 # Ignoring Atom's other junk to not accidentally sync 'em with github
 symlinks/atom/atom.symlink/*
+symlinks/atom/atom.symlink/.apm
+symlinks/atom/atom.symlink/.node-gyp
+symlinks/atom/atom.symlink/.storage
+symlinks/atom/atom.symlink/blob-store
+symlinks/atom/atom.symlink/compile-cache/
+symlinks/atom/atom.symlink/packages
+symlinks/atom/atom.symlink/storage
+symlinks/atom/atom.symlink/themes
+symlinks/atom/atom.symlink/config.cson
 
 # Local gitconfig
 symlinks/git/gitconfig.local.symlink
