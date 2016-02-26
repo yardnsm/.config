@@ -1,5 +1,5 @@
 # Variables
-export DOTFILES=$HOME/dotfiles
+export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 
 # Source all .zsh files inside the ZSH directory
