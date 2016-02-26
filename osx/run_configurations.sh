@@ -55,7 +55,7 @@ execute 'defaults write NSGlobalDomain AppleKeyboardUIMode -int 3' \
 execute 'defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false' \
 'Disable press-and-hold in favor of key repeat'
 
-execute 'defaults write NSGlobalDomain "InitialKeyRepeat_Level_Saved" -int 15' \
+execute 'defaults write NSGlobalDomain "InitialKeyRepeat_Level_Saved" -int 10' \
 'Set delay until repeat'
 
 execute 'defaults write NSGlobalDomain KeyRepeat -int 2' \
@@ -112,6 +112,9 @@ execute 'defaults write com.apple.finder ShowPathbar -bool true' \
 execute 'defaults write com.apple.finder ShowStatusBar -bool true' \
 'Show status bar'
 
+execute 'defaults write com.apple.finder QLEnableTextSelection -bool true' \
+'Allow text selection in Quick Look'
+
 # --------------------------------------------- #
 # | Dock, Dashboard
 # --------------------------------------------- #
@@ -126,7 +129,7 @@ execute 'defaults write com.apple.dock expose-group-by-app -bool true' \
 execute 'defaults write com.apple.dock show-process-indicators -bool true' \
 'Show indicator lights for open applications'
 
-execute 'defaults write com.apple.dock tilesize -int 30' \
+execute 'defaults write com.apple.dock tilesize -int 35' \
 'Set Dock icon size'
 
 execute 'defaults write com.apple.dock dashboard-in-overlay -bool true' \

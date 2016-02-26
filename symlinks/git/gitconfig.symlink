@@ -29,3 +29,8 @@
     added = green reverse
     changed = yellow reverse
     untracked = red reverse
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
