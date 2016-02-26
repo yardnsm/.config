@@ -21,10 +21,10 @@ After that, run the `install` script.
 
 ```
 # Clone this repo
-git clone https://github.com/yardnsm/dotfiles.git ~/.dotfiles
+git clone https://github.com/yardnsm/dotfiles.git ~/dotfiles
 
 # Run the installer!
-cd ~/.dotfiles
+cd ~/dotfiles
 ./install.sh
 ```
 
