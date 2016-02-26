@@ -23,8 +23,8 @@ execute 'defaults write com.apple.LaunchServices LSQuarantine -bool false' \
 execute 'defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true' \
 'Automatically quit the printer app once the print jobs are completed'
 
-execute 'defaults write com.apple.screencapture disable-shadow -bool true' \
-'Disable shadow in screenshots'
+execute 'defaults write com.apple.screencapture disable-shadow -bool false' \
+'Enable shadow in screenshots'
 
 execute 'defaults write com.apple.screencapture type -string "png"' \
 'Save screenshots as PNGs'
@@ -43,6 +43,12 @@ execute 'defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool 
 
 execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true' \
 'Expand print panel by default'
+
+execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Bacon" &&
+        sudo scutil --set ComputerName "Bacon" &&
+        sudo scutil --set HostName "Bacon" &&
+        sudo scutil --set LocalHostName "Bacon"' \
+'Set computer name to "Bacon" (I am Jewish)'
 
 # --------------------------------------------- #
 # | Trackpad and keyboard
