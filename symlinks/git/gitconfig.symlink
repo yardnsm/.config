@@ -5,7 +5,7 @@
     cm = !git add -A && git commit -m
 
 [push]
-    default = current # Push will only do the current branch, not all branches
+    default = simple # Push will only do the current branch, not all branches
 
 [color]
     diff = auto
