@@ -68,5 +68,5 @@ source ./_setup/tasks/cleanup.sh
 
 # Say that we done
 print_info_secondary "DONE. Enjoy your new system :)
- Go to '~/.dotfiles/_misc' for manuall installs
- It is recommended to restart the system"
+ Go to '~/dotfiles/_misc' for manuall installs
+ Restart your system to see full changes"
