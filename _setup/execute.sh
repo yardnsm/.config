@@ -4,25 +4,25 @@
 # | Dotfile's main setup
 # --------------------------------------------- #
 print_info "Setting up installation"
-source ./_setup/misc/preinstall.sh
+source ./_setup/tasks/preinstall.sh
 
 # --------------------------------------------- #
 # | Setup shell configurations
 # --------------------------------------------- #
 print_info "Setup shell configurations"
-source ./_setup/misc/shell.sh
+source ./_setup/tasks/shell.sh
 
 # --------------------------------------------- #
 # | Setup the local gitconfig
 # --------------------------------------------- #
 print_info "Setup Local gitconfig"
-source ./_setup/misc/gitconfig.sh
+source ./_setup/tasks/gitconfig.sh
 
 # --------------------------------------------- #
 # | Creating symlinks
 # --------------------------------------------- #
 print_info "Creating symlinks"
-source ./_setup/misc/symlink.sh
+source ./_setup/tasks/symlink.sh
 
 # --------------------------------------------- #
 # | Setting up OSX
@@ -58,13 +58,13 @@ source ./osx/applications/set_applications_settings.sh
 # | Run the 'misc' script
 # --------------------------------------------- #
 print_info "Running miscellaneous"
-source ./_setup/misc/misc.sh
+source ./_setup/tasks/misc.sh
 
 # --------------------------------------------- #
 # | Finito
 # --------------------------------------------- #
 print_info "Cleaning up..."
-source ./_setup/misc/cleanup.sh
+source ./_setup/tasks/cleanup.sh
 
 # Say that we done
 print_info_secondary "DONE. Enjoy your new system :)

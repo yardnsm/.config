@@ -28,7 +28,7 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-Follow the instruction on the screen, and you good to go.
+Follow the instruction on the screen, and you are good to go.
 
 ![installer](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/install.png)
 
