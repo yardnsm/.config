@@ -17,7 +17,7 @@ xcode-select --install
 Then, clone the dotfiles repository. You can clone it anywhere: the symbolic links will be created in your home directory (~/).
 After that, run the `install` script.
 
-**Before** you run the script, I strongly recommend to check what it does. Make sure to check the setup files (located in `_setup`)
+**Before** you run the script, I strongly recommend to check what it does. Make sure to check the setup files (located in `_setup`).
 
 ```
 # Clone this repo
