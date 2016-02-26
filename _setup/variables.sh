@@ -3,4 +3,4 @@
 # --------------------------------------------- #
 # | Important Variables
 # --------------------------------------------- #
-DOTFILES=$HOME/dotfiles
+DOTFILES=$HOME/.dotfiles
