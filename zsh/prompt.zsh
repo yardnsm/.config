@@ -100,13 +100,14 @@ function git_remote_status() {
 
 # Async task to show git remote data
 # =============
-# 'git fetch' takes some time, so we do that in thr background.
+# 'git fetch' takes some time, so we are doing that in the background.
 # How? glad you asked.
-# Basically, we are starting a function in the background. When it
-# ends, we reset the prompt. Sounds like fun? yea, I know.
+# Basically, a function is strated in the background. When it
+# ends, the prompt is reloaded. Sounds like fun? yea, I know.
 #
 # http://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
 ASYNC_PROC=0
+local tmp_prompt_location="${HOME}/.zsh_tmp_prompt";
 function precmd() {
     function async {
 
@@ -114,7 +115,7 @@ function precmd() {
         git fetch 2> /dev/null
 
         # Save the prompt in a temp file so the parent shell can read it
-        printf "%s" $PROMPT > "${HOME}/.zsh_tmp_prompt"
+        printf "%s" $PROMPT > "$tmp_prompt_location"
 
         # Signal the parent shell to update the prompt
         kill -s USR2 $$
@@ -132,6 +133,6 @@ function precmd() {
 
 # For the async prompt
 function TRAPUSR2 {
-    PROMPT=$(cat "${HOME}/.zsh_tmp_prompt")
+    PROMPT=$(cat "$tmp_prompt_location")
     zle && zle reset-prompt
 }
