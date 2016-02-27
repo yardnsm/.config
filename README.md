@@ -42,6 +42,7 @@ __(Coming Soon)__
 - [ ] Improve README, update pictures
 - [ ] Add an update installer in the 'misc' task
 - [ ] Add RSA key creation
+- [ ] Add IntelliJ IDEA setting in _misc folder
 - [ ] Add an option to turn off auto updates
 - [ ] add applications
 - [ ] add applications settings
