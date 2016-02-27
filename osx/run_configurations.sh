@@ -14,6 +14,9 @@ execute 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool
 execute 'defaults write com.apple.menuextra.battery ShowPercent -string "YES"' \
 'Show battery percentage from the menu bar'
 
+execute 'defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool "YES"' \
+'Enable Fast User Switching'
+
 execute 'defaults write com.apple.CrashReporter UseUNC 1' \
 'Make crash reports appear as notifications'
 

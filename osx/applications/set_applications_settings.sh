@@ -5,6 +5,9 @@
 # --------------------------------------------- #
 print_info_secondary "Transmission"
 
+execute 'defaults write org.m0k.transmission DeleteOriginalTorrent -bool true' \
+'Delete the original torrent files'
+
 execute 'defaults write org.m0k.transmission DownloadChoice -string "Constant" &&
         defaults write org.m0k.transmission DownloadFolder -string "$HOME/Downloads"' \
 'Use "~/Downloads" to store complete downloads'
