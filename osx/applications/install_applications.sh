@@ -37,8 +37,6 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 2) Popcorn Time
 # 3) CleanMyMac
 # 4) Parallels Desktop
-# 5) Divvy
-# 6) Transmit
-# 7) Proxy.app
-# 8) iStat Mini
-# 9) Paragon NTFS
+# 5) Transmit
+# 6) iStat Mini
+# 7) Paragon NTFS
