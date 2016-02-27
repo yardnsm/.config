@@ -132,8 +132,8 @@ print_info_secondary "Dock and Dashboard"
 execute 'defaults write com.apple.dashboard mcx-disabled -bool true' \
 'Disable Dashboard'
 
-execute 'defaults write com.apple.dock expose-group-by-app -bool true' \
-'Group windows by application in Mission Control'
+execute 'defaults write com.apple.dock expose-group-by-app -bool false' \
+'Do not Group windows by application in Mission Control'
 
 execute 'defaults write com.apple.dock show-process-indicators -bool true' \
 'Show indicator lights for open applications'
