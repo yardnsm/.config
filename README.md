@@ -43,6 +43,7 @@ __(Coming Soon)__
 - [ ] Add an update installer in the 'misc' task
 - [ ] Add RSA key creation
 - [ ] Add IntelliJ IDEA setting in _misc folder
+- [ ] Change to another base16 theme?
 - [ ] Add an option to turn off auto updates
 - [ ] add applications
 - [ ] add applications settings
