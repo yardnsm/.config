@@ -41,6 +41,7 @@ __(Coming Soon)__
 ## TO-DO:
 - [ ] Improve README, update pictures
 - [ ] Add an update installer in the 'misc' task
+- [ ] Add RSA key creation
 - [ ] Add an option to turn off auto updates
 - [ ] add applications
 - [ ] add applications settings
