@@ -40,8 +40,11 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
+- [ ] Add an update installer in the 'misc' task
 - [ ] add applications
 - [ ] add applications settings
+- [ ] review osx settings
+- [ ] review applications settings
 - [ ] add a sync script inside 'bin'
 - [ ] add an update script inside 'bin'
 - [ ] add a backup script inside 'bin' (?)
