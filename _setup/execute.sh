@@ -19,10 +19,10 @@ print_info "Setup Local gitconfig"
 source ./_setup/tasks/gitconfig.sh
 
 # --------------------------------------------- #
-# | Creating symlinks
+# | Creating symlinks and copies
 # --------------------------------------------- #
-print_info "Creating symlinks"
-source ./_setup/tasks/symlink.sh
+print_info "Creating symlinks and copies"
+source ./_setup/tasks/symlink_and_copy.sh
 
 # --------------------------------------------- #
 # | Setting up OSX

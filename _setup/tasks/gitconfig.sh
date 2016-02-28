@@ -4,11 +4,11 @@
 # | Create a local git config file
 # --------------------------------------------- #
 
-#Ask if neccesarry
+# Ask if neccesarry
 if ! [ -f symlinks/git/gitconfig.local.symlink ]; then
     ask_for_confirmation "Need to create a local gitconfig? "
 else
-    ask_for_confirmation "A local gitconfig is already created. Need to create again? "
+    ask_for_confirmation "A local gitconfig is already exist. Need to create again? "
 fi
 
 # Check if answer is yes
