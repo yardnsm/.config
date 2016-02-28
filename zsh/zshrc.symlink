@@ -5,7 +5,7 @@ export ZSH=$DOTFILES/zsh
 # Source all .zsh files inside the ZSH directory
 for config ($ZSH/**/*.zsh) source $config;
 
-# Source ~/.localrc if exists
+# Source '~/.localrc' if exists
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
@@ -18,5 +18,5 @@ export THEME="base16-atelierlakeside"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
-BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
+BASE16_SHELL="$DOTFILES/_config/base16-shell/$THEME.$BACKGROUND.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
