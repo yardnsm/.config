@@ -32,7 +32,13 @@ Follow the instruction on the screen, and you are good to go.
 
 ![installer](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/install.png)
 
-## The prompt
+## Structure
+__(Coming Soon)__
+
+## Symlinking and copying processes
+__(Coming Soon)__
+
+## ZSH Setup and the prompt
 __(Coming Soon)__
 
 ## OSX Setup
@@ -40,16 +46,19 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
-- [ ] Add an update installer in the 'misc' task
+- [ ] Add an update task (software updates for mac)
+- [ ] Add a log creation?
 - [ ] Add RSA key creation
 - [ ] Add IntelliJ IDEA setting in _misc folder
 - [ ] Change to another base16 theme?
-- [ ] Add an option to turn off auto updates
+- [ ] Add an option to turn off auto updates from appstore
 - [ ] add applications
 - [ ] add applications settings
-- [ ] review osx settings
-- [ ] review applications settings
-- [ ] add a sync script inside 'bin'
-- [ ] add an update script inside 'bin'
-- [ ] add a backup script inside 'bin' (?)
-- [ ] add support for ubuntu (do ton of refactor before)
+- [ ] Review osx settings
+- [ ] Review applications settings
+- [ ] Add a sync script inside 'bin'
+- [ ] Add an update script inside 'bin'
+- [ ] Add a backup script inside 'bin'?
+- [ ] Create a 'dotfiles' utility with menu to choose between tasks
+- [ ] Add support for ubuntu (do ton of refactor before)
+- [ ] Achieve 42,956 commits. Add support to windows after that? nah.
