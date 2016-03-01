@@ -20,8 +20,19 @@ alias git-count='git shortlog -sn'
 alias git-undopush="git push -f origin HEAD^:master"
 alias gitac='git add . ; git commit'
 
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU
+    colorflag="--color"
+else # OSX
+    colorflag="-G"
+fi
+
 # ls
-alias ls='ls -a'
+alias l="ls -lah ${colorflag}"
+alias la="ls -AF ${colorflag}"
+alias ll="ls -lFh ${colorflag}"
+alias lla="ls -lAFh ${colorflag}"
+alias lld="ls -l | grep ^d"
 
 # Always open atom in the current dir
 alias atom='atom .'
