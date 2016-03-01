@@ -47,6 +47,7 @@ __(Coming Soon)__
 ## TO-DO:
 - [ ] Improve README, update pictures
 - [ ] Add an update task (software updates for mac)
+- [ ] Add indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add RSA key creation
 - [ ] Add IntelliJ IDEA setting in _misc folder
