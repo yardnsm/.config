@@ -28,10 +28,11 @@ else # OSX
 fi
 
 # ls
-alias l="ls -lah ${colorflag}"
-alias la="ls -AF ${colorflag}"
-alias ll="ls -lFh ${colorflag}"
-alias lla="ls -lAFh ${colorflag}"
+alias ls="ls ${colorflag}"
+alias l="ls -lah"
+alias la="ls -AF"
+alias ll="ls -lFh"
+alias lla="ls -lAFh"
 alias lld="ls -l | grep ^d"
 
 # Always open atom in the current dir
