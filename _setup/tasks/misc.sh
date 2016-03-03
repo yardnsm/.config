@@ -12,6 +12,7 @@ npm_install 'gulp'
 npm_install 'jade'
 npm_install 'nodemon'
 npm_install 'speed-test'
+npm_install 'json-server'
 
 # --------------------------------------------- #
 # | Installing Atom's packages
