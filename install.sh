@@ -9,12 +9,11 @@ source ./_setup/utils/commands.sh
 source ./_setup/utils/installs.sh
 source ./_setup/variables.sh
 
-
 # --------------------------------------------- #
 # | First Check that we're on a Mac
 # --------------------------------------------- #
 if ! [ "$(uname -s)" == "Darwin" ]; then
-    print_error "Sorry brah, these dotfiles are mac-only"
+    print_error "Sorry brah, these dotfiles are mac-only!"
     exit 1
 fi
 
@@ -40,7 +39,7 @@ sleep 1
 # --------------------------------------------- #
 
 # Print some info
-print_info_secondary $'This proccess will setup the dotfiles repository: symlink files, change configurations, etc.'
+print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc."
 
 # Ask if it's okay
 ask_for_confirmation "Continue? "

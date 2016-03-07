@@ -1,4 +1,6 @@
-# Inspired by: https://github.com/sindresorhus/pure
+# --------------------------------------- #
+# | ZSH Prompt
+# --------------------------------------- #
 
 # Load Colors
 autoload -U colors && colors
@@ -111,7 +113,7 @@ local tmp_prompt_location="${HOME}/.zsh_tmp_prompt";
 function precmd() {
     function async {
 
-        # Fetch the data
+        # Fetch the data from git
         git fetch 2> /dev/null
 
         # Save the prompt in a temp file so the parent shell can read it
@@ -133,6 +135,10 @@ function precmd() {
 
 # For the async prompt
 function TRAPUSR2 {
+
+    # Change the prompt
     PROMPT=$(cat "$tmp_prompt_location")
+
+    # Restart the prompt
     zle && zle reset-prompt
 }

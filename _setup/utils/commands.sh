@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# --------------------------------------- #
+# | Commands Utils
+# --------------------------------------- #
+
 # Check if a coomand exists
 cmd_exists() {
     command -v "$1" &> /dev/null

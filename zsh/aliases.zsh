@@ -1,3 +1,7 @@
+# --------------------------------------- #
+# | ZSH Aliases
+# --------------------------------------- #
+
 # Reload zsh config
 alias reloadd='source ~/.zshrc'
 
