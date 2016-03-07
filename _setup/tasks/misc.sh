@@ -17,6 +17,6 @@ npm_install 'json-server'
 # --------------------------------------------- #
 # | Installing Atom's packages
 # --------------------------------------------- #
-print_info_secondary "Installing Atom's packages"
+print_info_secondary "Install Atom's packages"
 execute 'apm install package-sync' \
 'package-sync is now installed. Open Atom, press cmd+shift+p and type "sync"'
