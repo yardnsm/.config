@@ -46,7 +46,7 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
-- [ ] Add an update task (software updates for mac)
+- [ ] Add an update task (software updates for mac, homebrew)
 - [ ] Add indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add RSA key creation
