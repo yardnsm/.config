@@ -1,37 +1,36 @@
 "*":
-  "atom-beautify": {}
-  "autoclose-html": {}
-  "autocomplete-plus": {}
 
-  core:
-    themes: [
-      "seti-ui-beta"
-      "seti-syntax"
-    ]
+    # --------------------------------------------- #
+    # | Packages
+    # --------------------------------------------- #
+    "atom-beautify": {}
+    "autoclose-html": {}
+    "autocomplete-plus": {}
+    "editor":
+        backUpBeforeSaving: true
+        invisibles: {}
+        scrollPastEnd: true
+        showIndentGuide: true
+        tabLength: 4
+        tabType: "soft"
+    "highlight-selected": {}
+    "minimap": {}
+    "open-terminal-here":
+        command: "open -a iTerm.app \"$PWD\""
 
-  editor:
-    backUpBeforeSaving: true
-    invisibles: {}
-    scrollPastEnd: true
-    showIndentGuide: true
-    tabLength: 4
-    tabType: "soft"
+    # --------------------------------------------- #
+    # | Core packages options
+    # --------------------------------------------- #
+    "tree-view":
+        hideIgnoredNames: true
+    "welcome":
+        showOnStartup: false
 
-  "exception-reporting": {}
-  "highlight-selected": {}
-
-  minimap: {}
-
-  "status-bar": {}
-  "terminal-plus":
-    core: {}
-    style:
-      animationSpeed: 0
-    toggles:
-      autoClose: true
-
-  "tree-view":
-    hideIgnoredNames: true
-
-  welcome:
-    showOnStartup: false
+    # --------------------------------------------- #
+    # | Themes
+    # --------------------------------------------- #
+    "core":
+        themes: [
+            "seti-ui-beta"
+            "seti-syntax"
+        ]
