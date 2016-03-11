@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          Sdarot.TV Disable Waiting
-// @Description   This little code can disable the 30sec waiting time at Sdarot.TV
+// @description   This little code can disable the 30sec waiting time at Sdarot.TV
 // @copyright     YardNsm
 // @author        YardNsm
 // @version       1.0
