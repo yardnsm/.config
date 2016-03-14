@@ -1,6 +1,9 @@
 [include]
         path = ~/.gitconfig.local
 
+[core]
+	excludesfile = ~/.gitignore_global
+
 [alias]
     cm = !git add -A && git commit -m
 
