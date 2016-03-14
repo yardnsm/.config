@@ -23,4 +23,4 @@ if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
 BASE16_SHELL="$DOTFILES/_config/base16-shell/$THEME.$BACKGROUND.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && source $BASE16_SHELL
