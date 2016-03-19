@@ -46,6 +46,7 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
+- [ ] Internet is slow. Add a script to automate rebooting of the router.
 - [ ] Add an update task (software updates for mac, homebrew, npm..)
 - [ ] Add indicator for background processes in the prompt
 - [ ] Add a log creation?
