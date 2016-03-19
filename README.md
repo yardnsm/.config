@@ -48,7 +48,7 @@ __(Coming Soon)__
 - [ ] Improve README, update pictures
 - [ ] Internet is slow. Add a script to automate rebooting of the router.
 - [ ] Add an update task (software updates for mac, homebrew, npm..)
-- [ ] Add indicator for background processes in the prompt
+- [ ] Add an indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add RSA key creation
 - [ ] Add IntelliJ IDEA setting in misc folder
@@ -61,5 +61,7 @@ __(Coming Soon)__
 - [ ] Add an update script inside 'bin'
 - [ ] Add a backup script inside 'bin'?
 - [ ] Create a 'dotfiles' utility with menu to choose between tasks
+- [ ] Add more file to 'bin'
+- [ ] Add an 'inspired by' section to the README
 - [ ] Add support for ubuntu (do ton of refactor before)
 - [ ] Achieve 42,956 commits. Add support to windows after that? nah.
