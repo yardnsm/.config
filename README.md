@@ -46,12 +46,11 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
-- [ ] Add an update task (software updates for mac, homebrew)
+- [ ] Add an update task (software updates for mac, homebrew, npm..)
 - [ ] Add indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add RSA key creation
 - [ ] Add IntelliJ IDEA setting in misc folder
-- [ ] Change to another base16 theme?
 - [ ] Add an option to turn off auto updates from appstore
 - [ ] add applications
 - [ ] add applications settings
