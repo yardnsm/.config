@@ -16,7 +16,7 @@ local DIVERGED_SYMBOL="[DIVERGED]"
 
 # For the git status
 ZSH_THEME_GIT_PROMPT_SUFFIX="$reset_color"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]$CLEAN_SYMBOL "
+ZSH_THEME_GIT_PROMPT_CLEAN="$fg[yellow]$CLEAN_SYMBOL "
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]$DIRTY_SYMBOL "
 ZSH_THEME_GIT_NEEDS_PULL="$fg[red]$NEEDS_PULL_SYMBOL "
 ZSH_THEME_GIT_NEEDS_PUSH="$fg_bold[magenta]$NEEDS_PUSH_SYMBOL "
@@ -37,7 +37,7 @@ local arrow="%(?.%{$fg[cyan]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
 # Show user@host for SSH connections
 function user_host() {
 
-    # Make the color red if is root
+    # Make the color red if the current user is root
     if [[ $USER == "root" ]]; then
     	USER_COLOR="red"
     else
@@ -45,12 +45,14 @@ function user_host() {
     fi
 
 	if [[ -n $SSH_CONNECTION ]]; then
-		me="%{$fg[USER_COLOR]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
+		info="%{$fg_bold[$USER_COLOR]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
 	elif [[ $LOGNAME != $USER ]]; then
-		me="%{$fg[USER_COLOR]%}%n%{$reset_color%}"
+		info="%{$fg_bold[$USER_COLOR]%}%n%{$reset_color%}"
 	fi
-	if [[ -n $me ]]; then
-		echo "$me:"
+
+    # Echo the info
+	if [[ -n $info ]]; then
+		echo "$info: "
 	fi
 }
 

@@ -6,6 +6,9 @@
 export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
 
+# Display info for tasks long than 98sec
+export REPORTTIME=8
+
 # Source all .zsh files inside the ZSH directory
 for config ($ZSH/**/*.zsh) source $config;
 
@@ -18,9 +21,9 @@ fi
 autoload -U compinit && compinit
 
 # Base16 Shell Theme
-export THEME="base16-atelierlakeside"
+export THEME="base16-ateliercave"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
-BASE16_SHELL="$DOTFILES/_config/base16-shell/$THEME.$BACKGROUND.sh"
+BASE16_SHELL="$DOTFILES/_config/base16-shell-notincluded/$THEME.$BACKGROUND.sh"
 [[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && source $BASE16_SHELL
