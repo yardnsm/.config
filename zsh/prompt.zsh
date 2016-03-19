@@ -16,7 +16,7 @@ local DIVERGED_SYMBOL="[DIVERGED]"
 
 # For the git status
 ZSH_THEME_GIT_PROMPT_SUFFIX="$reset_color"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[yellow]$CLEAN_SYMBOL "
+ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]$CLEAN_SYMBOL "
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]$DIRTY_SYMBOL "
 ZSH_THEME_GIT_NEEDS_PULL="$fg[red]$NEEDS_PULL_SYMBOL "
 ZSH_THEME_GIT_NEEDS_PUSH="$fg_bold[magenta]$NEEDS_PUSH_SYMBOL "
@@ -45,9 +45,9 @@ function user_host() {
     fi
 
 	if [[ -n $SSH_CONNECTION ]]; then
-		info="%{$fg_bold[$USER_COLOR]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
+		info="%{$fg[$USER_COLOR]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
 	elif [[ $LOGNAME != $USER ]]; then
-		info="%{$fg_bold[$USER_COLOR]%}%n%{$reset_color%}"
+		info="%{$fg[$USER_COLOR]%}%n%{$reset_color%}"
 	fi
 
     # Echo the info

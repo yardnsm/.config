@@ -6,20 +6,20 @@
 brew_install() {
 
     # Arguments
-    declare -r FORMULA="$1"
-    declare -r CMD="$2"
+    formula="$1"
+    cmd="$2"
 
     # Check if Homebrew is installed
     if ! cmd_exists 'brew'; then
-        print_error "$FORMULA (\`brew\` is not installed)"
+        print_error "$formula (\`brew\` is not installed)"
     fi
 
     # Install the specified formula
-    eval "brew $CMD list $FORMULA" &> /dev/null
+    eval "brew $cmd list $formula" &> /dev/null
     if [ $? -eq 0 ]; then
-        print_success "$FORMULA (already installed)"
+        print_success "$formula (already installed)"
     else
-        execute "brew $CMD install $FORMULA" "$FORMULA"
+        execute "brew $cmd install $formula" "$formula"
     fi
 }
 
@@ -29,18 +29,18 @@ brew_install() {
 npm_install() {
 
     # Arguments
-    declare -r PACKAGE="$1"
+    package="$1"
 
     # Check if NPM is installed
     if ! cmd_exists 'npm'; then
-        print_error "$PACKAGE (\`NPM\` is not installed)"
+        print_error "$package (\`NPM\` is not installed)"
     fi
 
     # Install the specified package
-    eval "npm list $PACKAGE -g" &> /dev/null
+    eval "npm list $package -g" &> /dev/null
     if [ $? -eq 0 ]; then
-        print_success "$PACKAGE (already installed)"
+        print_success "$package (already installed)"
     else
-        execute "npm install $PACKAGE -g" "$PACKAGE"
+        execute "npm install $package -g" "$package"
     fi
 }

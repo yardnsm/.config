@@ -25,6 +25,12 @@ print_info "Create symlinks and copies"
 source ./_setup/tasks/symlink_and_copy.sh
 
 # --------------------------------------------- #
+# | Setup workspace
+# --------------------------------------------- #
+print_info "Setup Workspace"
+source ./_setup/tasks/workspace.sh
+
+# --------------------------------------------- #
 # | Setup OSX configurations
 # --------------------------------------------- #
 print_info "Setup OSX configurations"
