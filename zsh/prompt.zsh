@@ -32,7 +32,7 @@ RPROMPT="%T"
 
 # Prompt values
 local current_dir="%{$fg[white]%}%3~%{$reset_color%} "
-local arrow="%(?.%{$fg[cyan]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
+local arrow="%(?.%{$fg[blue]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
 
 # Show user@host for SSH connections
 function user_host() {

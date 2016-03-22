@@ -3,24 +3,21 @@
     # --------------------------------------------- #
     # | Packages
     # --------------------------------------------- #
-    "atom-beautify": {}
-    "autoclose-html": {}
-    "autocomplete-plus": {}
-    "editor":
-        backUpBeforeSaving: true
-        invisibles: {}
-        scrollPastEnd: true
-        showIndentGuide: true
-        tabLength: 4
-        tabType: "soft"
-    "highlight-selected": {}
-    "minimap": {}
+    "base16-syntax":
+        scheme: "Atelier Lakeside"
     "open-terminal-here":
         command: "open -a iTerm.app \"$PWD\""
 
     # --------------------------------------------- #
     # | Core packages options
     # --------------------------------------------- #
+    "editor":
+        backUpBeforeSaving: true
+        fontFamily: "Hack"
+        scrollPastEnd: true
+        showIndentGuide: true
+        tabLength: 4
+        tabType: "soft"
     "tree-view":
         hideIgnoredNames: true
     "welcome":
@@ -32,5 +29,5 @@
     "core":
         themes: [
             "seti-ui-beta"
-            "seti-syntax"
+            "base16-syntax"
         ]

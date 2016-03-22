@@ -1,6 +1,7 @@
 #!/bin/sh
 # Base16 Atelier Cave - Shell color setup script
 # Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/cave)
+# Modified By Yarden Sod-Moriah
 
 if [ "${TERM%%-*}" = 'linux' ]; then
     # This script doesn't support linux console (use 'vconsole' template instead)

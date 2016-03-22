@@ -21,9 +21,9 @@ fi
 autoload -U compinit && compinit
 
 # Base16 Shell Theme
-export THEME="base16-ateliercave"
+export THEME="base16-atelierlakeside"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
-BASE16_SHELL="$DOTFILES/_config/base16-shell-notincluded/$THEME.$BACKGROUND.sh"
+BASE16_SHELL="$DOTFILES/_config/base16-shell/$THEME.$BACKGROUND.sh"
 [[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && source $BASE16_SHELL
