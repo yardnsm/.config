@@ -17,6 +17,7 @@ brew_install 'puush' 'cask'
 brew_install 'recordit' 'cask'
 brew_install 'transmission' 'cask'
 brew_install 'caffeine' 'cask'
+brew_install 'cumulus' 'cask'
 #brew_install 'intellij-idea' 'cask'
 #brew_install 'adobe-photoshop-cc' 'cask'
 
