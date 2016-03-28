@@ -39,7 +39,10 @@ sleep 1
 # --------------------------------------------- #
 
 # Print some info
-print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc."
+print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc.
+
+  NOTE: This script is installing everything needed. It can override some settings.
+  For updating apps/dependencies, fire-up the 'update.sh' script."
 
 # Ask if it's okay
 ask_for_confirmation "Continue? "
@@ -52,4 +55,9 @@ if answer_is_yes; then
 
     # Let's begin..
     source ./_setup/execute.sh
+
+else
+    # wow
+    echo ""
+    print_error "aborted"
 fi
