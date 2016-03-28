@@ -18,7 +18,7 @@ brew_install 'drop-to-gif' 'cask'
 brew_install 'transmission' 'cask'
 brew_install 'caffeine' 'cask'
 brew_install 'cumulus' 'cask'
-brew_install 'resolutionator' 'cask'
+brew_install 'bestres' 'cask'
 #brew_install 'intellij-idea' 'cask'
 #brew_install 'adobe-photoshop-cc' 'cask'
 
