@@ -72,7 +72,7 @@ source ./_setup/tasks/misc.sh
 print_info "Clean up..."
 source ./_setup/tasks/cleanup.sh
 
-# Say that we've done
-print_info_secondary "DONE. Enjoy your new system :)
- Go to '~/dotfiles/_misc' for manuall installs
- Restart your system to see full changes"
+# --------------------------------------------- #
+# | Done!
+# --------------------------------------------- #
+print_finish_message

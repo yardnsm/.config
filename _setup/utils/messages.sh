@@ -27,7 +27,7 @@ print_in_yellow() {
 # | Messages
 # --------------------------------------------- #
 print_error() {
-    print_in_red "  [damn it] $1 $2\n"
+    print_in_red "    [damn it] $1 $2\n"
 }
 
 print_info() {
@@ -35,15 +35,15 @@ print_info() {
 }
 
 print_info_secondary() {
-    print_in_cyan "\n $1\n\n"
+    print_in_cyan "\n  $1\n\n"
 }
 
 print_question() {
-    print_in_yellow "  [?] $1"
+    print_in_yellow "    [?] $1"
 }
 
 print_success() {
-    print_in_green "  [yay] $1\n"
+    print_in_green "    [yay] $1\n"
 }
 
 # --------------------------------------------- #
@@ -74,4 +74,11 @@ print_welcome() {
 
     echo ""
     echo $'\n  ---------------------'
+}
+
+# Print finish message
+print_finish_message() {
+    print_info_secondary "DONE. Enjoy your new system :)
+  Go to '~/dotfiles/_misc/manual' for manuall installs
+  Restart your system to see full changes"
 }
