@@ -10,7 +10,9 @@ export ZSH=$DOTFILES/zsh
 export REPORTTIME=8
 
 # Source all .zsh files inside the ZSH directory
-for config ($ZSH/**/*.zsh) source $config;
+for config ($ZSH/**/*.zsh); do
+    source $config
+done
 
 # Source '~/.localrc' if exists
 if [[ -a ~/.localrc ]]; then
