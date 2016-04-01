@@ -57,7 +57,9 @@ if answer_is_yes; then
     source ./_setup/execute.sh
 
 else
-    # wow
+
+    # wow. did you just wat?
     echo ""
     print_error "aborted"
+    exit 1
 fi

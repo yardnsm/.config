@@ -1,26 +1,19 @@
-/*
- * Atom's Stylesheet
- */
+/* Atom's Stylesheet */
 
-/* ========================================= */
+/* Change the folders color to something more colorful */
+.list-group .icon.icon-file-directory::before,
+.list-tree .icon.icon-file-directory::before {
+    color: #98985D;
+}
 
-/*
- * Examples
- * (To see them, uncomment and save)
- */
-
-// style the background color of the tree view
+/* Ohh yay animations */
 .tree-view {
-  // background-color: whitesmoke;
-}
+    .entry.expanded > .entries {
+        -webkit-animation: tree-view-expanded 400ms cubic-bezier(.15,.7,.3, 1);
+    }
 
-// style the background and foreground colors on the atom-text-editor-element itself
-atom-text-editor {
-  // color: white;
-  // background-color: hsl(180, 24%, 12%);
-}
-
-// To style other content in the text editor's shadow DOM, use the ::shadow expression
-atom-text-editor::shadow .cursor {
-  // border-color: red;
+    @-webkit-keyframes tree-view-expanded {
+        0% { opacity: 0; transform: translate(-10px, -10px) scale(1.1, 1.1); }
+        100% { opacity: 1; transform: translate(0, 0) scale(1, 1); }
+    }
 }

@@ -1,7 +1,7 @@
 "*":
 
     # --------------------------------------------- #
-    # | Packages
+    # | Packages options
     # --------------------------------------------- #
     "base16-syntax":
         scheme: "Atelier Lakeside"
@@ -16,6 +16,7 @@
         fontFamily: "Hack"
         scrollPastEnd: true
         showIndentGuide: true
+        showInvisibles: true
         tabLength: 4
         tabType: "soft"
     "tree-view":
@@ -28,6 +29,6 @@
     # --------------------------------------------- #
     "core":
         themes: [
-            "seti-ui-beta"
+            "nucleus-dark-ui"
             "base16-syntax"
         ]
