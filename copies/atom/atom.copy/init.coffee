@@ -12,3 +12,8 @@ process.nextTick ->
 # Close the tree at Startup
 #workspaceView = atom.views.getView(atom.workspace)
 #atom.commands.dispatch workspaceView, 'tree-view:toggle'
+
+# --------------------------------------------- #
+# | Set dimensions
+# --------------------------------------------- #
+atom.setWindowDimensions({"width": 1300, "height": 700})
