@@ -16,7 +16,7 @@ show_spinner() {
     # Delay per frame
     local delay=0.1
 
-    # Spinner frames
+    # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
     local frames="⠄⠆⠇⠋⠙⠸⠰⠠⠰⠸⠙⠋⠇⠆"
 
     # As long the process is running
