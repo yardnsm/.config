@@ -7,6 +7,7 @@ source ./_setup/utils/messages.sh
 source ./_setup/utils/ask.sh
 source ./_setup/utils/commands.sh
 source ./_setup/utils/installs.sh
+source ./_setup/utils/spinner.sh
 source ./_setup/variables.sh
 
 # --------------------------------------------- #

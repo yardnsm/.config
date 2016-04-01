@@ -12,6 +12,10 @@ cmd_exists() {
 
 # Execute command and print a message
 execute() {
-    eval "$1" &> /dev/null
+
+    # Execute and show a spinner
+    eval "$1" &> /dev/null & show_spinner $! "${2}"
+
+    # Print the result
     print_result $? "${2:-$1}"
 }
