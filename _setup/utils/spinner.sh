@@ -4,6 +4,9 @@
 # | Spinner
 # --------------------------------------------- #
 
+# USAGE:
+# some_long_task & show_spinner $! "doing some long task"
+
 # Show the spinner
 show_spinner() {
 
@@ -17,7 +20,7 @@ show_spinner() {
     local delay=0.1
 
     # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
-    local frames="⠄⠆⠇⠋⠙⠸⠰⠠⠰⠸⠙⠋⠇⠆"
+    local frames="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
 
     # As long the process is running
     while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
@@ -27,7 +30,7 @@ show_spinner() {
         local temp=${frames#?}
 
         # Print the current frame and message (in yellow, taken from 'utils/messages.sh')
-        printf "\e[0;33m    [running] %s [%s]\e[0m" "${msg}" "${frames::1}"
+        printf "\e[0;34m    [running] %s [%s]\e[0m" "${msg}" "${frames::1}"
 
         # Update the frames to normal
         local frames=$temp${frames%"$temp"}

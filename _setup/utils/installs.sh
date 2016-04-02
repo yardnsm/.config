@@ -15,7 +15,7 @@ brew_install() {
     fi
 
     # Install the specified formula
-    eval "brew $cmd list $formula" &> /dev/null
+    eval "brew $cmd list $formula" &> /dev/null & show_spinner $! "$formula"
     if [ $? -eq 0 ]; then
         print_success "$formula (already installed)"
     else
@@ -37,7 +37,7 @@ npm_install() {
     fi
 
     # Install the specified package
-    eval "npm list $package -g" &> /dev/null
+    eval "npm list $package -g" &> /dev/null & show_spinner $! "$package"
     if [ $? -eq 0 ]; then
         print_success "$package (already installed)"
     else

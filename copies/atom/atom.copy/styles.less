@@ -28,3 +28,20 @@ atom-panel.modal.overlay:after {
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* Make the tab-bar normal */
+ul.tab-bar {
+    display: inherit;
+    border-bottom: 1px solid #283134;
+    background-color: #0B0E0F;
+
+    li.tab {
+        border-bottom: 1px solid #283134;
+        border-right: 1px solid #283134 !important;
+        border-left: 0 !important;
+
+        &.active {
+            border-bottom: 0;
+        }
+    }
+}
