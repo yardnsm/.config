@@ -17,7 +17,7 @@ show_spinner() {
     local msg=$2
 
     # Delay per frame
-    local delay=0.1
+    local delay=0.05
 
     # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
     local frames="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
