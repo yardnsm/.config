@@ -87,9 +87,9 @@ parse_git_dirty() {
 # Check git remote status
 function git_remote_status() {
 
-    local git_local=$(command git rev-parse @ &> /dev/null)
-    local git_remote=$(command git rev-parse @{u} &> /dev/null)
-    local git_base=$(command git merge-base @ @{u} &> /dev/null)
+    local git_local=$(command git rev-parse @ 2> /dev/null)
+    local git_remote=$(command git rev-parse @{u} 2> /dev/null)
+    local git_base=$(command git merge-base @ @{u} 2> /dev/null)
 
     if [[ ${git_local} = ${git_remote} ]]; then
         echo ""
