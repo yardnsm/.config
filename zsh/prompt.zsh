@@ -87,9 +87,9 @@ parse_git_dirty() {
 # Check git remote status
 function git_remote_status() {
 
-    local git_local=$(command git rev-parse @)
-    local git_remote=$(command git rev-parse @{u})
-    local git_base=$(command git merge-base @ @{u})
+    local git_local=$(command git rev-parse @ &> /dev/null)
+    local git_remote=$(command git rev-parse @{u} &> /dev/null)
+    local git_base=$(command git merge-base @ @{u} &> /dev/null)
 
     if [[ ${git_local} = ${git_remote} ]]; then
         echo ""
@@ -113,6 +113,7 @@ function git_remote_status() {
 ASYNC_PROC=0
 local tmp_prompt_location="${HOME}/.zsh_tmp_prompt"
 function precmd() {
+
     function async {
 
         # Fetch the data from git

@@ -48,13 +48,12 @@ __(Coming Soon)__
 - [ ] Improve README, update pictures
 - [ ] Refactor
 - [ ] Add a check for 'tput' support in `spinner.sh`
-- [ ] Prompt says to push even if there is not a remote. Fix that.
 - [ ] Internet is slow. Add a script to automate rebooting of the router.
 - [ ] Add an update task (software updates for mac, homebrew, npm..)
 - [ ] Add an indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add RSA key creation
-- [ ] Add IntelliJ IDEA setting in misc folder
+- [ ] Add IntelliJ IDEA settings in misc folder
 - [ ] Add an option to turn off auto updates from appstore
 - [ ] add applications
 - [ ] add applications settings
