@@ -16,8 +16,8 @@ process.nextTick ->
 # --------------------------------------------- #
 # | Set dimensions
 # --------------------------------------------- #
-process.nextTick ->
-    atom.setWindowDimensions({"width": 1300, "height": 700})
+#process.nextTick ->
+#    atom.setWindowDimensions({"width": 1300, "height": 700})
 
 # --------------------------------------------- #
 # | Exit fullscreen
