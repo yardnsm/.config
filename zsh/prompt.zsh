@@ -6,13 +6,15 @@
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 
-# Symbols
+# Prompt Symbols
 local PROMPT_SYMBOL="❯"
+
+# Git Symbols
 local CLEAN_SYMBOL="☀"
 local DIRTY_SYMBOL="☂"
-local NEEDS_PULL_SYMBOL="✦"
+local NEEDS_PULL_SYMBOL="✈︎"
 local NEEDS_PUSH_SYMBOL="☁"
-local DIVERGED_SYMBOL="[DIVERGED]"
+local DIVERGED_SYMBOL="✂︎"
 
 # For the git status
 ZSH_THEME_GIT_PROMPT_SUFFIX="$reset_color"
@@ -91,14 +93,19 @@ function git_remote_status() {
     local git_remote=$(command git rev-parse @{u} 2> /dev/null)
     local git_base=$(command git merge-base @ @{u} 2> /dev/null)
 
-    if [[ ${git_local} = ${git_remote} ]]; then
-        echo ""
-    elif [[ ${git_local} = ${git_base} ]]; then
-        echo "$ZSH_THEME_GIT_NEEDS_PULL"
-    elif [[ ${git_remote} = ${git_base} ]]; then
-        echo "$ZSH_THEME_GIT_NEEDS_PUSH"
-    else
-        echo "$ZSH_THEME_GIT_DIVERGED"
+    # First check that we have a remote
+    if ! [[ $(command git remote 2> /dev/null) = "" ]]; then
+
+        # Now do all that shit
+        if [[ ${git_local} = ${git_remote} ]]; then
+            echo ""
+        elif [[ ${git_local} = ${git_base} ]]; then
+            echo "$ZSH_THEME_GIT_NEEDS_PULL"
+        elif [[ ${git_remote} = ${git_base} ]]; then
+            echo "$ZSH_THEME_GIT_NEEDS_PUSH"
+        else
+            echo "$ZSH_THEME_GIT_DIVERGED"
+        fi
     fi
 }
 
