@@ -46,7 +46,7 @@ __(Coming Soon)__
 
 ## TO-DO:
 - [ ] Improve README, update pictures
-- [ ] Refactor
+- [ ] Refactor!!
 - [ ] Add a check for 'tput' support in `spinner.sh`
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
 - [ ] Add an update task (software updates for mac, homebrew, npm..)
