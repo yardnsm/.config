@@ -4,7 +4,7 @@
 # | Symlinking process
 # --------------------------------------------- #
 print_info_secondary "Symlinking files"
-symlinks=$( find -H "$DOTFILES"/symlinks -maxdepth 3 -name '*.symlink' )
+symlinks=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $symlinks; do
     target="$HOME/.$( basename $file ".symlink" )"
     if [ -e $target ]; then

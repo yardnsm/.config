@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name          Sdarot.TV Disable Waiting
 // @description   This little code can disable the 30sec waiting time at Sdarot.TV
-// @copyright     YardNsm
-// @author        YardNsm
+// @copyright     yardnsm
+// @author        yardnsm
 // @version       1.0
-///////////////////////////////////////////////////////////
+
 // @include       http://sdarot.tv/watch/*
 // @include       https://sdarot.tv/watch/*
 // @include       http://www.sdarot.tv/watch/*
@@ -20,6 +20,7 @@
 // @include       http://www.sdarot.pm/watch/*
 // @include       https://www.sdarot.pm/watch/*
 // ==/UserScript==
+
 clearInterval(counter);
 counter = false;
 addon = 2;

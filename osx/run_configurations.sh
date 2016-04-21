@@ -138,7 +138,7 @@ execute 'defaults write com.apple.dock expose-group-by-app -bool false' \
 execute 'defaults write com.apple.dock show-process-indicators -bool true' \
 'Show indicator lights for open applications'
 
-execute 'defaults write com.apple.dock tilesize -int 35' \
+execute 'defaults write com.apple.dock tilesize -int 45' \
 'Set Dock icon size'
 
 execute 'defaults write com.apple.dock dashboard-in-overlay -bool true' \

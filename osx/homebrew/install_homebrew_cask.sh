@@ -18,3 +18,12 @@ if ! cmd_exists 'brew cask'; then
     brew tap caskroom/fonts &> /dev/null
 fi
 print_result $? 'Cask, Cask fonts, Cask versions'
+
+# --------------------------------------------- #
+# | Other taps
+# --------------------------------------------- #
+if ! cmd_exists 'brew cask'; then
+    brew tap beeftornado/rmtree &> /dev/null
+    brew install beeftornado/rmtree/brew-rmtree &> /dev/null
+fi
+print_result $? 'homebrew-rmtree'

@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name          Mashove Picture Change
 // @description   Change the ugly user picture in web.mashov.info
-// @copyright     YardNsm
-// @author        YardNsm
+// @copyright     yardnsm
+// @author        yardnsm
 // @version       1.0
-///////////////////////////////////////////////////////////
+
 // @include       http://web.mashov.info/*
 // @include       https://web.mashov.info/*
 // @include       http://www.web.mashov.info/*

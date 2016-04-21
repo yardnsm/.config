@@ -79,6 +79,6 @@ print_welcome() {
 # Print finish message
 print_finish_message() {
     print_info_secondary "DONE. Enjoy your new system :)
-  Go to '~/dotfiles/_misc/manual' for manuall installs
+  Go to '~/dotfiles/_misc/manuals' for manual installs
   Restart your system to see full changes"
 }
