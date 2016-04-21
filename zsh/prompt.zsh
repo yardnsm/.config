@@ -94,7 +94,7 @@ function git_remote_status() {
     local git_base=$(command git merge-base @ @{u} 2> /dev/null)
 
     # First check that we have a remote
-    if ! [[ $(command git remote 2> /dev/null) = "" ]]; then
+    if ! [[ ${git_remote} = "" ]]; then
 
         # Now do all that shit
         if [[ ${git_local} = ${git_remote} ]]; then
@@ -124,7 +124,8 @@ function precmd() {
     function async {
 
         # Fetch the data from git
-        git fetch 2> /dev/null
+        git fetch > /dev/null 2>&1
+        git remote update > /dev/null 2>&1
 
         # Save the prompt in a temp file so the parent shell can read it
         printf "%s" $PROMPT > "$tmp_prompt_location"
@@ -134,7 +135,7 @@ function precmd() {
 
         # Kill child if necessary
         if [[ "${ASYNC_PROC}" != 0 ]]; then
-            kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+            kill -s HUP $ASYNC_PROC > /dev/null 2>&1 || :
         fi
     }
 
