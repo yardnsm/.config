@@ -22,13 +22,13 @@ create_folder() {
 # --------------------------------------------- #
 
 # Ask if neccesarry
-ask_for_confirmation "Create workspace folders (~/code)? "
+ask_for_confirmation "Create workspace folders (~/dev)? "
 
 # Check if answer is yes
 if answer_is_yes; then
 
     # Create the folders
-    create_folder "code"
-    create_folder "code/private"
-    create_folder "code/open-source"
+    create_folder "dev"
+    create_folder "dev/private"
+    create_folder "dev/open-source"
 fi
