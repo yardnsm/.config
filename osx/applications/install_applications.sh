@@ -5,7 +5,7 @@
 # --------------------------------------------- #
 brew_install 'android-file-transfer' 'cask'
 brew_install 'atom' 'cask'
-brew_install 'google-chrome' 'cask'
+brew_install 'google-chrome-canary' 'cask'
 brew_install 'iterm2' 'cask'
 brew_install 'github-desktop' 'cask'
 brew_install 'caprine' 'cask'

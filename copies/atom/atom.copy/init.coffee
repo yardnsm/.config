@@ -22,5 +22,5 @@ process.nextTick ->
 # --------------------------------------------- #
 # | Exit fullscreen
 # --------------------------------------------- #
-process.nextTick ->
-    atom.setFullScreen(false)
+#process.nextTick ->
+#    atom.setFullScreen(false)
