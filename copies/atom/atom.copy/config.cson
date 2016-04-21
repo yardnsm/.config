@@ -4,7 +4,7 @@
     # | Packages options
     # --------------------------------------------- #
     "base16-syntax":
-        scheme: "Atelier Lakeside"
+        scheme: "Paraiso"
     "open-terminal-here":
         command: "open -a iTerm.app \"$PWD\""
 

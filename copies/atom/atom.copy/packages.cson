@@ -10,8 +10,5 @@ packages: [
   "nucleus-dark-ui"
   "open-terminal-here"
   "package-sync"
-  "seti-syntax"
-  "seti-ui"
-  "seti-ui-beta"
   "todo-show"
 ]

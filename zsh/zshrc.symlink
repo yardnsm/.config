@@ -23,7 +23,7 @@ fi
 autoload -U compinit && compinit
 
 # Base16 Shell Theme
-export THEME="base16-atelierlakeside"
+export THEME="base16-paraiso"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
