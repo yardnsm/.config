@@ -14,6 +14,7 @@ var isDefaultNewTab = REGEXP.test(top.location.href);
 var newTabURL = 'about:blank';
 
 if (isDefaultNewTab) {
-  document.documentElement.innerHTML = '<head></head><body></body>';
-  location.replace(newTabURL);  // Redirect to a specified new tab
+    document.documentElement.innerHTML = '<head></head><body></body>';
+    document.bgColor = 'black';
+    //location.replace(newTabURL);  // Redirect to a specified new tab
 }
