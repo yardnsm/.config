@@ -19,7 +19,7 @@ ask() {
 
 # Ask a question for confirmation
 ask_for_confirmation() {
-    print_question "$1 (y/n) "
+    print_question "$1 [y/N] "
     read -n 1
     printf "\n"
 }
