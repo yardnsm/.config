@@ -1,76 +1,58 @@
 #!/bin/bash
 
 # --------------------------------------------- #
-# | Dotfile's main setup
-# --------------------------------------------- #
-print_info "Setting up installation"
-source ./_setup/tasks/preinstall.sh
-
-# --------------------------------------------- #
-# | Setup shell configurations
+# | Common tasks
 # --------------------------------------------- #
 print_info "Setup shell configurations"
-source ./_setup/tasks/shell.sh
+source ./_setup/tasks/common/shell.sh
+
+print_info "Create symlinks"
+source ./_setup/tasks/common/symlink.sh
+
+print_info "Create copies"
+source ./_setup/tasks/common/copy.sh
+
+print_info "Setup workspace folders"
+source ./_setup/tasks/common/workspace.sh
 
 # --------------------------------------------- #
-# | Setup the local gitconfig
+# | Git
 # --------------------------------------------- #
-print_info "Setup Local gitconfig"
-source ./_setup/tasks/gitconfig.sh
+print_info "Setup local gitconfig"
+source ./_setup/tasks/git/gitconfig.sh
 
 # --------------------------------------------- #
-# | Create symlinks and copies
-# --------------------------------------------- #
-print_info "Create symlinks and copies"
-source ./_setup/tasks/symlink_and_copy.sh
-
-# --------------------------------------------- #
-# | Setup workspace
-# --------------------------------------------- #
-print_info "Setup Workspace"
-source ./_setup/tasks/workspace.sh
-
-# --------------------------------------------- #
-# | Setup OSX configurations
+# | OSX
 # --------------------------------------------- #
 print_info "Setup OSX configurations"
-source ./osx/run_configurations.sh
+source ./_setup/tasks/osx/run_configurations.sh
 
-# --------------------------------------------- #
-# | Install Homebrew and Cask
-# --------------------------------------------- #
 print_info "Install Homebrew and Cask"
-source ./osx/homebrew/install_homebrew_cask.sh
+source ./_setup/tasks/osx/homebrew/install_homebrew.sh
 
-# --------------------------------------------- #
-# | Install Homebrew dependencies
-# --------------------------------------------- #
 print_info "Install Homebrew dependencies"
-source ./osx/homebrew/install_dependencies.sh
+source ./_setup/tasks/osx/homebrew/install_dependencies.sh
 
-# --------------------------------------------- #
-# | Install Applications
-# --------------------------------------------- #
-print_info "Install Applications"
-source ./osx/applications/install_applications.sh
+print_info "Install applications"
+source ./_setup/tasks/osx/applications/install_applications.sh
 
-# --------------------------------------------- #
-# | Change applications settings
-# --------------------------------------------- #
 print_info "Change applications settings"
-source ./osx/applications/set_applications_settings.sh
+source ./_setup/tasks/osx/applications/set_applications_settings.sh
+
+print_info "Cleaning up"
+source ./_setup/tasks/osx/cleanup.sh
 
 # --------------------------------------------- #
-# | Run the 'misc' script
+# | Node
 # --------------------------------------------- #
-print_info "Run miscellaneous"
-source ./_setup/tasks/misc.sh
+print_info "Installing NPM global dependencies"
+source ./_setup/tasks/node/npm.sh
 
 # --------------------------------------------- #
-# | Finito
+# | Atom
 # --------------------------------------------- #
-print_info "Clean up..."
-source ./_setup/tasks/cleanup.sh
+print_info "Installing Atom packages"
+source ./_setup/tasks/atom/apm.sh
 
 # --------------------------------------------- #
 # | Done!

@@ -27,23 +27,23 @@ print_in_yellow() {
 # | Messages
 # --------------------------------------------- #
 print_error() {
-    print_in_red "    [damn it] $1 $2\n"
+    print_in_red "      [damn it] $1 $2\n"
 }
 
 print_info() {
-    print_in_purple "\n $1\n\n"
+    print_in_purple "\n  $1\n\n"
 }
 
 print_info_secondary() {
-    print_in_cyan "\n  $1\n\n"
+    print_in_cyan "\n    $1\n\n"
 }
 
 print_question() {
-    print_in_yellow "    [?] $1"
+    print_in_yellow "      [?] $1"
 }
 
 print_success() {
-    print_in_green "    [yay] $1\n"
+    print_in_green "      [yay] $1\n"
 }
 
 # --------------------------------------------- #
@@ -59,26 +59,38 @@ print_result() {
     return $1
 }
 
+# --------------------------------------------- #
+# | Other stuff
+# --------------------------------------------- #
+
 # Print dotfiles Welcome message
-print_welcome() {
-    echo "   _____        _    __ _ _            "
-    echo "  |  __ \      | |  / _(_) |           "
-    echo "  | |  | | ___ | |_| |_ _| | ___  ___  "
-    echo "  | |  | |/ _ \| __|  _| | |/ _ \/ __| "
-    echo "  | |__| | (_) | |_| | | | |  __/\__ \ "
-    echo "  |_____/ \___/ \__|_| |_|_|\___||___/ "
-    echo ""
+print_welcome_message() {
 
-    print_in_yellow "  YardNsm's Dotfiles - Version 1.0"; echo ""
-    print_in_purple "  Currently compatible with OSX Only"
+    # Print that ascii thing
+cat <<'EOF'
 
-    echo ""
-    echo $'\n  ---------------------'
+     _____        _    __ _ _
+    |  __ \      | |  / _(_) |
+    | |  | | ___ | |_| |_ _| | ___  ___
+    | |  | |/ _ \| __|  _| | |/ _ \/ __|
+    | |__| | (_) | |_| | | | |  __/\__ \
+    |_____/ \___/ \__|_| |_|_|\___||___/
+
+EOF
+
+    print_in_yellow "    yardnsm's Dotfiles - Version 1.0 \n"
+    print_in_purple "    Currently compatible with OSX Only \n\n"
+    echo "    ---------------------"
+
+    print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc.
+
+    NOTE: This script is installing everything needed. It can override some settings.
+    For updating apps/dependencies, fire-up the 'update.sh' script."
 }
 
 # Print finish message
 print_finish_message() {
     print_info_secondary "DONE. Enjoy your new system :)
-  Go to '~/dotfiles/_misc/manuals' for manual installs
-  Restart your system to see full changes"
+    Go to '~/dotfiles/_misc/manuals' for manual installs
+    Restart your system to see full changes"
 }

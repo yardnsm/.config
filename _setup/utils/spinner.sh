@@ -30,7 +30,7 @@ show_spinner() {
         local temp=${frames#?}
 
         # Print the current frame and message (in yellow, taken from 'utils/messages.sh')
-        printf "\e[0;34m    [running] %s [%s]\e[0m" "${msg}" "${frames::1}"
+        printf "\e[0;34m      [running] %s [%s]\e[0m" "${msg}" "${frames::1}"
 
         # Update the frames to normal
         local frames=$temp${frames%"$temp"}

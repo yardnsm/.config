@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --------------------------------------------- #
-# | Clean some homebrew data
+# | Clean some Homebrew data
 # --------------------------------------------- #
 if cmd_exists 'brew'; then
     execute 'brew cleanup' 'brew (cleanup)'

@@ -9,3 +9,7 @@ if ! [ $SHELL = $(which zsh) ]; then
 else
     print_success "ZSH is already your shell, horray!"
 fi
+
+# --------------------------------------------- #
+# | Link .zshrc
+# --------------------------------------------- #
