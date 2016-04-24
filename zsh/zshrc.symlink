@@ -1,5 +1,16 @@
 # --------------------------------------- #
-# | ZSH Main Configurations
+# | Important stuff
+# --------------------------------------- #
+
+# Initialize autocomplete
+autoload -U compinit && compinit
+
+# Load Colors
+autoload -U colors && colors
+autoload -U promptinit && promptinit
+
+# --------------------------------------- #
+# | Main Configurations
 # --------------------------------------- #
 
 # Core variables
@@ -18,9 +29,6 @@ done
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
-
-# Initialize autocomplete
-autoload -U compinit && compinit
 
 # Base16 Shell Theme
 export THEME="base16-default"
