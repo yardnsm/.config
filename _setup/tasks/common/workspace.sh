@@ -30,5 +30,5 @@ if answer_is_yes; then
     # Create the folders
     create_folder "dev"
     create_folder "dev/private"
-    create_folder "dev/open-source"
+    create_folder "dev/github"
 fi
