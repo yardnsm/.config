@@ -2,7 +2,7 @@
 # | ZSH Main Configurations
 # --------------------------------------- #
 
-# Variables
+# Core variables
 export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
 
