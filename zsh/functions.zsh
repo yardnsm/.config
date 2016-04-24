@@ -16,3 +16,13 @@ function light() {
 function dark() {
     export BACKGROUND="dark" && reloadd
 }
+
+# cd into whatever is the forefront Finder window
+function cdf() {
+    cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
+# Show my IP
+function ipee() {
+    ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk "{print \$2}"
+}

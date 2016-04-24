@@ -5,7 +5,19 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-    cm = !git add -A && git commit -m
+    a = add
+    ua = reset HEAD
+    c = commit
+    ca = commit -a
+    cm = commit -m
+    cam = commit -am
+    co = checkouts
+    d = diff
+    s = status -sb
+    l = log --graph --pretty=format:'%C(green bold)%h %C(blue)- %an, %ar%Creset%x09- %Creset%s %C(blue)%d'
+    ll = log --stat --abbrev-commit
+    my = !git log --branches=* --no-merges --pretty=format:'%C(yellow bold)%h %Cblue%ad%Cgreen%d %Creset%s' --date=short --author=\"$(git config user.name)\"
+    wtf = diff --name-only --diff-filter=U
 
 [push]
     default = simple

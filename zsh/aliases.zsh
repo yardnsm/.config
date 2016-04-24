@@ -2,6 +2,9 @@
 # | ZSH Aliases
 # --------------------------------------- #
 
+# Enable aliases to be sudo’ed
+alias sudo="sudo "
+
 # Reload zsh config
 alias reloadd='source ~/.zshrc'
 
@@ -11,7 +14,7 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# Git aliases
+# Git aliases (in addition to `.gitconfig`)
 alias ga='git add'
 alias gc='git commit'
 alias gb='git branch'
@@ -24,15 +27,11 @@ alias git-count='git shortlog -sn'
 alias git-undopush="git push -f origin HEAD^:master"
 alias gitac='git add . ; git commit'
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU
-    colorflag="--color"
-else # OSX
-    colorflag="-G"
-fi
+# `cd` to Git repo root
+alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
 
 # ls
-alias ls="ls ${colorflag}"
+alias ls="ls -G"
 alias l="ls -lah"
 alias la="ls -AF"
 alias ll="ls -lFh"
@@ -42,8 +41,10 @@ alias lld="ls -l | grep ^d"
 # Always open atom in the current dir
 alias atom='atom .'
 
-# My IP
-alias myip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'"
-
 # chmod
 alias chmx="chmod +x"
+alias x+="chmod +x" # idk
+
+# Open stuff
+alias o="open"
+alias oo="open ."

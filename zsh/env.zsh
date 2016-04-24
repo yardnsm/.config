@@ -1,9 +1,16 @@
 # --------------------------------------- #
-# | Environment
+# | Path
 # --------------------------------------- #
 
-# The Path: Homebrew, $DOTFILES/bin folder
-export PATH=/usr/local/sbin:$DOTFILES/bin:$PATH
+# Homebrew
+export PATH=/usr/local/sbin:$PATH
+
+# $DOTFILES/bin folder
+export PATH=$DOTFILES/bin:$PATH
+
+# --------------------------------------- #
+# | Environment Variables
+# --------------------------------------- #
 
 # Android SDK Path
 export ANDROID_HOME=/usr/local/opt/android-sdk
