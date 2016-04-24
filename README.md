@@ -35,7 +35,6 @@ It will take some time.
 ## TO-DO:
 - [ ] Improve README, update pictures and add a section about iTerm config
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
-- [ ] Add an indicator for background processes in the prompt
 - [ ] Add a log creation?
 - [ ] Add IntelliJ IDEA settings in misc folder
 - [ ] add applications
