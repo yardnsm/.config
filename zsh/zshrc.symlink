@@ -1,5 +1,5 @@
 # --------------------------------------- #
-# | Important stuff
+# | Load stuff
 # --------------------------------------- #
 
 # Initialize autocomplete
@@ -16,12 +16,17 @@ autoload -U promptinit && promptinit
 # Core variables
 export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
+export PROJECTS=$HOME/dev
 
-# Display info for tasks long than 98sec
-export REPORTTIME=8
+# Display info for tasks long than 10sec
+export REPORTTIME=10
 
-# Source all .zsh files inside the ZSH directory
-for config ($ZSH/**/*.zsh); do
+# --------------------------------------- #
+# | Sourcing stuff
+# --------------------------------------- #
+
+# Source all .zsh files within the dotfiles repo
+for config ($DOTFILES/**/*.zsh); do
     source $config
 done
 
@@ -29,6 +34,10 @@ done
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
+
+# --------------------------------------- #
+# | Theme setup
+# --------------------------------------- #
 
 # Base16 Shell Theme
 export THEME="base16-ocean"

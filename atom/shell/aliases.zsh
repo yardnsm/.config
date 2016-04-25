@@ -1,6 +1,6 @@
 # --------------------------------------- #
-# | Path
+# | ZSH Aliases
 # --------------------------------------- #
 
-# $DOTFILES/bin folder
-export PATH=$DOTFILES/bin:$PATH
+# Always open atom in the current dir
+alias atom='atom .'

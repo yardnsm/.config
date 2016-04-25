@@ -2,5 +2,5 @@
 # | Path
 # --------------------------------------- #
 
-# $DOTFILES/bin folder
-export PATH=$DOTFILES/bin:$PATH
+# Homebrew
+export PATH=/usr/local/sbin:$PATH

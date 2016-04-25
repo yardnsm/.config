@@ -14,8 +14,6 @@ source ./_setup/preinstall/system_check.sh
 print_info "Initializing git modules"
 source ./_setup/preinstall/gitmodules.sh
 
-sleep 2
-
 # --------------------------------------------- #
 # | Show welcome message
 # --------------------------------------------- #
@@ -43,3 +41,8 @@ else
     print_error "aborted"
     exit 1
 fi
+
+# --------------------------------------------- #
+# | Done!
+# --------------------------------------------- #
+print_finish_message

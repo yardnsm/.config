@@ -1,23 +1,28 @@
 # --------------------------------------- #
-# | ZSH Functions
+# | Theme change
 # --------------------------------------- #
 
-# Take
+# Change to light theme
+function light() {
+    export BACKGROUND="light" && reloadd
+}
+
+# Change to dark theme
+function dark() {
+    export BACKGROUND="dark" && reloadd
+}
+
+# --------------------------------------- #
+# | Misc
+# --------------------------------------- #
+
+# Create a directory and `cd` into it
 function take() {
 	mkdir $1
 	cd $1
 }
 
-# Theme change
-function light() {
-    export BACKGROUND="light" && reloadd
-}
-
-function dark() {
-    export BACKGROUND="dark" && reloadd
-}
-
-# cd into whatever is the forefront Finder window
+# `cd` into whatever is the forefront Finder window
 function cdf() {
     cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }

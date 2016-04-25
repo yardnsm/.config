@@ -1,5 +1,7 @@
 #!/bin/bash
 
+current_dir="$(dirname "$BASH_SOURCE")"
+
 # --------------------------------------------- #
 # | Source the following if needed
 # --------------------------------------------- #
@@ -11,10 +13,10 @@ if [ -z ${sourced+x} ]; then
     sourced="yep."
 
     # Source'em all
-    source ./_setup/utils/messages.sh
-    source ./_setup/utils/ask.sh
-    source ./_setup/utils/commands.sh
-    source ./_setup/utils/installs.sh
-    source ./_setup/utils/spinner.sh
-    source ./_setup/variables.sh
+    source $current_dir/utils/messages.sh
+    source $current_dir/utils/ask.sh
+    source $current_dir/utils/commands.sh
+    source $current_dir/utils/installs.sh
+    source $current_dir/utils/spinner.sh
+    source $current_dir/variables.sh
 fi

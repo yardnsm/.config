@@ -3,7 +3,7 @@
 # --------------------------------------------- #
 # | Copying process
 # --------------------------------------------- #
-copies=$( find -H "$DOTFILES"/copies -maxdepth 3 -name '*.copy' )
+copies=$( find -H "$DOTFILES" -maxdepth 3 -name '*.copy' )
 for file in $copies; do
     target="$HOME/.$( basename $file ".copy" )"
     if [ -e $target ]; then

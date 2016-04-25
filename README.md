@@ -33,7 +33,7 @@ cd ~/dotfiles
 It will take some time.
 
 ## TO-DO:
-- [ ] Improve README, update pictures and add a section about iTerm config
+- [ ] Improve README, update pictures, add a section about iTerm config, add `inspired by` section
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
 - [ ] Add a log creation?
 - [ ] Add IntelliJ IDEA settings in misc folder

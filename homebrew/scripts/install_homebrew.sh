@@ -9,7 +9,7 @@ fi
 print_result $? 'Homebrew'
 
 # --------------------------------------------- #
-# | Install Cask
+# | Tapping Cask
 # --------------------------------------------- #
 if ! cmd_exists 'brew cask'; then
     brew install caskroom/cask/brew-cask &> /dev/null
