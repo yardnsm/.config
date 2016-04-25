@@ -7,6 +7,10 @@ print_in_green() {
     printf "\e[0;32m$1\e[0m"
 }
 
+print_in_blue() {
+    printf "\e[0;34m$1\e[0m"
+}
+
 print_in_purple() {
     printf "\e[0;35m$1\e[0m"
 }
@@ -26,16 +30,20 @@ print_in_yellow() {
 # --------------------------------------------- #
 # | Messages
 # --------------------------------------------- #
-print_error() {
-    print_in_red "      [damn it] $1 $2\n"
-}
-
 print_info() {
     print_in_purple "\n  $1\n\n"
 }
 
 print_info_secondary() {
     print_in_cyan "\n    $1\n\n"
+}
+
+print_error() {
+    print_in_red "      [damn it] $1 $2\n"
+}
+
+print_running() {
+    print_in_blue "      [running] $1"
 }
 
 print_question() {
