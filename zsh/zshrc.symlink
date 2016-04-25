@@ -31,7 +31,7 @@ if [[ -a ~/.localrc ]]; then
 fi
 
 # Base16 Shell Theme
-export THEME="base16-default"
+export THEME="base16-ocean"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
