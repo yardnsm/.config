@@ -32,8 +32,13 @@ cd ~/dotfiles
 
 It will take some time.
 
+## Order and hierarchy
+Everything in this repo is built around topical areas. Each 'topic' has its own directory. In each topic's directory there may be
+a file called `main.sh`, which used as an installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing),
+`shell` (some `.zsh` files like functions and aliases), `symlinks` (includes files to symlink to the home directory) and `copies` (guess whats in there).
+
 ## TO-DO:
-- [ ] Improve README, update pictures, add a section about iTerm config, add `inspired by` section
+- [ ] Improve README: update pictures, add a section about iTerm config, add `inspired by` section
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
 - [ ] Add a log creation?
 - [ ] Add IntelliJ IDEA settings in misc folder
