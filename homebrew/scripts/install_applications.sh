@@ -20,8 +20,6 @@ brew_install 'keepingyouawake' 'cask'
 brew_install 'cumulus' 'cask'
 brew_install 'bestres' 'cask'
 brew_install 'cocoarestclient' 'cask'
-#brew_install 'intellij-idea' 'cask'
-#brew_install 'adobe-photoshop-cc' 'cask'
 
 # --------------------------------------------- #
 # | Install Fonts
@@ -43,3 +41,6 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 5) Transmit
 # 6) iStat Mini
 # 7) Paragon NTFS
+
+#brew_install 'intellij-idea' 'cask'
+#brew_install 'adobe-photoshop-cc' 'cask'

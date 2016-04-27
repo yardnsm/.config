@@ -6,7 +6,7 @@
 if ! cmd_exists 'brew'; then
     printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
 fi
-print_result $? 'Homebrew'
+print_result $? 'homebrew'
 
 # --------------------------------------------- #
 # | Tapping Cask
@@ -17,7 +17,9 @@ if ! cmd_exists 'brew cask'; then
     brew tap caskroom/versions &> /dev/null
     brew tap caskroom/fonts &> /dev/null
 fi
-print_result $? 'Cask, Cask fonts, Cask versions'
+print_result $? 'cask'
+print_result $? 'cask-fonts'
+print_result $? 'cask-versions'
 
 # --------------------------------------------- #
 # | Other taps
