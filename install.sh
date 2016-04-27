@@ -8,23 +8,24 @@ source ./_setup/initializer.sh
 # --------------------------------------------- #
 # | Preinstall stuff
 # --------------------------------------------- #
-print_info "Checking up your system"
-source ./_setup/preinstall/system_check.sh
-
-print_info "Initializing git modules"
-source ./_setup/preinstall/gitmodules.sh
+print_info "Doing some preinstall stuff"
+source ./_setup/preinstall.sh
+print_divider
 
 # --------------------------------------------- #
 # | Show welcome message
 # --------------------------------------------- #
 print_welcome_message
+print_divider
 
 # --------------------------------------------- #
 # | Confirmation before starting
 # --------------------------------------------- #
 
 # Ask if it's okay
+print_info "Just to make sure"
 ask_for_confirmation "Continue? "
+print_divider
 
 # Check if answer is yes
 if answer_is_yes; then

@@ -1,33 +1,28 @@
 #!/bin/bash
 
-current_dir="$(dirname "$BASH_SOURCE")"
+# --------------------------------------------- #
+# | Run the 'main.sh' scripts of every topic
+# --------------------------------------------- #
+for d in $DOTFILES/*/ ; do
 
-# --------------------------------------------- #
-# | Common
-# --------------------------------------------- #
-source $current_dir/../common/main.sh
+    d=$(basename $d)
 
-# --------------------------------------------- #
-# | Git
-# --------------------------------------------- #
-source $current_dir/../git/main.sh
+    # Check if the directory is a topic directory
+    if ! [[ $d == _* ]]; then
 
-# --------------------------------------------- #
-# | Homebrew
-# --------------------------------------------- #
-source $current_dir/../homebrew/main.sh
+        print_title "Current topic is '${d%/}'"
 
-# --------------------------------------------- #
-# | OSX
-# --------------------------------------------- #
-source $current_dir/../osx/main.sh
+        # Check if has a 'main.sh' script
+        if [[ -f $d/main.sh ]]; then
+            source $d/main.sh
+        else
+            print_success "'main.sh' was not found! Skipping..."
+        fi
 
-# --------------------------------------------- #
-# | Node
-# --------------------------------------------- #
-source $current_dir/../node/main.sh
+        # Because I like it
+        sleep 0.5
 
-# --------------------------------------------- #
-# | Atom
-# --------------------------------------------- #
-source $current_dir/../atom/main.sh
+        # Divid'em
+        print_divider
+    fi
+done

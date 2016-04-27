@@ -17,3 +17,10 @@ if ! xcode-select --print-path &> /dev/null; then
     exit 1
 fi
 print_success "Xcode Command Line tools are installed"
+
+
+# --------------------------------------------- #
+# | Initializing git modules
+# --------------------------------------------- #
+git submodule update --init --recursive
+print_result $? "Initializing git modules"

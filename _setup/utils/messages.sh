@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --------------------------------------------- #
-# | Colors
+# | Print in Colors
 # --------------------------------------------- #
 print_in_green() {
     printf "\e[0;32m$1\e[0m"
@@ -30,12 +30,16 @@ print_in_yellow() {
 # --------------------------------------------- #
 # | Messages
 # --------------------------------------------- #
+print_title() {
+    print_in_purple "\n  $(tput bold)$1$(tput sgr0)\n\n"
+}
+
 print_info() {
-    print_in_purple "\n  $1\n\n"
+    print_in_purple "\n    $1\n\n"
 }
 
 print_info_secondary() {
-    print_in_cyan "\n    $1\n\n"
+    print_in_cyan "\n      $1\n\n"
 }
 
 print_error() {
@@ -71,12 +75,16 @@ print_result() {
 # | Other stuff
 # --------------------------------------------- #
 
+# Print a divider
+function print_divider() {
+    print_title "+---------------------------------------------------------------------------+";
+}
+
 # Print dotfiles Welcome message
 print_welcome_message() {
 
     # Print that ascii thing
 cat <<'EOF'
-
      _____        _    __ _ _
     |  __ \      | |  / _(_) |
     | |  | | ___ | |_| |_ _| | ___  ___
@@ -88,17 +96,17 @@ EOF
 
     print_in_yellow "    yardnsm's Dotfiles - Version 1.0 \n"
     print_in_purple "    Currently compatible with OSX Only \n\n"
-    echo "    ---------------------"
+    print_divider
 
     print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc.
 
-    NOTE: This script is installing everything needed. It can override some settings.
-    For updating apps/dependencies, fire-up the 'update.sh' script."
+      NOTE: This script is installing everything needed. It can override some settings.
+      For updating apps/dependencies, fire-up the 'update.sh' script."
 }
 
 # Print finish message
 print_finish_message() {
     print_info_secondary "DONE. Enjoy your new system :)
-    Go to '~/dotfiles/_misc/manuals' for manual installs
-    Restart your system to see full changes"
+      Go to '~/dotfiles/_misc/manuals' for manual installs
+      Restart your system to see full changes"
 }
