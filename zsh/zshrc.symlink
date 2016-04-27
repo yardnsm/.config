@@ -18,8 +18,8 @@ export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
 export PROJECTS=$HOME/dev
 
-# Display info for tasks long than 10sec
-export REPORTTIME=10
+# Display info for tasks long than 8sec
+export REPORTTIME=8
 
 # --------------------------------------- #
 # | Sourcing stuff
