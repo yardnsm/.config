@@ -9,6 +9,9 @@ autoload -U compinit && compinit
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 
+# For globbing
+setopt EXTENDED_GLOB
+
 # --------------------------------------- #
 # | Main Configurations
 # --------------------------------------- #
@@ -26,7 +29,8 @@ export REPORTTIME=8
 # --------------------------------------- #
 
 # Source all .zsh files within the dotfiles repo
-for config ($DOTFILES/**/*.zsh); do
+# Plus, exclude the non-topic folders (starts with)
+for config ($DOTFILES/(^_*/)#*.zsh); do
     source $config
 done
 
@@ -36,7 +40,7 @@ if [[ -a ~/.localrc ]]; then
 fi
 
 # Source zsh-syntax-highlighting
-source $CONFIG/zsh-syntax-highlightingzsh-syntax-highlighting.zsh
+source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # --------------------------------------- #
 # | Theme setup
