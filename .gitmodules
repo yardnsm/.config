@@ -1,3 +1,7 @@
 [submodule "_config/base16-shell"]
-	path = _config/base16-shell
-	url = git@github.com:chriskempson/base16-shell.git
+    path = _config/base16-shell
+    url = git@github.com:chriskempson/base16-shell.git
+
+[submodule "_config/zsh-syntax-highlighting"]
+    path = _config/zsh-syntax-highlighting
+    url = git@github.com:zsh-users/zsh-syntax-highlighting.git

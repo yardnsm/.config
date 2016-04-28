@@ -16,7 +16,7 @@ autoload -U promptinit && promptinit
 # Core variables
 export DOTFILES=$HOME/dotfiles
 export ZSH=$DOTFILES/zsh
-export PROJECTS=$HOME/dev
+export CONFIG=$DOTFILES/_config
 
 # Display info for tasks long than 8sec
 export REPORTTIME=8
@@ -36,7 +36,7 @@ if [[ -a ~/.localrc ]]; then
 fi
 
 # Source zsh-syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $CONFIG/zsh-syntax-highlightingzsh-syntax-highlighting.zsh
 
 # --------------------------------------- #
 # | Theme setup
@@ -47,5 +47,5 @@ export THEME="base16-ocean"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
-BASE16_SHELL="$DOTFILES/_config/base16-shell/$THEME.$BACKGROUND.sh"
+BASE16_SHELL="$CONFIG/base16-shell/$THEME.$BACKGROUND.sh"
 [[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && source $BASE16_SHELL
