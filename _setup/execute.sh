@@ -16,7 +16,7 @@ for d in $DOTFILES/*/ ; do
         if [[ -f $d/main.sh ]]; then
             source $d/main.sh
         else
-            print_success "'main.sh' was not found! Skipping..."
+            print_status "Nothing to do in this topic, skipping..."
         fi
 
         # Because I like it

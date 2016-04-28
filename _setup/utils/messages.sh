@@ -54,6 +54,10 @@ print_question() {
     print_in_yellow "      [?] $1"
 }
 
+print_status() {
+    print_in_yellow "      [!] $1\n"
+}
+
 print_success() {
     print_in_green "      [yay] $1\n"
 }
