@@ -1,5 +1,5 @@
 # yardnsm's Dotfiles
-Whoo-Hoo! Can't believe I finished it..
+yep.
 
 Hi, this is my dotfiles. A collection of zsh, git and OSX configurations. I built this repo from scratch, while focus on organization.
 
