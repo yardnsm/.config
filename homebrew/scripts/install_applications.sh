@@ -3,6 +3,8 @@
 # --------------------------------------------- #
 # | Install applications
 # --------------------------------------------- #
+print_info_secondary "Applications"
+
 brew_install 'android-file-transfer' 'cask'
 brew_install 'atom' 'cask'
 brew_install 'google-chrome' 'cask'
@@ -22,8 +24,10 @@ brew_install 'bestres' 'cask'
 brew_install 'cocoarestclient' 'cask'
 
 # --------------------------------------------- #
-# | Install Fonts
+# | Install fonts
 # --------------------------------------------- #
+print_info_secondary "Fonts"
+
 brew_install 'font-hack' 'cask'
 brew_install 'font-ubuntu' 'cask'
 brew_install 'font-open-sans' 'cask'

@@ -110,7 +110,7 @@ EOF
 
 # Print finish message
 print_finish_message() {
-    print_info_secondary "DONE. Enjoy your new system :)
-      Go to '~/dotfiles/_misc/manuals' for manual installs
-      Restart your system to see full changes"
+    print_in_cyan "  DONE. Enjoy your new system :)
+  Go to '~/dotfiles/_misc/manuals' for manual installs
+  Restart your system to see full changes. \n\n"
 }

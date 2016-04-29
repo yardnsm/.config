@@ -11,7 +11,7 @@ source $current_dir/scripts/install_homebrew.sh
 print_info "Install Homebrew dependencies"
 source $current_dir/scripts/install_dependencies.sh
 
-print_info "Install applications"
+print_info "Install applications and fonts"
 source $current_dir/scripts/install_applications.sh
 
 print_info "Cleaning up"

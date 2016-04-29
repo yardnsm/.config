@@ -11,6 +11,8 @@ create_folder() {
     # Do that.
     if [ -f $target ]; then
         print_error "~/$1 already exists (file), Skipping."
+    elif [ -d $target ]; then
+        print_error "~/$1 already exists (directory), Skipping."
     else
         mkdir $target &> /dev/null
         print_result $? "Creating folder ~/$1"
