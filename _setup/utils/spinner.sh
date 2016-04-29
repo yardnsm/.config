@@ -44,4 +44,8 @@ show_spinner() {
 
     # Done! Clear it.
     tput el
+
+    # Return the status code
+    wait $pid
+    return $?
 }
