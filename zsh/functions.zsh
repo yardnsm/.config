@@ -31,3 +31,9 @@ function cdf() {
 function ipee() {
     ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk "{print \$2}"
 }
+
+# Just create an empty markdown file on my desktop
+function todo() {
+    touch $HOME/Desktop/$1.md
+    echo "Touched '$1' because I like to touch stuff"
+}
