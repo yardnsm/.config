@@ -21,7 +21,7 @@ brew_install 'transmission' 'cask'
 brew_install 'keepingyouawake' 'cask'
 brew_install 'cumulus' 'cask'
 brew_install 'bestres' 'cask'
-brew_install 'cocoarestclient' 'cask'
+brew_install 'postman' 'cask'
 
 # --------------------------------------------- #
 # | Install fonts
