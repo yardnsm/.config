@@ -29,6 +29,7 @@ brew_install 'postman' 'cask'
 print_info_secondary "Fonts"
 
 brew_install 'font-hack' 'cask'
+brew_install 'font-fira-code' 'cask'
 brew_install 'font-ubuntu' 'cask'
 brew_install 'font-open-sans' 'cask'
 brew_install 'font-open-sans-condensed' 'cask'

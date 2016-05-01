@@ -40,6 +40,7 @@ a file called `main.sh`, which used as an installer. There also may be sub-direc
 ## TO-DO:
 - [ ] Improve README: update pictures, add a section about iTerm config, add `inspired by` section
 - [ ] If a brew / cask formula is already installed, attempt to upgrade it
+- [ ] Add install for iTerm2
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
 - [ ] Add a log creation?
 - [ ] Add IntelliJ IDEA settings in misc folder
