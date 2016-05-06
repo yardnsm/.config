@@ -4,7 +4,7 @@
     # | Packages options
     # --------------------------------------------- #
     "base16-syntax":
-        scheme: "Ocean"
+        scheme: "Tomorrow"
     "open-terminal-here":
         command: "open -a iTerm.app \"$PWD\""
 
