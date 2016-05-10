@@ -31,7 +31,10 @@ print_divider
 if answer_is_yes; then
 
     # Get sudo permissions
+    print_title "Checking for sudo permissions"
     ask_for_sudo
+    print_result $? "I AM YOUR MASTER"
+    print_divider
 
     # Let's begin..
     source ./_setup/execute.sh
