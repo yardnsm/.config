@@ -2,11 +2,9 @@
 # | Gif info
 # --------------------------------------- #
 
-# Git info (clean/dirty, needs pull/push)
+# Git info (clean/dirty, needs pull/push, commit)
 function git_prompt_info() {
-	ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-	ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-	echo "$(parse_git_dirty)$(git_remote_status)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+	echo "$(parse_git_dirty) $(git_remote_status)$(git_get_branch) $(git_get_commit) $ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 # Checks if working tree is dirty
@@ -52,4 +50,16 @@ function git_remote_status() {
             echo "$ZSH_THEME_GIT_DIVERGED"
         fi
     fi
+}
+
+# Get the current branch
+function git_get_branch() {
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+	ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "${ref#refs/heads/}";
+}
+
+# Get the current commit hash
+function git_get_commit() {
+    echo "$fg[blue][$(command git rev-parse --short HEAD)]"
 }
