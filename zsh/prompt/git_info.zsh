@@ -4,6 +4,12 @@
 
 # Git info (clean/dirty, needs pull/push, commit)
 function git_prompt_info() {
+
+    # Check if we're on git
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+	ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+
+    # Git info
 	echo "$(parse_git_dirty) $(git_remote_status)$(git_get_branch) $(git_get_commit) $ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
@@ -54,8 +60,6 @@ function git_remote_status() {
 
 # Get the current branch
 function git_get_branch() {
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-	ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
     echo "${ref#refs/heads/}";
 }
 
