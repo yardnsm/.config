@@ -11,5 +11,5 @@ ${arrow} '
 RPROMPT='%T'
 
 # Prompt values
-local current_dir="%{$fg[cyan]%}%3~%{$reset_color%} "
+local current_dir="%3~%{$reset_color%} "
 local arrow="%(?.%{$fg[blue]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
