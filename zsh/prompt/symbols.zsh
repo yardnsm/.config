@@ -10,7 +10,7 @@ local BACKGROUND_JOB_SYMBOL="✱"
 local CLEAN_SYMBOL="☀"
 local DIRTY_SYMBOL="☂"
 local NEEDS_PULL_SYMBOL="✈︎"
-local NEEDS_PUSH_SYMBOL="☁"
+local NEEDS_PUSH_SYMBOL="☁ "
 local DIVERGED_SYMBOL="✂︎"
 
 # --------------------------------------- #
