@@ -11,21 +11,17 @@ print_result $? 'homebrew'
 # --------------------------------------------- #
 # | Tapping Cask
 # --------------------------------------------- #
-if ! cmd_exists 'brew cask'; then
-    brew install caskroom/cask/brew-cask &> /dev/null
-    brew tap caskroom/cask &> /dev/null
-    brew tap caskroom/versions &> /dev/null
-    brew tap caskroom/fonts &> /dev/null
+if ! cmd_exists 'brew'; then
+    execute "brew install caskroom/cask/brew-cask && brew install caskroom/cask" "cask"
+    execute "brew install caskroom/versions" "cask-fonts"
+    execute "brew install caskroom/fonts" "cask-versions"
+else
+    print_success "cask"
 fi
-print_result $? 'cask'
-print_result $? 'cask-fonts'
-print_result $? 'cask-versions'
 
 # --------------------------------------------- #
 # | Other taps
 # --------------------------------------------- #
-if ! cmd_exists 'brew cask'; then
-    brew tap beeftornado/rmtree &> /dev/null
-    brew install beeftornado/rmtree/brew-rmtree &> /dev/null
+if ! cmd_exists 'brew rmtree'; then
+    execute "brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree" "rmtree"
 fi
-print_result $? 'homebrew-rmtree'

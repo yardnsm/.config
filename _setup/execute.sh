@@ -19,9 +19,6 @@ for d in $DOTFILES/*/ ; do
             print_status "Nothing to do in this topic, skipping..."
         fi
 
-        # Because I like it
-        sleep 0.5
-
         # Divid'em
         print_divider
     fi

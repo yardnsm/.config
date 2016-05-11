@@ -5,24 +5,36 @@
 # --------------------------------------------- #
 print_info_secondary "Applications"
 
+# Dev stuff
 brew_install 'android-file-transfer' 'cask'
 brew_install 'atom' 'cask'
+brew_install 'java' 'cask'
+brew_install 'github-desktop' 'cask'
+brew_install 'postman' 'cask'
+brew_install 'iterm2' 'cask'
+
+# Browsers
 brew_install 'google-chrome' 'cask'
 brew_install 'google-chrome-canary' 'cask'
+
+# Syncing
 brew_install 'google-drive' 'cask'
-brew_install 'iterm2' 'cask'
-brew_install 'github-desktop' 'cask'
-brew_install 'caprine' 'cask'
-brew_install 'java' 'cask'
-brew_install 'vlc' 'cask'
-brew_install 'scroll-reverser' 'cask'
 brew_install 'puush' 'cask'
+
+# Productive
+brew_install 'bestres' 'cask'
+brew_install 'keepingyouawake' 'cask'
+brew_install 'scroll-reverser' 'cask'
+
+# Misc
+brew_install 'whatsapp' 'cask'
+brew_install 'cumulus' 'cask'
+brew_install 'caprine' 'cask'
+brew_install 'vlc' 'cask'
 brew_install 'drop-to-gif' 'cask'
 brew_install 'transmission' 'cask'
-brew_install 'keepingyouawake' 'cask'
-brew_install 'cumulus' 'cask'
-brew_install 'bestres' 'cask'
-brew_install 'postman' 'cask'
+
+
 
 # --------------------------------------------- #
 # | Install fonts
