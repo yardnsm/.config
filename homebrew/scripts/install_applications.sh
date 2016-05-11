@@ -12,6 +12,7 @@ brew_install 'java' 'cask'
 brew_install 'github-desktop' 'cask'
 brew_install 'postman' 'cask'
 brew_install 'iterm2' 'cask'
+brew_install 'robomongo' 'cask'
 
 # Browsers
 brew_install 'google-chrome' 'cask'
