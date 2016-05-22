@@ -13,6 +13,8 @@ brew_install 'github-desktop' 'cask'
 brew_install 'postman' 'cask'
 brew_install 'iterm2' 'cask'
 brew_install 'robomongo' 'cask'
+#brew_install 'android-studio' 'cask' # I have license lol
+#brew_install 'intellij-idea' 'cask'
 
 # Browsers
 brew_install 'google-chrome' 'cask'
@@ -35,7 +37,7 @@ brew_install 'caprine' 'cask'
 brew_install 'vlc' 'cask'
 brew_install 'drop-to-gif' 'cask'
 brew_install 'transmission' 'cask'
-
+#brew_install 'adobe-photoshop-cc' 'cask'
 
 
 # --------------------------------------------- #
@@ -61,6 +63,3 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 5) Transmit
 # 6) iStat Mini
 # 7) Paragon NTFS
-
-#brew_install 'intellij-idea' 'cask'
-#brew_install 'adobe-photoshop-cc' 'cask'

@@ -11,7 +11,7 @@ print_result $? 'homebrew'
 # --------------------------------------------- #
 # | Tapping Cask
 # --------------------------------------------- #
-if ! cmd_exists 'brew'; then
+if cmd_exists 'brew'; then
     execute "brew install caskroom/cask/brew-cask && brew install caskroom/cask" "cask"
     execute "brew install caskroom/versions" "cask-fonts"
     execute "brew install caskroom/fonts" "cask-versions"
@@ -22,6 +22,6 @@ fi
 # --------------------------------------------- #
 # | Other taps
 # --------------------------------------------- #
-if ! cmd_exists 'brew rmtree'; then
+if cmd_exists 'brew'; then
     execute "brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree" "rmtree"
 fi
