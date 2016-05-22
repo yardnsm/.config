@@ -39,15 +39,10 @@ a file called `main.sh`, which is used as an installer. There also may be sub-di
 
 ## TO-DO:
 - [ ] Improve README: update pictures, add a section about iTerm config, add `inspired by` section
-- [ ] If a brew / cask formula is already installed, attempt to upgrade it
 - [ ] Add install for iTerm2
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
-- [ ] Add a log creation?
-- [ ] Add IntelliJ IDEA settings in misc folder
 - [ ] add applications
 - [ ] add applications settings
-- [ ] Review osx settings
-- [ ] Review applications settings
 - [ ] Add a sync script
 - [ ] Create a 'dotfiles' utility with menu to choose between tasks
 - [ ] Add more file to 'bin'
