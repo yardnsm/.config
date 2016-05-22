@@ -1,8 +1,8 @@
 [include]
-        path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
 
 [alias]
     a = add
@@ -46,6 +46,6 @@
     untracked = red reverse
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
