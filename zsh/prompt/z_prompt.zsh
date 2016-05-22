@@ -13,3 +13,9 @@ RPROMPT='%T'
 # Prompt values
 local current_dir="%3~%{$reset_color%} "
 local arrow="%(?.%{$fg[blue]%}.%{$fg[red]%})%B${PROMPT_SYMBOL}%b"
+
+# Show working directory in the title
+function precmd () {
+    tab_label=${PWD/${HOME}/\~}
+    echo -ne "\e]2;${tab_label}\a"
+}
