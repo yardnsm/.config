@@ -30,7 +30,6 @@ brew_install 'keepingyouawake' 'cask'
 brew_install 'scroll-reverser' 'cask'
 
 # Misc
-brew_install 'whatsapp' 'cask'
 brew_install 'skype' 'cask'
 brew_install 'cumulus' 'cask'
 brew_install 'caprine' 'cask'
