@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# --------------------------------------------- #
+# | Source all the stuff
+# --------------------------------------------- #
+source $DOTFILES/_setup/initializer.sh
+
+# --------------------------------------------- #
+# | Message
+# --------------------------------------------- #
+print_title "Dotfiles menu"
+print_info "Which topic to execute?"
+
+# --------------------------------------------- #
+# | Print a menu with all the topics
+# --------------------------------------------- #
+
+topics=$( find -H "$DOTFILES" -type d -maxdepth 1 -name '*' )
+for topic in $topics; do
+
+    # Check if has a 'main.sh' script
+    if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
+        print_status "$topic"
+    fi
+done
