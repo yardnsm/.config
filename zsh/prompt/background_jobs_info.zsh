@@ -12,6 +12,6 @@ background_jobs_info() {
     if [[ $bgjobs == "" ]]; then
         echo ""
     else
-        echo "$ZSH_THEME_BACKGROUND_JOB"
+        echo "$BACKGROUND_JOB"
     fi
 }

@@ -20,6 +20,6 @@ function user_host() {
 
     # Echo the info
 	if [[ -n $info ]]; then
-		echo "$info: "
+		echo "$info:"
 	fi
 }
