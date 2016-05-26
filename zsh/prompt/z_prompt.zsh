@@ -8,7 +8,7 @@ local symbol="%(?.$PROMPT_SYMBOL.%{$fg[red]%}$EXIT_PROMPT_SYMBOL)"
 
 # The prompt
 PROMPT='
- ${symbol} $(user_host)${current_dir}'
+ ${symbol} $(user_host)${current_dir} '
 
 # Right prompt, show git info
 RPROMPT='$(git_prompt_info)  '
