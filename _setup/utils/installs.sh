@@ -44,3 +44,44 @@ npm_install() {
         execute "npm install $package -g" "$package"
     fi
 }
+
+# --------------------------------------------- #
+# | Install Atom package
+# --------------------------------------------- #
+apm_install() {
+
+    # Arguments
+    package="$1"
+
+    # Check if APM is installed
+    if ! cmd_exists 'apm'; then
+        print_error "$package (\`apm\` is not installed)"
+    fi
+
+    # Install the specified package
+    apm list | grep $package &> /dev/null & show_spinner $! $package
+    if [ $? -eq 0 ]; then
+        print_success "$package (already installed)"
+    else
+        execute "apm install $package" "$package"
+    fi
+}
+
+# --------------------------------------------- #
+# | Create a directory in ~/
+# --------------------------------------------- #
+create_folder() {
+
+    # Arguments
+    target="$HOME/$1"
+
+    # Do that.
+    if [ -f $target ]; then
+        print_error "~/$1 already exists (file), Skipping."
+    elif [ -d $target ]; then
+        print_error "~/$1 already exists (directory), Skipping."
+    else
+        mkdir $target &> /dev/null
+        print_result $? "Creating folder ~/$1"
+    fi
+}

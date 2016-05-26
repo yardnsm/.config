@@ -5,10 +5,12 @@
 # --------------------------------------------- #
 
 # Ask if neccesarry
-if ! [ -f symlinks/git/gitconfig.local.symlink ]; then
+if ! [ -f $current_dir/symlinks/gitconfig.local.symlink ]; then
     ask_for_confirmation "Need to create a local gitconfig? "
 else
-    ask_for_confirmation "A local gitconfig is already exist. Need to create again? "
+    #ask_for_confirmation "A local gitconfig is already exist. Need to create again? "
+    print_status "A local gitconfig is already exist"
+    REPLY='n'
 fi
 
 # Check if answer is yes

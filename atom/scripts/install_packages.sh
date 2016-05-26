@@ -3,4 +3,4 @@
 # --------------------------------------------- #
 # | Installing Atom's packages
 # --------------------------------------------- #
-execute 'apm install package-sync' 'package-sync'
+apm_install 'package-sync'

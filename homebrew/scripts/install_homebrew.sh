@@ -12,11 +12,11 @@ print_result $? 'homebrew'
 # | Tapping Cask
 # --------------------------------------------- #
 if cmd_exists 'brew'; then
-    execute "brew install caskroom/cask/brew-cask && brew install caskroom/cask" "cask"
-    execute "brew install caskroom/versions" "cask-fonts"
-    execute "brew install caskroom/fonts" "cask-versions"
+    execute "brew tap caskroom/cask" "cask"
+    execute "brew tap caskroom/versions" "cask-fonts"
+    execute "brew tap caskroom/fonts" "cask-versions"
 else
-    print_success "cask"
+    print_error "homebrew is not installed!"
 fi
 
 # --------------------------------------------- #
