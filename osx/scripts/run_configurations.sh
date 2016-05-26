@@ -48,10 +48,10 @@ execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool tru
 'Expand print panel by default'
 
 execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Bacon" &&
-    sudo scutil --set ComputerName "Bacon" &&
-    sudo scutil --set HostName "Bacon" &&
-    sudo scutil --set LocalHostName "Bacon"' \
-'Set computer name to "Bacon" (I am Jewish)'
+    sudo scutil --set ComputerName "bacon" &&
+    sudo scutil --set HostName "bacon" &&
+    sudo scutil --set LocalHostName "bacon"' \
+'Set computer name to "bacon" (I am Jewish)'
 
 # --------------------------------------------- #
 # | Trackpad and keyboard
