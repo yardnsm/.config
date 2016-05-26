@@ -34,7 +34,7 @@ It will take some time.
 
 ## Order and hierarchy
 Everything in this repo is built around topical areas. Each 'topic' has its own directory. In each topic's directory there may be
-a file called `main.sh`, which is used as an installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing),
+a file called `main.sh`, which is the main topic's installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing),
 `shell` (some `.zsh` files like functions and aliases), `symlinks` (includes files to symlink to the home directory) and `copies` (guess whats in there).
 
 ## TO-DO:
@@ -44,6 +44,5 @@ a file called `main.sh`, which is used as an installer. There also may be sub-di
 - [ ] add applications
 - [ ] add applications settings
 - [ ] Add a sync script
-- [ ] Create a 'dotfiles' utility with menu to choose between tasks
 - [ ] Add more file to 'bin'
 - [ ] Achieve 42,956 commits. Add support to windows after that? nah.

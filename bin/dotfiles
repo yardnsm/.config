@@ -6,20 +6,45 @@
 source $DOTFILES/_setup/initializer.sh
 
 # --------------------------------------------- #
-# | Message
+# | Show welcome message
 # --------------------------------------------- #
-print_title "Dotfiles menu"
-print_info "Which topic to execute?"
+print_divider
 
 # --------------------------------------------- #
 # | Print a menu with all the topics
 # --------------------------------------------- #
 
 topics=$( find -H "$DOTFILES" -type d -maxdepth 1 -name '*' )
+options=()
+
 for topic in $topics; do
 
     # Check if has a 'main.sh' script
     if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
-        print_status "$topic"
+        options+=($(basename $topic))
     fi
+done
+
+PS3=$'\n    Choose a topic to execute: '
+echo "    Available topics"
+echo "    ------------------"
+echo ""
+
+select opt in "${options[@]}"
+
+do
+    case $opt in
+        *)
+            print_divider
+
+            if [ -z $opt ]; then
+                print_error "Unavailable topic"
+                exit 1;
+            fi
+
+            source $DOTFILES/$opt/main.sh
+
+            break
+            ;;
+    esac
 done
