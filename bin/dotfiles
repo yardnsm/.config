@@ -6,8 +6,11 @@
 source $DOTFILES/_setup/initializer.sh
 
 # --------------------------------------------- #
-# | Show welcome message
+# | Get sudo permissions
 # --------------------------------------------- #
+print_title "Checking for sudo permissions"
+ask_for_sudo
+print_result $? "I AM YOUR MASTER"
 print_divider
 
 # --------------------------------------------- #
