@@ -13,11 +13,4 @@ PROMPT='
 # Right prompt, show git info
 RPROMPT=' $(git_prompt_info)  '
 
-#
 PROMPT2=' ${PROMPT2_SYMBOL} %_ >>> '
-
-# Show working directory in the title
-function precmd () {
-    tab_label=${PWD/${HOME}/\~}
-    echo -ne "\e]2;${tab_label}\a"
-}

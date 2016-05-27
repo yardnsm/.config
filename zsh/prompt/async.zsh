@@ -14,6 +14,10 @@ ASYNC_PROC=0
 local tmp_prompt_location="${HOME}/.zsh_tmp_prompt"
 function precmd() {
 
+    # Show working directory in the title
+    tab_label=${PWD/${HOME}/\~}
+    echo -ne "\e]2;${tab_label}\a"
+
     function async {
 
         # Fetch the data from git

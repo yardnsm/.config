@@ -41,8 +41,6 @@ a file called `main.sh`, which is the main topic's installer. There also may be 
 - [ ] Improve README: update pictures, add a section about iTerm config, add `inspired by` section
 - [ ] Add install for iTerm2
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
-- [ ] add applications
-- [ ] add applications settings
 - [ ] Add a sync script
 - [ ] Add more file to 'bin'
 - [ ] Achieve 42,956 commits. Add support to windows after that? nah.
