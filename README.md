@@ -37,8 +37,23 @@ Everything in this repo is built around topical areas. Each 'topic' has its own 
 a file called `main.sh`, which is the main topic's installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing),
 `shell` (some `.zsh` files like functions and aliases), `symlinks` (includes files to symlink to the home directory) and `copies` (guess whats in there).
 
+# Iterm config
+Too lazy to add a topic for iTerm, because it just take 2 seconds.
+
+### Text/fonts
+![](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/iterm-text.png)
+
+### Window
+![](https://raw.githubusercontent.com/YardNsm/dotfiles/master/_misc/media/iterm-window.png)
+
+# Inspired by
+- [pure prompt](https://github.com/sindresorhus/pure)
+- [nicknisi's dotfiles](https://github.com/nicknisi/dotfiles)
+- [carlos' dotfiles](https://github.com/caarlos0/dotfiles)
+- [alrra's dotfiles](https://github.com/alrra/dotfiles)
+- [geometry ZSH theme](https://github.com/frmendes/geometry)
+
 ## TO-DO:
-- [ ] Improve README: update pictures, add a section about iTerm config, add `inspired by` section
 - [ ] Add install for iTerm2
 - [ ] Internet is slow. Add a script to automate rebooting of the router?
 - [ ] Add a sync script

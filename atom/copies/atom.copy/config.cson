@@ -13,8 +13,8 @@
     # --------------------------------------------- #
     "editor":
         backUpBeforeSaving: true
-        fontFamily: "Hack"
-        scrollPastEnd: true
+        fontFamily: "Fira Code"
+        scrollPastEnd: false
         showIndentGuide: true
         showInvisibles: true
         tabLength: 4
