@@ -46,7 +46,7 @@ I made the prompt myself (== stole everything from others).
 - Show the current working directory (dah.) in the title
 - Show indicator for background processes
 - The symbol next the the working directory turns red if the last command exited with an error
-- Show the version node if there is a `package.json` file in the working directry
+- Show the node's version if there is a `package.json` file in the working directry
 - Magical stuff with [z](https://github.com/rupa/z)
 
 ## Iterm config
