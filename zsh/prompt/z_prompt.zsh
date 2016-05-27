@@ -3,7 +3,8 @@
 # --------------------------------------- #
 
 # Prompt values
-local current_dir="%{$fg[blue]%}%3~%{$reset_color%}"
+# >»❭›❯
+local current_dir="%{$fg[blue]%}%3~ ❯%{$reset_color%}"
 local symbol="%(?.$SYMBOL_PROMPT.%{$fg[red]%}$SYMBOL_EXIT_PROMPT)"
 
 # The prompt
