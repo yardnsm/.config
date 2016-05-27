@@ -7,7 +7,7 @@ function git_prompt_info() {
 
     # Git info
     if git rev-parse --git-dir > /dev/null 2>&1; then
-	       echo "$(git_remote_status)%F{242}$(git_get_branch)%{$reset_color%} :: %{$fg[green]%}[$(git_get_commit)]%{$reset_color%} :: $(git_parse_dirty)"
+	       echo "$(git_remote_status)%F{242}$(git_get_branch)%{$reset_color%}${SYMBOL_DIVIDER}%{$fg[green]%}[$(git_get_commit)]%{$reset_color%}${SYMBOL_DIVIDER}$(git_parse_dirty)"
     fi
 }
 
@@ -15,9 +15,9 @@ function git_prompt_info() {
 # Taken fro `oh-my-zsh`
 git_parse_dirty() {
     if [[ -z "$(git status --porcelain --ignore-submodules)" ]]; then
-        echo $GIT_PROMPT_CLEAN
+        echo $THEME_GIT_CLEAN
     else
-        echo $GIT_PROMPT_DIRTY
+        echo $THEME_GIT_DIRTY
     fi
 }
 
@@ -35,11 +35,11 @@ function git_remote_status() {
         if [[ ${git_local} = ${git_remote} ]]; then
             echo ""
         elif [[ ${git_local} = ${git_base} ]]; then
-            echo "$GIT_NEEDS_PULL "
+            echo "$THEME_GIT_NEEDS_PULL "
         elif [[ ${git_remote} = ${git_base} ]]; then
-            echo "$GIT_NEEDS_PUSH "
+            echo "$THEME_GIT_NEEDS_PUSH "
         else
-            echo "$GIT_NEEDS_PULL $GIT_NEEDS_PUSH "
+            echo "$THEME_GIT_NEEDS_PULL $THEME_GIT_NEEDS_PUSH "
         fi
     fi
 }

@@ -3,28 +3,34 @@
 # --------------------------------------- #
 
 # Prompt Symbols
-local PROMPT_SYMBOL="△"
-local EXIT_PROMPT_SYMBOL="△"
-local BACKGROUND_JOB_SYMBOL="✱"
-local PROMPT2_SYMBOL='◇'
+local SYMBOL_PROMPT="△"
+local SYMBOL_EXIT_PROMPT="△"
+local SYMBOL_PROMPT2='◇'
+local SYMBOL_DIVIDER=" :: "
+local SYMBOL_THEME_BACKGROUND_JOB="✱"
 
 # Git Symbols
-local CLEAN_SYMBOL="⬢"
-local DIRTY_SYMBOL="⬡"
-local NEEDS_PULL_SYMBOL="⇣"
-local NEEDS_PUSH_SYMBOL="⇡"
-local REBASE_SYMBOL="\uE0A0"
+local SYMBOL_GIT_CLEAN="⬢"
+local SYMBOL_GIT_DIRTY="⬡"
+local SYMBOL_THEME_GIT_NEEDS_PULL="⇣"
+local SYMBOL_THEME_GIT_NEEDS_PUSH="⇡"
+
+# Versions symbol
+local SYMBOL_VERSION_NODEJS="⬢"
 
 # --------------------------------------- #
 # | Themed stuff
 # --------------------------------------- #
 
-# For the git info
-local GIT_PROMPT_CLEAN="%{$fg[green]%}$CLEAN_SYMBOL%{$reset_color%}"
-local GIT_PROMPT_DIRTY="%{$fg[red]%}$DIRTY_SYMBOL%{$reset_color%}"
-local GIT_NEEDS_PULL="$NEEDS_PULL_SYMBOL"
-local GIT_NEEDS_PUSH="$NEEDS_PUSH_SYMBOL"
-local GIT_DIVERGED="$DIVERGED_SYMBOL"
+# Git themes
+local THEME_GIT_CLEAN="%{$fg[green]%}$SYMBOL_GIT_CLEAN%{$reset_color%}"
+local THEME_GIT_DIRTY="%{$fg[red]%}$SYMBOL_GIT_DIRTY%{$reset_color%}"
+local THEME_GIT_NEEDS_PULL="$SYMBOL_THEME_GIT_NEEDS_PULL"
+local THEME_GIT_NEEDS_PUSH="$SYMBOL_THEME_GIT_NEEDS_PUSH"
 
-# For the Background jobs info
-local BACKGROUND_JOB="(%{$fg[yellow]%}${BACKGROUND_JOB_SYMBOL}%{$reset_color%})"
+# Versions themes
+local THEME_VERSION_NODEJS_PREFIX="%{$fg[green]%}[$SYMBOL_VERSION_NODEJS "
+local THEME_VERSION_NODEJS_SUFFIX="]%{$reset_color%}"
+
+# Background jobs theme
+local THEME_BACKGROUND_JOB="%{$fg[yellow]%}${SYMBOL_THEME_BACKGROUND_JOB}%{$reset_color%}"
