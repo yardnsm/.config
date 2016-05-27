@@ -42,11 +42,11 @@ a file called `main.sh`, which is the main topic's installer. There also may be 
 I made the prompt myself (== stole everything from others).
 - Syntax highlighting with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - Auto suggestion with [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-- Show info about git (branch, commit hash, dirty/clean)
-- Show the current working directory (dah.) in the title
-- Show indicator for background processes
+- Shows info about git (branch, commit hash, dirty/clean)
+- Shows the current working directory (dah.) in the title
+- Shows indicator for background processes
 - The symbol next the the working directory turns red if the last command exited with an error
-- Show the node's version if there is a `package.json` file in the working directry
+- Shows node's version if there is a `package.json` file in the working directry
 - Magical stuff with [z](https://github.com/rupa/z)
 
 ## Iterm config
