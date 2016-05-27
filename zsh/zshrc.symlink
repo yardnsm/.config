@@ -47,7 +47,7 @@ source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # --------------------------------------- #
 
 # Base16 Shell Theme
-export THEME="base16-tomorrow"
+export THEME="base16-default"
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
