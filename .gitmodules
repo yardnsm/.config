@@ -5,6 +5,7 @@
 [submodule "_config/zsh-syntax-highlighting"]
     path = _config/zsh-syntax-highlighting
     url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+
 [submodule "_config/zsh-autosuggestions"]
-	path = _config/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
+    path = _config/zsh-autosuggestions
+    url = https://github.com/zsh-users/zsh-autosuggestions.git
