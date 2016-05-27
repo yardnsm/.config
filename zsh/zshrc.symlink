@@ -42,6 +42,9 @@ fi
 # Source zsh-syntax-highlighting
 source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Source 'z'
+source `brew --prefix`/etc/profile.d/z.sh
+
 # --------------------------------------- #
 # | Theme setup
 # --------------------------------------- #
