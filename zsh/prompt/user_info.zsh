@@ -3,7 +3,7 @@
 # --------------------------------------- #
 
 # Show user@host for SSH connections
-function user_host() {
+function user_info() {
 
     # Make the color red if the current user is root
     if [[ $USER == "root" ]]; then
@@ -14,7 +14,7 @@ function user_host() {
 
 	if [[ -n $SSH_CONNECTION ]]; then
 		info="%{$fg[$USER_COLOR]%}%n%{$reset_color%}@%{$fg[cyan]%}%m%{$reset_color%}"
-	elif [[ $LOGNAME != $USER ]]; then
+	elif [[ $(who am i | awk '{print $1}') != $USER ]]; then
 		info="%{$fg[$USER_COLOR]%}%n%{$reset_color%}"
 	fi
 

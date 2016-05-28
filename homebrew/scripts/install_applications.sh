@@ -28,6 +28,7 @@ brew_install 'puush' 'cask'
 brew_install 'bestres' 'cask'
 brew_install 'keepingyouawake' 'cask'
 brew_install 'scroll-reverser' 'cask'
+brew_install 'keycastr' 'cask'
 
 # Misc
 brew_install 'skype' 'cask'
