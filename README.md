@@ -70,6 +70,7 @@ Too lazy to add a topic for iTerm, because it just take 2 seconds.
 - [ ] More git info!!!!
 - [ ] Show more info (cpu, ram...)
 - [ ] emojis 😁🚀
+- [ ] Refactor the prompt (its terrible)
 - [ ] Add a sync script
 - [ ] Add more file to 'bin'
 - [ ] Achieve 42,956 commits. Add support to windows after that? nah.
