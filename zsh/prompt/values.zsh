@@ -13,7 +13,7 @@ local SYMBOL_DIVIDER=" :: "
 # --------------------------------------- #
 
 # Symbols
-local SYMBOL_BACKGROUND_JOBS="✱"
+local SYMBOL_BACKGROUND_JOBS="*"
 
 # Themes
 local THEME_BACKGROUND_JOBS="%{$fg[magenta]%}[${SYMBOL_BACKGROUND_JOBS}]%{$reset_color%}"
