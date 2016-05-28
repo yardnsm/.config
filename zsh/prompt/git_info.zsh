@@ -13,7 +13,7 @@ function git_prompt_info() {
         local commit="%{$fg[magenta]%}[$(git_get_commit)]%{$reset_color%}"
         local dirtyclean="$(git_parse_dirty)"
 
-	    echo "${branch}${commit}${SYMBOL_DIVIDER}${dirtyclean}${remote}"
+	    echo "${branch}${commit} ${dirtyclean}${remote}"
     fi
 }
 
