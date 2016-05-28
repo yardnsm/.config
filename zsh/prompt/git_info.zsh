@@ -7,7 +7,7 @@ function git_prompt_info() {
 
     # Git info
     if git rev-parse --git-dir > /dev/null 2>&1; then
-	       echo "$(git_remote_status)%F{242}$(git_get_branch)%{$reset_color%}${SYMBOL_DIVIDER}%{$fg[green]%}[$(git_get_commit)]%{$reset_color%}${SYMBOL_DIVIDER}$(git_parse_dirty)"
+	       echo "$(git_remote_status)%F{242}$(git_get_branch)%{$reset_color%}${SYMBOL_DIVIDER}%{$fg[yellow]%}[$(git_get_commit)]%{$reset_color%}${SYMBOL_DIVIDER}$(git_parse_dirty)"
     fi
 }
 

@@ -48,5 +48,5 @@ function TRAPUSR2 {
     PROMPT=$(cat "$tmp_prompt_location")
 
     # Restart the prompt
-    zle && zle reset-prompt
+    zle && zle reset-prompt && printf '\n'
 }

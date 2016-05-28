@@ -42,9 +42,6 @@ fi
 # Source zsh-syntax-highlighting
 source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Source zsh-autosuggestions
-source $CONFIG/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Source 'z'
 source `brew --prefix`/etc/profile.d/z.sh
 
