@@ -13,7 +13,7 @@ local THEME_BACKGROUND_JOBS="%{$fg[magenta]%}[${SYMBOL_BACKGROUND_JOBS}]%{$reset
 # --------------------------------------- #
 
 # Indicate a background job
-function prompt_background_jobs_info() {
+function info_background_jobs() {
 
     # The jobs
     bgjobs=$(jobs 2> /dev/null)

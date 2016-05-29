@@ -18,8 +18,8 @@ local current_dir="%{$fg[blue]%}%3~%{$reset_color%}"
 local symbol="%{$fg[cyan]%}%(?.$SYMBOL_PROMPT.%{$fg[red]%}$SYMBOL_EXIT_PROMPT)%{$reset_color%}"
 
 # Prompt rows
-function prompt_row_upper_left()  { echo " $(user_info)${current_dir} $(git_prompt_info)" }
-function prompt_row_upper_right() { echo "$(background_jobs_info)$(versions_info)$(get_time)  " }
+function prompt_row_upper_left()  { echo " $(info_user)${current_dir} $(info_git)" }
+function prompt_row_upper_right() { echo "$(info_background_jobs)$(info_versions)$(get_time)  " }
 function prompt_row_lower_left()  { echo " ${symbol} " }
 function prompt_row_lower_right() { echo "  " }
 
