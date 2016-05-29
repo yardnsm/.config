@@ -10,6 +10,7 @@
 # ends, the prompt is reloaded. Sounds like fun? yea, I know.
 #
 # http://www.anishathalye.com/2015/02/07/an-asynchronous-shell-prompt/
+
 ASYNC_PROC=0
 local tmp_prompt_location="${HOME}/.zsh_tmp_prompt"
 function precmd() {

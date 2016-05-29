@@ -1,9 +1,9 @@
 # --------------------------------------- #
-# | User info
+# | Primary thing
 # --------------------------------------- #
 
 # Show user@host for SSH connections
-function user_info() {
+function info_user() {
 
     # Make the color red if the current user is root
     if [[ $USER == "root" ]]; then

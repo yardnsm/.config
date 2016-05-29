@@ -1,4 +1,14 @@
 # --------------------------------------- #
+# | Values
+# --------------------------------------- #
+
+# Symbols
+local SYMBOL_PROMPT="❯"
+local SYMBOL_EXIT_PROMPT="❯❯"
+local SYMBOL_PROMPT2='◇'
+local SYMBOL_DIVIDER=" :: "
+
+# --------------------------------------- #
 # | The prompt itself
 # --------------------------------------- #
 
@@ -10,13 +20,13 @@ local symbol="%{$fg[cyan]%}%(?.$SYMBOL_PROMPT.%{$fg[red]%}$SYMBOL_EXIT_PROMPT)%{
 # Prompt rows
 function prompt_row_upper_left()  { echo " $(user_info)${current_dir} $(git_prompt_info)" }
 function prompt_row_upper_right() { echo "$(background_jobs_info)$(versions_info)$(get_time)  " }
-function prompt_row_lower_left()  { echo "${symbol} " }
-function prompt_row_lower_right() { echo "" }
+function prompt_row_lower_left()  { echo " ${symbol} " }
+function prompt_row_lower_right() { echo "  " }
 
 # The prompt
 PROMPT='
 $(prompt_row_upper_left)$(put_spaces)$(prompt_row_upper_right)
- $(prompt_row_lower_left)'
+$(prompt_row_lower_left)'
 
 # Right prompt
 RPROMPT='$(prompt_row_lower_right)'
@@ -25,7 +35,7 @@ RPROMPT='$(prompt_row_lower_right)'
 PROMPT2=' ${SYMBOL_PROMPT2} %_ >>> '
 
 # --------------------------------------- #
-# | Utils
+# | Helper functions
 # --------------------------------------- #
 
 # Time
@@ -36,7 +46,7 @@ function get_time() {
 # Spacessssss
 function put_spaces() {
 
-    # To filter
+    # The filter
     local zero='%([BSUbfksu]|([FBK]|){*})'
 
     # Upper left
@@ -46,7 +56,6 @@ function put_spaces() {
     # Upper right
     local upperright="$(prompt_row_upper_right)"
     upperright=${#${(S%%)upperright//$~zero/}}
-
 
     # Desired spaces length
     local termwidth
