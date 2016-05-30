@@ -10,42 +10,42 @@
 # Show the spinner
 show_spinner() {
 
-    # The process
-    local pid=$1
+  # The process
+  local pid=$1
 
-    # The message
-    local msg=$2
+  # The message
+  local msg=$2
 
-    # Delay per frame
-    local delay=0.05
+  # Delay per frame
+  local delay=0.05
 
-    # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
-    local frames="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+  # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
+  local frames="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
 
-    # As long the process is running
-    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+  # As long the process is running
+  while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
 
-        # Extract the last charcter from the frames
-        # and save the rest for later
-        local temp=${frames#?}
+    # Extract the last charcter from the frames
+    # and save the rest for later
+    local temp=${frames#?}
 
-        # Print the current frame and message (in yellow, taken from 'utils/messages.sh')
-        print_running "${msg} [${frames::1}]\e[0m"
+    # Print the current frame and message (in yellow, taken from 'utils/messages.sh')
+    print_running "${msg} [${frames::1}]\e[0m"
 
-        # Update the frames to normal
-        local frames=$temp${frames%"$temp"}
+    # Update the frames to normal
+    local frames=$temp${frames%"$temp"}
 
-        # Wait for the next frame..
-        sleep $delay
+    # Wait for the next frame..
+    sleep $delay
 
-        # Clear the last line
-        echo -en "\r"
-    done
+    # Clear the last line
+    echo -en "\r"
+  done
 
-    # Done! Clear it.
-    tput el
+  # Done! Clear it.
+  tput el
 
-    # Return the status code
-    wait $pid
-    return $?
+  # Return the status code
+  wait $pid
+  return $?
 }

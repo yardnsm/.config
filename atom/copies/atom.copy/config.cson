@@ -1,34 +1,34 @@
 "*":
 
-    # --------------------------------------------- #
-    # | Packages options
-    # --------------------------------------------- #
-    "base16-syntax":
-        scheme: "Default"
-    "open-terminal-here":
-        command: "open -a iTerm.app \"$PWD\""
+  # --------------------------------------------- #
+  # | Packages options
+  # --------------------------------------------- #
+  "base16-syntax":
+    scheme: "Default"
+  "open-terminal-here":
+    command: "open -a iTerm.app \"$PWD\""
 
-    # --------------------------------------------- #
-    # | Core packages options
-    # --------------------------------------------- #
-    "editor":
-        backUpBeforeSaving: true
-        fontFamily: "Fira Code"
-        scrollPastEnd: false
-        showIndentGuide: true
-        showInvisibles: true
-        tabLength: 4
-        tabType: "soft"
-    "tree-view":
-        hideIgnoredNames: true
-    "welcome":
-        showOnStartup: false
+  # --------------------------------------------- #
+  # | Core packages options
+  # --------------------------------------------- #
+  "editor":
+    backUpBeforeSaving: true
+    fontFamily: "Fira Code"
+    scrollPastEnd: false
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 2
+    tabType: "soft"
+  "tree-view":
+    hideIgnoredNames: true
+  "welcome":
+    showOnStartup: false
 
-    # --------------------------------------------- #
-    # | Themes
-    # --------------------------------------------- #
-    "core":
-        themes: [
-            "nucleus-dark-ui"
-            "base16-syntax"
-        ]
+  # --------------------------------------------- #
+  # | Themes
+  # --------------------------------------------- #
+  "core":
+    themes: [
+      "nucleus-dark-ui"
+      "base16-syntax"
+    ]

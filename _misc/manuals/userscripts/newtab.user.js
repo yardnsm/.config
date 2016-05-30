@@ -5,8 +5,8 @@
 // @author        yardnsm
 // @version       1.0
 
-// @match           http://*/*
-// @match           https://*/*
+// @match         http://*/*
+// @match         https://*/*
 // ==/UserScript==
 
 var REGEXP = /^https?:\/\/www.google.[a-z.]+\/\_\/chrome\/newtab.*/;
@@ -14,7 +14,7 @@ var isDefaultNewTab = REGEXP.test(top.location.href);
 var newTabURL = 'about:blank';
 
 if (isDefaultNewTab) {
-    document.documentElement.innerHTML = '<head></head><body></body>';
-    document.bgColor = 'black';
-    //location.replace(newTabURL);  // Redirect to a specified new tab
+  document.documentElement.innerHTML = '<head></head><body></body>';
+  document.bgColor = 'black';
+  //location.replace(newTabURL);  // Redirect to a specified new tab
 }

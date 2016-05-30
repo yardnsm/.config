@@ -40,31 +40,31 @@ PROMPT2=' ${SYMBOL_PROMPT2} %_ >>> '
 
 # Time
 function get_time() {
-    echo "[%T]"
+  echo "[%T]"
 }
 
 # Spacessssss
 function put_spaces() {
 
-    # The filter
-    local zero='%([BSUbfksu]|([FBK]|){*})'
+  # The filter
+  local zero='%([BSUbfksu]|([FBK]|){*})'
 
-    # Upper left
-    local upperleft="$(prompt_row_upper_left)"
-    upperleft=${#${(S%%)upperleft//$~zero/}}
+  # Upper left
+  local upperleft="$(prompt_row_upper_left)"
+  upperleft=${#${(S%%)upperleft//$~zero/}}
 
-    # Upper right
-    local upperright="$(prompt_row_upper_right)"
-    upperright=${#${(S%%)upperright//$~zero/}}
+  # Upper right
+  local upperright="$(prompt_row_upper_right)"
+  upperright=${#${(S%%)upperright//$~zero/}}
 
-    # Desired spaces length
-    local termwidth
-    (( termwidth = ${COLUMNS} - ${upperleft} - ${upperright} ))
+  # Desired spaces length
+  local termwidth
+  (( termwidth = ${COLUMNS} - ${upperleft} - ${upperright} ))
 
-    # Calculate spaces
-    local spacing=""
-    for i in {1..$termwidth}; do
-        spacing="${spacing} "
-    done
-    echo $spacing
+  # Calculate spaces
+  local spacing=""
+  for i in {1..$termwidth}; do
+    spacing="${spacing} "
+  done
+  echo $spacing
 }

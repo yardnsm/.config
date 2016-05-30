@@ -1,67 +1,67 @@
 /* Change the folders color to something more colorful */
 .list-group .icon.icon-file-directory::before, .list-tree .icon.icon-file-directory::before {
-    color: #98985D;
+  color: #98985D;
 }
 
 /* Ohh yay animations */
 .tree-view {
-    .entry.expanded > .entries {
-        -webkit-animation: tree-view-expanded 400ms cubic-bezier(.15,.7,.3, 1);
-    }
+  .entry.expanded > .entries {
+    -webkit-animation: tree-view-expanded 400ms cubic-bezier(.15,.7,.3, 1);
+  }
 
-    @-webkit-keyframes tree-view-expanded {
-        0% { opacity: 0; transform: translate(0, -10px); }
-        100% { opacity: 1; transform: translate(0, 0); }
-    }
+  @-webkit-keyframes tree-view-expanded {
+    0% { opacity: 0; transform: translate(0, -10px); }
+    100% { opacity: 1; transform: translate(0, 0); }
+  }
 }
 
 /* Overlay Anyway (no overlay in nucleus theme) */
 atom-panel.modal.overlay:after {
-    position: fixed;;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Make the tab-bar normal */
 ul.tab-bar {
-    display: inherit;
+  display: inherit;
+  border-bottom: 1px solid #283134;
+  background-color: #0E0E0E;
+
+  li.tab {
     border-bottom: 1px solid #283134;
-    background-color: #0E0E0E;
+    border-right: 1px solid #283134 !important;
+    border-left: 0 !important;
 
-    li.tab {
-        border-bottom: 1px solid #283134;
-        border-right: 1px solid #283134 !important;
-        border-left: 0 !important;
-
-        &.active {
-            border-bottom: 0;
-        }
+    &.active {
+      border-bottom: 0;
     }
+  }
 }
 
 /* For the markdown preview */
 .markdown-preview:not([data-use-github-style]) code {
-    background-color: #23272E;
+  background-color: #23272E;
 }
 
 /* Giving some padding to the tree view makes the scrollbar looks less tight */
 .tree-view-resizer {
-    padding: 5px;
+  padding: 5px;
 }
 
 /* Color fix */
 .tool-panel, atom-panel {
-    background-color: #0E0E0E;
+  background-color: #0E0E0E;
 }
 
 /* Fix for the setting pane.. I don't like that the border is not aligned, so bye bye. */
 .settings-view .config-menu {
-    // min-width: 175px !important;
-    // width: 175px !important;
-    border-right: 0;
+  // min-width: 175px !important;
+  // width: 175px !important;
+  border-right: 0;
 }

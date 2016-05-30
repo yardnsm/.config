@@ -48,9 +48,9 @@ execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool tru
 'Expand print panel by default'
 
 execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Bacon" &&
-    sudo scutil --set ComputerName "bacon" &&
-    sudo scutil --set HostName "bacon" &&
-    sudo scutil --set LocalHostName "bacon"' \
+  sudo scutil --set ComputerName "bacon" &&
+  sudo scutil --set HostName "bacon" &&
+  sudo scutil --set LocalHostName "bacon"' \
 'Set computer name to "bacon" (I am Jewish)'
 
 # --------------------------------------------- #
@@ -77,7 +77,7 @@ execute 'defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool 
 'Disable smart dashes'
 
 execute 'defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true &&
-    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144' \
+  defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144' \
 'Use scroll gesture with the Ctrl (^) modifier key to zoom'
 
 # --------------------------------------------- #
@@ -109,7 +109,7 @@ execute 'defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"' \
 'Use list view in all Finder windows by default'
 
 execute 'defaults write com.apple.finder NewWindowTarget -string "PfDe" &&
-    defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"' \
+  defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"' \
 'Set "Desktop" as the default location for new Finder windows'
 
 execute 'defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"' \
@@ -156,12 +156,12 @@ execute 'defaults write com.apple.Safari AutoOpenSafeDownloads -bool false' \
 'Disable opening "safe" files automatically'
 
 execute 'defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true &&
-    defaults write com.apple.Safari IncludeDevelopMenu -bool true &&
-    defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true' \
+  defaults write com.apple.Safari IncludeDevelopMenu -bool true &&
+  defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true' \
 'Enable the "Develop" menu and the "Web Inspector"'
 
 execute 'defaults write com.apple.Safari HomePage -string "about:blank"' \
-    'Set home page to "about:blank"'
+'Set home page to "about:blank"'
 
 execute 'defaults write com.apple.Safari IncludeInternalDebugMenu -bool true' \
 'Enable "Debug" menu'
@@ -173,7 +173,7 @@ execute 'defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool tru
 'Show the full URL in the address bar'
 
 execute 'defaults write com.apple.Safari SuppressSearchSuggestions -bool true &&
-    defaults write com.apple.Safari UniversalSearchEnabled -bool false' \
+  defaults write com.apple.Safari UniversalSearchEnabled -bool false' \
 'Don’t send search queries to Apple'
 
 execute 'defaults write NSGlobalDomain WebKitDeveloperExtras -bool true' \
@@ -185,7 +185,7 @@ execute 'defaults write NSGlobalDomain WebKitDeveloperExtras -bool true' \
 print_info_secondary "Mac Applications"
 
 execute 'defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
-    defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4' \
+  defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4' \
 'Open and save files as UTF-8 encoded in TextEdit'
 
 execute 'defaults write com.apple.TextEdit RichText -' \

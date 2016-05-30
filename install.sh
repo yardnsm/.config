@@ -30,20 +30,20 @@ print_divider
 # Check if answer is yes
 if answer_is_yes; then
 
-    # Get sudo permissions
-    print_title "Checking for sudo permissions"
-    ask_for_sudo
-    print_result $? "I AM YOUR MASTER"
-    print_divider
+  # Get sudo permissions
+  print_title "Checking for sudo permissions"
+  ask_for_sudo
+  print_result $? "I AM YOUR MASTER"
+  print_divider
 
-    # Let's begin..
-    source ./_setup/execute.sh
+  # Let's begin..
+  source ./_setup/execute.sh
 
 else
 
-    # wow. did you just wat?
-    print_error "aborted"
-    exit 1
+  # wow. did you just wat?
+  print_error "aborted"
+  exit 1
 fi
 
 # --------------------------------------------- #

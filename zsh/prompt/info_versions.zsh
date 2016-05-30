@@ -13,9 +13,9 @@ local THEME_VERSION_NODEJS_SUFFIX="]%{$reset_color%}"
 
 # Get nodejs version if there is a 'package.json' file
 function version_node () {
-    [[ ! -f "$(pwd)/package.json" ]] && return
-    local node_version=$(node -v 2>/dev/null)
-    [[ ! -z "${node_version}" ]] && echo "${THEME_VERSION_NODEJS_PREFIX}${node_version:1}${THEME_VERSION_NODEJS_SUFFIX} "
+  [[ ! -f "$(pwd)/package.json" ]] && return
+  local node_version=$(node -v 2>/dev/null)
+  [[ ! -z "${node_version}" ]] && echo "${THEME_VERSION_NODEJS_PREFIX}${node_version:1}${THEME_VERSION_NODEJS_SUFFIX} "
 }
 
 # --------------------------------------- #
@@ -24,5 +24,5 @@ function version_node () {
 
 # All verions
 function info_versions() {
-    echo "$(version_node)"
+  echo "$(version_node)"
 }

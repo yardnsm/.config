@@ -22,32 +22,32 @@ options=()
 
 for topic in $topics; do
 
-    # Check if has a 'main.sh' script
-    if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
-        options+=($(basename $topic))
-    fi
+  # Check if has a 'main.sh' script
+  if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
+    options+=($(basename $topic))
+  fi
 done
 
-PS3=$'\n    Choose a topic to execute: '
-echo "    Available topics"
-echo "    ------------------"
+PS3=$'\n  Choose a topic to execute: '
+echo "  Available topics"
+echo "  ------------------"
 echo ""
 
 select opt in "${options[@]}"
 
 do
-    case $opt in
-        *)
-            print_divider
+  case $opt in
+    *)
+      print_divider
 
-            if [ -z $opt ]; then
-                print_error "Unavailable topic"
-                exit 1;
-            fi
+      if [ -z $opt ]; then
+        print_error "Unavailable topic"
+        exit 1;
+      fi
 
-            source $DOTFILES/$opt/main.sh
+      source $DOTFILES/$opt/main.sh
 
-            break
-            ;;
-    esac
+      break
+      ;;
+  esac
 done
