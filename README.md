@@ -68,9 +68,8 @@ Too lazy to add a topic for iTerm, because it just take 2 seconds.
 ## TO-DO:
 - [ ] Add a topic for iTerm2
 - [ ] More git info!!!!
-- [ ] Show more info (cpu, ram...)
+- [ ] Show more info (cpu, ram, battery...)
 - [ ] emojis 😁🚀
-- [ ] Refactor the prompt (its terrible)
 - [ ] Add a sync script
 - [ ] Add support for linux
 - [ ] Add more file to 'bin'
