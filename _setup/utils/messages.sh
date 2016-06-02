@@ -43,11 +43,11 @@ print_info_secondary() {
 }
 
 print_error() {
-  print_in_red "    [damn it] $1 $2\n"
+  print_in_red "    [✘] $1 $2\n"
 }
 
 print_running() {
-  print_in_blue "    [running] $1"
+  print_in_blue "    [.] $1"
 }
 
 print_question() {
@@ -59,7 +59,7 @@ print_status() {
 }
 
 print_success() {
-  print_in_green "    [yay] $1\n"
+  print_in_green "    [✓︎] $1\n"
 }
 
 # --------------------------------------------- #
