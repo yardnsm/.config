@@ -5,6 +5,8 @@ These are my dotfiles. A collection of zsh, git and OSX configurations. I built 
 
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal.png)
 
+*screenshot may not be updated*
+
 ## Installation
 **THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC OSX AT THE MOMENT**
 
@@ -16,7 +18,7 @@ xcode-select --install
 
 Did that? gr8. Now follow GitHub's instructions on how to [Generate an SSH key](https://help.github.com/articles/generating-an-ssh-key/).
 
-Then, clone the dotfiles repository in `~/dotfiles`. The symbolic links will be created in your home directory (~/).
+Then, clone the dotfiles repository into `~/dotfiles`. The symbolic links will be created in your home directory (~/).
 After that, run the installation script.
 
 **Before** you run the script, you should check what it does. Make sure to check the setup files (located in `_setup`).
@@ -39,7 +41,7 @@ a file called `main.sh`, which is the main topic's installer. There also may be 
 
 ## The Prompt
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal-sliced.png)
-I made the prompt myself (== stole everything from others).
+I ~~made the prompt myself~~ stole everything from others.
 - Syntax highlighting with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - Auto suggestion with [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - Shows info about git (branch, commit hash, dirty/clean)
@@ -71,6 +73,7 @@ Too lazy to add a topic for iTerm, because it just take 2 seconds.
 - [ ] Show more info (cpu, ram, battery...)
 - [ ] emojis 😁🚀
 - [ ] Add a sync script
+- [ ] Docs?
 - [ ] Add support for linux
 - [ ] Add more file to 'bin'
 - [ ] Achieve 42,956 commits. Add support for windows after that? nah.
