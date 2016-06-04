@@ -98,7 +98,7 @@ cat <<'EOF'
 
 EOF
 
-  print_in_yellow "  yardnsm's Dotfiles - Version 1.0 \n"
+  print_in_yellow "  yardnsm's dotfiles - Version 1.0 \n"
   print_in_purple "  Currently compatible with OSX Only \n\n"
   print_divider
 
