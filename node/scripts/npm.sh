@@ -12,6 +12,7 @@ npm_install 'jade'
 npm_install 'nodemon'
 npm_install 'json-server'
 npm_install 'n'
+npm_install 'eslint'
 
 # Misc
 npm_install 'speed-test'
