@@ -53,7 +53,7 @@ source `brew --prefix`/etc/profile.d/z.sh
 # --------------------------------------- #
 
 # Base16 Shell Theme
-export THEME="base16-default"
+export THEME="base16-tomorrow"
 if [ -z "$BACKGROUND" ]; then
   export BACKGROUND="dark"
 fi

@@ -4,9 +4,13 @@
   # | Packages options
   # --------------------------------------------- #
   "base16-syntax":
-    scheme: "Default"
+    scheme: "Tomorrow"
+
   "open-terminal-here":
     command: "open -a iTerm.app \"$PWD\""
+
+  "autoclose-html":
+    forceInline: ["*"]
 
   # --------------------------------------------- #
   # | Core packages options
@@ -16,11 +20,14 @@
     fontFamily: "Fira Code"
     scrollPastEnd: false
     showIndentGuide: true
-    showInvisibles: true
+    showInvisibles: false
     tabLength: 2
     tabType: "soft"
+    softWrapAtPreferredLineLength: true
+
   "tree-view":
     hideIgnoredNames: true
+
   "welcome":
     showOnStartup: false
 
@@ -30,5 +37,5 @@
   "core":
     themes: [
       "nucleus-dark-ui"
-      "base16-syntax"
+      "base16-tomorrow-dark-theme"
     ]
