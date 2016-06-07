@@ -1,22 +1,29 @@
 /* Change the folders color to something more colorful */
-.list-group .icon.icon-file-directory::before, .list-tree .icon.icon-file-directory::before {
-  color: #98985D;
+.list-group .icon.icon-file-directory::before,
+.list-tree .icon.icon-file-directory::before {
+  color: #98985d;
 }
 
 /* Ohh yay animations */
 .tree-view {
   .entry.expanded > .entries {
-    -webkit-animation: tree-view-expanded 400ms cubic-bezier(.15,.7,.3, 1);
+    -webkit-animation: tree-view-expanded 400ms cubic-bezier(0.15, 0.7, 0.3, 1);
   }
 
   @-webkit-keyframes tree-view-expanded {
-    0% { opacity: 0; transform: translate(0, -10px); }
-    100% { opacity: 1; transform: translate(0, 0); }
+    0% {
+      opacity: 0;
+      transform: translate(0, -10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 }
 
 /* Overlay Anyway (no overlay in nucleus theme) */
-atom-panel.modal.overlay:after {
+atom-panel.modal.overlay::after {
   position: fixed;
   top: 0;
   right: 0;
@@ -31,7 +38,7 @@ atom-panel.modal.overlay:after {
 ul.tab-bar {
   display: inherit;
   border-bottom: 1px solid #283134;
-  background-color: #0E0E0E;
+  background-color: #202228;
 
   li.tab {
     border-bottom: 1px solid #283134;
@@ -46,7 +53,7 @@ ul.tab-bar {
 
 /* For the markdown preview */
 .markdown-preview:not([data-use-github-style]) code {
-  background-color: #23272E;
+  background-color: #23272e;
 }
 
 /* Giving some padding to the tree view makes the scrollbar looks less tight */
