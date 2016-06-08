@@ -13,6 +13,8 @@ npm_install 'nodemon'
 npm_install 'json-server'
 npm_install 'n'
 npm_install 'eslint'
+npm_install 'yo'
+npm_install 'xo'
 
 # Misc
 npm_install 'speed-test'
