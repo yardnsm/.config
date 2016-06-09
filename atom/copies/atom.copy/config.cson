@@ -37,5 +37,5 @@
   "core":
     themes: [
       "nucleus-dark-ui"
-      "one-dark"
+      "base16-tomorrow-dark-theme"
     ]
