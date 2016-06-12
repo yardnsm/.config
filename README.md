@@ -51,28 +51,17 @@ I ~~made the prompt myself~~ stole everything from others.
 - Shows node's version if there is a `package.json` file in the working directry
 - Magical stuff with [z](https://github.com/rupa/z)
 
-## Iterm config
-Too lazy to add a topic for iTerm, because it just take 2 seconds.
-
-### Text/fonts
-![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/iterm-text.png)
-
-### Window
-![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/iterm-window.png)
-
 # Inspired by
 - [pure prompt](https://github.com/sindresorhus/pure)
 - [nicknisi's dotfiles](https://github.com/nicknisi/dotfiles)
 - [carlos' dotfiles](https://github.com/caarlos0/dotfiles)
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)
-- [geometry ZSH theme](https://github.com/frmendes/geometry)
 
 ## TO-DO:
-- [ ] Add a topic for iTerm2
 - [ ] Make this README more fancy, update pictures
 - [ ] Add one-command install (curl)
 - [ ] More git info!!!!
-- [ ] Show more info (cpu, ram, battery...)
+- [ ] Show more info in the prompt (cpu, ram, battery...)
 - [ ] emojis 😁🚀
 - [ ] Add a sync script
 - [ ] Docs?
