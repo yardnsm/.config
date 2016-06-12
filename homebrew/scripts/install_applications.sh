@@ -13,8 +13,8 @@ brew_install 'github-desktop' 'cask'
 brew_install 'postman' 'cask'
 brew_install 'iterm2' 'cask'
 brew_install 'robomongo' 'cask'
-#brew_install 'android-studio' 'cask' # I have license lol
-#brew_install 'intellij-idea' 'cask'
+#brew_install 'android-studio' 'cask'
+#brew_install 'intellij-idea' 'cask' # I have a license lol
 
 # Browsers
 brew_install 'google-chrome' 'cask'
@@ -45,9 +45,13 @@ brew_install 'transmission' 'cask'
 # --------------------------------------------- #
 print_info_secondary "Fonts"
 
+# Dev fonts
 brew_install 'font-hack' 'cask'
 brew_install 'font-fira-code' 'cask'
+brew_install 'font-source-code-pro' 'cask'
 brew_install 'font-ubuntu' 'cask'
+
+# Others
 brew_install 'font-open-sans' 'cask'
 brew_install 'font-open-sans-condensed' 'cask'
 brew_install 'font-open-sans-hebrew' 'cask'
@@ -63,3 +67,4 @@ brew_install 'font-open-sans-hebrew-condensed' 'cask'
 # 5) Transmit
 # 6) iStat Mini
 # 7) Paragon NTFS
+# 8) Alfred

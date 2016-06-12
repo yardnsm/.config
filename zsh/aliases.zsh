@@ -29,7 +29,3 @@ alias lld="ls -l | grep ^d"
 # chmod
 alias chmx="chmod +x"
 alias x+="chmod +x"
-
-# Open stuff
-alias o="open"
-alias oo="open ."

@@ -12,6 +12,9 @@
   "autoclose-html":
     forceInline: ["*"]
 
+  "docblockr":
+    extend_double_slash: false
+
   # --------------------------------------------- #
   # | Core packages options
   # --------------------------------------------- #
