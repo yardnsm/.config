@@ -22,8 +22,8 @@ function precmd() {
   function async {
 
     # Fetch the data from git
-    git fetch > /dev/null 2>&1
-    git remote update > /dev/null 2>&1
+    git fetch &> /dev/null
+    #git remote update &> /dev/null
 
     # Save the prompt in a temp file so the parent shell can read it
     printf "%s" $PROMPT > "$tmp_prompt_location"
