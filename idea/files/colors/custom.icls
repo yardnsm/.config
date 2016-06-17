@@ -8,14 +8,13 @@
     <option name="EDITOR_FONT_NAME" value="Source Code Pro" />
     <option name="EDITOR_FONT_SIZE" value="14" />
   </font>
-  <option name="CONSOLE_FONT_NAME" value="Menlo" />
-  <option name="CONSOLE_FONT_SIZE" value="12" />
+  <option name="CONSOLE_FONT_NAME" value="Fira Code" />
   <option name="CONSOLE_LINE_SPACING" value="1.0" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="444444" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
     <option name="BORDER_LINES_COLOR" value="" />
-    <option name="CARET_COLOR" value="ffcc00" />
+    <option name="CARET_COLOR" value="" />
     <option name="CARET_ROW_COLOR" value="252525" />
     <option name="CONSOLE_BACKGROUND_KEY" value="212121" />
     <option name="DELETED_LINES_COLOR" value="f77669" />
@@ -383,12 +382,6 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="DEFAULT_BLOCK_COMMENT">
-      <value>
-        <option name="FOREGROUND" value="444444" />
-        <option name="FONT_TYPE" value="2" />
-      </value>
-    </option>
     <option name="DEFAULT_BRACES">
       <value>
         <option name="FOREGROUND" value="cad3de" />
@@ -412,7 +405,7 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT">
       <value>
-        <option name="FOREGROUND" value="444444" />
+        <option name="FOREGROUND" value="84a46b" />
       </value>
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG">
@@ -423,13 +416,13 @@
     </option>
     <option name="DEFAULT_DOC_COMMENT_TAG_VALUE">
       <value>
-        <option name="FOREGROUND" value="444444" />
+        <option name="FOREGROUND" value="808080" />
         <option name="FONT_TYPE" value="3" />
       </value>
     </option>
     <option name="DEFAULT_DOC_MARKUP">
       <value>
-        <option name="FOREGROUND" value="444444" />
+        <option name="FOREGROUND" value="808080" />
       </value>
     </option>
     <option name="DEFAULT_ENTITY">
@@ -471,7 +464,7 @@
     </option>
     <option name="DEFAULT_LINE_COMMENT">
       <value>
-        <option name="FOREGROUND" value="444444" />
+        <option name="FOREGROUND" value="808080" />
       </value>
     </option>
     <option name="DEFAULT_LOCAL_VARIABLE">
@@ -744,6 +737,10 @@
         <option name="FOREGROUND" value="1a1f29" />
       </value>
     </option>
+    <option name="JADE_FILE_PATH" baseAttributes="DEFAULT_STRING" />
+    <option name="JADE_FILTER_NAME" baseAttributes="DEFAULT_LABEL" />
+    <option name="JADE_JS_BLOCK" baseAttributes="DEFAULT_IDENTIFIER" />
+    <option name="JADE_STATEMENTS" baseAttributes="DEFAULT_KEYWORD" />
     <option name="JAVA_COMMA">
       <value>
         <option name="FOREGROUND" value="a7dbd8" />

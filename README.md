@@ -53,6 +53,7 @@ I ~~made the prompt myself~~ stole everything from others.
 
 # Inspired by
 - [pure prompt](https://github.com/sindresorhus/pure)
+- [Sapegin’s prompt](https://github.com/sapegin/dotfiles)
 - [nicknisi's dotfiles](https://github.com/nicknisi/dotfiles)
 - [carlos' dotfiles](https://github.com/caarlos0/dotfiles)
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)

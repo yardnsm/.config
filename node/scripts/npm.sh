@@ -15,6 +15,7 @@ npm_install 'n'
 npm_install 'eslint'
 npm_install 'yo'
 npm_install 'xo'
+npm_install 'npm-upgrade'
 
 # Misc
 npm_install 'speed-test'
