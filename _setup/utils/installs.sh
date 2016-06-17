@@ -3,7 +3,17 @@
 # --------------------------------------------- #
 # | Install a hombrew / Cask package
 # --------------------------------------------- #
+
+# Store 'brew list' to make it faster
+brew_list=""
+
 brew_install() {
+
+  # Check if there is a list
+  if [[ ${brew_list} = "" ]]; then
+    print_status "Fetching installed packages. This could take a while...\n"
+    brew_list=$(brew list && brew cask list)
+  fi
 
   # Arguments
   formula="$1"
@@ -15,8 +25,7 @@ brew_install() {
   fi
 
   # Install the specified formula
-  eval "brew $cmd list $formula" &> /dev/null "$formula" & show_spinner $! $formula
-  if [ $? -eq 0 ]; then
+  if [[ $(echo ${brew_list} | grep "${formula}") ]]; then
     print_success "$formula (already installed)"
   else
     execute "brew $cmd install $formula" "$formula"
@@ -26,7 +35,17 @@ brew_install() {
 # --------------------------------------------- #
 # | Install an NPM package
 # --------------------------------------------- #
+
+# Store 'npm list' to make it faster
+npm_list=""
+
 npm_install() {
+
+  # Check if there is a list
+  if [[ ${npm_list} = "" ]]; then
+    print_status "Fetching installed packages. This could take a while...\n"
+    npm_list=$(npm list -g --depth 0 -s)
+  fi
 
   # Arguments
   package="$1"
@@ -37,8 +56,7 @@ npm_install() {
   fi
 
   # Install the specified package
-  eval "npm list $package -g" &> /dev/null "$package" & show_spinner $! $package
-  if [ $? -eq 0 ]; then
+  if [[ $(echo ${npm_list} | grep "${package}@") ]]; then
     print_success "$package (already installed)"
   else
     execute "npm install $package -g" "$package"
