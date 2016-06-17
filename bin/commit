@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------- #
-# | Installing Atom's packages
+# | Haha so funny
 # --------------------------------------------- #
-apm_install 'package-sync'
+curl --silent http://whatthecommit.com/index.txt

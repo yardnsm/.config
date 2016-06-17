@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 current_dir="$(dirname "$BASH_SOURCE")"
 

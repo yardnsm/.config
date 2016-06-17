@@ -1,9 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # --------------------------------------------- #
 # | Source all the stuff
 # --------------------------------------------- #
 source ./_setup/initializer.sh
+
+# --------------------------------------------- #
+# | Warn if needed
+# --------------------------------------------- #
+if cmd_exists 'dotfiles'; then
+  print_title "Warning!"
+  print_status "It looks like you have already executed this script. If you
+        re-run this script, some actions you did may be
+        overriden. Use the 'dotfiles' command instead.
+"
+
+  if ! [[ $1 = '-f' ]]; then
+    print_status "To force the execution of this script, use the '-f' flag."
+    exit 1
+  else
+    print_status "Used forced install. Continue in 3 seconds..."
+    sleep 3
+    print_divider
+  fi
+fi
 
 # --------------------------------------------- #
 # | Preinstall stuff
