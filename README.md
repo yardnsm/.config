@@ -51,7 +51,12 @@ I ~~made the prompt myself~~ stole everything from others.
 - Shows node's version if there is a `package.json` file in the working directry
 - Magical stuff with [z](https://github.com/rupa/z)
 
-# Inspired by
+## Manual stuff
+- Some apps, userscripts (for chrome) and wallpapers are located in `_misc/manuals`.
+- Set the folder `iterm/files` as the preferences folder in iTerm.
+- Set the folder `alfred/files` as the preferences folder in Alfred.
+
+## Inspired by
 - [pure prompt](https://github.com/sindresorhus/pure)
 - [Sapegin’s prompt](https://github.com/sapegin/dotfiles)
 - [nicknisi's dotfiles](https://github.com/nicknisi/dotfiles)
