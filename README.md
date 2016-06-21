@@ -64,13 +64,13 @@ I ~~made the prompt myself~~ stole everything from others.
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)
 
 ## TO-DO:
-- [ ] Make this README more fancy, update pictures
+- [ ] Move to antigen / Oh-My-ZSH
 - [ ] Add one-command install (curl)
 - [ ] More git info!!!!
 - [ ] Show more info in the prompt (cpu, ram, battery...)
 - [ ] emojis 😁🚀
 - [ ] Add a sync script
 - [ ] Docs?
-- [ ] Add support for linux
+- [ ] Add support for linux (ubuntu probably).
 - [ ] Add more file to 'bin'
 - [ ] Achieve 42,956 commits. Add support for windows after that? nah.
