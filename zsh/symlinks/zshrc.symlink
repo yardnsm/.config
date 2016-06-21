@@ -39,6 +39,10 @@ if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
 
+# --------------------------------------- #
+# | Plugins
+# --------------------------------------- #
+
 # Source zsh-syntax-highlighting
 source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
