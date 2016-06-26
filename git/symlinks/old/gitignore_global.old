@@ -53,6 +53,7 @@ $RECYCLE.BIN/
 # --------------------------------------- #
 # | Bower
 # --------------------------------------- #
+bower_components
 .bower-cache
 .bower-registry
 .bower-tmp
@@ -103,6 +104,29 @@ crashlytics-build.properties
 fabric.properties
 
 # --------------------------------------- #
+# | MeteorJS
+# --------------------------------------- #
+
+# default meteor build and local packages
+.meteor/local
+
+# meteor settings file
+settings.json
+
+# meteor build output files
+*.tar.gz
+
+# general swp files from vim
+*.swp
+
+# --------------------------------------- #
+# | Gulp / Grunt / Most build systems
+# --------------------------------------- #
+dist/
+dest/
+.tmp/
+
+# --------------------------------------- #
 # | Android
 # --------------------------------------- #
 
@@ -145,6 +169,13 @@ gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# --------------------------------------- #
+# | Jekyll
+# --------------------------------------- #
+_site/
+.sass-cache/
+.jekyll-metadata
 
 # --------------------------------------- #
 # | Node and NPM

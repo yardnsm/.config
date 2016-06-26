@@ -1,4 +1,5 @@
 # yardnsm's dotfiles
+
 yep.
 
 These are my dotfiles. A collection of zsh, git and OSX configurations. I built this repo from scratch, while focus on organization.
@@ -8,6 +9,7 @@ These are my dotfiles. A collection of zsh, git and OSX configurations. I built 
 *screenshot may not be updated*
 
 ## Installation
+
 **THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC OSX AT THE MOMENT**
 
 First, make sure that you have Xcode Command Line Tools installed:
@@ -35,13 +37,17 @@ cd ~/dotfiles
 It will take some time.
 
 ## Order and hierarchy
+
 Everything in this repo is built around topical areas. Each 'topic' has its own directory. In each topic's directory there may be
 a file called `main.sh`, which is the main topic's installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing),
 `shell` (some `.zsh` files like functions and aliases), `symlinks` (includes files to symlink to the home directory) and `copies` (guess whats in there).
 
 ## The Prompt
+
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal-sliced.png)
+
 I ~~made the prompt myself~~ stole everything from others.
+
 - Syntax highlighting with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - Auto suggestion with [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - Shows info about git (branch, commit hash, dirty/clean, needs pull/push)
@@ -52,19 +58,25 @@ I ~~made the prompt myself~~ stole everything from others.
 - Magical stuff with [z](https://github.com/rupa/z)
 
 ## Manual stuff
+
+Too lazy to automate the following:
+
 - Some apps, userscripts (for chrome) and wallpapers are located in `_misc/manuals`.
 - Set the folder `iterm/files` as the preferences folder in iTerm.
 - Set the folder `alfred/files` as the preferences folder in Alfred.
 
 ## Inspired by
+
 - [pure prompt](https://github.com/sindresorhus/pure)
 - [Sapegin’s prompt](https://github.com/sapegin/dotfiles)
 - [nicknisi's dotfiles](https://github.com/nicknisi/dotfiles)
 - [carlos' dotfiles](https://github.com/caarlos0/dotfiles)
 - [alrra's dotfiles](https://github.com/alrra/dotfiles)
 
-## TO-DO:
-- [ ] Move to antigen / Oh-My-ZSH
+## TODOs:
+
+- [ ] Move to ~~Oh-My-ZSH~~ antigen
+- [ ] Extract the prompt theme (and rebuild it?)
 - [ ] Add one-command install (curl)
 - [ ] More git info!!!!
 - [ ] Show more info in the prompt (cpu, ram, battery...)
