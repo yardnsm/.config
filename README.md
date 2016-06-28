@@ -44,7 +44,7 @@ Everything in this repo is built around topical areas. Each 'topic' has its own 
 
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal-sliced.png)
 
-I moved the prompt into a new repo. Introducing [Blox](https://github.com/yardnsm/brox-zsh-theme) - *(not always)* minimal, clean and highly modular ZSH theme.
+I moved the prompt into a new repo. Introducing [Blox](https://github.com/yardnsm/blox-zsh-theme) - *(not always)* minimal, clean and highly modular ZSH theme.
 
 ## Manual stuff
 
