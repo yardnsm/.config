@@ -22,12 +22,17 @@ function take() {
 	cd $1
 }
 
+# Create a new project
+function proj() {
+  take $PROJECTS_DIR/github/$1
+}
+
 # `cd` into whatever is the forefront Finder window
 function cdf() {
   cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
-# Show my IP
+# Show my (local) IP
 function ipee() {
   ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk "{print \$2}"
 }
