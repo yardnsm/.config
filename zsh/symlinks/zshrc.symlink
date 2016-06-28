@@ -39,18 +39,23 @@ if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
 
+# Source antigen
+source $CONFIG/antigen/antigen.zsh
+
 # --------------------------------------- #
 # | Plugins
 # --------------------------------------- #
+antigen bundles <<EOBUNDLES
+  osx
+  node
+  brew
 
-# Source zsh-syntax-highlighting
-source $CONFIG/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Source 'z'
-source `brew --prefix`/etc/profile.d/z.sh
-
-# Source zsh-autosuggestions
-#source $CONFIG/zsh-autosuggestions/zsh-autosuggestions.zsh
+  rupa/z
+  yardnsm/blox-zsh-theme
+  zsh-users/zsh-syntax-highlighting
+  denysdovhan/gitio-zsh
+  chrissicool/zsh-256color
+EOBUNDLES
 
 # --------------------------------------- #
 # | Theme setup

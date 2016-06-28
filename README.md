@@ -44,16 +44,7 @@ Everything in this repo is built around topical areas. Each 'topic' has its own 
 
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal-sliced.png)
 
-I ~~made the prompt myself~~ stole everything from others.
-
-- Syntax highlighting with [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-- Auto suggestion with [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-- Shows info about git (branch, commit hash, dirty/clean, needs pull/push)
-- Shows the current working directory (dah.) + in the title
-- Shows indicator for background processes
-- The symbol next the the working directory turns red if the last command exited with an error
-- Shows node's version if there is a `package.json` file in the working directry
-- Magical stuff with [z](https://github.com/rupa/z)
+I moved the prompt into a new repo. Introducing [Blox](https://github.com/yardnsm/brox-zsh-theme) - *(not always)* minimal, clean and highly modular ZSH theme.
 
 ## Manual stuff
 
@@ -73,12 +64,7 @@ Too lazy to automate the following:
 
 ## TODOs:
 
-- [ ] Move to ~~Oh-My-ZSH~~ antigen
-- [ ] Extract the prompt theme (and rebuild it?)
 - [ ] Add one-command install (curl)
-- [ ] More git info!!!!
-- [ ] Show more info in the prompt (cpu, ram, battery...)
-- [ ] emojis 😁🚀
 - [ ] Add a sync script
 - [ ] Docs?
 - [ ] Add support for linux (ubuntu probably).
