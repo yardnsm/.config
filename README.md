@@ -14,7 +14,7 @@ These are my dotfiles. A collection of zsh, git and OSX configurations. I built 
 
 First, make sure that you have Xcode Command Line Tools installed:
 
-```
+```console
 xcode-select --install
 ```
 
@@ -25,7 +25,7 @@ After that, run the installation script.
 
 **Before** you run the script, you should check what it does. Make sure to check the setup files (located in `_setup`).
 
-```
+```console
 # Clone this repo
 git clone https://github.com/yardnsm/dotfiles.git ~/dotfiles
 
