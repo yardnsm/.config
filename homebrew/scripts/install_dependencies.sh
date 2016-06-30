@@ -9,6 +9,7 @@ brew_install 'asciinema'
 brew_install 'screenfetch'
 brew_install 'htop'
 brew_install 'cowsay'
+brew_install 'figlet'
 brew_install 'tree'
 
 # Important stuff
