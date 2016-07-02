@@ -2,7 +2,7 @@
 
 yep.
 
-These are my dotfiles. A collection of zsh, git and OSX configurations. I built this repo from scratch, while focus on organization.
+These are my dotfiles. A collection of zsh, git and macOS configurations. I built this repo from scratch, while focus on organization.
 
 ![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal.png)
 
@@ -10,7 +10,7 @@ These are my dotfiles. A collection of zsh, git and OSX configurations. I built 
 
 ## Installation
 
-**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MAC OSX AT THE MOMENT**
+**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH macOS AT THE MOMENT**
 
 First, make sure that you have Xcode Command Line Tools installed:
 

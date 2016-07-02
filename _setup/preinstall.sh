@@ -7,7 +7,7 @@ if ! [ "$(uname -s)" == "Darwin" ]; then
   print_error "Sorry brah, these dotfiles are mac-only!"
   exit 1
 fi
-print_success "Running on OSX"
+print_success "Running on macOS"
 
 # --------------------------------------------- #
 # | Check if Xcode CLI is installed

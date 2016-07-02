@@ -99,7 +99,7 @@ cat <<'EOF'
 EOF
 
   print_in_yellow "  yardnsm's dotfiles - Version 1.0 \n"
-  print_in_purple "  Currently compatible with OSX Only \n\n"
+  print_in_purple "  Currently compatible with macOS Only \n\n"
   print_divider
 
   print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc.

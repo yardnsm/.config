@@ -1,7 +1,15 @@
+/*
+ * Variables
+ * =====================
+ */
+@folder-color:        #98985d;
+@theme-color:         #283134;
+@theme-color-dark:    #141516;
+
 /* Change the folders color to something more colorful */
 .list-group .icon.icon-file-directory::before,
 .list-tree .icon.icon-file-directory::before {
-  color: #98985d;
+  color: @folder-color;
 }
 
 /* Ohh yay animations */
@@ -37,12 +45,12 @@ atom-panel.modal.overlay::after {
 /* Make the tab-bar normal */
 ul.tab-bar {
   display: inherit;
-  border-bottom: 1px solid #283134;
-  background-color: #141516;
+  border-bottom: 1px solid @theme-color;
+  background-color: @theme-color-dark;
 
   li.tab {
-    border-bottom: 1px solid #283134;
-    border-right: 1px solid #283134 !important;
+    border-bottom: 1px solid @theme-color;
+    border-right: 1px solid @theme-color !important;
     border-left: 0 !important;
 
     &.active {
@@ -53,17 +61,10 @@ ul.tab-bar {
 
 /* For the markdown preview */
 .markdown-preview:not([data-use-github-style]) code {
-  background-color: #23272e;
+  background-color: @theme-color;
 }
 
 /* Giving some padding to the tree view makes the scrollbar looks less tight */
 .tree-view-resizer {
   padding: 5px;
-}
-
-/* Fix for the setting pane.. I don't like that the border is not aligned, so bye bye. */
-.settings-view .config-menu {
-  // min-width: 175px !important;
-  // width: 175px !important;
-  border-right: 0;
 }

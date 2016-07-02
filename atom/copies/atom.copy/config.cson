@@ -21,12 +21,13 @@
   "editor":
     backUpBeforeSaving: true
     fontFamily: "Fira Code"
-    scrollPastEnd: false
+    scrollPastEnd: true
     showIndentGuide: true
-    showInvisibles: false
+    showInvisibles: true
     tabLength: 2
     tabType: "soft"
-    softWrapAtPreferredLineLength: true
+    softWrap: true
+    softWrapAtPreferredLineLength: false
 
   "tree-view":
     hideIgnoredNames: true
