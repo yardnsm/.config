@@ -10,7 +10,7 @@ These are my dotfiles. A collection of zsh, git and macOS configurations. I buil
 
 ## Installation
 
-**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH macOS AT THE MOMENT**
+**THIS DOTFILES REPO IS ONLY COMPATIBLE WITH MACOS AT THE MOMENT**
 
 First, make sure that you have Xcode Command Line Tools installed:
 

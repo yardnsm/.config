@@ -23,5 +23,5 @@ if answer_is_yes; then
   git_authoremail=$(get_answer)
 
   # Create it
-  sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" symlinks/git/gitconfig.local.symlink.placeholder > symlinks/git/gitconfig.local.symlink
+  sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" git/symlinks/gitconfig.local.symlink.placeholder > git/symlinks/gitconfig.local.symlink
 fi
