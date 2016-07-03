@@ -61,6 +61,7 @@ $RECYCLE.BIN/
 # | IntelliJ
 # --------------------------------------- #
 .idea
+*.iml
 
 # User-specific stuff:
 .idea/workspace.xml

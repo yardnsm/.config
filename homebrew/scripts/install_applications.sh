@@ -19,6 +19,10 @@ brew_install 'robomongo' 'cask'
 # Browsers
 brew_install 'google-chrome' 'cask'
 brew_install 'google-chrome-canary' 'cask'
+brew_install 'firefox' 'cask'
+#brew_install 'firefox-nightly' 'cask'
+#brew_install 'firefox-developeredition' 'cask'
+#brew_install 'opera' 'cask'
 
 # Syncing
 brew_install 'google-drive' 'cask'
