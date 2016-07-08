@@ -19,3 +19,5 @@ npm_install 'npm-upgrade'
 
 # Misc
 npm_install 'speed-test'
+npm_install 'fast-cli'
+npm_install 'emoj'
