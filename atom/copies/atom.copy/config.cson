@@ -3,9 +3,6 @@
   # --------------------------------------------- #
   # | Packages options
   # --------------------------------------------- #
-  "base16-syntax":
-    scheme: "Tomorrow"
-
   "open-terminal-here":
     command: "open -a iTerm.app \"$PWD\""
 
@@ -38,8 +35,31 @@
   # --------------------------------------------- #
   # | Themes
   # --------------------------------------------- #
+  "base16-syntax":
+    scheme: "Tomorrow"
+
+  "atom-material-ui":
+    colors:
+      abaseColor:
+        red: 96
+        green: 125
+        blue: 139
+        alpha: 1
+      predefinedColor: "Blue Grey"
+    tabs:
+      compactTabs: true
+      tintedTabBar: true
+    treeView:
+      blendTabs: true
+      compactList: true
+    ui:
+      panelContrast: true
+
+  # --------------------------------------------- #
+  # | Core options
+  # --------------------------------------------- #
   "core":
     themes: [
-      "nucleus-dark-ui"
+      "atom-material-ui"
       "base16-tomorrow-dark-theme"
     ]
