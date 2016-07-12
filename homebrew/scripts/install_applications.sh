@@ -36,7 +36,7 @@ brew_install 'keycastr' 'cask'
 
 # Misc
 brew_install 'skype' 'cask'
-brew_install 'cumulus' 'cask'
+brew_install 'beardedspice' 'cask'
 brew_install 'caprine' 'cask'
 brew_install 'vlc' 'cask'
 brew_install 'drop-to-gif' 'cask'
