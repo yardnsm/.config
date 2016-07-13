@@ -55,6 +55,7 @@ antigen bundles <<EOBUNDLES
   zsh-users/zsh-syntax-highlighting
   denysdovhan/gitio-zsh
   chrissicool/zsh-256color
+  lukechilds/zsh-nvm
 EOBUNDLES
 
 # --------------------------------------- #
