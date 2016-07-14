@@ -42,3 +42,9 @@ function todo() {
   touch $HOME/Desktop/$1.md
   echo "Touched '$1' because I like to touch stuff"
 }
+
+# Create a pastebin in sprunge and `pbcopy` it
+# Usage: echo "u wot" | spr
+function spr() {
+  curl --silent -F 'sprunge=<-' http://sprunge.us | pbcopy
+}
