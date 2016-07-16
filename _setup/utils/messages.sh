@@ -104,8 +104,8 @@ EOF
 
   print_info_secondary "This proccess will setup the dotfiles repository: symlink files, change configurations, etc.
 
-    NOTE: This script is installing everything needed. It can override some settings.
-    For updating apps/dependencies, fire-up the 'update.sh' script."
+    NOTE: This script is installing everything needed. It can (and will) override some settings.
+    For re-installing certain parts, fire-up the 'dotfiles' utility."
 }
 
 # Print finish message

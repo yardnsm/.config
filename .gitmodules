@@ -2,6 +2,6 @@
   path = _config/base16-shell
   url = https://github.com/chriskempson/base16-shell.git
 
-[submodule "_config/antigen"]
-	path = _config/antigen
-	url = https://github.com/zsh-users/antigen.git
+[submodule "_config/zgen"]
+  path = _config/zgen
+  url = https://github.com/tarjoilija/zgen.git

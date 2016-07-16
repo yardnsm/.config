@@ -4,9 +4,11 @@ yep.
 
 These are my dotfiles. A collection of zsh, git and macOS configurations. I built this repo from scratch, while focus on organization.
 
-![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal.png)
+![](_misc/media/terminal.png)
 
-*screenshot may not be updated*
+## Why this repo is different?
+
+Because I have this fancy installer and so many unnecessary stuff.
 
 ## Installation
 
@@ -42,7 +44,7 @@ Everything in this repo is built around topical areas. Each 'topic' has its own 
 
 ## The Prompt
 
-![](https://raw.githubusercontent.com/yardnsm/dotfiles/master/_misc/media/terminal-sliced.png)
+![](_misc/media/terminal-sliced.png)
 
 I moved the prompt into a new repo. Introducing [Blox](https://github.com/yardnsm/blox-zsh-theme) - *(not always)* minimal, clean and highly modular ZSH theme.
 
