@@ -3,4 +3,4 @@
 # --------------------------------------- #
 
 # Always open atom in the current dir
-alias atom='atom .'
+#alias atom='atom .'
