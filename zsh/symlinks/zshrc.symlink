@@ -52,7 +52,7 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/osx
   zgen oh-my-zsh plugins/node
   zgen oh-my-zsh plugins/brew
-  zgen oh-my-zsh plugins/command-not-found
+  #zgen oh-my-zsh plugins/git
 
   zgen load rupa/z
   zgen load yardnsm/blox-zsh-theme
