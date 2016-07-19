@@ -11,6 +11,7 @@ brew_install 'htop'
 brew_install 'cowsay'
 brew_install 'figlet'
 brew_install 'tree'
+brew_install 'youtube-dl'
 
 # Important stuff
 brew_install 'node'
