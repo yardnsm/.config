@@ -9,12 +9,6 @@ brew_list=""
 
 brew_install() {
 
-  # Check if there is a list
-  if [[ ${brew_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\n"
-    brew_list=$(brew list && brew cask list)
-  fi
-
   # Arguments
   formula="$1"
   cmd="$2"
@@ -22,6 +16,13 @@ brew_install() {
   # Check if Homebrew is installed
   if ! cmd_exists 'brew'; then
     print_error "$formula (\`brew\` is not installed)"
+    return
+  fi
+
+  # Check if there is a list
+  if [[ ${brew_list} = "" ]]; then
+    print_status "Fetching installed packages. This could take a while...\n"
+    brew_list=$(brew list && brew cask list)
   fi
 
   # Install the specified formula
@@ -41,18 +42,19 @@ npm_list=""
 
 npm_install() {
 
-  # Check if there is a list
-  if [[ ${npm_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\n"
-    npm_list=$(npm list -g --depth 0 -s)
-  fi
-
   # Arguments
   package="$1"
 
   # Check if NPM is installed
   if ! cmd_exists 'npm'; then
     print_error "$package (\`NPM\` is not installed)"
+    return
+  fi
+
+  # Check if there is a list
+  if [[ ${npm_list} = "" ]]; then
+    print_status "Fetching installed packages. This could take a while...\n"
+    npm_list=$(npm list -g --depth 0 -s)
   fi
 
   # Install the specified package
@@ -82,6 +84,31 @@ apm_install() {
     print_success "$package (already installed)"
   else
     execute "apm install $package" "$package"
+  fi
+}
+
+# Store 'gem list' to make it faster
+gem_list=""
+
+# --------------------------------------------- #
+# | Install a Gem
+# --------------------------------------------- #
+gem_install() {
+
+  # Arguments
+  package="$1"
+
+  # Check if there is a list
+  if [[ ${gem_list} = "" ]]; then
+    print_status "Fetching installed packages. This could take a while...\n"
+    gem_list=$(gem list)
+  fi
+
+  # Install the specified gem
+  if [[ $(echo ${gem_list} | grep "${package}") ]]; then
+    print_success "$package (already installed)"
+  else
+    execute "gem install $package" "$package"
   fi
 }
 
