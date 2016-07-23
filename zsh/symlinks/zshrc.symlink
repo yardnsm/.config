@@ -39,31 +39,6 @@ if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
 
-# Source zgen
-source $CONFIG/zgen/zgen.zsh
-
-# --------------------------------------- #
-# | Plugins
-# --------------------------------------- #
-if ! zgen saved; then
-
-  #zgen oh-my-zsh
-
-  zgen oh-my-zsh plugins/osx
-  zgen oh-my-zsh plugins/node
-  zgen oh-my-zsh plugins/brew
-  #zgen oh-my-zsh plugins/git
-
-  zgen load rupa/z
-  zgen load yardnsm/blox-zsh-theme
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load denysdovhan/gitio-zsh
-  zgen load chrissicool/zsh-256color
-  zgen load lukechilds/zsh-nvm
-
-  zgen save
-fi
-
 # --------------------------------------- #
 # | Blox settings
 # --------------------------------------- #
