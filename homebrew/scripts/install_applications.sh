@@ -42,6 +42,8 @@ brew_install 'vlc' 'cask'
 brew_install 'drop-to-gif' 'cask'
 brew_install 'transmission' 'cask'
 brew_install 'mojibar' 'cask'
+brew_install 'numi' 'cask'
+brew_install 'slack' 'cask'
 #brew_install 'adobe-photoshop-cc' 'cask'
 
 
