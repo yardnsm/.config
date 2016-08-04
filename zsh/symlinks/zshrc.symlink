@@ -43,13 +43,19 @@ fi
 # | Blox settings
 # --------------------------------------- #
 BLOX_BLOCK__CWD_TRUNC=0
+BLOX_BLOCK__SYMBOL_COLOR='blue'
+
+BLOX_BLOCK__GIT_CLEAN_SYMBOL='✔︎'
+BLOX_BLOCK__GIT_DIRTY_SYMBOL='✘'
+BLOX_BLOCK__GIT_UNPULLED_SYMBOL='⇣'
+BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='⇡'
 
 # --------------------------------------- #
 # | Theme setup
 # --------------------------------------- #
 
 # Base16 Shell Theme
-export THEME="base16-tomorrow"
+export THEME="base16-default"
 if [ -z "$BACKGROUND" ]; then
   export BACKGROUND="dark"
 fi

@@ -116,12 +116,18 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>-734 112 668 292 -1920 0 1920 1200 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>519 709 606 456 0 0 1920 1177 </string>
+	<string>269 414 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>410 381 620 392 0 0 1440 877 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>-1180 459 918 495 -1920 0 1920 1200 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1813 131 1045 452 -1920 0 1920 1177 </string>
+	<string>-1505 481 1045 452 -1920 0 1920 1200 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -883,6 +889,8 @@
 			<false/>
 			<key>Use Italic Font</key>
 			<true/>
+			<key>Use Non-ASCII Font</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -895,6 +903,10 @@
 	</array>
 	<key>NoSyncConfirmBeta</key>
 	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>1</integer>
 	<key>NoSyncInstallationId</key>
 	<string>4A8F210C-EE3B-47B9-A3E4-113DBB273B2F</string>
 	<key>NoSyncPermissionToShowTip</key>
@@ -965,7 +977,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-07-13T05:22:49Z</date>
+	<date>2016-07-31T07:15:13Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1019,6 +1031,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.4</string>
+	<string>3.0.5</string>
 </dict>
 </plist>
