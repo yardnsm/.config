@@ -25,6 +25,37 @@ export CONFIG=$DOTFILES/_config
 export REPORTTIME=8
 
 # --------------------------------------- #
+# | Blox settings
+# --------------------------------------- #
+
+# CWD block
+BLOX_BLOCK__CWD_TRUNC=0
+
+# Git block
+BLOX_BLOCK__GIT_CLEAN_SYMBOL='✔︎'
+BLOX_BLOCK__GIT_DIRTY_SYMBOL='✘'
+BLOX_BLOCK__GIT_UNPULLED_SYMBOL='⇣'
+BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='⇡'
+
+# Battery block (macOS only)
+function blox_block__macos_battery() {
+
+  local per="${$(pmset -g batt | awk '{print $2}' | grep '%')%?}%"
+  local res=""
+
+  # Build the block ♜♖
+  res+="%{$COLOR_YELLOW%}"
+  res+="${BLOX_CONF__BLOCK_PREFIX}♜ ${per}${BLOX_CONF__BLOCK_SUFFIX}"
+  res+="%{$reset_color%}"
+
+  # Echo the block
+  echo $res
+}
+
+# Structure
+BLOX_SEG__UPPER_RIGHT='blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time,blox_block__macos_battery'
+
+# --------------------------------------- #
 # | Sourcing stuff
 # --------------------------------------- #
 
@@ -38,17 +69,6 @@ done
 if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
-
-# --------------------------------------- #
-# | Blox settings
-# --------------------------------------- #
-BLOX_BLOCK__CWD_TRUNC=0
-BLOX_BLOCK__SYMBOL_COLOR='blue'
-
-BLOX_BLOCK__GIT_CLEAN_SYMBOL='✔︎'
-BLOX_BLOCK__GIT_DIRTY_SYMBOL='✘'
-BLOX_BLOCK__GIT_UNPULLED_SYMBOL='⇣'
-BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='⇡'
 
 # --------------------------------------- #
 # | Theme setup

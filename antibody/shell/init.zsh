@@ -14,4 +14,5 @@ antibody bundle <<EOBUNDLES
   denysdovhan/gitio-zsh
   chrissicool/zsh-256color
   lukechilds/zsh-nvm
+  robbyrussell/oh-my-zsh
 EOBUNDLES

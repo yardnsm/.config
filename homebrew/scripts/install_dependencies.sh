@@ -23,6 +23,7 @@ brew_install 'diff-so-fancy'
 
 # Fun stuff
 brew_install 'asciinema'
+brew_install 'm-cli'
 brew_install 'screenfetch'
 brew_install 'htop'
 brew_install 'cowsay'
