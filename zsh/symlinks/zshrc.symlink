@@ -28,14 +28,17 @@ export REPORTTIME=8
 # | Blox settings
 # --------------------------------------- #
 
+# For the spacing issue
+BLOX_CHAR__SPACE=" "
+
 # CWD block
 BLOX_BLOCK__CWD_TRUNC=0
 
 # Git block
-BLOX_BLOCK__GIT_CLEAN_SYMBOL='✔︎'
-BLOX_BLOCK__GIT_DIRTY_SYMBOL='✘'
-BLOX_BLOCK__GIT_UNPULLED_SYMBOL='⇣'
-BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='⇡'
+BLOX_BLOCK__GIT_CLEAN_SYMBOL="✔︎%{$BLOX_CHAR__SPACE%}"
+BLOX_BLOCK__GIT_DIRTY_SYMBOL="✘"
+BLOX_BLOCK__GIT_UNPULLED_SYMBOL="⇣"
+BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="⇡"
 
 # Battery block (macOS only)
 function blox_block__macos_battery() {
