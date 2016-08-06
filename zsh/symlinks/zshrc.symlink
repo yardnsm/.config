@@ -41,11 +41,16 @@ BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='⇡'
 function blox_block__macos_battery() {
 
   local per="${$(pmset -g batt | awk '{print $2}' | grep '%')%?}%"
+  local stat="${$(pmset -g batt | awk '{print $3}' | grep 'char')}"
   local res=""
 
-  # Build the block ♜♖
-  res+="%{$COLOR_YELLOW%}"
-  res+="${BLOX_CONF__BLOCK_PREFIX}♜ ${per}${BLOX_CONF__BLOCK_SUFFIX}"
+  local color=$fg_bold[yellow]
+  local symb='♜'
+  [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='♖'
+
+  # Build the block
+  res+="%{$color%}"
+  res+="${BLOX_CONF__BLOCK_PREFIX}${symb} ${per}${BLOX_CONF__BLOCK_SUFFIX}"
   res+="%{$reset_color%}"
 
   # Echo the block
