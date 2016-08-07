@@ -13,6 +13,7 @@ brew_install 'phantomjs'
 
 # Important stuff
 brew_install 'wget'
+brew_install 'tig'
 brew_install 'openssl'
 brew_install 'heroku'
 brew_install 'hub'
