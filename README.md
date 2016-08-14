@@ -31,12 +31,15 @@ After that, run the installation script.
 # Clone this repo
 git clone https://github.com/yardnsm/dotfiles.git ~/dotfiles
 
+# Change your shell the ZSH (recommended)
+chsh -s $(which zsh)
+
 # Run the installer!
 cd ~/dotfiles
 ./install.sh
 ```
 
-It will take some time.
+It will take some time. You may want to re-run the installer after the first run, to make sure everything is alright.
 
 ## Order and hierarchy
 
