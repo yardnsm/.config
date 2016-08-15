@@ -63,15 +63,3 @@ brew_install 'font-open-sans' 'cask'
 brew_install 'font-open-sans-condensed' 'cask'
 brew_install 'font-open-sans-hebrew' 'cask'
 brew_install 'font-open-sans-hebrew-condensed' 'cask'
-
-#########
-# FROM OTHER SOURCES:
-################
-# 1) sip
-# 2) Popcorn Time
-# 3) CleanMyMac
-# 4) Parallels Desktop
-# 5) Transmit
-# 6) iStat Mini
-# 7) Paragon NTFS
-# 8) Alfred
