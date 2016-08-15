@@ -3,6 +3,7 @@
   # --------------------------------------------- #
   # | Packages options
   # --------------------------------------------- #
+
   "open-terminal-here":
     command: "open -a iTerm.app \"$PWD\""
 
@@ -12,19 +13,25 @@
   "docblockr":
     extend_double_slash: false
 
+  "linter-stylelint":
+    disableWhenNoConfig: true
+
+  "minimap":
+    linter: true
+
   # --------------------------------------------- #
   # | Core packages options
   # --------------------------------------------- #
+
   "editor":
     backUpBeforeSaving: true
     fontFamily: "Fira Code"
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
+    softWrap: true
     tabLength: 2
     tabType: "soft"
-    softWrap: true
-    softWrapAtPreferredLineLength: false
 
   "tree-view":
     hideIgnoredNames: true
@@ -32,18 +39,27 @@
   "welcome":
     showOnStartup: false
 
+  "pigments":
+    markerType: "gutter"
+
   # --------------------------------------------- #
   # | Themes
   # --------------------------------------------- #
+
   "base16-syntax":
-    scheme: "Tomorrow"
+    scheme: "Default"
 
   "atom-material-ui":
     colors:
       abaseColor:
-        red: 96
-        green: 125
-        blue: 139
+        red: 95
+        green: 100
+        blue: 111
+        alpha: 1
+      accentColor:
+        red: 154
+        green: 199
+        blue: 222
         alpha: 1
       predefinedColor: "Blue Grey"
     tabs:
@@ -58,8 +74,9 @@
   # --------------------------------------------- #
   # | Core options
   # --------------------------------------------- #
+
   "core":
     themes: [
       "atom-material-ui"
-      "base16-tomorrow-dark-theme"
+      "base16-syntax"
     ]

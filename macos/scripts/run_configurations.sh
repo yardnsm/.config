@@ -14,8 +14,8 @@ execute 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool
 execute 'defaults write com.apple.menuextra.battery ShowPercent -string "YES"' \
 'Show battery percentage from the menu bar'
 
-execute 'defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool "YES"' \
-'Enable Fast User Switching'
+# execute 'defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool "YES"' \
+# 'Enable Fast User Switching'
 
 execute 'defaults write com.apple.CrashReporter UseUNC 1' \
 'Make crash reports appear as notifications'
@@ -47,11 +47,11 @@ execute 'defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool 
 execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true' \
 'Expand print panel by default'
 
-execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Bacon" &&
-  sudo scutil --set ComputerName "bacon" &&
-  sudo scutil --set HostName "bacon" &&
-  sudo scutil --set LocalHostName "bacon"' \
-'Set computer name to "bacon" (I am Jewish)'
+# execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Bacon" &&
+#   sudo scutil --set ComputerName "bacon" &&
+#   sudo scutil --set HostName "bacon" &&
+#   sudo scutil --set LocalHostName "bacon"' \
+# 'Set computer name to "bacon" (I am Jewish)'
 
 # --------------------------------------------- #
 # | Trackpad and keyboard
@@ -67,7 +67,7 @@ execute 'defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false' \
 execute 'defaults write NSGlobalDomain "InitialKeyRepeat_Level_Saved" -int 10' \
 'Set delay until repeat'
 
-execute 'defaults write NSGlobalDomain KeyRepeat -int 2' \
+execute 'defaults write NSGlobalDomain KeyRepeat -float 0.000000000001' \
 'Set the key repeat rate to fast'
 
 execute 'defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false' \
@@ -138,7 +138,7 @@ execute 'defaults write com.apple.dock expose-group-by-app -bool false' \
 execute 'defaults write com.apple.dock show-process-indicators -bool true' \
 'Show indicator lights for open applications'
 
-execute 'defaults write com.apple.dock tilesize -int 45' \
+execute 'defaults write com.apple.dock tilesize -int 55' \
 'Set Dock icon size'
 
 execute 'defaults write com.apple.dock dashboard-in-overlay -bool true' \

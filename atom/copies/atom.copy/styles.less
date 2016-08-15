@@ -61,3 +61,17 @@ atom-panel.modal.overlay::after {
   z-index: -1;
   background-color: rgba(0, 0, 0, 0.6);
 }
+
+/*
+ * Fira Code ligatures support
+ * =====================
+ */
+
+atom-text-editor {
+  text-rendering: optimizeLegibility;
+}
+
+atom-text-editor::shadow .string.quoted,
+atom-text-editor::shadow .string.regexp {
+  -webkit-font-feature-settings: "liga" off, "calt" off;
+}
