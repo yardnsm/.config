@@ -6,41 +6,40 @@
 source ./_setup/initializer.sh
 
 # --------------------------------------------- #
-# | Warn if needed
+# | Checking the options
 # --------------------------------------------- #
-if cmd_exists 'dotfiles'; then
-  print_title "Warning!"
-  print_status "It looks like you have already executed this script. If you
-        re-run this script, some actions you did may be
-        overriden. Use the 'dotfiles' command instead.
-"
+DOTFILES_OPT__FULL=false
+DOTFILES_OPT__HARD=false
 
-  if ! [[ $1 = '-f' ]]; then
-    print_status "To force the execution of this script, use the '-f' flag."
-    exit 1
-  else
-    print_status "Used forced install. Continue in 3 seconds..."
-    sleep 3
-    print_divider
-  fi
-fi
-
-# --------------------------------------------- #
-# | Preinstall stuff
-# --------------------------------------------- #
-print_info "Doing some preinstall stuff"
-source ./_setup/preinstall.sh
-print_divider
+case "$1" in
+  "--full" ) DOTFILES_OPT__FULL=true ;;
+  "--hard" ) DOTFILES_OPT__HARD=true ;;
+  "-h" | "--help" )
+    echo "Usage: ./install.sh [OPTIONS]                                 "
+    echo "  Installs the dotfiles                                       "
+    echo "                                                              "
+    echo "Options:                                                      "
+    echo "  --full        Use full install (running all tasks)          "
+    echo "  --hard        Symlinking/copying process will override files"
+    echo "  -h, --help    Show this output                              "
+    echo "                                                              "
+    exit 0
+    ;;
+esac
 
 # --------------------------------------------- #
 # | Show welcome message
 # --------------------------------------------- #
 print_welcome_message
-print_divider
 
 # --------------------------------------------- #
-# | Confirmation before starting
+# | Preinstall stuff
 # --------------------------------------------- #
+print_title "Getting ready"
+
+# Run preinstall script
+print_info "Make sure everything alright"
+source ./_setup/preinstall.sh
 
 # Ask if it's okay
 print_info "Just to make sure"
@@ -51,17 +50,13 @@ print_divider
 if answer_is_yes; then
 
   # Get sudo permissions
-  print_title "Checking for sudo permissions"
-  ask_for_sudo
-  print_result $? "I AM YOUR MASTER"
-  print_divider
+  check_for_sudo
 
-  # Let's begin..
-  source ./_setup/execute.sh
+  [[ $DOTFILES_OPT__FULL == true ]] &&
+    source ./_setup/execute.sh ||
+    source ./common/main.sh
 
 else
-
-  # wow. did you just wat?
   print_error "aborted"
   exit 1
 fi

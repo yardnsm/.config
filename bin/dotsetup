@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# --------------------------------------------- #
+# | Source all the stuff
+# --------------------------------------------- #
+source $DOTFILES/_setup/initializer.sh
+
+# --------------------------------------------- #
+# | Tasks menu
+# --------------------------------------------- #
+list_tasks() {
+
+  # Get sudo permissions
+  print_title "Getting ready"
+  check_for_sudo
+
+  # Print a menu with all the topics
+
+  topics=$(find -H "$DOTFILES" -type d -maxdepth 1 -name '*')
+  options=()
+
+  for topic in $topics; do
+
+    # Check if has a 'main.sh' script
+    if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
+      options+=($(basename $topic))
+    fi
+  done
+
+  PS3=$'\n  Choose a topic to execute: '
+
+  print_title "Available topics\n"
+
+  select opt in "${options[@]}"; do
+    case $opt in
+      *)
+
+        if [ -z $opt ]; then
+          print_error "Unavailable topic"
+          exit 1;
+        fi
+
+        print_title "Running topic: '$opt'"
+        source $DOTFILES/$opt/main.sh
+
+        break
+        ;;
+    esac
+  done
+}
+
+# --------------------------------------------- #
+# | Checking the options
+# --------------------------------------------- #
+case "$1" in
+  "--install" )      . $DOTFILES/install.sh        ;;
+  "--install-full" ) . $DOTFILES/install.sh --full ;;
+  "--tasks" )        list_tasks                    ;;
+  * )
+    echo "Usage: dotsetup [OPTIONS]                            "
+    echo "  Installs the dotfiles                              "
+    echo "                                                     "
+    echo "Options:                                             "
+    echo "  --install         Runs the install script          "
+    echo "  --install-full    Runs the installer with all tasks"
+    echo "  --tasks           Lists all tasks and              "
+    echo "  -h, --help        Show this output                 "
+    echo "                                                     "
+    exit 0
+    ;;
+esac

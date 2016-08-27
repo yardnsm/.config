@@ -21,7 +21,6 @@ ask() {
 ask_for_confirmation() {
   print_question "$1 [y/N] "
   read -n 1
-  printf "\n"
 }
 
 # Get the last answer
@@ -47,4 +46,10 @@ ask_for_sudo() {
     kill -0 "$$" || exit
   done &> /dev/null &
 
+}
+
+check_for_sudo() {
+  print_info "Checking for sudo permissions"
+  ask_for_sudo
+  print_result $? "Permission to destroy this machine is granted"
 }

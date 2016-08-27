@@ -2,30 +2,44 @@
 # | ZSH Config
 # --------------------------------------- #
 
-# Prompt
-setopt NO_BG_NICE                             # Don't nice background tasks
-setopt PROMPT_SUBST                           # Expand parameters within prompts
+# Expand parameters within prompts
+setopt PROMPT_SUBST
 
 # History
-setopt APPEND_HISTORY                         # Don't overwrite history
-setopt INC_APPEND_HISTORY                     # Incrementally append commands to the history
-setopt HIST_FIND_NO_DUPS                      # Do not file duplicated entries
-setopt HIST_IGNORE_SPACE                      # Ignore commands with leading spaces
-setopt HIST_IGNORE_ALL_DUPS                   # Ignore all duplicate entries in the history
-setopt HIST_REDUCE_BLANKS                     # Tidy up commands before comitting them to history
-setopt EXTENDED_HISTORY                       # Remember all sorts of stuff about the history
+HISTSIZE=10000
+HISTFILE="$HOME/.zsh_history"
+SAVEHIST=$HISTSIZE
 
-# Auto Completion
-setopt COMPLETE_ALIASES                       # Also autocomplete aliases
-setopt AUTO_LIST                              # Always automatically show a list of ambiguous completions
-setopt COMPLETE_IN_WORD                       # Complete items from the beginning to the cursor
+# More history
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
 
-# Directory Changing
-setopt AUTO_CD                                # Automatically cd in to directories if it's not a command name
-setopt AUTO_PUSHD                             # Automatically push visited directories to the stack
-setopt PUSHD_IGNORE_DUPS                      # Don't duplicate them
+# Ignore all duplicate entries in the history
+setopt HIST_IGNORE_ALL_DUPS
 
-# Misc
-setopt RM_STAR_WAIT                           # Wait, and ask if the user is serious when doing 'rm *''
-setopt EXTENDED_GLOB                          # Give meaning to lots of crazy characters
-setopt INTERACTIVE_COMMENTS                   # Allows to comment lines in an interactive shell
+# Also autocomplete aliases
+setopt COMPLETE_ALIASES
+
+# Always automatically show a list of ambiguous completions
+setopt AUTO_LIST
+
+# Complete items from the beginning to the cursor
+setopt COMPLETE_IN_WORD
+
+# Automatically cd in to directories if it's not a command name
+setopt AUTO_CD
+
+# Automatically push visited directories to the stack
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+# Wait 10sec when doing `rm '*'`
+# I NEED THIS.
+setopt RM_STAR_WAIT
+
+# Guess what
+setopt EXTENDED_GLOB
+
+# Allows to comment lines in an interactive shell
+setopt INTERACTIVE_COMMENTS

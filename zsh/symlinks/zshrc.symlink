@@ -2,7 +2,7 @@
 # | Load stuff
 # --------------------------------------- #
 
-# Initialize autocomplete
+# Initialize completion
 autoload -U compinit && compinit
 
 # Load Colors
@@ -28,17 +28,8 @@ export REPORTTIME=8
 # | Blox settings
 # --------------------------------------- #
 
-# For the spacing issue
-BLOX_CHAR__SPACE=" "
-
 # CWD block
 BLOX_BLOCK__CWD_TRUNC=0
-
-# Git block
-BLOX_BLOCK__GIT_CLEAN_SYMBOL="✔︎%{$BLOX_CHAR__SPACE%}"
-BLOX_BLOCK__GIT_DIRTY_SYMBOL="✘"
-BLOX_BLOCK__GIT_UNPULLED_SYMBOL="⇣"
-BLOX_BLOCK__GIT_UNPUSHED_SYMBOL="⇡"
 
 # Battery block (macOS only)
 function blox_block__macos_battery() {
@@ -48,8 +39,8 @@ function blox_block__macos_battery() {
   local res=""
 
   local color=$fg_bold[yellow]
-  local symb='♜'
-  [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='♖'
+  local symb='⇋'
+  [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='↼'
 
   # Build the block
   res+="%{$color%}"
@@ -61,17 +52,24 @@ function blox_block__macos_battery() {
 }
 
 # Structure
-BLOX_SEG__UPPER_RIGHT='blox_block__bgjobs,blox_block__ruby,blox_block__nodejs,blox_block__time,blox_block__macos_battery'
+BLOX_SEG__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__macos_battery blox_block__time)
 
 # --------------------------------------- #
 # | Sourcing stuff
 # --------------------------------------- #
 
+# Source omz
+source $DOTFILES/oh-my-zsh/shell/init.zsh-before
+
 # Source all .zsh files within the dotfiles repo & exclude
 # the non-topic folders (starts with `_`)
 for config ($DOTFILES/(^_*/)#*.zsh); do
+  printf "\e[1;37msourcing\e[0m \e[0;90m$config\e[0m\n"
   source $config
 done
+
+# Clear logs
+clear
 
 # Source '~/.localrc' if exists
 if [[ -a ~/.localrc ]]; then
@@ -83,7 +81,7 @@ fi
 # --------------------------------------- #
 
 # Base16 Shell Theme
-export THEME="base16-default"
+export THEME="base16-3024"
 if [ -z "$BACKGROUND" ]; then
   export BACKGROUND="dark"
 fi

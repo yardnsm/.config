@@ -18,8 +18,8 @@ function dark() {
 
 # Create a directory and `cd` into it
 function take() {
-	mkdir $1
-	cd $1
+  mkdir $1
+  cd $1
 }
 
 # Create a new project

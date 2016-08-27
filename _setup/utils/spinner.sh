@@ -10,39 +10,26 @@
 # Show the spinner
 show_spinner() {
 
-  # The process
-  local pid=$1
+  local pid=$1       # The process
+  local msg=$2       # The message
 
-  # The message
-  local msg=$2
+  local delay=0.05   # Delay per frame
+  local maxDots=3    # How many dots to show
 
-  # Delay per frame
-  local delay=0.05
+  local dot="."      # a dot.
+  local count=0      # counter
 
-  # Spinner frames (from: http://github.com/sindresorhus/cli-spinners/)
-  local frames="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+  print_running "${msg}"
 
   # As long the process is running
   while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-
-    # Extract the last charcter from the frames
-    # and save the rest for later
-    local temp=${frames#?}
-
-    # Print the current frame and message (in yellow, taken from 'utils/messages.sh')
-    print_running "${msg} [${frames::1}]\e[0m"
-
-    # Update the frames to normal
-    local frames=$temp${frames%"$temp"}
-
-    # Wait for the next frame..
+    print_in_blue "$dot"
+    [[ $((count++)) -eq maxDots ]] && printf "\b\b\b\b    \b\b\b\b" && count=0
     sleep $delay
-
-    # Clear the last line
-    echo -en "\r"
   done
 
   # Done! Clear it.
+  echo -en "\r"
   tput el
 
   # Return the status code

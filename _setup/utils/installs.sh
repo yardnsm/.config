@@ -13,12 +13,6 @@ brew_install() {
   formula="$1"
   cmd="$2"
 
-  # Check if Homebrew is installed
-  if ! cmd_exists 'brew'; then
-    print_error "$formula (\`brew\` is not installed)"
-    return
-  fi
-
   # Check if there is a list
   if [[ ${brew_list} = "" ]]; then
     print_status "Fetching installed packages. This could take a while...\n"
@@ -45,12 +39,6 @@ npm_install() {
   # Arguments
   package="$1"
 
-  # Check if NPM is installed
-  if ! cmd_exists 'npm'; then
-    print_error "$package (\`NPM\` is not installed)"
-    return
-  fi
-
   # Check if there is a list
   if [[ ${npm_list} = "" ]]; then
     print_status "Fetching installed packages. This could take a while...\n"
@@ -72,11 +60,6 @@ apm_install() {
 
   # Arguments
   package="$1"
-
-  # Check if APM is installed
-  if ! cmd_exists 'apm'; then
-    print_error "$package (\`apm\` is not installed)"
-  fi
 
   # Install the specified package
   apm list | grep $package &> /dev/null & show_spinner $! $package
@@ -120,7 +103,6 @@ create_folder() {
   # Arguments
   target="$HOME/$1"
 
-  # Do that.
   if [ -f $target ]; then
     print_error "~/$1 already exists (file), Skipping."
   elif [ -d $target ]; then
