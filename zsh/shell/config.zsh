@@ -36,7 +36,7 @@ setopt PUSHD_IGNORE_DUPS
 
 # Wait 10sec when doing `rm '*'`
 # I NEED THIS.
-setopt RM_STAR_WAIT
+#setopt RM_STAR_WAIT
 
 # Guess what
 setopt EXTENDED_GLOB
