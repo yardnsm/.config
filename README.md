@@ -32,6 +32,9 @@ Everything in this repo is built around topical areas. Each 'topic' has its own 
 
 ## TODOs:
 
+- [ ] Add an update task
+- [ ] Add a status utility (updated, symlinked files...)
+- [ ] Clean-up utils
 - [ ] Docs?
 - [ ] Add support for linux (ubuntu probably).
 
