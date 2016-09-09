@@ -31,6 +31,10 @@ export REPORTTIME=8
 # CWD block
 BLOX_BLOCK__CWD_TRUNC=0
 
+# Host block
+BLOX_BLOCK__HOST_USER_SHOW_ALWAYS=true
+BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS=true
+
 # Battery block (macOS only)
 function blox_block__macos_battery() {
 
@@ -38,7 +42,7 @@ function blox_block__macos_battery() {
   local stat="${$(pmset -g batt | awk '{print $3}' | grep 'char')}"
   local res=""
 
-  local color=$fg_bold[yellow]
+  local color=$fg[yellow]
   local symb='⇋'
   [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='↼'
 
@@ -64,7 +68,7 @@ BLOX_SEG__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__macos_b
 # Source all .zsh files within the dotfiles repo & exclude
 # the non-topic folders (starts with `_`)
 for config ($DOTFILES/(^_*/)#*.zsh); do
-  [[ -z $PR_ZSH_SOURCED ]] && printf "\e[1;37msourcing\e[0m \e[0;90m$config\e[0m\n"
+  #[[ -z $PR_ZSH_SOURCED ]] && printf "\e[1;37msourcing\e[0m \e[0;90m$config\e[0m\n"
   source $config
 done
 
