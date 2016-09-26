@@ -11,9 +11,9 @@ for d in $DOTFILES/*/ ; do
   if ! [[ $d == _* ]]; then
 
     # Check if has a 'main.sh' script
-    if [[ -f $d/main.sh ]]; then
+    if [[ -f $DOTFILES/$d/main.sh ]]; then
       print_title "Current topic is '${d%/}'"
-      source $d/main.sh
+      source $DOTFILES/$d/main.sh
     fi
   fi
 done

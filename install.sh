@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+current_dir="$(dirname "$BASH_SOURCE")"
+
 # --------------------------------------------- #
 # | Source all the stuff
 # --------------------------------------------- #
-source ./_setup/initializer.sh
+source $current_dir/_setup/initializer.sh
 
 # --------------------------------------------- #
 # | Checking the options
@@ -39,7 +41,7 @@ print_title "Getting ready"
 
 # Run preinstall script
 print_info "Make sure everything alright"
-source ./_setup/preinstall.sh
+source $DOTFILES/_setup/preinstall.sh
 
 # Ask if it's okay
 print_info "Just to make sure"
@@ -53,8 +55,8 @@ if answer_is_yes; then
   check_for_sudo
 
   [[ $DOTFILES_OPT__FULL == true ]] &&
-    source ./_setup/execute.sh ||
-    source ./common/main.sh
+    source $DOTFILES/_setup/execute.sh ||
+    source $DOTFILES/common/main.sh
 
 else
   print_error "aborted"

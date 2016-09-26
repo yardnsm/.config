@@ -1,0 +1,36 @@
+# --------------------------------------- #
+# | Blox settings
+# --------------------------------------- #
+
+# Space fix
+BLOX_BLOCK__GIT_CLEAN_SYMBOL="✔︎%{ %}"
+
+# CWD blocks
+BLOX_BLOCK__CWD_TRUNC=0
+
+# Host block
+BLOX_BLOCK__HOST_USER_SHOW_ALWAYS=true
+BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS=true
+
+# Battery block (macOS only)
+function blox_block__macos_battery() {
+
+  local per="${$(pmset -g batt | awk '{print $3}' | grep '%')%?}%"
+  local stat="${$(pmset -g batt | awk '{print $4}' | grep 'char')}"
+  local res=""
+
+  local color=$fg[yellow]
+  local symb='⇋'
+  [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='↼'
+
+  # Build the block
+  res+="%{$color%}"
+  res+="${BLOX_CONF__BLOCK_PREFIX}${symb} ${per}${BLOX_CONF__BLOCK_SUFFIX}"
+  res+="%{$reset_color%}"
+
+  # Echo the block
+  echo $res
+}
+
+# Structure
+BLOX_SEG__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__macos_battery blox_block__time)
