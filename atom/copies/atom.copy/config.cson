@@ -7,6 +7,9 @@
   "open-terminal-here":
     command: "open -a iTerm.app \"$PWD\""
 
+  "pigments":
+    markerType: "gutter"
+
   "autoclose-html":
     forceInline: ["*"]
 
@@ -52,9 +55,9 @@
   "atom-material-ui":
     colors:
       abaseColor:
-        red: 95
-        green: 100
-        blue: 111
+        red: 96
+        green: 125
+        blue: 139
         alpha: 1
       accentColor:
         red: 154
@@ -78,5 +81,5 @@
   "core":
     themes: [
       "atom-material-ui"
-      "base16-syntax"
+      "base16-tomorrow-dark-theme"
     ]
