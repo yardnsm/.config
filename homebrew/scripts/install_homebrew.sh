@@ -29,9 +29,9 @@ fi
 # --------------------------------------------- #
 echo ""
 print_status "The following script checks for the availability of homebrew's formulae
-        in the system. It does not update them if need. Therefore,
-        some formulae may not be updated. Try running 'brew upgrade --all' in
-        order to update them.
+       in the system. It does not update them if needed. Therefore,
+       some formulae may not be updated. Try running 'brew upgrade --all' in
+       order to update them.
 "
 print_status "Continue execution in 2 seconds..."
 sleep 2

@@ -2,9 +2,6 @@
 # | Blox settings
 # --------------------------------------- #
 
-# Space fix
-BLOX_BLOCK__GIT_CLEAN_SYMBOL="✔︎%{ %}"
-
 # CWD blocks
 BLOX_BLOCK__CWD_TRUNC=0
 

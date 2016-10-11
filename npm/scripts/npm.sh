@@ -15,6 +15,10 @@ npm_install 'eslint'
 npm_install 'yo'
 npm_install 'xo'
 npm_install 'npm-upgrade'
+npm_install 'trymodule'
+npm_install 'babel-cli'
+npm_install 'webpack'
+npm_install 'np'
 
 # Misc
 npm_install 'speed-test'

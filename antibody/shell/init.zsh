@@ -15,4 +15,5 @@ antibody bundle <<EOBUNDLES
   chrissicool/zsh-256color
   lukechilds/zsh-nvm
   robbyrussell/oh-my-zsh
+  supercrabtree/k
 EOBUNDLES

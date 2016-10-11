@@ -28,7 +28,8 @@ cd ~/dotfiles
 
 ## Order and hierarchy
 
-Everything in this repo is built around topical areas. Each 'topic' has its own directory. In each topic's directory there may be a file called `main.sh`, which is the main topic's installer. There also may be sub-directories like `scripts` (some `.sh` scripts used for installing), `shell` (some `.zsh` files like functions and aliases), `symlinks` (includes files to symlink to the home directory) and `copies` (guess whats in there).
+- Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
+- Every other directory is a topic directory, which may contain symlinks/copies/shell scripts relevant to the topic.
 
 ## TODOs:
 

@@ -9,6 +9,17 @@ alias sudo="sudo "
 alias reloadd='source ~/.zshrc'
 
 # --------------------------------------- #
+# | Quick navigation
+# --------------------------------------- #
+
+aliad hm="cd ~"
+aliad dt="cd ~/Desktop"
+aliad dl="cd ~/Downloads"
+aliad dev="cd ~/dev"
+aliad ghb="cd ~/dev/github"
+aliad glb="cd ~/dev/gitlab"
+
+# --------------------------------------- #
 # | Other stuff
 # --------------------------------------- #
 

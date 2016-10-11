@@ -5,13 +5,13 @@
 // @author        yardnsm
 // @version       1.0
 
-// @include       http://trello.com/b/*
-// @include       https://trello.com/b/*
-// @include       http://www.trello.com/b/*
-// @include       https://ww.trello.com/b/*
+// @include       http://trello.com/*
+// @include       https://trello.com/*
+// @include       http://www.trello.com/*
+// @include       https://ww.trello.com/*
 // ==/UserScript==
 
-var styles = '.card-label.mod-card-front { height:23px;text-align:center;padding:0px 10px;width:auto;line-height:16pt; }';
+var styles = '.card-label.mod-card-front { height:23px; text-align:center; padding:0px 10px; width:auto; line-height:16pt; }';
 var styleElem = document.createElement('style');
 styleElem.type = 'text/css';
 styleElem.appendChild(document.createTextNode(styles));
