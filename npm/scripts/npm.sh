@@ -19,6 +19,8 @@ npm_install 'trymodule'
 npm_install 'babel-cli'
 npm_install 'webpack'
 npm_install 'np'
+npm_install 'yarn'
+npm_install 'pnpm'
 
 # Misc
 npm_install 'speed-test'

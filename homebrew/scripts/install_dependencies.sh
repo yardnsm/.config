@@ -8,6 +8,7 @@
 brew_install 'node'
 brew_install 'rbenv'
 brew_install 'git'
+brew_install 'zsh'
 brew_install 'mongo'
 brew_install 'phantomjs'
 

@@ -12,14 +12,9 @@ print_result $? 'homebrew'
 # | Tapping me
 # --------------------------------------------- #
 if cmd_exists 'brew'; then
-
-  # Cask and stuff
   execute "brew tap caskroom/cask" "cask"
   execute "brew tap caskroom/versions" "cask-versions"
   execute "brew tap caskroom/fonts" "cask-fonts"
-
-  # Other taps
-  execute "brew tap beeftornado/rmtree && brew install beeftornado/rmtree/brew-rmtree" "rmtree"
 else
   print_error "homebrew is not installed!"
 fi

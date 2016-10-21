@@ -12,12 +12,12 @@ alias reloadd='source ~/.zshrc'
 # | Quick navigation
 # --------------------------------------- #
 
-aliad hm="cd ~"
-aliad dt="cd ~/Desktop"
-aliad dl="cd ~/Downloads"
-aliad dev="cd ~/dev"
-aliad ghb="cd ~/dev/github"
-aliad glb="cd ~/dev/gitlab"
+alias hm="cd ~"
+alias dt="cd ~/Desktop"
+alias dl="cd ~/Downloads"
+alias dev="cd ~/dev"
+alias ghb="cd ~/dev/github"
+alias glb="cd ~/dev/gitlab"
 
 # --------------------------------------- #
 # | Other stuff

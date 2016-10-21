@@ -5,9 +5,6 @@ current_dir="$(dirname "$BASH_SOURCE")"
 # --------------------------------------------- #
 # | Common
 # --------------------------------------------- #
-print_info "Setup shell configurations"
-source $current_dir/scripts/shell.sh
-
 print_info "Create symlinks"
 source $current_dir/scripts/symlink.sh
 

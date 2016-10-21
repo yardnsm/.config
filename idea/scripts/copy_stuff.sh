@@ -13,6 +13,7 @@ for i in $HOME/Library/Preferences/IntelliJIdea*  \
          $HOME/.IdeaIC*/config                    \
          $HOME/.AndroidStudio*/config
 do
+  echo $i
   if [[ -d $i ]]; then
 
     print_info_secondary "Acting for $(basename $i)"
@@ -22,8 +23,8 @@ do
     'Copy themes'
 
     # Copy 'disabled_plugins'
-    execute 'cp -f "$current_dir/files/disabled_plugins.txt" $i/disabled_plugins.txt' \
-    'Copy disabled_plugins'
+    # [[ `$i | grep Idea` ]] && execute 'cp -f "$current_dir/files/disabled_plugins.txt" $i/disabled_plugins.txt' \
+    # 'Copy disabled_plugins'
 
   fi
 done
