@@ -1,7 +1,7 @@
 module.exports = {
   config: {
     fontSize: 14,
-    fontFamily: 'FiraCode-Retina',
+    fontFamily: 'FiraCode-Retina, Cousine, sans-serif',
 
     css: '',
     termCSS: '',
@@ -41,16 +41,12 @@ module.exports = {
     copyOnSelect: false
   },
 
-  base16: {
-    scheme: 'default'
-  },
-
   plugins: [
     'hyperterm-paste',
-    'hyperterm-cursor',
-    'hypersixteen',
+    'hyper-snazzy',
     'hyperterm-title'
 
+    // 'hypersixteen'
     // 'hyperterm-alternatescroll'
     // 'hyperterm-tabs'
   ],

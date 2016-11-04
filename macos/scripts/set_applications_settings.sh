@@ -9,12 +9,12 @@ execute 'defaults write org.m0k.transmission DeleteOriginalTorrent -bool true' \
 'Delete the original torrent files'
 
 execute 'defaults write org.m0k.transmission DownloadChoice -string "Constant" &&
-  defaults write org.m0k.transmission DownloadFolder -string "$HOME/Downloads"' \
-'Use "~/Downloads" to store complete downloads'
+  defaults write org.m0k.transmission DownloadFolder -string "$HOME/torrents"' \
+'Use "~/torrents" to store complete downloads'
 
 execute 'defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true &&
-  defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/torrents"' \
-'Use "~/Downloads/torrents" to store incomplete downloads'
+  defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/torrents/queued"' \
+'Use "~/torrents/queued" to store incomplete downloads'
 
 execute 'defaults write org.m0k.transmission WarningDonate -bool false' \
 'Hide the donate message'

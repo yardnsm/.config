@@ -3,6 +3,7 @@
 # --------------------------------------------- #
 # | Create workspace folders
 # --------------------------------------------- #
+create_folder "torrents"
 create_folder "dev"
 
 # Project that won't go anywhere
