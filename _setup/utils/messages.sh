@@ -46,10 +46,6 @@ print_info() {
   print_in_cyan "\n  $1\n"
 }
 
-print_info_secondary() {
-  print_info $1
-}
-
 print_error() {
   print_in_red "   [✘] $1\n"
 }
@@ -106,13 +102,8 @@ print_welcome_message() {
 
 "
 
-  print_in_darkgrey "            github.com/yardnsm/dotfiles\n\n"
-  print_in_blue "  Author: "; printf "yardnsm"
   print_in_blue "  License: "; printf "MIT\n"
   print_in_blue "  Base Dir: "; printf "$DOTFILES\n\n"
-
-  print_in_blue "  Full install: "; printf "$DOTFILES_OPT__FULL\n"
-  print_in_blue "  Hard install: "; printf "$DOTFILES_OPT__HARD\n"
 
   print_in_cyan "\n  $(tput bold)Note:$(tput sgr0) Currently compatible with macOS Only \n"
 }

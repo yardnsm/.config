@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------- #
-# | Questions
+# | Prompts
 # --------------------------------------------- #
 
-# Check if the last reply is yes
+# Check if the last reply was yes
 answer_is_yes() {
   [[ "$REPLY" =~ ^[Yy]$ ]] \
     && return 0 \
@@ -51,5 +51,5 @@ ask_for_sudo() {
 check_for_sudo() {
   print_info "Checking for sudo permissions"
   ask_for_sudo
-  print_result $? "Permission to destroy this machine is granted"
+  print_result $? "Permission to destroy this machine was granted"
 }

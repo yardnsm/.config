@@ -4,7 +4,7 @@
 # | Commands Utils
 # --------------------------------------- #
 
-# Check if a coomand exists
+# Check if a command exists
 cmd_exists() {
   command -v "$1" &> /dev/null
   return $?

@@ -22,12 +22,12 @@ list_tasks() {
   for topic in $topics; do
 
     # Check if has a 'main.sh' script
-    if [[ -f $topic/main.sh ]] && [[ ! $topic == _* ]]; then
+    if [[ -f $topic/install.sh ]] && [[ ! $topic == _* ]]; then
       options+=($(basename $topic))
     fi
   done
 
-  PS3=$'\n  Choose a topic to execute: '
+  PS3=$'\n  Choose a topic to install: '
 
   print_title "Available topics\n"
 
@@ -41,7 +41,7 @@ list_tasks() {
         fi
 
         print_title "Running topic: '$opt'"
-        source $DOTFILES/$opt/main.sh
+        source $DOTFILES/$opt/install.sh
 
         break
         ;;
@@ -53,19 +53,17 @@ list_tasks() {
 # | Checking the options
 # --------------------------------------------- #
 case "$1" in
-  "--install" )      . $DOTFILES/install.sh        ;;
-  "--install-full" ) . $DOTFILES/install.sh --full ;;
-  "--tasks" )        list_tasks                    ;;
+  "--install" ) . $DOTFILES/install.sh        ;;
+  "--tasks" )   list_tasks                    ;;
   * )
-    echo "Usage: dotsetup [OPTIONS]                            "
-    echo "  Installs the dotfiles                              "
-    echo "                                                     "
-    echo "Options:                                             "
-    echo "  --install         Runs the install script          "
-    echo "  --install-full    Runs the installer with all tasks"
-    echo "  --tasks           Lists all tasks and              "
-    echo "  -h, --help        Show this output                 "
-    echo "                                                     "
+    echo "Usage: dotsetup [OPTIONS]                  "
+    echo "  Installs the dotfiles                    "
+    echo "                                           "
+    echo "Options:                                   "
+    echo "  --install         Runs the install script"
+    echo "  --tasks           Lists all tasks and    "
+    echo "  -h, --help        Show this output       "
+    echo "                                           "
     exit 0
     ;;
 esac

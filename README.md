@@ -23,7 +23,7 @@ chsh -s $(which zsh)
 
 # Run the installer!
 cd ~/dotfiles
-./install.sh --full
+./install.sh
 ```
 
 ## Order and hierarchy
@@ -34,10 +34,12 @@ cd ~/dotfiles
 ## TODOs:
 
 - [ ] Add an update task
-- [ ] Add a status utility (updated, symlinked files...)
+- [ ] Add a re-symlink script (does a backup before)
+- [ ] Create a one-line installer
+- [ ] Add local config files support in `gitconfig` and `vimrc`
 - [ ] Clean-up utils
 - [ ] Docs?
-- [ ] Add support for linux (ubuntu probably).
+- [ ] Add support for linux (ubuntu mostly).
 
 ## License
 
