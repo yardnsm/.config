@@ -1,7 +1,2 @@
 # Local gitconfig
 git/symlinks/gitconfig.local.symlink
-
-# Alfred stuff
-alfred/**/remote
-alfred/**/cache
-alfred/**/workflows
