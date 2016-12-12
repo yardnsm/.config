@@ -2,12 +2,12 @@
 # | Blox settings
 # --------------------------------------- #
 
-# CWD blocks
-BLOX_BLOCK__CWD_TRUNC=0
+BLOX_CONF__BLOCK_PREFIX='('
+BLOX_CONF__BLOCK_SUFFIX=')'
 
-# Host block
-BLOX_BLOCK__HOST_USER_SHOW_ALWAYS=true
-BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS=true
+# CWD block
+BLOX_BLOCK__CWD_TRUNC=0
+BLOX_BLOCK__CWD_COLOR='green'
 
 # Battery block (macOS only)
 function blox_block__macos_battery() {

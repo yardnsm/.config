@@ -39,13 +39,15 @@ for config ($DOTFILES/(^_*/)#*.zsh) source $config
 [[ -a ~/.localrc ]] && source ~/.localrc
 
 # --------------------------------------- #
-# | Theme setup
+# | Base16 Shell Theme setup
 # --------------------------------------- #
-
-# Base16 Shell Theme
-export THEME="base16-default"
+export THEME="base16-ir-black"
 if [ -z "$BACKGROUND" ]; then
   export BACKGROUND="dark"
 fi
-BASE16_SHELL="$CONFIG/base16-shell/$THEME.$BACKGROUND.sh"
-[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && source $BASE16_SHELL
+
+#BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.$BACKGROUND.sh"
+BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.sh"
+
+[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && \
+  source $BASE16_SHELL
