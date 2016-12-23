@@ -2,16 +2,14 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Create a local git config file
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Setup local gitconfig"
 
 # Ask if neccesarry
 if ! [ -f $current_dir/gitconfig.local.symlink ]; then
   ask_for_confirmation "Need to create a local gitconfig? "
 else
-  #ask_for_confirmation "A local gitconfig is already exist. Need to create again? "
   print_status "A local gitconfig is already exist"
   REPLY='n'
 fi
@@ -26,5 +24,6 @@ if answer_is_yes; then
   git_authoremail=$(get_answer)
 
   # Create it
-  sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" git/files/gitconfig.local.symlink.placeholder > git/gitconfig.local.symlink
+  sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" \
+    git/files/gitconfig.local.symlink.placeholder > git/gitconfig.local.symlink
 fi

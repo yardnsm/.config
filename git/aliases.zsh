@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | ZSH Aliases
-# --------------------------------------- #
-
 # Git aliases (in addition to `.gitconfig`)
 alias ga='git add'
 alias gc='git commit'

@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | Theme change
-# --------------------------------------- #
-
 # Change to light theme
 function light() {
   export BACKGROUND="light" && reloadd
@@ -12,19 +8,12 @@ function dark() {
   export BACKGROUND="dark" && reloadd
 }
 
-# --------------------------------------- #
-# | Misc
-# --------------------------------------- #
+# ---------------------------------------------
 
 # Create a directory and `cd` into it
 function take() {
   mkdir $1
   cd $1
-}
-
-# Create a new project
-function proj() {
-  take $PROJECTS_DIR/github/$1
 }
 
 # `cd` into whatever is the forefront Finder window

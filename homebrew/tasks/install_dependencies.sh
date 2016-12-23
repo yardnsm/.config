@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Install dependencies
-# --------------------------------------------- #
-
 # Very important stuff
 brew_install 'node'
 brew_install 'rbenv'

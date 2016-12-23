@@ -2,9 +2,8 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | OSX
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Setup OSX configurations"
 source $current_dir/tasks/run_configurations.sh
 

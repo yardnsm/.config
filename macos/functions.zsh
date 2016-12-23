@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | ZSH functions for OSX
-# --------------------------------------- #
-
 # Unmount all external drives
 function unmount_all {
   diskutil list |

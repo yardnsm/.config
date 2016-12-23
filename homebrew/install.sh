@@ -2,9 +2,8 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Homebrew
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Install Homebrew and its taps"
 source $current_dir/tasks/install_homebrew.sh
 

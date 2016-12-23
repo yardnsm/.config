@@ -2,19 +2,16 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Source all the stuff
-# --------------------------------------------- #
+# ---------------------------------------------
+
 source $current_dir/_setup/initializer.sh
 
-# --------------------------------------------- #
-# | Show welcome message
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_welcome_message
 
-# --------------------------------------------- #
-# | Preinstall stuff
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_title "Getting ready"
 
 # Run preinstall script
@@ -28,18 +25,15 @@ print_divider
 
 # Check if answer is yes
 if answer_is_yes; then
-
-  # Get sudo permissions
+  
   check_for_sudo
-
   source $DOTFILES/_setup/execute.sh
-
 else
+
   print_error "aborted"
   exit 1
 fi
 
-# --------------------------------------------- #
-# | Done!
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_finish_message

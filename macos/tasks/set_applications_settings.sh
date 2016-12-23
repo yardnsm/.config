@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Transmission
-# --------------------------------------------- #
 print_info "Transmission"
 
 execute 'defaults write org.m0k.transmission DeleteOriginalTorrent -bool true' \
@@ -22,9 +19,8 @@ execute 'defaults write org.m0k.transmission WarningDonate -bool false' \
 execute 'defaults write org.m0k.transmission WarningLegal -bool false' \
 'Hide the legal disclaimer'
 
-# --------------------------------------------- #
-# | Google Chrome
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Google Chrome"
 
 execute 'defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false' \
@@ -36,9 +32,8 @@ execute 'defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool
 execute 'defaults write com.google.Chrome DisablePrintPreview -bool true' \
 'Use system-native print preview dialog'
 
-# --------------------------------------------- #
-# | iTerm2
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "iTerm2"
 
 execute 'defaults write com.googlecode.iterm2 PromptOnQuit -bool false' \

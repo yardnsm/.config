@@ -2,9 +2,8 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Install antibody
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Installing antibody"
 
 if ! cmd_exists 'antibody'; then

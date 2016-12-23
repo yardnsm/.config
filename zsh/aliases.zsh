@@ -1,27 +1,16 @@
-# --------------------------------------- #
-# | ZSH Aliases
-# --------------------------------------- #
-
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
 
 # Reload zsh config
 alias reloadd='source ~/.zshrc'
 
-# --------------------------------------- #
-# | Quick navigation
-# --------------------------------------- #
-
+# Quick navigation
 alias hm="cd ~"
 alias dt="cd ~/Desktop"
 alias dl="cd ~/Downloads"
 alias dev="cd ~/dev"
 alias ghb="cd ~/dev/github"
 alias glb="cd ~/dev/gitlab"
-
-# --------------------------------------- #
-# | Other stuff
-# --------------------------------------- #
 
 # Filesystem aliases
 alias ..='cd ..'

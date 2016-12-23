@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | ZSH Config
-# --------------------------------------- #
-
 # Expand parameters within prompts
 setopt PROMPT_SUBST
 

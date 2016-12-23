@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | Load stuff
-# --------------------------------------- #
-
 # Initialize completion
 autoload -U compinit && compinit
 
@@ -12,9 +8,7 @@ autoload -U promptinit && promptinit
 # For globbing
 setopt EXTENDED_GLOB
 
-# --------------------------------------- #
-# | Main Configurations
-# --------------------------------------- #
+# ---------------------------------------------
 
 # Core variables
 export DOTFILES=$HOME/dotfiles
@@ -24,9 +18,7 @@ export CONFIG=$DOTFILES/_config
 # Display info for tasks long than 8sec
 export REPORTTIME=8
 
-# --------------------------------------- #
-# | Sourcing stuff
-# --------------------------------------- #
+# ---------------------------------------------
 
 # Source the `before` stuff
 for config ($DOTFILES/(^_*/)#*.zsh-before) source $config
@@ -38,9 +30,8 @@ for config ($DOTFILES/(^_*/)#*.zsh) source $config
 # Source '~/.localrc' if exists
 [[ -a ~/.localrc ]] && source ~/.localrc
 
-# --------------------------------------- #
-# | Base16 Shell Theme setup
-# --------------------------------------- #
+# ---------------------------------------------
+
 export THEME="base16-ir-black"
 if [ -z "$BACKGROUND" ]; then
   export BACKGROUND="dark"

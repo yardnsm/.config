@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | Config for zsh-syntax-highlighting
-# --------------------------------------- #
-
 # Taken from: https://github.com/anishathalye/dotfiles/blob/master/zsh/syntax.zsh
 
 if [[ "$(tput colors)" == "256" ]]; then

@@ -2,14 +2,16 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Symlinking process
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Create symlinks"
 
 symlinks=$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')
+
 for file in $symlinks; do
+
   target="$HOME/.$(basename $file ".symlink")"
+
   if [[ -e $target ]]; then
     print_error "~${target#$HOME} already exists, Skipping."
   else
@@ -18,14 +20,16 @@ for file in $symlinks; do
   fi
 done
 
-# --------------------------------------------- #
-# | Copying process
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Create copies"
 
 copies=$(find -H "$DOTFILES" -maxdepth 3 -name '*.copy')
+
 for file in $copies; do
+
   target="$HOME/.$(basename $file ".copy")"
+
   if [[ -e $target ]]; then
     print_error "~${target#$HOME} already exists, Skipping."
   else

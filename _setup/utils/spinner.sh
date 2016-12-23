@@ -21,7 +21,7 @@ show_spinner() {
 
   print_running "${msg}"
 
-  # As long the process is running
+  # As long as the process is running
   while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
     print_in_blue "$dot"
     [[ $((count++)) -eq maxDots ]] && printf "\b\b\b\b    \b\b\b\b" && count=0

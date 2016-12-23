@@ -2,9 +2,8 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Install NPM Global Packages
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Installing NPM global dependencies"
 
 # Dev stuff

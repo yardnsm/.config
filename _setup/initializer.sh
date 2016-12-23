@@ -2,14 +2,12 @@
 
 current_dir="$(dirname "$BASH_SOURCE")"
 
-# --------------------------------------------- #
-# | Source the following if needed
-# --------------------------------------------- #
+# ---------------------------------------------
 
 # Check if sourced before
-if [ -z ${sourced+x} ]; then
+if [[ -z ${sourced+x} ]]; then
 
-  sourced="yep"
+  sourced="true"
 
   source $current_dir/utils/functions/apm.sh
   source $current_dir/utils/functions/brew.sh

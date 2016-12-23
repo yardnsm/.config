@@ -3,9 +3,8 @@
 # Based on alrra's .osx file, with a few custom settings:
 # https://github.com/alrra/dotfiles/raw/master/os/os_x/preferences/set_ui_and_ux_preferences.sh
 
-# --------------------------------------------- #
-# | General UI/UX
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "General UI/UX"
 
 execute 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true' \
@@ -13,9 +12,6 @@ execute 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool
 
 execute 'defaults write com.apple.menuextra.battery ShowPercent -string "YES"' \
 'Show battery percentage from the menu bar'
-
-# execute 'defaults write /Library/Preferences/.GlobalPreferences MultipleSessionEnabled -bool "YES"' \
-# 'Enable Fast User Switching'
 
 execute 'defaults write com.apple.CrashReporter UseUNC 1' \
 'Make crash reports appear as notifications'
@@ -53,9 +49,8 @@ execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool tru
 #   sudo scutil --set LocalHostName "bacon"' \
 # 'Set computer name to "bacon" (I am Jewish)'
 
-# --------------------------------------------- #
-# | Trackpad and keyboard
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Trackpad and keyboard"
 
 execute 'defaults write NSGlobalDomain AppleKeyboardUIMode -int 3' \
@@ -80,9 +75,8 @@ execute 'defaults write com.apple.universalaccess closeViewScrollWheelToggle -bo
   defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144' \
 'Use scroll gesture with the Ctrl (^) modifier key to zoom'
 
-# --------------------------------------------- #
-# | Language and Region
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Language and Region"
 
 execute 'defaults write NSGlobalDomain AppleLanguages -array "en"' \
@@ -94,9 +88,8 @@ execute 'defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeter
 execute 'defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false' \
 'Disable auto-correct'
 
-# --------------------------------------------- #
-# | Finder
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Finder"
 
 execute 'defaults write com.apple.finder ShowRecentTags -bool false' \
@@ -124,9 +117,8 @@ execute 'defaults write com.apple.finder ShowStatusBar -bool true' \
 execute 'defaults write com.apple.finder QLEnableTextSelection -bool true' \
 'Allow text selection in Quick Look'
 
-# --------------------------------------------- #
-# | Dock, Dashboard
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Dock and Dashboard"
 
 execute 'defaults write com.apple.dashboard mcx-disabled -bool true' \
@@ -179,9 +171,8 @@ execute 'defaults write com.apple.Safari SuppressSearchSuggestions -bool true &&
 execute 'defaults write NSGlobalDomain WebKitDeveloperExtras -bool true' \
 'Add a context menu item for showing the "Web Inspector" in web views'
 
-# --------------------------------------------- #
-# | Mac Applications
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Mac Applications"
 
 execute 'defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
@@ -194,9 +185,8 @@ execute 'defaults write com.apple.TextEdit RichText -' \
 execute 'defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true' \
 'Prevent Photos from opening automatically when devices are plugged in'
 
-# --------------------------------------------- #
-# | Time Machine
-# --------------------------------------------- #
+# ---------------------------------------------
+
 print_info "Time Machine"
 
 execute 'defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true' \

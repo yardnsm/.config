@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | Initialize NVM
-# --------------------------------------- #
-
 # Setting default
 nvm alias default system &> /dev/null
 

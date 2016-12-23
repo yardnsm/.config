@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Run the 'main.sh' scripts of every topic
-# --------------------------------------------- #
+current_dir="$(dirname "$BASH_SOURCE")"
+
+# ---------------------------------------------
+
 for d in $DOTFILES/*/ ; do
 
   d=$(basename $d)

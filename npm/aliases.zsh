@@ -1,7 +1,3 @@
-# --------------------------------------- #
-# | NPM Aliases
-# --------------------------------------- #
-
 # Make npm fast (use the cache)
 alias npmo="npm --cache-min 9999999"
 

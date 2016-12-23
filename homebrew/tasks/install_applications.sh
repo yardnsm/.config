@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Install applications
-# --------------------------------------------- #
 print_info "Applications"
 
 # Dev stuff
@@ -50,10 +47,8 @@ brew_install 'spotify' 'cask'
 #brew_install 'firefox-developeredition' 'cask'
 #brew_install 'opera' 'cask'
 
+# ---------------------------------------------
 
-# --------------------------------------------- #
-# | Install fonts
-# --------------------------------------------- #
 print_info "Fonts"
 
 # Dev fonts

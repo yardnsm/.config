@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Important Variables
-# --------------------------------------------- #
+current_dir="$(dirname "$BASH_SOURCE")"
+
+# ---------------------------------------------
+
 DOTFILES=$HOME/dotfiles
