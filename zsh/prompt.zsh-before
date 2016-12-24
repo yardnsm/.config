@@ -7,7 +7,7 @@ BLOX_CONF__BLOCK_SUFFIX=')'
 
 # CWD block
 BLOX_BLOCK__CWD_TRUNC=0
-BLOX_BLOCK__CWD_COLOR='green'
+BLOX_BLOCK__CWD_COLOR='cyan'
 
 # Battery block (macOS only)
 function blox_block__macos_battery() {

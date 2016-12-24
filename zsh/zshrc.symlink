@@ -40,5 +40,5 @@ fi
 #BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.$BACKGROUND.sh"
 BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.sh"
 
-[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && \
-  source $BASE16_SHELL
+#[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && \
+#  source $BASE16_SHELL

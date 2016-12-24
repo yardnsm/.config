@@ -25,11 +25,9 @@ print_divider
 
 # Check if answer is yes
 if answer_is_yes; then
-  
   check_for_sudo
   source $DOTFILES/_setup/execute.sh
 else
-
   print_error "aborted"
   exit 1
 fi

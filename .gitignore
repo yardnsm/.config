@@ -1,2 +1,8 @@
 # Local gitconfig
 git/gitconfig.local.symlink
+
+# Swap files
+**/*.swp
+
+# Vim plugins
+vim/vim.symlink/plugged

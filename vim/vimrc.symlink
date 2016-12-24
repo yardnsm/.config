@@ -1,0 +1,179 @@
+" vim:foldmethod=marker:foldlevel=0
+
+" ------------------------------------------------------------------------------
+"         _
+"  __   _(_)_ __ ___  _ __ ___ 
+"  \ \ / / | '_ ` _ \| '__/ __|
+"   \ V /| | | | | | | | | (__ 
+"  (_)_/ |_|_| |_| |_|_|  \___|
+"                     yardnsm's .vimrc
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" General {{{
+
+set nocompatible                      " don't behave like Vi
+filetype plugin indent on             " automatically detect file types.
+
+set fileencoding=utf-8
+set encoding=utf-8
+
+set modelines=1                       " enable modelines
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Plugins {{{
+
+call plug#begin('~/.vim/plugged')
+
+" Colors
+Plug 'whatyouhide/vim-gotham'
+
+" Misc
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+call plug#end()
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Airline Config {{{
+
+let g:airline_theme='gotham'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Editor {{{
+
+set number                            " show line numbers
+set linebreak                         " wraps between words
+set list                              " show invisibles
+set scrolloff=5                       " allows to scroll of the screen
+
+set backspace=indent,eol,start        " proper backspacing
+
+" Invisibles
+set showbreak=↪
+set listchars=tab:\»\ ,space:\ ,eol:¬,trail:·,nbsp:_
+
+" Change the split border
+set fillchars+=vert:\┃
+" }}}
+
+" ------------------------------------------------------------------------------
+" Movement {{{
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Colors and Syntax {{{
+
+set background=dark                   " assume a dark background
+colorscheme gotham                    " set colorscheme
+
+set t_Co=256                          " we use a 256-color terminal
+
+syntax on                             " enable syntax highlighting
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Folding {{{
+
+set foldenable                        " enable folding
+set foldmethod=indent                 " based folds on indentation
+set foldmarker={{{,}}}                " fold marker
+set foldlevelstart=10                 " open most folds by default
+set foldnestmax=10                    " 10 nested fold at max
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Search {{{
+
+set incsearch                         " shows matches as you type
+set showmatch                         " jump to matching bracket
+set smartcase                         " if caps, watch case
+set ignorecase                        " ignore case if all lowercase
+set hlsearch                          " highlight search results
+set gdefault                          " make search&replaces global for the line
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Indent {{{
+
+set autoindent
+set smartindent
+set expandtab                         " spaces FTW
+set shiftround                        " round indent to multiples of shiftwidth
+
+set shiftwidth=2
+set softtabstop=2                     " number of spaces in <tab> when editing
+set tabstop=2                         " number of visual spaces per <tab>
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" File system {{{
+
+set autoread                          " detect when a file is changed
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Misc {{{
+
+set showcmd                           " show command in normal (when typed)
+set lazyredraw                        " redraw only when we need to
+set cursorline                        " highlight current line
+
+set wildmenu                          " enable wildmenu for completion
+set wildmode=full
+
+set laststatus=2                      " always show status
+
+set timeout
+set timeoutlen=1000
+set ttimeoutlen=50
+" }}}
+
+" ------------------------------------------------------------------------------
+" Mappings and abbreviations {{{
+
+let mapleader=','                     " change the map leader
+
+" Indent using the <tab> key
+nnoremap <tab> >>
+nnoremap <s-tab> <<
+vnoremap <tab> >
+vnoremap <s-tab> <
+
+" toggle search highlight
+nnoremap <leader><space> :set hlsearch!<CR>
+
+" space open/closes folds
+nnoremap <space> za
+
+" Disable arrow keys for now...
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+
+" Some abbreviations
+cnoreabbrev W w
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev Tabe tabe
+
+" }}}
