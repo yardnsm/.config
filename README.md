@@ -1,6 +1,6 @@
 # yardnsm's dotfiles
 
-These are my dotfiles. A collection of zsh, git and macOS configurations. I built this repo from scratch, while focus on organization.
+These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this repo from scratch, while focus on organization.
 
 ![](_misc/media/terminal.png)
 
