@@ -70,7 +70,6 @@ print_success() {
 
 # ---------------------------------------------
 
-
 # Print the message based the last exit
 print_result() {
   [ $1 -eq 0 ] \
@@ -99,12 +98,11 @@ print_welcome_message() {
 
 "
 
-  print_in_blue "  Base Dir: "; printf "$DOTFILES\n\n"
-
-  print_in_cyan "\n  $(tput bold)Note:$(tput sgr0) Currently compatible with macOS Only \n"
+  print_in_blue "  Base Dir: "; printf "$DOTFILES\n"
+  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Currently compatible with macOS Only \n"
 }
 
 # Print finish message
 print_finish_message() {
-  print_info " Setup is done! You might neet to restart your system to see full changes"
+  print_info " Setup is done! You might need to restart your system to see full changes."
 }
