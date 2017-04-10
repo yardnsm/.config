@@ -2,7 +2,7 @@
 alias sudo="sudo "
 
 # Reload zsh config
-alias reloadd='source ~/.zshrc'
+alias reload='source ~/.zshrc'
 
 # Quick navigation
 alias hm="cd ~"
@@ -26,10 +26,12 @@ alias ll="ls -lFh"
 alias lla="ls -lAFh"
 alias lld="ls -l | grep ^d"
 
+# Clear!
+alias cl="clear"
+
 # Aliases to protect against overwriting
 alias cp='cp -i'
 alias mv='mv -i'
 
 # chmod
-alias chmx="chmod +x"
 alias x+="chmod +x"

@@ -32,13 +32,10 @@ for config ($DOTFILES/(^_*/)#*.zsh) source $config
 
 # ---------------------------------------------
 
-export THEME="base16-ir-black"
-if [ -z "$BACKGROUND" ]; then
-  export BACKGROUND="dark"
-fi
+# export THEME="base16-default-dark"
+# BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.sh"
+# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-#BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.$BACKGROUND.sh"
-BASE16_SHELL="$CONFIG/base16-shell/scripts/$THEME.sh"
-
-#[[ -s $BASE16_SHELL ]] && [ -n "$ITERM_SESSION_ID" ] && \
-#  source $BASE16_SHELL
+# if [ -n "$PS1" ]; then # if statement guards adding these helpers for non-interative shells
+#   eval "$($CONFIG/base16-shell/profile_helper.sh)"
+# fi

@@ -14,7 +14,6 @@ else
   REPLY='n'
 fi
 
-# Check if answer is yes
 if answer_is_yes; then
 
   # Ask details

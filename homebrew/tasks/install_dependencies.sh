@@ -7,6 +7,11 @@ brew_install 'git'
 brew_install 'zsh'
 brew_install 'mongo'
 brew_install 'phantomjs'
+brew_install 'neovim/neovim/neovim'
+brew_install 'tmux'
+brew_install 'reattach-to-user-namespace'
+brew_install 'mysql'
+brew_install 'python3'
 
 # Important stuff
 brew_install 'wget'
@@ -18,6 +23,9 @@ brew_install 'git-extras'
 brew_install 'httpie'
 brew_install 'jq'
 brew_install 'diff-so-fancy'
+brew_install 'imagemagick'
+brew_install 'the_silver_searcher'
+brew_install 'watchman'
 
 # Fun stuff
 brew_install 'asciinema'

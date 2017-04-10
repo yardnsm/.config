@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Spinner
-# --------------------------------------------- #
+# ---------------------------------------------
 
-# USAGE:
-# some_long_task & show_spinner $! "doing some long task"
+# Spinner
+# USAGE: some_long_task & show_spinner $! "doing some long task"
 
-# Show the spinner
 show_spinner() {
 
   local pid=$1       # The process

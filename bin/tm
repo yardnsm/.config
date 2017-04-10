@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+current_dir="$(dirname "$BASH_SOURCE")"
+
+# ---------------------------------------------
+
+source $current_dir/../_setup/initializer.sh
+
+# List sessions
+list_sessions() {
+
+  PS3=$'\n   Choose a session to start: '
+
+  print_title "Available sessions\n"
+
+  options=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session")
+
+  select opt in "${options[@]}"; do
+    case $opt in
+      "New Session")
+          ask "Enter new session name: "
+          tmux new -s $(get_answer)
+        break
+        ;;
+
+      *)
+          tmux attach-session -t $opt
+        break
+        ;;
+    esac
+  done
+}
+
+# ---------------------------------------------
+
+# Session-specific actions
+list_actions() {
+
+  PS3=$'\n   Choose an action: '
+
+  print_title "Available actions"
+
+  options=("Rename session" "Detach session" "Delete session")
+
+  select opt in "${options[@]}"; do
+    case $opt in
+      "Rename session")
+          ask "Enter new session name: "
+          tmux rename $(get_answer)
+        break
+        ;;
+
+      "Detach session")
+          tmux detach
+        break
+        ;;
+
+      "Delete session")
+          ask_for_confirmation "ARE YOU SURE? "
+          answer_is_yes && tmux kill-session
+        break
+        ;;
+    esac
+  done
+}
+
+# ---------------------------------------------
+
+if cmd_exists 'tmux'; then
+  [[ "$TMUX" == "" ]] && list_sessions || list_actions
+else
+  print_error "tmux is not installed!"
+fi

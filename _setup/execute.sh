@@ -4,17 +4,17 @@ current_dir="$(dirname "$BASH_SOURCE")"
 
 # ---------------------------------------------
 
-for d in $DOTFILES/*/ ; do
+for tdir in $DOTFILES/*/ ; do
 
-  d=$(basename $d)
+  tdir=$(basename $tdir)
 
   # Check if the directory is a topic directory
-  if ! [[ $d == _* ]]; then
+  if ! [[ $tdir == _* ]]; then
 
-    # Check if has a 'main.sh' script
-    if [[ -f $DOTFILES/$d/install.sh ]]; then
-      print_title "Current topic is '${d%/}'"
-      source $DOTFILES/$d/install.sh
+    # Check if has an install script
+    if [[ -f $DOTFILES/$tdir/install.sh ]]; then
+      print_title "Current topic is '${tdir%/}'"
+      source $DOTFILES/$tdir/install.sh
     fi
   fi
 done

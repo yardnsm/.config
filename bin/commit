@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-# --------------------------------------------- #
-# | Haha so funny
-# --------------------------------------------- #
-curl --silent http://whatthecommit.com/index.txt

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# --------------------------------------- #
-# | Commands Utils
-# --------------------------------------- #
+# ---------------------------------------------
 
 # Check if a command exists
 cmd_exists() {
@@ -10,12 +8,8 @@ cmd_exists() {
   return $?
 }
 
-# Execute command and print a message
+# Execute a command and print a message
 execute() {
-
-  # Execute and show a spinner
   eval "$1" &> /dev/null & show_spinner $! "${2}"
-
-  # Print the result
   print_result $? "${2:-$1}"
 }

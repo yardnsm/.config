@@ -9,25 +9,21 @@ BLOX_CONF__BLOCK_SUFFIX=')'
 BLOX_BLOCK__CWD_TRUNC=0
 BLOX_BLOCK__CWD_COLOR='cyan'
 
-# Battery block (macOS only)
-function blox_block__macos_battery() {
+# ---------------------------------------------
 
-  local per="${$(pmset -g batt | awk '{print $3}' | grep '%')%?}%"
-  local stat="${$(pmset -g batt | awk '{print $4}' | grep 'char')}"
-  local res=""
-
-  local color=$fg[yellow]
-  local symb='⇋'
-  [[ $stat == 'discharging;' ]] && color=$fg[magenta] && symb='↼'
-
-  # Build the block
-  res+="%{$color%}"
-  res+="${BLOX_CONF__BLOCK_PREFIX}${symb} ${per}${BLOX_CONF__BLOCK_SUFFIX}"
-  res+="%{$reset_color%}"
-
-  # Echo the block
-  echo $res
+function blox_block__cwd_minimal() {
+  echo "%{$fg[blue]%}${BLOX_CONF__BLOCK_PREFIX}$(basename $(pwd))${BLOX_CONF__BLOCK_SUFFIX}%{$reset_color%}"
 }
 
-# Structure
-BLOX_SEG__UPPER_RIGHT=(blox_block__bgjobs blox_block__nodejs blox_block__macos_battery blox_block__time)
+# Minimal prompt. Re-source .zshrc to revert.
+function ninjablox() {
+  BLOX_CONF__ONELINE=true
+  BLOX_CONF__NEWLINE=false
+
+  BLOX_BLOCK__SYMBOL_SYMBOL='λ'
+  BLOX_BLOCK__SYMBOL_EXIT_SYMBOL='λ'
+  BLOX_BLOCK__SYMBOL_COLOR='green'
+
+  BLOX_SEG__UPPER_LEFT=(blox_block__symbol blox_block__cwd_minimal)
+  BLOX_SEG__UPPER_RIGHT=(blox_block__bgjobs blox_block__time)
+}

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# --------------------------------------------- #
-# | Print in Colors
-# --------------------------------------------- #
+# ---------------------------------------------
+
+# Print in colors
+
 print_in_green() {
   printf "\e[0;32m$1\e[0m"
 }
@@ -35,9 +36,10 @@ print_in_white() {
   printf "\e[1;37m$1\e[0m"
 }
 
-# --------------------------------------------- #
-# | Messages
-# --------------------------------------------- #
+# ---------------------------------------------
+
+# Mesages
+
 print_title() {
   print_in_white "\n $(tput bold; tput smul)$1$(tput sgr0)\n"
 }
@@ -66,9 +68,8 @@ print_success() {
   print_in_green "   [✓︎] $1\n"
 }
 
-# --------------------------------------------- #
-# | Misc
-# --------------------------------------------- #
+# ---------------------------------------------
+
 
 # Print the message based the last exit
 print_result() {
@@ -79,16 +80,12 @@ print_result() {
   return $1
 }
 
-# --------------------------------------------- #
-# | Other stuff
-# --------------------------------------------- #
-
 # Print a divider (newline)
 function print_divider() {
   printf "\n"
 }
 
-# Print dotfiles Welcome message
+# Print welcome message
 print_welcome_message() {
 
   clear
@@ -102,7 +99,6 @@ print_welcome_message() {
 
 "
 
-  print_in_blue "  License: "; printf "MIT\n"
   print_in_blue "  Base Dir: "; printf "$DOTFILES\n\n"
 
   print_in_cyan "\n  $(tput bold)Note:$(tput sgr0) Currently compatible with macOS Only \n"
@@ -110,7 +106,5 @@ print_welcome_message() {
 
 # Print finish message
 print_finish_message() {
-  print_info " Setup is done.
-    Go to '~/dotfiles/_misc/manuals' for manual installs
-    Restart your system to see full changes"
+  print_info " Setup is done! You might neet to restart your system to see full changes"
 }

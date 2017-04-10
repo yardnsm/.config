@@ -1,4 +1,5 @@
 # Git aliases (in addition to `.gitconfig`)
+alias g='git'
 alias ga='git add'
 alias gc='git commit'
 alias gb='git branch'

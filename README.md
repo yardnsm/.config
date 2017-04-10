@@ -31,16 +31,6 @@ cd ~/dotfiles
 - Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
 - Every other directory is a topic directory, which may contain symlinks/copies/shell scripts relevant to the topic.
 
-## TODOs:
-
-- [ ] Add an update task
-- [ ] Add a re-symlink script (does a backup before)
-- [ ] Create a one-line installer
-- [ ] Add local config files support in `gitconfig` and `vimrc`
-- [ ] Clean-up utils
-- [ ] Docs?
-- [ ] Add support for linux (ubuntu mostly).
-
 ## License
 
 MIT © [Yarden Sod-Moriah](http://yardnsm.net/)

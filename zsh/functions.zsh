@@ -1,15 +1,3 @@
-# Change to light theme
-function light() {
-  export BACKGROUND="light" && reloadd
-}
-
-# Change to dark theme
-function dark() {
-  export BACKGROUND="dark" && reloadd
-}
-
-# ---------------------------------------------
-
 # Create a directory and `cd` into it
 function take() {
   mkdir $1

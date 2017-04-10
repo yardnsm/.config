@@ -1,8 +1,13 @@
 # Local gitconfig
 git/gitconfig.local.symlink
 
-# Swap files
-**/*.swp
+# Vim shit
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
 
 # Vim plugins
-vim/vim.symlink/plugged
+nvim/nvim.conf/plugged

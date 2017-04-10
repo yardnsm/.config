@@ -9,7 +9,6 @@ if [[ -z ${sourced+x} ]]; then
 
   sourced="true"
 
-  source $current_dir/utils/functions/apm.sh
   source $current_dir/utils/functions/brew.sh
   source $current_dir/utils/functions/gem.sh
   source $current_dir/utils/functions/npm.sh

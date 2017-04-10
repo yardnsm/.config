@@ -9,8 +9,10 @@ brew_install 'java' 'cask'
 brew_install 'github-desktop' 'cask'
 brew_install 'postman' 'cask'
 brew_install 'iterm2' 'cask'
-brew_install 'robomongo' 'cask'
 brew_install 'gitup' 'cask'
+brew_install 'sequel-pro' 'cask'
+brew_install 'vimr' 'cask'
+brew_install 'visual-studio-code' 'cask'
 
 # Browsers
 brew_install 'google-chrome' 'cask'
@@ -21,21 +23,19 @@ brew_install 'firefox' 'cask'
 brew_install 'google-drive' 'cask'
 brew_install 'puush' 'cask'
 
-# Productive
-brew_install 'bestres' 'cask'
+# Productivity
 brew_install 'keepingyouawake' 'cask'
 brew_install 'scroll-reverser' 'cask'
-brew_install 'keycastr' 'cask'
+brew_install 'spectacle' 'cask'
 
 # Misc
-brew_install 'appcleaner' 'cask'
+brew_install 'keycastr' 'cask'
 brew_install 'keeweb' 'cask'
 brew_install 'skype' 'cask'
 brew_install 'beardedspice' 'cask'
 brew_install 'caprine' 'cask'
 brew_install 'vlc' 'cask'
 brew_install 'transmission' 'cask'
-brew_install 'numi' 'cask'
 brew_install 'slack' 'cask'
 brew_install 'spotify' 'cask'
 

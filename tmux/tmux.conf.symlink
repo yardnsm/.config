@@ -1,0 +1,90 @@
+# Reattach each new window to the user bootstrap namespace
+# https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+# Maintain a 'gapless' sequence for windows number
+set -g renumber-windows on
+
+# Display thing in 256 colors
+set -g default-terminal "screen-256color"
+
+# Constrain window size to the maximum size of any
+# client connected to that window
+setw -g aggressive-resize on
+
+# make delay shorter
+set -sg escape-time 1
+
+# Unding default prefix and set it to Ctrl-a
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# Make windows / panes index start with 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Visual notification of activity in other windows
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Don't rename windows automatically
+set-option -g allow-rename off
+
+# Enable mouse mode by default
+#set -g mouse on
+
+# ---------------------------------------------
+
+# Spliting (and keep the path)
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Resize
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+# Selecting
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Spread panes evenly
+unbind =
+bind = select-layout tiled
+
+# Reload config file
+bind r source-file ~/.tmux.conf \; display "Reloaded"
+
+# Open a new window
+bind N new-window
+
+# Synchronize all panes
+bind y setw synchronize-panes
+
+# Toggle mouse mode
+bind M set-option mouse
+
+# Quick pane cycling
+unbind ^A
+bind ^A select-pane -t :.+
+
+# Enable cursor shape modification in vim
+# (https://github.com/neovim/neovim/wiki/FAQ)
+set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+
+# ---------------------------------------------
+
+# Set copy-mode to act more like vim
+set -g mode-keys vi
+bind Escape copy-mode
+bind p paste-buffer
+bind -t vi-copy v begin-selection
+bind -t vi-copy y copy-pipe pbcopy
+
+# ---------------------------------------------
+
+source ~/dotfiles/tmux/tmux_theme.sh

@@ -1,7 +1,6 @@
 # Init antibody
 source <(antibody init)
 
-# Init antibody plugins
 antibody bundle <<EOBUNDLES
   rupa/z
   yardnsm/blox-zsh-theme
