@@ -13,3 +13,8 @@ print_info "Installing plugins"
 
 nvim -c 'PlugInstall' -c 'qa!'
 print_result $? "Installed plugins"
+
+print_info "Configuring YCM"
+
+execute "$DOTFILES/nvim/nvim.conf/plugged/YouCompleteMe/install.py" \
+  "Installing YCM"

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Very important stuff
 brew_install 'node'
 brew_install 'rbenv'
 brew_install 'git'
@@ -12,8 +11,8 @@ brew_install 'tmux'
 brew_install 'reattach-to-user-namespace'
 brew_install 'mysql'
 brew_install 'python3'
+brew_install 'shellcheck'
 
-# Important stuff
 brew_install 'wget'
 brew_install 'tig'
 brew_install 'openssl'
@@ -27,7 +26,6 @@ brew_install 'imagemagick'
 brew_install 'the_silver_searcher'
 brew_install 'watchman'
 
-# Fun stuff
 brew_install 'asciinema'
 brew_install 'm-cli'
 brew_install 'screenfetch'

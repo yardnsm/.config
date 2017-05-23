@@ -30,9 +30,6 @@ call plug#begin($DOTFILES . '/nvim/nvim.conf/plugged')
 " Color scheme
 Plug 'whatyouhide/vim-gotham'
 
-" Syntax and stuff
-Plug 'Yggdroot/indentLine'
-
 " Javascript stuff
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
@@ -52,10 +49,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 " Easly surround text objects
 Plug 'tpope/vim-surround'
-
-" Snippets!
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 " Automatic closing
 Plug 'jiangmiao/auto-pairs'
@@ -82,9 +75,6 @@ Plug 'junegunn/fzf.vim'
 " Emojis
 Plug 'junegunn/vim-emoji'
 
-" Multi cursors!
-Plug 'vim-multiple-cursors'
-
 " Neovim plugins
 Plug 'kassio/neoterm'
 Plug 'neomake/neomake'
@@ -100,40 +90,28 @@ call plug#end()
 " Plugins config {{{
 
 " Airline
-let g:airline_theme='gotham'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#tab_min_count=1
-let g:airline#extensions#tabline#show_buffers=1
-let g:airline#extensions#tabline#show_splits=0
+let g:airline_theme = 'gotham'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline#extensions#tabline#tab_min_count = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_splits = 0
+" let g:airline_exclude_filetypes = ['nerdtree']
 
 " Neomake
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_warning_sign = {'text': 'W', 'texthl': 'WarningMsg'}
-let g:neomake_error_sign = {'text': 'E', 'texthl': 'ErrorMsg'}
+let g:neomake_warning_sign = { 'text': 'W', 'texthl': 'WarningMsg' }
+let g:neomake_error_sign = { 'text': 'E', 'texthl': 'ErrorMsg' }
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " NERDTree
-let g:NERDTreeShowHidden=1
+let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['\.DS_Store$']
-
-" indentLine
-let g:indentLine_color_term = 11
-let g:indentLine_char = '┆'
-let g:indentLine_enabled = 0
-
-" vim-move
-let g:move_key_modifier = 'C'
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -155,14 +133,12 @@ let g:fzf_colors = {
 " fzf status line
 function! s:fzf_statusline()
   highlight fzf1 ctermfg=161 ctermbg=0
+  highlight fzf1 guifg=161 guibg=0
   setlocal statusline=%#fzf1#~~>\ fzf
   setlocal statusline+=\ %{emoji#for('see_no_evil')}
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-" Redefine :Ag command (fix a color problem)
-autocmd VimEnter * command! -nargs=* Ag
-      \ call fzf#vim#ag(<q-args>, '--color-path "33;1"', fzf#vim#default_layout)
 " }}}
 
 " ------------------------------------------------------------------------------
@@ -181,6 +157,16 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 
 " Change the split border
 set fillchars+=vert:\┃
+
+" }}}
+
+" ------------------------------------------------------------------------------
+" Autocommands {{{
+
+" Terminal stuff
+autocmd TermOpen * setlocal statusline=%{b:term_title}
+autocmd TermOpen * let w:airline_disabled = 1
+
 " }}}
 
 " ------------------------------------------------------------------------------
@@ -190,11 +176,9 @@ set fillchars+=vert:\┃
 nnoremap j gj
 nnoremap k gk
 
-" Disable mouse support
-set mouse=v
-
 " change the cursor shape depending on mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+
 " }}}
 
 " ------------------------------------------------------------------------------
@@ -231,7 +215,6 @@ set foldnestmax=10                    " 10 nested fold at max
 " Search {{{
 
 set incsearch                         " shows matches as you type
-"set showmatch                         " jump to matching bracket
 set smartcase                         " if caps, watch case
 set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
@@ -261,19 +244,19 @@ set autoread                          " detect when a file is changed
 " Backup files
 set backup
 if &backupdir =~# '^\.,'
-  let &backupdir = $HOME . "/.nvimtmp/backup," . &backupdir
+  let &backupdir = $HOME . '/.nvimtmp/backup,' . &backupdir
 endif
 
 " Swap files
 set swapfile
 if &directory =~# '^\.,'
-  let &directory = $HOME . "/.nvimtmp/swap," . &directory
+  let &directory = $HOME . '/.nvimtmp/swap,' . &directory
 endif
 
 " Undo files
 set undofile
 if &undodir =~# '^\.\%(,\|$\)'
-  let &undodir = $HOME . "/.nvimtmp/undo," . &undodir
+  let &undodir = $HOME . '/.nvimtmp/undo,' . &undodir
 endif
 
 " }}}
@@ -283,14 +266,14 @@ endif
 
 set showcmd                           " show command in normal (when typed)
 set lazyredraw                        " redraw only when we need to
-set cursorline                        " highlight current line
+set nocursorline                      " do not highlight current line
 
 set wildmenu                          " enable wildmenu for completion
 set wildmode=full
 
 set laststatus=2                      " always show status
 
-set timeout                           " Make airline work
+set timeout
 set timeoutlen=1000
 set ttimeoutlen=50
 
@@ -299,11 +282,12 @@ set hidden                            " allow switching buffers w/o saving
 set splitbelow                        " split below by default
 set splitright                        " split right by default
 
-set colorcolumn=80                    " cus percision matter
+set colorcolumn=80                    " cuz percision matter
 
 " Open folds to right and bottom
 set splitbelow
 set splitright
+
 " }}}
 
 " ------------------------------------------------------------------------------
@@ -313,11 +297,17 @@ let mapleader=','                     " change the map leader
 
 " Indent using the <tab> key
 nnoremap <tab> >>
-nnoremap <s-tab> <<
+nnoremap <S-tab> <<
 
 " Keep blocks selected after indenting
 vnoremap > >gv
 vnoremap < <gv
+
+" Fix the alt key for 'vim-move'
+nmap ˚ <A-k>
+nmap ∆ <A-j>
+vmap ˚ <A-k>
+vmap ∆ <A-j>
 
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
@@ -345,10 +335,17 @@ inoremap <down>  <nop>
 
 " Splits (there's a problem with <C-h>, ref:
 " https://github.com/neovim/neovim/issues/2048)
-nnoremap <BS> <C-w>h
+nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Terminal mappings
+tnoremap <leader><esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 " Typing ':' requires 2 keystrokes (S-;).
 " Let's fix that
@@ -357,15 +354,44 @@ nnoremap ; :
 " Copy to system clipboard
 vnoremap <C-c> "*y<CR>
 
-" Relative number toggle
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
+" Uppercase the current word
+nnoremap <C-S-u> gUaw
+
+" Quckfix & location list
+nnoremap <leader>no :lopen<CR>
+nnoremap <leader>nc :lclose<CR>
+
+" Edit vimrc
+:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+:nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Toggle mouse support
+function! MouseToggle()
+  if &mouse == 'a'
+    set mouse=
   else
-    set relativenumber
+    set mouse=a
   endif
 endfunc
-nnoremap <leader>tn :call NumberToggle()<CR>
+nnoremap <leader>tm :call MouseToggle()<CR>
+
+" Enable hlsearch before searching
+nnoremap / :set hlsearch<CR>/
+
+" Relative number toggle
+nnoremap <leader>tn :set relativenumber!<CR>
+
+" NERDtree stuff
+nnoremap <leader>/ :NERDTreeToggle<CR>
+nnoremap <leader>0 :NERDTreeFocus<CR>
+
+" fzf stuff
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>lb :Buffers<CR>
+nnoremap <leader>lg :GFiles?<CR>
+nnoremap <leader>lc :Commits<CR>
+nnoremap <leader>lt :Filetypes<CR>
+nnoremap <leader>lm :Marks<CR>
 
 " Some abbreviations
 cnoreabbrev W w
@@ -375,18 +401,4 @@ cnoreabbrev WQ wq
 cnoreabbrev Tabe tabe
 cnoreabbrev qQ q!
 
-" NERDtree stuff
-nnoremap <leader>/ :NERDTreeToggle<CR>
-nnoremap <leader>0 :NERDTreeFocus<CR>
-
-" Neomake
-nnoremap <leader>no :lopen<CR>
-nnoremap <leader>nc :lclose<CR>
-
-" fzf stuff
-nnoremap <C-p> :Files<CR>
-nnoremap <leader>lb :Buffers<CR>
-nnoremap <leader>lg :GFiles?<CR>
-nnoremap <leader>lc :Commits<CR>
-nnoremap <leader>lt :Filetypes<CR>
 " }}}
