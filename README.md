@@ -27,7 +27,7 @@ cd ~/dotfiles
 ## Order and hierarchy
 
 - Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
-- Every other directory is a topic directory, which may contain symlinks/copies/shell scripts relevant to the topic.
+- Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to the topic.
 
 ## License
 

@@ -21,6 +21,7 @@ npm_install 'yarn'
 npm_install 'firebase-tools'
 npm_install 'tern-jsx'
 npm_install 'ava'
+npm_install 'hicat'
 
 # Misc
 npm_install 'speed-test'

@@ -37,8 +37,14 @@ Plug 'mxw/vim-jsx'
 " Statusbar
 Plug 'vim-airline/vim-airline'
 
+" Gist and stuff
+Plug 'mattn/gist-vim'
+
 " Filetree
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'Nopik/vim-nerdtree-direnter'
+Plug 'baumanno/vim-nerdtree-direnter'
 
 " Git stuff
 Plug 'airblade/vim-gitgutter'
@@ -112,6 +118,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " NERDTree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['\.DS_Store$']
+let g:NERDTreeMapOpenInTab='<ENTER>'
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -242,27 +249,29 @@ set tabstop=2                         " number of visual spaces per <tab>
 set autoread                          " detect when a file is changed
 
 " Backup files
-set backup
-if &backupdir =~# '^\.,'
-  let &backupdir = $HOME . '/.nvimtmp/backup,' . &backupdir
-endif
+set nobackup
+" if &backupdir =~# '^\.,'
+"   let &backupdir = $HOME . '/.nvimtmp/backup,' . &backupdir
+" endif
 
 " Swap files
-set swapfile
-if &directory =~# '^\.,'
-  let &directory = $HOME . '/.nvimtmp/swap,' . &directory
-endif
+set noswapfile
+" if &directory =~# '^\.,'
+"   let &directory = $HOME . '/.nvimtmp/swap,' . &directory
+" endif
 
 " Undo files
-set undofile
-if &undodir =~# '^\.\%(,\|$\)'
-  let &undodir = $HOME . '/.nvimtmp/undo,' . &undodir
-endif
+set noundofile
+" if &undodir =~# '^\.\%(,\|$\)'
+"   let &undodir = $HOME . '/.nvimtmp/undo,' . &undodir
+" endif
 
 " }}}
 
 " ------------------------------------------------------------------------------
 " Misc {{{
+
+set mouse=                            " disable mouse support by default
 
 set showcmd                           " show command in normal (when typed)
 set lazyredraw                        " redraw only when we need to
@@ -304,6 +313,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Fix the alt key for 'vim-move'
+" macOS can be weird sometimes
 nmap ˚ <A-k>
 nmap ∆ <A-j>
 vmap ˚ <A-k>
@@ -355,7 +365,7 @@ nnoremap ; :
 vnoremap <C-c> "*y<CR>
 
 " Uppercase the current word
-nnoremap <C-S-u> gUaw
+" nnoremap <C-U> gUaw
 
 " Quckfix & location list
 nnoremap <leader>no :lopen<CR>
@@ -381,9 +391,12 @@ nnoremap / :set hlsearch<CR>/
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
 
+" When u forgot to `sudo` a file
+cmap w!! w !sudo tee % >/dev/null
+
 " NERDtree stuff
-nnoremap <leader>/ :NERDTreeToggle<CR>
-nnoremap <leader>0 :NERDTreeFocus<CR>
+nnoremap <leader>/ :NERDTreeTabsToggle<CR>
+nnoremap <leader>0 :NERDTreeFocusToggle<CR>
 
 " fzf stuff
 nnoremap <C-p> :Files<CR>

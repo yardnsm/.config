@@ -5,3 +5,7 @@
 [submodule "_config/vim-plug"]
   path = _config/vim-plug
   url = git@github.com:junegunn/vim-plug.git
+
+[submodule "_config/blox-zsh-theme"]
+  path = _config/blox-zsh-theme
+  url = https://github.com/yardnsm/blox-zsh-theme

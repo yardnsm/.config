@@ -11,9 +11,13 @@ tm_segment() {
 
   [[ $icon == "" ]] || res+="#[bg=${color}, fg=brightblack, noreverse] ${icon} "
 
-  res+="#[bg=brightblack, fg=${color}, noreverse] ${text} #[bg=default, fg=default]   #[none]"
+  res+="#[bg=brightblack, fg=${color}, noreverse] ${text} #[bg=default, fg=default]"
 
   echo -ne $res
+}
+
+tm_divider() {
+  echo -ne " #[none]"
 }
 
 # ---------------------------------------------
@@ -31,6 +35,7 @@ music_res="N/A"
 [[ $itunes != "" ]] && music_res=$itunes
 
 tm_segment "♫" cyan "$music_res"
+tm_divider
 
 # ---------------------------------------------
 
@@ -38,25 +43,25 @@ tm_segment "♫" cyan "$music_res"
 
 battery_percentage="$(pmset -g batt | awk '{print $3}' | grep '%')"
 battery_status="$(pmset -g batt | awk '{print $4}' | grep 'char')"
-battery_res=""
 battery_color="yellow"
 battery_symbol="⇋"
-
 
 [[ $battery_status == 'discharging;' ]] && battery_color="magenta" && battery_symbol="↼"
 
 tm_segment "$battery_symbol" $battery_color "${battery_percentage%?}"
+tm_divider
 
 # ---------------------------------------------
 
 # Machine name
 
 tm_segment "♦︎" blue "#h"
+tm_divider
 tm_segment "" blue "$(whoami)"
+tm_divider
 
 # ---------------------------------------------
 
 # Date and time
 
 tm_segment "" blue "$(date +'%d %b - %R')"
-
