@@ -6,7 +6,7 @@ autoload -U promptinit && promptinit
 # Blox settings
 
 BLOX_CONF__ONELINE=true
-BLOX_CONF__NEWLINE=false
+BLOX_CONF__NEWLINE=true
 
 # BLOX_CONF__BLOCK_PREFIX='('
 # BLOX_CONF__BLOCK_SUFFIX=')'
@@ -67,8 +67,33 @@ blox_hook__preexec() {
   cmd_timestamp=$EPOCHSECONDS
 }
 
-blox_hook__precmd_sec() {
+blox_hook__precmd_exec_time() {
   unset cmd_timestamp
+}
+
+# ---------------------------------------------
+# Async 'git fetch'
+
+ASYNC_PROC=0
+
+blox_hook__precmd_git_fetch() {
+  async() {
+    git fetch &> /dev/null
+    kill -s USR2 $$
+  }
+
+  # Kill child if necessary
+  if [[ "${ASYNC_PROC}" != 0 ]]; then
+    kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+  fi
+
+  async &!
+  ASYNC_PROC=$!
+}
+
+function TRAPUSR2() {
+  ASYNC_PROC=0
+  blox_helper__redraw_prompt
 }
 
 # ---------------------------------------------
@@ -78,18 +103,26 @@ bindkey -v
 export KEYTIMEOUT=1
 
 function zle-keymap-select {
-  blox_hook__build_prompt
-  zle reset-prompt
+  blox_helper__redraw_prompt
 }
 
 zle -N zle-keymap-select
 
 # ---------------------------------------------
 
-echo
+blox_helper__redraw_prompt() {
+  local tmp=$BLOX_CONF__NEWLINE
+  BLOX_CONF__NEWLINE=false
+
+  blox_hook__build_prompt
+  zle && zle reset-prompt
+
+  BLOX_CONF__NEWLINE=true
+}
 
 prompt blox
 
 # Should be added lastly!
-add-zsh-hook precmd blox_hook__precmd_sec
+add-zsh-hook precmd blox_hook__precmd_git_fetch
+add-zsh-hook precmd blox_hook__precmd_exec_time
 add-zsh-hook preexec blox_hook__preexec
