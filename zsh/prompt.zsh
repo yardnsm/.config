@@ -19,7 +19,7 @@ BLOX_BLOCK__GIT_CLEAN_SYMBOL='+'
 BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
 BLOX_SEG__UPPER_LEFT=(blox_block__tmux blox_block__bgjobs blox_block__symbol)
-BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi blox_block__cwd_ng blox_block__git)
+BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi blox_block__cwd_ng blox_block__nodejs blox_block__git)
 
 # ---------------------------------------------
 # Custom blocks
@@ -87,8 +87,10 @@ blox_hook__precmd_git_fetch() {
     kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
   fi
 
-  async &!
-  ASYNC_PROC=$!
+  if blox_block__git_helper__is_git_repo; then
+    async &!
+    ASYNC_PROC=$!
+  fi
 }
 
 function TRAPUSR2() {
@@ -119,6 +121,8 @@ blox_helper__redraw_prompt() {
 
   BLOX_CONF__NEWLINE=true
 }
+
+# ---------------------------------------------
 
 prompt blox
 

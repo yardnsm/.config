@@ -1,0 +1,2 @@
+# $EDITOR
+export EDITOR=nvim
