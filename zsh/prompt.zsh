@@ -1,6 +1,9 @@
 autoload -U promptinit && promptinit
 
+#
 # Inspired by https://github.com/miekg/lean/
+# Built using `Blox`: https://github.com/yardnsm/blox-zsh-theme
+#
 
 # ---------------------------------------------
 # Blox settings
@@ -29,12 +32,7 @@ blox_block__tmux() {
 }
 
 blox_block__cwd_ng() {
-  local wd_path="`print -Pn '%~'`"
-  if (($#wd_path / $COLUMNS.0 * 100 > 60)); then
-    wd_path="`print -Pn '...%2/'`"
-    return
-  fi
-  print "%F{140}$wd_path%f"
+  echo "%F{140}%(4~|.../%3~|%~)%f"
 }
 
 blox_block__vi() {
@@ -43,12 +41,14 @@ blox_block__vi() {
 }
 
 # The following were taken from https://github.com/miekg/lean/
+# cmd_timestamp_start: start
+# cmd_timestamp_stop: stop
+# cmd_timstatmp_persist: persist the timestamp to next redraw
 blox_block__exec_time() {
-  local stop=$EPOCHSECONDS
-  local start=${cmd_timestamp:-$stop}
+  local stop=${cmd_timestamp_stop:-$EPOCHSECONDS}
+  local start=${cmd_timestamp_start:-$stop}
   integer elapsed=$stop-$start
   (($elapsed > 5)) && echo "%F{yellow}$(blox_helper__humen_time $elapsed)%f"
-  unset cmd_timestamp
 }
 
 blox_helper__humen_time() {
@@ -64,11 +64,12 @@ blox_helper__humen_time() {
 }
 
 blox_hook__preexec() {
-  cmd_timestamp=$EPOCHSECONDS
+  unset cmd_timestamp_stop
+  cmd_timestamp_start=$EPOCHSECONDS
 }
 
 blox_hook__precmd_exec_time() {
-  unset cmd_timestamp
+  [[ $cmd_timestamp_persist != 1 ]] && unset cmd_timestamp_start
 }
 
 # ---------------------------------------------
@@ -90,12 +91,23 @@ blox_hook__precmd_git_fetch() {
   if blox_block__git_helper__is_git_repo; then
     async &!
     ASYNC_PROC=$!
+
+    # After the async process to prompt will be redrawer, so
+    # we need to persist the current execution information
+    # till the next redraw
+    cmd_timestamp_persist=1
+    cmd_timestamp_stop=$EPOCHSECONDS
+  else
+    cmd_timestamp_persist=0
   fi
 }
 
 function TRAPUSR2() {
   ASYNC_PROC=0
   blox_helper__redraw_prompt
+
+  cmd_timestamp_persist=0
+  blox_hook__precmd_exec_time
 }
 
 # ---------------------------------------------

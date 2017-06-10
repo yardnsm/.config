@@ -41,10 +41,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'mattn/gist-vim'
 
 " Filetree
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-" Plug 'Nopik/vim-nerdtree-direnter'
-Plug 'baumanno/vim-nerdtree-direnter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Git stuff
 Plug 'airblade/vim-gitgutter'
@@ -118,7 +115,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " NERDTree
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['\.DS_Store$']
-let g:NERDTreeMapOpenInTab='<ENTER>'
 
 " fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -291,7 +287,7 @@ set hidden                            " allow switching buffers w/o saving
 set splitbelow                        " split below by default
 set splitright                        " split right by default
 
-set colorcolumn=80                    " cuz percision matter
+set colorcolumn=100                   " cuz percision matter
 
 " Open folds to right and bottom
 set splitbelow
@@ -304,26 +300,20 @@ set splitright
 
 let mapleader=','                     " change the map leader
 
-" Indent using the <tab> key
-nnoremap <tab> >>
-nnoremap <S-tab> <<
-
 " Keep blocks selected after indenting
 vnoremap > >gv
 vnoremap < <gv
 
-" Fix the alt key for 'vim-move'
-" macOS can be weird sometimes
-nmap ˚ <A-k>
-nmap ∆ <A-j>
-vmap ˚ <A-k>
-vmap ∆ <A-j>
-
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 
-" Re-source .vimrc
+" Enable hlsearch before searching
+nnoremap / :set hlsearch<CR>/
+
+" Quick access to .vimrc
 nnoremap <leader>r :so $MYVIMRC<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Toggle pastemode
 nnoremap <leader>p :set paste!<CR>
@@ -331,11 +321,17 @@ nnoremap <leader>p :set paste!<CR>
 " Space open/closes folds
 nnoremap <space> za
 
+" Making working with buffers less painful
+nnoremap <leader>T :enew<CR>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
+nnoremap <leader>bq :bp <BAR> bd #<CR>
+
 " Disable arrow keys for now...
-noremap <left>  <nop>
+noremap <left> <nop>
 noremap <right> <nop>
-noremap <up>    <nop>
-noremap <down>  <nop>
+noremap <up> <nop>
+noremap <down> <nop>
 
 " ...and also in INSERT mode
 inoremap <left>  <nop>
@@ -361,19 +357,8 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 " Let's fix that
 nnoremap ; :
 
-" Copy to system clipboard
-vnoremap <C-c> "*y<CR>
-
 " Uppercase the current word
 " nnoremap <C-U> gUaw
-
-" Quckfix & location list
-nnoremap <leader>no :lopen<CR>
-nnoremap <leader>nc :lclose<CR>
-
-" Edit vimrc
-:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-:nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Toggle mouse support
 function! MouseToggle()
@@ -385,18 +370,12 @@ function! MouseToggle()
 endfunc
 nnoremap <leader>tm :call MouseToggle()<CR>
 
-" Enable hlsearch before searching
-nnoremap / :set hlsearch<CR>/
-
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
 
-" When u forgot to `sudo` a file
-cmap w!! w !sudo tee % >/dev/null
-
 " NERDtree stuff
-nnoremap <leader>/ :NERDTreeTabsToggle<CR>
-nnoremap <leader>0 :NERDTreeFocusToggle<CR>
+nnoremap <leader>/ :NERDTreeToggle<CR>
+nnoremap <leader>0 :NERDTreeFocus<CR>
 
 " fzf stuff
 nnoremap <C-p> :Files<CR>
@@ -406,12 +385,18 @@ nnoremap <leader>lc :Commits<CR>
 nnoremap <leader>lt :Filetypes<CR>
 nnoremap <leader>lm :Marks<CR>
 
+" Fix the alt key for 'vim-move'
+" macOS can be weird sometimes
+nnoremap ˚ <A-k>
+nnoremap ∆ <A-j>
+vnoremap ˚ <A-k>
+vnoremap ∆ <A-j>
+
 " Some abbreviations
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
-cnoreabbrev Tabe tabe
 cnoreabbrev qQ q!
 
 " }}}
