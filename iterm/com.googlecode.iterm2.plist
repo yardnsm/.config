@@ -993,7 +993,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/dotfiles/iterm</string>
+	<string>~/Downloads</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 459}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1039,9 +1039,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>391 418 918 381 0 0 1440 877 </string>
+	<string>72 1148 918 381 0 900 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>132 1031 1402 775 0 900 1920 1057 </string>
+	<string>33 987 1586 775 0 900 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>353 1161 930 452 0 900 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -1300,7 +1300,7 @@
 			<key>Blend</key>
 			<real>0.30000001192092896</real>
 			<key>Blink Allowed</key>
-			<false/>
+			<true/>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -1714,7 +1714,7 @@
 			<key>Log Directory</key>
 			<string></string>
 			<key>Minimum Contrast</key>
-			<real>0.0</real>
+			<real>0.23415249208860758</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1891,12 +1891,14 @@
 			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
+			<key>Unicode Version</key>
+			<integer>8</integer>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
-			<true/>
+			<false/>
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Cursor Guide</key>
@@ -1987,7 +1989,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-06-06T21:22:50Z</date>
+	<date>2017-06-09T16:52:52Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUSkippedVersion</key>

@@ -27,14 +27,17 @@ BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi blox_block__cwd_ng b
 # ---------------------------------------------
 # Custom blocks
 
+# Inidiaction when inside a tmux session
 blox_block__tmux() {
   [[ -n "$TMUX" ]] && echo "%F{yellow}t%f"
 }
 
+# Improved CWD block
 blox_block__cwd_ng() {
   echo "%F{140}%(4~|.../%3~|%~)%f"
 }
 
+# Indication of VI mode
 blox_block__vi() {
   local vim_mode_format="%F{yellow}[NORMAL]%f"
   echo "${${KEYMAP/vicmd/$vim_mode_format}/(main|viins)/}"
@@ -47,8 +50,8 @@ blox_block__vi() {
 blox_block__exec_time() {
   local stop=${cmd_timestamp_stop:-$EPOCHSECONDS}
   local start=${cmd_timestamp_start:-$stop}
-  integer elapsed=$stop-$start
-  (($elapsed > 5)) && echo "%F{yellow}$(blox_helper__humen_time $elapsed)%f"
+  local elapsed=$(( $stop - $start ))
+  [[ $elapsed -gt 5 ]] && echo "%F{yellow}$(blox_helper__humen_time $elapsed)%f"
 }
 
 blox_helper__humen_time() {
@@ -92,7 +95,7 @@ blox_hook__precmd_git_fetch() {
     async &!
     ASYNC_PROC=$!
 
-    # After the async process to prompt will be redrawer, so
+    # After the async process the prompt will be redrawen, so
     # we need to persist the current execution information
     # till the next redraw
     cmd_timestamp_persist=1
@@ -114,6 +117,7 @@ function TRAPUSR2() {
 # Set Vi mode
 
 bindkey -v
+bindkey "^?" backward-delete-char
 export KEYTIMEOUT=1
 
 function zle-keymap-select {
@@ -125,7 +129,6 @@ zle -N zle-keymap-select
 # ---------------------------------------------
 
 blox_helper__redraw_prompt() {
-  local tmp=$BLOX_CONF__NEWLINE
   BLOX_CONF__NEWLINE=false
 
   blox_hook__build_prompt

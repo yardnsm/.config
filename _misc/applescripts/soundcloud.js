@@ -5,35 +5,40 @@
  */
 
 let result = '';
-// result = 'SoundCloud is not active';
+
 if (Application('Google Chrome').running()) {
 
-  const appWindow = Application('Google Chrome').windows[0];
+  Application('Google Chrome').windows().forEach((appWindow) => {
 
-  if (appWindow.title().indexOf('\uD83D\uDD0A') !== -1) { // 🔊
-    appWindow.tabs().some((tab) => {
-      if (tab.url().toString().indexOf('soundcloud.com') !== -1) {
+    if (appWindow.title().includes('\uD83D\uDD0A')) { // 🔊
 
-        const tabName = tab.name();
+      appWindow.tabs().some((tab) => {
 
-        const isNotInPlayMode = [
-          'Your stream on',
-          'Hear your',
-          'Hear the tracks',
-          'Free Listening on',
-          'Recommended for you'
-        ].some((val) => tabName.indexOf(val) !== -1);
+        if (tab.url().includes('soundcloud.com')) {
 
-        if (isNotInPlayMode) {
-          return false;
+          const tabName = tab.name();
+
+          const isNotInPlayMode = [
+            'Your stream on',
+            'Hear your',
+            'Hear the tracks',
+            'Free Listening on',
+            'Recommended for you'
+          ].some((val) => tabName.includes(val));
+
+          if (isNotInPlayMode) {
+            return false;
+          }
+
+          result = tabName.length < 30 ?
+            tabName :
+            (tabName.substring(0, 30) + '...');
+
+          return true;
         }
+      });
+    }
+  });
 
-        result = tabName.length < 30 ?
-          tabName :
-          (tabName.substring(0, 30) + '...');
-        return true;
-      }
-    });
-  }
   result;
 }
