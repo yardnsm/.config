@@ -10,6 +10,7 @@ brew_install 'neovim/neovim/neovim'
 brew_install 'tmux'
 brew_install 'reattach-to-user-namespace'
 brew_install 'mysql'
+brew_install 'python'
 brew_install 'python3'
 brew_install 'shellcheck'
 
