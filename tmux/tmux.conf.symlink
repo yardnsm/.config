@@ -72,6 +72,15 @@ bind M set-option mouse
 unbind ^A
 bind ^A select-pane -t :.+
 
+# Add support for `sudolikeaboss`
+# Make sure to have `coreutils` installed. We use the full path cuz tmux.
+unbind l
+bind l run-shell \
+    "/usr/local/opt/coreutils/libexec/gnubin/timeout 3s sudolikeaboss > ~/.tmux-buffer-tmp || printf ''" \; \
+  load-buffer -b tmp-copy-buffer ~/.tmux-buffer-tmp \; \
+  paste-buffer -b tmp-copy-buffer -d \; \
+  run-shell -b "rm ~/.tmux-buffer-tmp"
+
 # Enable cursor shape modification in vim
 # (https://github.com/neovim/neovim/wiki/FAQ)
 set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'

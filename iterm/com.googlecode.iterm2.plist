@@ -26,6 +26,10 @@
 	<true/>
 	<key>Control</key>
 	<integer>1</integer>
+	<key>Coprocess MRU</key>
+	<array>
+		<string>/usr/local/bin/sudolikeaboss</string>
+	</array>
 	<key>CopyLastNewline</key>
 	<false/>
 	<key>CopySelection</key>
@@ -1039,9 +1043,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>72 1148 918 381 0 900 1920 1057 </string>
+	<string>41 152 1016 512 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>33 987 1586 775 0 900 1920 1057 </string>
+	<string>213 243 930 452 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>353 1161 930 452 0 900 1920 1057 </string>
 	<key>New Bookmarks</key>
@@ -1472,6 +1476,13 @@
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
+				</dict>
+				<key>0x5c-0x100000</key>
+				<dict>
+					<key>Action</key>
+					<integer>35</integer>
+					<key>Text</key>
+					<string>/usr/local/bin/sudolikeaboss</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
@@ -1989,11 +2000,9 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-06-09T16:52:52Z</date>
+	<date>2017-06-23T13:27:30Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.0.15</string>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2053,7 +2062,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.3</string>
+	<string>3.1.beta.5</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>

@@ -67,7 +67,6 @@ Plug 'benjie/neomake-local-eslint.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 
-
 call plug#end()
 
 " }}}
@@ -240,7 +239,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Toggle pastemode
-nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>tp :set paste!<CR>
 
 " Space open/closes folds
 nnoremap <space> za

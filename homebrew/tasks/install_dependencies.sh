@@ -13,6 +13,8 @@ brew_install 'mysql'
 brew_install 'python'
 brew_install 'python3'
 brew_install 'shellcheck'
+brew_install 'sudolikeaboss'
+brew_install 'coreutils'
 
 brew_install 'wget'
 brew_install 'tig'

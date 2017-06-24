@@ -13,7 +13,7 @@ tm_segment() {
 
   res+="#[bg=brightblack, fg=${color}, noreverse] ${text} #[bg=default, fg=default]"
 
-  echo -ne $res
+  echo -ne "$res"
 }
 
 tm_divider() {
@@ -24,9 +24,9 @@ tm_divider() {
 
 # Music
 
-itunes="$(osascript $DOTFILES/_misc/applescripts/itunes.scpt)"
-spotify="$(osascript $DOTFILES/_misc/applescripts/spotify.scpt)"
-soundcloud="$(osascript $DOTFILES/_misc/applescripts/soundcloud.js)"
+itunes="$(osascript "$DOTFILES"/_misc/applescripts/itunes.scpt)"
+spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
+soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
 
 music_res="N/A"
 
