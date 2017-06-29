@@ -8,7 +8,7 @@ The installation currently supports macOS and linux distros that ships with `apt
 
 ```console
 
-# Install Xcode Command Line Tools
+# Install Xcode Command Line Tools (if on mac)
 xcode-select --install
 
 # Clone this repo

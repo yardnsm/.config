@@ -12,7 +12,7 @@ fi
 print_success "Running on $(get_os)"
 
 # Check if Xcode CLI is installed
-if ! xcode-select --print-path &> /dev/null; then
+if [[ "$(get_os)" == 'macos' ]] && ! xcode-select --print-path &> /dev/null; then
   print_error "Xcode Command Line tools are not installed!"
   exit 1
 fi
