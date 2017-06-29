@@ -19,5 +19,5 @@ fi
 print_success "Xcode Command Line tools are installed"
 
 # Initializing git modules
-[[ $(pwd) == $DOTFILES ]] && git submodule update --recursive --remote
+[[ $(pwd) == $DOTFILES ]] && git submodule update --init --recursive --remote
 print_result $? "Initializing git modules"

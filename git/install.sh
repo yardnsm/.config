@@ -9,6 +9,7 @@ print_info "Setup local gitconfig"
 # Ask if neccesarry
 if ! [ -f $current_dir/gitconfig.local.symlink ]; then
   ask_for_confirmation "Need to create a local gitconfig? "
+  echo ""
 else
   print_status "A local gitconfig is already exist"
   REPLY='n'
