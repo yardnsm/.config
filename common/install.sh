@@ -6,7 +6,7 @@ current_dir="$(dirname "$BASH_SOURCE")"
 
 print_info "Create symlinks"
 
-symlinks=$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')
+symlinks=$(find -H "$DOTFILES" "$DOTFILES_LOCAL" -maxdepth 3 -name '*.symlink')
 
 for file in $symlinks; do
 

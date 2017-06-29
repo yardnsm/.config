@@ -27,6 +27,17 @@ print_divider
 if answer_is_yes; then
   check_for_sudo
   source $DOTFILES/_setup/execute.sh
+
+  if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
+    print_title "Running local installation script"
+
+    print_status "A dotfiles-local directory was found with
+       an install.sh script. It'll run in 3 seconds."
+
+    sleep 3
+
+    source $DOTFILES_LOCAL/install.sh
+  fi
 else
   print_error "aborted"
   exit 1

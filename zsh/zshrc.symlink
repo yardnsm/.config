@@ -12,6 +12,7 @@ setopt EXTENDED_GLOB
 
 # Core variables
 export DOTFILES=$HOME/dotfiles
+export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
 export CONFIG=$DOTFILES/_config
 
@@ -24,8 +25,8 @@ export REPORTTIME=8
 # the non-topic folders (starts with `_`)
 for config ($DOTFILES/(^_*/)#*.zsh) source $config
 
-# Source '~/.localrc' if exists
-[[ -a ~/.localrc ]] && source ~/.localrc
+# Source .zsh files from ~/dotfiles-local
+[[ -d "$DOTFILES_LOCAL" ]] && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
 
 # ---------------------------------------------
 
