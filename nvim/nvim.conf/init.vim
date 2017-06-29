@@ -49,7 +49,7 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'terryma/vim-multiple-cursors'
 
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
@@ -63,7 +63,6 @@ Plug 'kassio/neoterm'
 Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 
-" Language specific
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 
@@ -89,7 +88,7 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 set fillchars+=vert:\┃
 
 " Change the cursor shape depending on mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " }}}
 
@@ -207,10 +206,6 @@ set splitbelow                        " split below by default
 set splitright                        " split right by default
 
 set colorcolumn=100                   " cuz percision matter
-
-" Open folds to right and bottom
-set splitbelow
-set splitright
 
 " }}}
 

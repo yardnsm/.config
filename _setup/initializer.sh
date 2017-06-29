@@ -16,6 +16,7 @@ if [[ -z ${sourced+x} ]]; then
   source $current_dir/utils/ask.sh
   source $current_dir/utils/commands.sh
   source $current_dir/utils/messages.sh
+  source $current_dir/utils/os.sh
   source $current_dir/utils/spinner.sh
 
   source $current_dir/variables.sh

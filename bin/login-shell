@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Taken from https://github.com/nicknisi/dotfiles/blob/master/bin/login-shell
+
+shell=$(basename "$SHELL")
+
+if [[ -n "$(command -v reattach-to-user-namespace)" ]]; then
+    reattach-to-user-namespace -l "$shell"
+else
+    exec "$shell -l"
+fi

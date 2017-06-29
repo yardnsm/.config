@@ -16,5 +16,12 @@ for tdir in $DOTFILES/*/ ; do
       print_title "Current topic is '${tdir%/}'"
       source $DOTFILES/$tdir/install.sh
     fi
+
+    os=$(get_os)
+
+    if [[ -f $DOTFILES/$tdir/install-$os.sh ]]; then
+      print_title "Running os-specific installation for '${tdir%/}'"
+      source $DOTFILES/$tdir/install-$os.sh
+    fi
   fi
 done

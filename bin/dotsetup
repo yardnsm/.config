@@ -11,9 +11,10 @@ list_tasks() {
 
   topics=$(find -H "$DOTFILES" -type d -maxdepth 1 -name '*')
   options=()
+  os=$(get_os)
 
   for topic in $topics; do
-    if [[ -f $topic/install.sh ]] && [[ ! $topic == _* ]]; then
+    if [[ -f $topic/install.sh ]] || [[ -f $topic/install-$os.sh ]] && [[ ! $topic == _* ]]; then
       options+=($(basename $topic))
     fi
   done

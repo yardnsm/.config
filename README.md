@@ -4,7 +4,7 @@ These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I
 
 ## Installation
 
-**Note:** This only compatible with macOS at the moment.
+The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for ubuntu and debian).
 
 ```console
 

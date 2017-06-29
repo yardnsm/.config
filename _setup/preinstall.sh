@@ -5,11 +5,11 @@ current_dir="$(dirname "$BASH_SOURCE")"
 # ---------------------------------------------
 
 # Check that we're on a Mac
-if ! [ "$(uname -s)" == "Darwin" ]; then
-  print_error "Sorry brah, these dotfiles are mac-only!"
+if [[ "$(get_os)" == 'dafuk' ]]; then
+  print_error "Don't even try."
   exit 1
 fi
-print_success "Running on macOS"
+print_success "Running on $(get_os)"
 
 # Check if Xcode CLI is installed
 if ! xcode-select --print-path &> /dev/null; then
