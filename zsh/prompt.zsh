@@ -21,7 +21,7 @@ BLOX_BLOCK__SYMBOL_COLOR=140
 BLOX_BLOCK__GIT_CLEAN_SYMBOL='+'
 BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
-BLOX_SEG__UPPER_LEFT=(blox_block__tmux blox_block__bgjobs blox_block__symbol)
+BLOX_SEG__UPPER_LEFT=(blox_block__host blox_block__tmux blox_block__bgjobs blox_block__symbol)
 BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi blox_block__cwd_ng blox_block__nodejs blox_block__git)
 
 # ---------------------------------------------
