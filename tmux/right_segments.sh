@@ -24,32 +24,36 @@ tm_divider() {
 
 # Music
 
-itunes="$(osascript "$DOTFILES"/_misc/applescripts/itunes.scpt)"
-spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
-soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
+if [[ $(command -v osascript) ]]; then
+  itunes="$(osascript "$DOTFILES"/_misc/applescripts/itunes.scpt)"
+  spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
+  soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
 
-music_res="N/A"
+  music_res="N/A"
 
-[[ $soundcloud != "" ]] && music_res=$soundcloud
-[[ $spotify != "" ]] && music_res=$spotify
-[[ $itunes != "" ]] && music_res=$itunes
+  [[ $soundcloud != "" ]] && music_res=$soundcloud
+  [[ $spotify != "" ]] && music_res=$spotify
+  [[ $itunes != "" ]] && music_res=$itunes
 
-tm_segment "♫" cyan "$music_res"
-tm_divider
+  tm_segment "♫" cyan "$music_res"
+  tm_divider
+fi
 
 # ---------------------------------------------
 
 # Bettery status
 
-battery_percentage="$(pmset -g batt | awk '{print $3}' | grep '%')"
-battery_status="$(pmset -g batt | awk '{print $4}' | grep 'char')"
-battery_color="yellow"
-battery_symbol="⇋"
+if [[ $(command -v pmset) ]]; then
+  battery_percentage="$(pmset -g batt | awk '{print $3}' | grep '%')"
+  battery_status="$(pmset -g batt | awk '{print $4}' | grep 'char')"
+  battery_color="yellow"
+  battery_symbol="⇋"
 
-[[ $battery_status == 'discharging;' ]] && battery_color="magenta" && battery_symbol="↼"
+  [[ $battery_status == 'discharging;' ]] && battery_color="magenta" && battery_symbol="↼"
 
-tm_segment "$battery_symbol" $battery_color "${battery_percentage%?}"
-tm_divider
+  tm_segment "$battery_symbol" $battery_color "${battery_percentage%?}"
+  tm_divider
+fi
 
 # ---------------------------------------------
 
