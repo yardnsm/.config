@@ -13,7 +13,7 @@ apt_install() {
   if [[ ${apt_updated} = "" ]]; then
     print_status "Updating apt-get... \n"
     sudo apt-get update -qqy
-    apt_get_updated=true
+    apt_updated=true
   fi
 
   if (dpkg -s "$package" &> /dev/null) ; then
