@@ -15,6 +15,7 @@ brew_install 'python3'
 brew_install 'shellcheck'
 brew_install 'sudolikeaboss'
 brew_install 'coreutils'
+brew_install 'ansible'
 
 brew_install 'wget'
 brew_install 'tig'
