@@ -4,8 +4,6 @@
 
 print_info "Applications"
 
-brew_install 'android-file-transfer' 'cask'
-brew_install 'atom' 'cask'
 brew_install 'java' 'cask'
 brew_install 'github-desktop' 'cask'
 brew_install 'postman' 'cask'
@@ -15,23 +13,17 @@ brew_install 'sequel-pro' 'cask'
 brew_install 'vimr' 'cask'
 brew_install 'visual-studio-code' 'cask'
 
+brew_install '1password' 'cask'
+
 brew_install 'google-chrome' 'cask'
 brew_install 'google-chrome-canary' 'cask'
-brew_install 'firefox' 'cask'
 
-brew_install 'google-drive' 'cask'
 brew_install 'puush' 'cask'
-
 brew_install 'keepingyouawake' 'cask'
 brew_install 'scroll-reverser' 'cask'
 brew_install 'spectacle' 'cask'
 
-brew_install 'keycastr' 'cask'
-brew_install 'keeweb' 'cask'
-brew_install 'skype' 'cask'
 brew_install 'beardedspice' 'cask'
-brew_install 'caprine' 'cask'
-brew_install 'vlc' 'cask'
 brew_install 'transmission' 'cask'
 brew_install 'slack' 'cask'
 brew_install 'spotify' 'cask'
@@ -42,6 +34,12 @@ brew_install 'spotify' 'cask'
 # brew_install 'firefox-nightly' 'cask'
 # brew_install 'firefox-developeredition' 'cask'
 # brew_install 'opera' 'cask'
+# brew_install 'android-file-transfer' 'cask'
+# brew_install 'vlc' 'cask'
+# brew_install 'keycastr' 'cask'
+# brew_install 'skype' 'cask'
+# brew_install 'firefox' 'cask'
+# brew_install 'google-drive' 'cask'
 
 # ---------------------------------------------
 

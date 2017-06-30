@@ -15,7 +15,8 @@ list_tasks() {
 
   for topic in $topics; do
     if [[ -f $topic/install.sh ]] || [[ -f $topic/install-$os.sh ]] && [[ ! $topic == _* ]]; then
-      options+=($(basename $topic))
+      option=$(basename $topic)
+      [[ $option != 'dotfiles' ]] && options+=($option)
     fi
   done
 
