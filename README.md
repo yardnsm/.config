@@ -24,9 +24,9 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-You can also pass argument to the installation script
+You can also pass argument to the installation script:
 
-```console
+```
 Usage: ./install [options]
   Installs the dotfiles
 
