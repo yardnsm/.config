@@ -2,7 +2,7 @@
 
 # ---------------------------------------------
 
-# Get all topics
+# Get all topics (full path)
 get_all_topics() {
   find "$DOTFILES" \
     -maxdepth 1 \
@@ -14,7 +14,7 @@ get_all_topics() {
 
 # Check if a topic exists
 is_topic_exist() {
-  [[ -d $DOTFILES/$topic ]] &> /dev/null
+  test -d "$DOTFILES/$1"
   return $?
 }
 

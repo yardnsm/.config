@@ -108,11 +108,21 @@ main() {
           "exclude" )
             # 'only' should be in higher priority, so only if
             # $topic_to_install is empty, fill topic_to_ignore
-            [[ ${#topics_to_install} -eq 0 ]] && topics_to_ignore+=("$1")
+            if is_topic_exist "$1"; then
+              [[ ${#topics_to_install} -eq 0 ]] && topics_to_ignore+=("$1")
+            else
+              print_error "Topic $1 does not exist!"
+              exit 1
+            fi
             ;;
           "only" )
-            topics_to_ignore=()
-            topics_to_install+=("$1")
+            if is_topic_exist "$1"; then
+              topics_to_ignore=()
+              topics_to_install+=("$1")
+            else
+              print_error "Topic $1 does not exist!"
+              exit 1
+            fi
             ;;
           * )
             print_error "Unknown option $1";
