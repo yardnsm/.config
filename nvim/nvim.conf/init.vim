@@ -31,6 +31,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 call plug#begin($DOTFILES . '/nvim/nvim.conf/plugged')
 
 Plug 'whatyouhide/vim-gotham'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 
@@ -49,7 +50,7 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'terryma/vim-multiple-cursors'
 
-" Plug 'matze/vim-move'
+Plug 'matze/vim-move'
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
@@ -88,7 +89,7 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 set fillchars+=vert:\┃
 
 " Change the cursor shape depending on mode
-" let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " }}}
 

@@ -8,3 +8,7 @@ let g:airline#extensions#tabline#show_splits = 0
 
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+
+if !has("gui_running")
+
+endif
