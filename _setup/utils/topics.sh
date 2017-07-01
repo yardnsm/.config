@@ -43,8 +43,8 @@ install_specific_topic() {
 
 # Run the installation script for each topic
 install_topics() {
-  local topics_to_install=$1
-  local topics_to_ignore=$2
+  local topics_to_install=( $1 )
+  local topics_to_ignore=( $2 )
 
   local os
   os=$(get_os)

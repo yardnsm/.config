@@ -66,7 +66,7 @@ start_procedure() {
 # ---------------------------------------------
 
 print_help() {
-  echo "Usage: ./install [options]"
+  echo "Usage: ./install,sh [options]"
   echo "  Installs the dotfiles"
   echo ""
   echo "Options:"

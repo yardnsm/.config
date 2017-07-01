@@ -27,7 +27,7 @@ cd ~/dotfiles
 You can also pass argument to the installation script:
 
 ```
-Usage: ./install [options]
+Usage: ./install.sh [options]
   Installs the dotfiles
 
 Options:
