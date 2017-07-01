@@ -35,3 +35,6 @@ alias mv='mv -i'
 
 # chmod
 alias x+="chmod +x"
+
+# vim4life
+alias :q="exit"

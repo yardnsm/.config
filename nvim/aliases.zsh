@@ -1,2 +1,4 @@
-[[ $(command -v nvim) ]] && alias vim="nvim"
-alias v="vim"
+if [[ $(command -v nvim) ]]; then
+  alias vim="nvim"
+  alias v="vim"
+fi

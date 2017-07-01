@@ -5,35 +5,35 @@
 # Print in colors
 
 print_in_green() {
-  printf "\e[0;32m$1\e[0m"
+  printf "\e[0;32m%b\e[0m" "$1"
 }
 
 print_in_blue() {
-  printf "\e[0;34m$1\e[0m"
+  printf "\e[0;34m%b\e[0m" "$1"
 }
 
 print_in_purple() {
-  printf "\e[0;35m$1\e[0m"
+  printf "\e[0;35m%b\e[0m" "$1"
 }
 
 print_in_cyan() {
-  printf "\e[36m$1\e[0m"
+  printf "\e[36m%b\e[0m" "$1"
 }
 
 print_in_red() {
-  printf "\e[0;31m$1\e[0m"
+  printf "\e[0;31m%b\e[0m" "$1"
 }
 
 print_in_yellow() {
-  printf "\e[0;33m$1\e[0m"
+  printf "\e[0;33m%b\e[0m" "$1"
 }
 
 print_in_darkgrey() {
-  printf "\e[0;90m$1\e[0m"
+  printf "\e[0;90m%b\e[0m" "$1"
 }
 
 print_in_white() {
-  printf "\e[1;37m$1\e[0m"
+  printf "\e[1;37m%b\e[0m" "$1"
 }
 
 # ---------------------------------------------
@@ -72,11 +72,11 @@ print_success() {
 
 # Print the message based the last exit
 print_result() {
-  [ $1 -eq 0 ] \
+  [ "$1" -eq 0 ] \
     && print_success "$2" \
     || print_error "$2"
 
-  return $1
+  return "$1"
 }
 
 # Print a divider (newline)
@@ -98,8 +98,10 @@ print_welcome_message() {
 
 "
 
-  print_in_blue "  Base Dir: "; printf "$DOTFILES\n"
-  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Currently compatible with macOS Only \n"
+  print_in_blue "  Base Dir: "; printf "%s\n" "$DOTFILES"
+  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Mostly compatible with macOS \n"
+
+  echo ""
 }
 
 # Print finish message

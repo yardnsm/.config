@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-current_dir="$(dirname "$BASH_SOURCE")"
+current_dir="$(dirname "${BASH_SOURCE[0]}")"
 
 # ---------------------------------------------
 
@@ -17,11 +17,11 @@ for i in $HOME/Library/Preferences/IntelliJIdea*  \
 do
   if [[ -d $i ]]; then
 
-    print_info "Acting on $(basename $i)"
+    print_info "Acting on $(basename "$i")"
 
     # Copy themes
-    execute 'mkdir -p $i/colors && cp -f "$current_dir/files/colors"/* $i/colors' \
-    'Copy themes'
+    execute "mkdir -p $i/colors && cp -f '$current_dir/files/colors'/* $i/colors" \
+    "Copy themes"
 
   fi
 done

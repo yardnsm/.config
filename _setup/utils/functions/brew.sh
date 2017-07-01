@@ -16,7 +16,7 @@ brew_install() {
     brew_list=$(brew list && brew cask list)
   fi
 
-  if [[ $(echo ${brew_list} | grep "${formula}") ]]; then
+  if [[ "$(echo "${brew_list}" | grep "${formula}")" ]]; then
     print_success "$formula (already installed)"
   else
     execute "brew $cmd install $formula" "$formula"

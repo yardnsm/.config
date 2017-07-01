@@ -24,6 +24,23 @@ cd ~/dotfiles
 ./install.sh
 ```
 
+You can also pass argument to the installation script
+
+```console
+Usage: ./install [options]
+  Installs the dotfiles
+
+Options:
+  -y, --yes                        Automatically agree to install the dotfiles
+  -o, --only [...topics]           Specify topics to install and ignore everything else
+  -e, --exclude [...topics]        Specify topics to ignore
+  -h, --help                       Show this output
+
+Example:
+  $ ./install --exclude npm homebrew
+  $ ./install --only common git
+```
+
 ## Order and hierarchy
 
 - Directories starting with `_` are related to the repo itself (install files, utils, submodules...).

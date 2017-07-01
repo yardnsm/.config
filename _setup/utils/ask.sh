@@ -12,18 +12,18 @@ answer_is_yes() {
 # Ask a question
 ask() {
   print_question "$1"
-  read
+  read -r
 }
 
 # Ask a question for confirmation
 ask_for_confirmation() {
   print_question "$1 [y/N] "
-  read -n 1
+  read -r -n 1
 }
 
 # Get the last answer
 get_answer() {
-  printf "$REPLY"
+  printf "%s" "$REPLY"
 }
 
 # Ask for sudo permission

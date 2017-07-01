@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-current_dir="$(dirname "$BASH_SOURCE")"
-
 # ---------------------------------------------
 
 # Check that we're on a Mac
@@ -16,8 +14,8 @@ if [[ "$(get_os)" == 'macos' ]] && ! xcode-select --print-path &> /dev/null; the
   print_error "Xcode Command Line tools are not installed!"
   exit 1
 fi
-print_success "Xcode Command Line tools are installed"
+[[ "$(get_os)" == 'macos' ]] && print_success "Xcode Command Line tools are installed"
 
 # Initializing git modules
-[[ $(pwd) == $DOTFILES ]] && git submodule update --init --recursive --remote
+[[ $(pwd) == "$DOTFILES" ]] && git submodule update --init --recursive --remote -q
 print_result $? "Initializing git modules"

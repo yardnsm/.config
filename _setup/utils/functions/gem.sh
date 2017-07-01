@@ -15,7 +15,7 @@ gem_install() {
     gem_list=$(gem list)
   fi
 
-  if [[ $(echo ${gem_list} | grep "${package}") ]]; then
+  if [[ "$(echo "${gem_list}" | grep "${package}")" ]]; then
     print_success "$package (already installed)"
   else
     execute "gem install $package" "$package"
