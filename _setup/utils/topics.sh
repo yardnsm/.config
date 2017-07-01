@@ -18,6 +18,29 @@ is_topic_exist() {
   return $?
 }
 
+# Install a specific topic
+install_specific_topic() {
+  local topic=$1
+
+  if is_topic_exist "$topic"; then
+
+    # Check if has an install script
+    if [[ -f $DOTFILES/$topic/install.sh ]]; then
+      print_title "Current topic is '$topic'"
+      source "$DOTFILES/$topic/install.sh"
+    fi
+
+    # Check for os-specific installtion
+    if [[ -f $DOTFILES/$topic/install-$os.sh ]]; then
+      print_title "Running os-specific installation for '$topic'"
+      source "$DOTFILES/$topic/install-$os.sh"
+    fi
+  else
+    print_title "Current topic is '$topic'"
+    print_error "Topic $topic does not exist!"
+  fi
+}
+
 # Run the installation script for each topic
 install_topics() {
   local topics_to_install=$1
@@ -39,25 +62,8 @@ install_topics() {
       [[ $topic == "$ignored" ]] && is_ignored="true" && break
     done
 
-    [[ -n $is_ignored ]] && continue
-
-
-    if is_topic_exist "$topic"; then
-
-      # Check if has an install script
-      if [[ -f $DOTFILES/$topic/install.sh ]]; then
-        print_title "Current topic is '$topic'"
-        source "$DOTFILES/$topic/install.sh"
-      fi
-
-      # Check for os-specific installtion
-      if [[ -f $DOTFILES/$topic/install-$os.sh ]]; then
-        print_title "Running os-specific installation for '$topic'"
-        source "$DOTFILES/$topic/install-$os.sh"
-      fi
-    else
-      print_title "Current topic is '$topic'"
-      print_error "Topic $topic does not exist!"
+    if ! [[ -n $is_ignored ]]; then
+      install_specific_topic "$topic"
     fi
   done
 }

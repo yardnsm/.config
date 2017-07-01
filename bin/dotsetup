@@ -2,21 +2,24 @@
 
 # ---------------------------------------------
 
-source $DOTFILES/_setup/initializer.sh
+source "$DOTFILES/_setup/initializer.sh"
+
+# ---------------------------------------------
 
 list_tasks() {
 
   print_title "Getting ready"
   check_for_sudo
 
-  topics=$(find -H "$DOTFILES" -type d -maxdepth 1 -name '*')
-  options=()
+  local topics=( $(get_all_topics) )
+  local options=()
+
+  local os
   os=$(get_os)
 
-  for topic in $topics; do
-    if [[ -f $topic/install.sh ]] || [[ -f $topic/install-$os.sh ]] && [[ ! $topic == _* ]]; then
-      option=$(basename $topic)
-      [[ $option != 'dotfiles' ]] && options+=($option)
+  for topic in "${topics[@]}"; do
+    if [[ -f $topic/install.sh ]] || [[ -f $topic/install-$os.sh ]]; then
+      options+=( $(basename "$topic") )
     fi
   done
 
@@ -33,10 +36,8 @@ list_tasks() {
           exit 1;
         fi
 
-        print_title "Running topic: '$opt'"
-        source $DOTFILES/$opt/install.sh
-
-        break
+        install_specific_topic "$opt"
+        exit 0
         ;;
     esac
   done
@@ -44,18 +45,34 @@ list_tasks() {
 
 # ---------------------------------------------
 
-case "$1" in
-  "--install" ) . $DOTFILES/install.sh        ;;
-  "--tasks" )   list_tasks                    ;;
-  * )
-    echo "Usage: dotsetup [OPTIONS]                  "
-    echo "  Installs the dotfiles                    "
-    echo "                                           "
-    echo "Options:                                   "
-    echo "  --install         Runs the install script"
-    echo "  --tasks           Lists all tasks and    "
-    echo "  -h, --help        Show this output       "
-    echo "                                           "
-    exit 0
-    ;;
-esac
+print_help() {
+  echo "Usage: dotsetup [OPTIONS]                  "
+  echo "  Installs the dotfiles                    "
+  echo "                                           "
+  echo "Options:                                   "
+  echo "  --install         Runs the install script"
+  echo "  --tasks           Lists all tasks and    "
+  echo "  -h, --help        Show this output       "
+  echo "                                           "
+}
+
+# ---------------------------------------------
+
+main() {
+  case "$1" in
+    "--install" )
+      shift
+      source "$DOTFILES/install.sh" "$@"
+      ;;
+    "--tasks" )
+      list_tasks
+      exit 0
+      ;;
+    * )
+      print_help
+      exit 0
+      ;;
+  esac
+}
+
+main "$@"
