@@ -53,6 +53,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'matze/vim-move'
 
 Plug 'Valloric/YouCompleteMe'
+Plug 'ternjs/tern_for_vim'
+
 Plug 'Valloric/MatchTagAlways'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -66,6 +68,7 @@ Plug 'benjie/neomake-local-eslint.vim'
 
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
 
 call plug#end()
 
@@ -163,23 +166,9 @@ set tabstop=2                         " number of visual spaces per <tab>
 
 set autoread                          " detect when a file is changed
 
-" Backup files
-set nobackup
-" if &backupdir =~# '^\.,'
-"   let &backupdir = $HOME . '/.nvimtmp/backup,' . &backupdir
-" endif
-
-" Swap files
-set noswapfile
-" if &directory =~# '^\.,'
-"   let &directory = $HOME . '/.nvimtmp/swap,' . &directory
-" endif
-
-" Undo files
-set noundofile
-" if &undodir =~# '^\.\%(,\|$\)'
-"   let &undodir = $HOME . '/.nvimtmp/undo,' . &undodir
-" endif
+set nobackup                          " disable backups
+set noswapfile                        " disable swaps
+set noundofile                        " disable undofiles
 
 " }}}
 
@@ -222,6 +211,10 @@ nnoremap k gk
 " Keep blocks selected after indenting
 vnoremap > >gv
 vnoremap < <gv
+
+" Location window
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>lq :lclose<CR>
 
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>

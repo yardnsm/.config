@@ -10,4 +10,7 @@ let g:neomake_error_sign = {
   \ 'texthl': 'ErrorMsg'
   \ }
 
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = [
+  \ 'eslint',
+  \ 'xo'
+  \ ]
