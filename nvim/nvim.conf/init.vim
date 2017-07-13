@@ -214,7 +214,7 @@ vnoremap < <gv
 
 " Location window
 nnoremap <leader>lo :lopen<CR>
-nnoremap <leader>lq :lclose<CR>
+nnoremap <leader>lc :lclose<CR>
 
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
