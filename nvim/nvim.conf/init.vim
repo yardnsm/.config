@@ -291,6 +291,9 @@ nnoremap <leader>tm :call MouseToggle()<CR>
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
 
+" Copy to clipboard
+vnoremap <C-c> "+y
+
 " Some abbreviations
 cnoreabbrev W w
 cnoreabbrev Q q
