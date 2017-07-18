@@ -18,8 +18,26 @@
   ll = log --stat --abbrev-commit
   my = !git log --branches=* --no-merges --pretty=format:'%C(yellow bold)%h %Cblue%ad%Cgreen%d %Creset%s' --date=short --author=\"$(git config user.name)\"
 
+  reset-hard = reset --hard HEAD
+  clean4realz = clean -f
+
 [push]
   default = simple
+
+[merge]
+  tool = vimdiff
+
+[mergetool]
+  prompt = true
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[difftool]
+  prompt = false
+
+[diff]
+  tool = vimdiff
 
 [color]
   diff = auto

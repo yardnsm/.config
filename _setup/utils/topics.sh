@@ -44,7 +44,7 @@ install_specific_topic() {
 # Run the installation script for each topic
 install_topics() {
   local topics_to_install=( $1 )
-  local topics_to_ignore=( $2 )
+  local topics_to_exclude=( $2 )
 
   local os
   os=$(get_os)
@@ -58,7 +58,7 @@ install_topics() {
 
     # Check if needs to be ignored
     is_ignored=""
-    for ignored in "${topics_to_ignore[@]}"; do
+    for ignored in "${topics_to_exclude[@]}"; do
       [[ $topic == "$ignored" ]] && is_ignored="true" && break
     done
 

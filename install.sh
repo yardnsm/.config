@@ -9,9 +9,26 @@ source "$current_dir/_setup/initializer.sh"
 # ---------------------------------------------
 
 declare topics_to_install=()
-declare topics_to_ignore=()
+declare topics_to_exclude=()
 declare current_flag=""
-declare auto_yes=""
+
+# ---------------------------------------------
+
+install_local_dotfiles() {
+
+  print_title "Running local installation script"
+
+  if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
+    print_status "A dotfiles-local directory was found with
+       an install.sh script. It'll run in 3 seconds."
+
+    sleep 3
+
+    source "$DOTFILES_LOCAL/install.sh"
+  else
+    print_status "Mo local installation script was found"
+  fi
+}
 
 # ---------------------------------------------
 
@@ -22,8 +39,8 @@ start_procedure() {
   [[ ${#topics_to_install} -ne 0 ]] && \
     print_status "Topics to install: ${topics_to_install[*]}"
 
-  [[ ${#topics_to_ignore} -ne 0 ]] && \
-    print_status "Topics to exclude: ${topics_to_ignore[*]}"
+  [[ ${#topics_to_exclude} -ne 0 ]] && \
+    print_status "Topics to exclude: ${topics_to_exclude[*]}"
 
   print_title "Getting ready"
 
@@ -42,18 +59,10 @@ start_procedure() {
   if answer_is_yes || [[ -n $auto_yes ]]; then
     check_for_sudo
 
-    install_topics "${topics_to_install[*]}" "${topics_to_ignore[*]}"
+    install_topics "${topics_to_install[*]}" "${topics_to_exclude[*]}"
 
-    if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
-      print_title "Running local installation script"
+    install_local_dotfiles
 
-      print_status "A dotfiles-local directory was found with
-      an install.sh script. It'll run in 3 seconds."
-
-      sleep 3
-
-      source "$DOTFILES_LOCAL/install.sh"
-    fi
   else
     print_error "aborted"
     exit 1
@@ -70,10 +79,10 @@ print_help() {
   echo "  Installs the dotfiles"
   echo ""
   echo "Options:"
-  echo "  -y, --yes                        Automatically agree to install the dotfiles"
-  echo "  -o, --only [...topics]           Specify topics to install and ignore everything else"
-  echo "  -e, --exclude [...topics]        Specify topics to ignore"
-  echo "  -h, --help                       Show this output"
+  echo "  -o, --only [topics]           Specify topics to install and ignore everything else"
+  echo "  -e, --exclude [topics]        Specify topics to exclude"
+  echo "  --install-local               Run the local installation script"
+  echo "  -h, --help                    Show this output"
   echo ""
   echo "Example:"
   echo "  $ ./install --exclude npm homebrew"
@@ -94,6 +103,10 @@ main() {
         current_flag="exclude"
         shift
         ;;
+      --install-local )
+        install_local_dotfiles
+        exit 0
+        ;;
       -o | --only )
         current_flag="only"
         shift
@@ -109,7 +122,7 @@ main() {
             # 'only' should be in higher priority, so only if
             # $topic_to_install is empty, fill topic_to_ignore
             if is_topic_exist "$1"; then
-              [[ ${#topics_to_install} -eq 0 ]] && topics_to_ignore+=("$1")
+              [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$1")
             else
               print_error "Topic $1 does not exist!"
               exit 1
@@ -117,7 +130,7 @@ main() {
             ;;
           "only" )
             if is_topic_exist "$1"; then
-              topics_to_ignore=()
+              topics_to_exclude=()
               topics_to_install+=("$1")
             else
               print_error "Topic $1 does not exist!"
