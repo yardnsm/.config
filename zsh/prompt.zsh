@@ -39,7 +39,7 @@ blox_block__cwd_ng() {
 
 # Indication of VI mode
 blox_block__vi() {
-  local vim_mode_format="%F{yellow}[NORMAL]%f"
+  local vim_mode_format="%B%F{yellow}[NORMAL]%f%b"
   echo "${${KEYMAP/vicmd/$vim_mode_format}/(main|viins)/}"
 }
 

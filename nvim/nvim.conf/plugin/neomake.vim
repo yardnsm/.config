@@ -12,5 +12,4 @@ let g:neomake_error_sign = {
 
 let g:neomake_javascript_enabled_makers = [
   \ 'eslint',
-  \ 'xo'
   \ ]
