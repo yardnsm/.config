@@ -30,4 +30,5 @@ for config ($DOTFILES/(^_*/)#*.zsh) source $config
 
 # ---------------------------------------------
 
+# Setting fpath
 fpath=($ZSH/functions $fpath)

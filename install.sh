@@ -75,19 +75,23 @@ start_procedure() {
 # ---------------------------------------------
 
 print_help() {
-  echo "Usage: ./install,sh [options]"
-  echo "  Installs the dotfiles"
-  echo ""
-  echo "Options:"
-  echo "  -o, --only [topics]           Specify topics to install and ignore everything else"
-  echo "  -e, --exclude [topics]        Specify topics to exclude"
-  echo "  --install-local               Run the local installation script"
-  echo "  -h, --help                    Show this output"
-  echo ""
-  echo "Example:"
-  echo "  $ ./install --exclude npm homebrew"
-  echo "  $ ./install --only common git"
-  echo ""
+  cat <<EOF
+
+  Installs the dotfiles
+
+  Usage
+    ./install.sh [options]
+
+  Options
+    -o, --only              Topics to install only
+    -e, --exclude           Topics so exclude
+    --install-local         Run the local installation script
+    -h, --help              Show help output
+
+  Examples
+    ./install.sh --exclude npm homebrew
+    ./install.sh --only common git
+EOF
 }
 
 # ---------------------------------------------

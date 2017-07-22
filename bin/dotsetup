@@ -6,6 +6,18 @@ source "$DOTFILES/_setup/initializer.sh"
 
 # ---------------------------------------------
 
+declare -r GIT_REMOVE_URL="https://github.com/yardnsm/dotfiles.git"
+[[ -z $DOTFILES ]] && declare -r DOTFILES=$HOME/dotfiles
+
+# ---------------------------------------------
+
+run_install() {
+  shift
+  source "$DOTFILES/install.sh" "$@"
+}
+
+# ---------------------------------------------
+
 list_tasks() {
 
   print_title "Getting ready"
@@ -45,32 +57,73 @@ list_tasks() {
 
 # ---------------------------------------------
 
+_execute_directly() {
+  eval "$1" &> /dev/null
+  print_result $? "${2}"
+}
+
+update_dotfiles() {
+  print_title "Updating dotfiles"
+
+  _execute_directly "cd $DOTFILES || exit 1" \
+    "Performing inside the dotfiles repo"
+
+  _execute_directly "git pull --rebase" \
+    "Pull latest changes"
+
+  _execute_directly "git submodule update --init --recursive --remote" \
+    "Update submodules"
+
+  echo ""
+  print_success "Done!"
+}
+
+# ---------------------------------------------
+
 print_help() {
-  echo "Usage: dotsetup [OPTIONS]                  "
-  echo "  Installs the dotfiles                    "
-  echo "                                           "
-  echo "Options:                                   "
-  echo "  --install         Runs the install script"
-  echo "  --tasks           Lists all tasks and    "
-  echo "  -h, --help        Show this output       "
-  echo "                                           "
+  cat <<EOF
+
+  Dotfiles maintenance
+
+  Usage
+    dotsetup <command> [options]
+
+  Commands
+    install                 Run the install script
+    tasks                   List and run tasks
+    update                  Fetch the latest version
+
+  Options
+    -h, --help              Show help output
+
+  Options are being passed to the install script
+  when running 'install' command.
+EOF
 }
 
 # ---------------------------------------------
 
 main() {
   case "$1" in
-    "--install" )
-      shift
-      source "$DOTFILES/install.sh" "$@"
+    install )
+      run_install "$@"
+      exit 0
       ;;
-    "--tasks" )
+    tasks )
       list_tasks
       exit 0
       ;;
-    * )
+    update )
+      update_dotfiles
+      exit 0
+      ;;
+    "" | -h | --help)
       print_help
       exit 0
+      ;;
+    * )
+      print_error "Unknown option $1";
+      exit 1;
       ;;
   esac
 }
