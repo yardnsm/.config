@@ -3,7 +3,6 @@ source <(antibody init)
 
 antibody bundle <<EOBUNDLES
   rupa/z
-  # yardnsm/blox-zsh-theme
   zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-completions
   denysdovhan/gitio-zsh

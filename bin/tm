@@ -66,8 +66,14 @@ list_actions() {
 
 # ---------------------------------------------
 
-if cmd_exists 'tmux'; then
-  [[ "$TMUX" == "" ]] && list_sessions || list_actions
-else
-  print_error "tmux is not installed!"
-fi
+main () {
+  if cmd_exists 'tmux'; then
+    [[ "$TMUX" == "" ]] \
+      && list_sessions \
+      || list_actions
+  else
+    print_error "tmux is not installed!"
+  fi
+}
+
+main "$@"

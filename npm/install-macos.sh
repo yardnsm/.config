@@ -26,9 +26,3 @@ npm_install 'hicat'
 npm_install 'speed-test'
 npm_install 'fast-cli'
 npm_install 'emoj'
-
-# Stuff that should'nt be installed
-# golbaly, preffer locally.
-# npm_install 'eslint'
-# npm_install 'babel-cli'
-# npm_install 'webpack'

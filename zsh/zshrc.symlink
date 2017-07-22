@@ -26,7 +26,8 @@ export REPORTTIME=8
 for config ($DOTFILES/(^_*/)#*.zsh) source $config
 
 # Source .zsh files from ~/dotfiles-local
-[[ -d "$DOTFILES_LOCAL" ]] && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
+[[ -d "$DOTFILES_LOCAL" ]] \
+  && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
 
 # ---------------------------------------------
 

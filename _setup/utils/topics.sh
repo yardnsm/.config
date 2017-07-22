@@ -22,6 +22,9 @@ is_topic_exist() {
 install_specific_topic() {
   local topic=$1
 
+  local os
+  os=$(get_os)
+
   if is_topic_exist "$topic"; then
 
     # Check if has an install script
@@ -45,9 +48,6 @@ install_specific_topic() {
 install_topics() {
   local topics_to_install=( $1 )
   local topics_to_exclude=( $2 )
-
-  local os
-  os=$(get_os)
 
   [[ ${#topics_to_install} -eq 0 ]] && topics_to_install=( $(get_all_topics) )
 
