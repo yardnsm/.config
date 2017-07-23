@@ -6,8 +6,8 @@ source "$DOTFILES/_setup/initializer.sh"
 
 # ---------------------------------------------
 
-declare -r GIT_REMOVE_URL="https://github.com/yardnsm/dotfiles.git"
-[[ -z $DOTFILES ]] && declare -r DOTFILES=$HOME/dotfiles
+[[ -z $DOTFILES ]] && \
+  declare -r DOTFILES=$HOME/dotfiles
 
 # ---------------------------------------------
 
@@ -74,7 +74,8 @@ update_dotfiles() {
   _execute_directly "git submodule update --init --recursive --remote" \
     "Update submodules"
 
-  echo ""
+  print_divider
+
   print_success "Done!"
 }
 
