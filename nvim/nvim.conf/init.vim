@@ -52,8 +52,11 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'matze/vim-move'
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'ternjs/tern_for_vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/neco-vim'
+Plug 'zchee/deoplete-zsh'
+Plug 'Shougo/neco-syntax'
 
 Plug 'Valloric/MatchTagAlways'
 
@@ -69,6 +72,7 @@ Plug 'benjie/neomake-local-eslint.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'ternjs/tern_for_vim'
 
 call plug#end()
 
