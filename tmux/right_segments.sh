@@ -10,8 +10,8 @@ tm_segment() {
   res=""
 
   [[ $icon == "" ]] || res+="#[bg=${color}, fg=brightblack, noreverse] ${icon} "
-
-  res+="#[bg=brightblack, fg=${color}, noreverse] ${text} #[bg=default, fg=default]"
+  [[ $text == "" ]] || res+="#[bg=brightblack, fg=${color}, noreverse] ${text} "
+  res+="#[bg=default, fg=default]"
 
   echo -ne "$res"
 }
@@ -19,6 +19,15 @@ tm_segment() {
 tm_divider() {
   echo -ne " #[none]"
 }
+
+# ---------------------------------------------
+
+# Zoomed indicator
+
+if tmux list-panes -F '#F' | grep -q Z; then
+  tm_segment "Z" red ""
+  tm_divider
+fi
 
 # ---------------------------------------------
 
