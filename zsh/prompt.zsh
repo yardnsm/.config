@@ -19,7 +19,9 @@ BLOX_BLOCK__GIT_CLEAN_SYMBOL='+'
 BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
 BLOX_SEG__UPPER_LEFT=(blox_block__host blox_block__tmux blox_block__bgjobs blox_block__symbol)
-BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi blox_block__cwd_ng blox_block__nodejs blox_block__git)
+
+BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi \
+  blox_block__cwd_ng blox_block__nodejs blox_block__git blox_block__git_enhanced)
 
 # ---------------------------------------------
 # Custom blocks
@@ -71,6 +73,28 @@ blox_hook__preexec() {
 blox_hook__precmd_exec_time() {
   [[ $cmd_timestamp_persist != 1 ]] && unset cmd_timestamp_start
 }
+
+# ---------------------------------------------
+# More git stuff
+
+blox_block__git_enhanced_helper__stashed() {
+  local color="cyan"
+  local char="\$"
+
+  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+    echo "%F{${color}}${char}%{$reset_color%}"
+  fi
+}
+
+blox_block__git_enhanced() {
+  if blox_block__git_helper__is_git_repo; then
+
+    local stashed="$(blox_block__git_enhanced_helper__stashed)"
+
+    echo "$stashed"
+  fi
+}
+
 
 # ---------------------------------------------
 # Async 'git fetch'
