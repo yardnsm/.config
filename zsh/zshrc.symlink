@@ -33,3 +33,10 @@ for config ($DOTFILES/*/*.zsh) source $config
 
 # Setting fpath
 fpath=($ZSH/functions $fpath)
+
+# ---------------------------------------------
+
+# TODO: extract to its own topic
+
+# Setting fzf
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh

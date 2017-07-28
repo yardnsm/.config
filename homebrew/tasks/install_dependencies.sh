@@ -19,6 +19,7 @@ brew_install 'ansible'
 
 brew_install 'wget'
 brew_install 'tig'
+brew_install 'fzf'
 brew_install 'openssl'
 brew_install 'heroku'
 brew_install 'hub'
