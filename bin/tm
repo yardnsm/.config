@@ -19,7 +19,7 @@ main() {
       && tmux $change -t "$1"); return
   fi
 
-  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) \
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --height 10 --exit-0) \
     && tmux $change -t "$session" \
     || print_info "No sessions found"
 }

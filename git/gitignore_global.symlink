@@ -28,3 +28,5 @@ Temporary Items
 # Vim stuff..
 *.swap
 .netrwhist
+
+.tern-port

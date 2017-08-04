@@ -50,6 +50,8 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'matze/vim-move'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
