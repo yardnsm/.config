@@ -28,10 +28,9 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " ------------------------------------------------------------------------------
 " Plugins {{{
 
-call plug#begin($DOTFILES . '/nvim/nvim.conf/plugged')
+call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
 Plug 'whatyouhide/vim-gotham'
-Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 
@@ -45,17 +44,16 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-characterize'
 
 Plug 'jiangmiao/auto-pairs'
-
 Plug 'terryma/vim-multiple-cursors'
+Plug 'matze/vim-move'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'matze/vim-move'
-
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' } " using yarn here since nvm can screw up npm's $PATH
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
 Plug 'Shougo/neco-syntax'

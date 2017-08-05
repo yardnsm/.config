@@ -5,12 +5,9 @@ alias sudo="sudo "
 alias reload='source ~/.zshrc'
 
 # Quick navigation
-alias hm="cd ~"
 alias dt="cd ~/Desktop"
 alias dl="cd ~/Downloads"
 alias dev="cd ~/dev"
-alias ghb="cd ~/dev/github"
-alias glb="cd ~/dev/gitlab"
 
 # Filesystem aliases
 alias ..='cd ..'
@@ -36,5 +33,8 @@ alias mv='mv -i'
 # chmod
 alias x+="chmod +x"
 
-# vim4life
+# Exit like.. vim
 alias :q="exit"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'

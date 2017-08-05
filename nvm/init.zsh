@@ -2,7 +2,6 @@
 nvm alias default system &> /dev/null
 
 # Automate `nvm use`
-autoload -U add-zsh-hook
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use

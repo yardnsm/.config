@@ -1,5 +1,4 @@
 # Change window name to the current git dir
-autoload -U add-zsh-hook
 change_tmux_window_name() {
   ! [[ -n $TMUX ]] && return;
 

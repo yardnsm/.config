@@ -18,6 +18,13 @@ run_install() {
 
 # ---------------------------------------------
 
+run_install_local() {
+  shift
+  source "$DOTFILES_LOCAL/install.sh" "$@"
+}
+
+# ---------------------------------------------
+
 list_tasks() {
 
   print_title "Getting ready"
@@ -74,9 +81,22 @@ update_dotfiles() {
   _execute_directly "git submodule update --init --recursive --remote" \
     "Update submodules"
 
+  # -----------------------------------
+
+  print_title "Updating local dotfiles"
+
+  _execute_directly "cd $DOTFILES_LOCAL || exit 1" \
+    "Performing inside the local dotfiles repo"
+
+  _execute_directly "git pull --rebase" \
+    "Pull latest changes"
+
+  _execute_directly "git submodule update --init --recursive --remote" \
+    "Update submodules"
+
   print_divider
 
-  print_success "Done!"
+  print_success "🤘  Done! Run \`reload\` in order to see full changes."
 }
 
 # ---------------------------------------------
@@ -91,6 +111,7 @@ print_help() {
 
   Commands
     install                 Run the install script
+    install-local           run the local dotfiles installation script
     tasks                   List and run tasks
     update                  Fetch the latest version
 
@@ -108,6 +129,10 @@ main() {
   case "$1" in
     install )
       run_install "$@"
+      exit 0
+      ;;
+    install-local )
+      run_install_local "$@"
       exit 0
       ;;
     tasks )
