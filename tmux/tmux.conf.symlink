@@ -66,6 +66,9 @@ bind y setw synchronize-panes
 # Toggle mouse mode
 bind M set-option mouse
 
+# Clear all panes
+bind -n C-b setw synchronize-panes \; send-keys clear Enter \; setw synchronize-panes
+
 # Quick pane cycling
 unbind ^A
 bind ^A select-pane -t :.+
@@ -111,3 +114,16 @@ bind-key -Tcopy-mode-vi Escape send -X cancel
 # ---------------------------------------------
 
 source ~/dotfiles/tmux/tmux_theme.sh
+
+# ---------------------------------------------
+
+# POC #1
+
+new-session -d -s "__tmp_tmp"
+unbind c
+bind c move-window -s "__tmp_tmp" \; new-session -d -s "__tmp_tmp"
+
+unbind |
+unbind -
+bind | move-pane -h -s "__tmp_tmp":1 \; new-session -d -s "__tmp_tmp"
+bind - move-pane -v -s "__tmp_tmp":1 \; new-session -d -s "__tmp_tmp"

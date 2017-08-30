@@ -69,9 +69,9 @@ Plug 'kassio/neoterm'
 Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim'
 
 call plug#end()

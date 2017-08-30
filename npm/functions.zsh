@@ -1,11 +1,4 @@
 function yolo() {
-  local install_cmd='npm install'
-
-  if [[ -f yarn.lock ]]; then
-    install_cmd='yarn install --no-lockfile'
-  fi
-
-  echo "\n  > rm -rf node_modules && $install_cmd\n"
-
-  eval "rm -rf node_modules && $install_cmd"
+  echo "\n  > rm -rf node_modules && yarn install --no-lockfile\n"
+  eval "rm -rf node_modules && yarn install --no-lockfile"
 }

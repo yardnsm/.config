@@ -100,6 +100,7 @@ blox_block__git_enhanced() {
 # Async 'git fetch'
 
 ASYNC_PROC=0
+BLOX_CONF__ENABLE_ASYNC=true
 
 blox_hook__precmd_git_fetch() {
   async() {
@@ -112,7 +113,7 @@ blox_hook__precmd_git_fetch() {
     kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
   fi
 
-  if blox_block__git_helper__is_git_repo; then
+  if blox_block__git_helper__is_git_repo && [[ $BLOX_CONF__ENABLE_ASYNC == true ]]; then
     async &!
     ASYNC_PROC=$!
 
