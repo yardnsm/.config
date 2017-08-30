@@ -14,7 +14,6 @@ setopt EXTENDED_GLOB
 export DOTFILES=$HOME/dotfiles
 export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
-export CONFIG=$DOTFILES/_config
 
 # Display info for tasks long than 8sec
 export REPORTTIME=8

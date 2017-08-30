@@ -11,12 +11,5 @@ print_result $? "Creating symlink for nvim.conf"
 
 print_info "Installing plugins"
 
-nvim -c 'PlugInstall' -c 'qa!'
+nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qa!'
 print_result $? "Installed plugins"
-
-# ---------------------------------------------
-
-print_info "Configuring YCM"
-
-execute "$DOTFILES/nvim/nvim.conf/plugged/YouCompleteMe/install.py --tern-completer" \
-  "Installing YCM"
