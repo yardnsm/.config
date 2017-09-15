@@ -10,6 +10,7 @@ brew_install() {
 
   formula="$1"
   cmd="$2"
+  args="$3"
 
   if [[ ${brew_list} = "" ]]; then
     print_status "Fetching installed packages. This could take a while...\n"
@@ -19,6 +20,6 @@ brew_install() {
   if [[ "$(echo "${brew_list}" | grep "${formula}")" ]]; then
     print_success "$formula (already installed)"
   else
-    execute "brew $cmd install $formula" "$formula"
+    execute "brew $cmd install $formula $args" "$formula"
   fi
 }

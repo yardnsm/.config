@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 brew_install 'node'
+brew_install 'yarn' '' '--without-node'
 brew_install 'rbenv'
 brew_install 'git'
 brew_install 'zsh'

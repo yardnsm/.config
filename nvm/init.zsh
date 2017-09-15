@@ -1,14 +1,21 @@
-# Setting default
-nvm alias default system &> /dev/null
-
 # Automate `nvm use`
-load-nvmrc() {
+
+_is_nvm_loaded() {
+  type "nvm_find_nvmrc" > /dev/null 2>&1
+}
+
+_nvmrc_autoload_hook() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    return;
+  fi
+
+  _is_nvm_loaded || return
+
+  if [[ $(nvm version) != $(nvm version default)  ]]; then
     echo "Reverting to nvm default version"
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+
+add-zsh-hook chpwd _nvmrc_autoload_hook && _nvmrc_autoload_hook
