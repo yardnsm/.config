@@ -6,17 +6,13 @@ let g:airline#extensions#tabline#tab_min_count = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_splits = 0
 
+let g:airline#extensions#ale#enabled = 1
+
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" let g:airline_left_alt_sep = '┃'
-" let g:airline_right_alt_sep = '┃'
 
 let g:airline_symbols = {}
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = 'ro'
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
-
-if !has("gui_running")
-
-endif

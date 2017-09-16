@@ -33,46 +33,41 @@ call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 Plug 'whatyouhide/vim-gotham'
 
 Plug 'vim-airline/vim-airline'
-
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/gist-vim'
-Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-characterize'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'matze/vim-move'
+Plug 'Valloric/MatchTagAlways'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'matze/vim-move'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' } " using yarn here since nvm can screw up npm's $PATH
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
 Plug 'Shougo/neco-syntax'
-
-Plug 'Valloric/MatchTagAlways'
+Plug 'zchee/deoplete-jedi'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-
 Plug 'junegunn/vim-emoji'
-
-Plug 'kassio/neoterm'
-Plug 'neomake/neomake'
-Plug 'benjie/neomake-local-eslint.vim'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim'
+
+Plug 'python-mode/python-mode'
 
 call plug#end()
 
@@ -156,6 +151,7 @@ set gdefault                          " make search&replaces global for the line
 
 set autoindent
 set smartindent
+set smarttab
 set expandtab                         " spaces FTW
 set shiftround                        " round indent to multiples of shiftwidth
 
@@ -227,7 +223,7 @@ nnoremap <leader><space> :set hlsearch!<CR>
 nnoremap / :set hlsearch<CR>/
 
 " Quick access to .vimrc
-nnoremap <leader>r :so $MYVIMRC<CR>
+nnoremap <leader>fR :so $MYVIMRC<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 

@@ -7,12 +7,13 @@ current_dir="$(dirname "${BASH_SOURCE[0]}")"
 # Check if sourced before
 if [[ -z ${sourced+x} ]]; then
 
-  sourced="true"
+  sourced=true
 
   source "$current_dir/utils/functions/apt.sh"
   source "$current_dir/utils/functions/brew.sh"
   source "$current_dir/utils/functions/gem.sh"
   source "$current_dir/utils/functions/npm.sh"
+  source "$current_dir/utils/functions/pip.sh"
 
   source "$current_dir/utils/ask.sh"
   source "$current_dir/utils/commands.sh"
