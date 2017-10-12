@@ -23,6 +23,12 @@ BLOX_SEG__UPPER_LEFT=(blox_block__host blox_block__tmux blox_block__bgjobs blox_
 BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi \
   blox_block__cwd_ng blox_block__nodejs_ng blox_block__git blox_block__git_enhanced)
 
+# Custom strcture in SSH
+if [[ -n $SSH_CONNECTION ]]; then
+  BLOX_SEG__UPPER_RIGHT=(blox_block__vi blox_block__cwd_ng blox_block__git)
+  BLOX_BLOCK__GIT_UNPULLED_SYMBOL=''
+fi
+
 # ---------------------------------------------
 # Custom blocks
 
