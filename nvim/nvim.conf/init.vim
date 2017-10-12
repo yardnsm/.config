@@ -118,10 +118,6 @@ if !has("gui_running")
   hi Folded ctermbg=green
 endif
 
-if has("gui_running")
-  set transparency=0
-endif
-
 " }}}
 
 " ------------------------------------------------------------------------------
@@ -200,9 +196,19 @@ set colorcolumn=100                   " cuz percision matter
 " }}}
 
 " ------------------------------------------------------------------------------
+" GUI stuff {{{
+"
+if has("gui_running")
+  set cursorline                      " highlight the current line
+endif
+
+" }}}
+
+" ------------------------------------------------------------------------------
 " Mappings and abbreviations {{{
 
 let mapleader=','                     " change the map leader
+let maplocalleader=','
 
 " Move vertically by visual line
 nnoremap j gj
@@ -220,15 +226,15 @@ nnoremap <leader>lc :lclose<CR>
 nnoremap <leader><space> :set hlsearch!<CR>
 
 " Enable hlsearch before searching
-nnoremap / :set hlsearch<CR>/
+" AND also use 'very magic' mode
+nnoremap / :set hlsearch<CR>/\v
+vnoremap / :set hlsearch<CR>/\v
+nnoremap ? :set hlsearch<CR>?\v
+vnoremap ? :set hlsearch<CR>?\v
 
 " Quick access to .vimrc
-nnoremap <leader>fR :so $MYVIMRC<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-
-" Toggle pastemode
-nnoremap <leader>tp :set paste!<CR>
 
 " Space open/closes folds
 nnoremap <space> za
@@ -290,6 +296,9 @@ nnoremap <leader>tm :call MouseToggle()<CR>
 
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
+
+" Toggle pastemode
+nnoremap <leader>tp :set paste!<CR>
 
 " Copy to clipboard
 vnoremap <C-c> "+y

@@ -1,5 +1,7 @@
 augroup javascript
-  autocmd! BufWritePost,BufEnter * Neomake
+  autocmd!
+
+  autocmd Filetype javascript nnoremap <buffer> <localleader>r :!node %<CR>
 augroup END
 
 setlocal expandtab

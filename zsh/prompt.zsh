@@ -21,7 +21,7 @@ BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 BLOX_SEG__UPPER_LEFT=(blox_block__host blox_block__tmux blox_block__bgjobs blox_block__symbol)
 
 BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi \
-  blox_block__cwd_ng blox_block__nodejs blox_block__git blox_block__git_enhanced)
+  blox_block__cwd_ng blox_block__nodejs_ng blox_block__git blox_block__git_enhanced)
 
 # ---------------------------------------------
 # Custom blocks
@@ -34,6 +34,13 @@ blox_block__tmux() {
 # Improved CWD block
 blox_block__cwd_ng() {
   echo "%F{140}%(4~|.../%3~|%~)%f"
+}
+
+# Output node version only if nvm was loaded
+blox_block__nodejs_ng() {
+  if ! $(type node | grep -q 'shell function'); then
+    blox_block__nodejs
+  fi
 }
 
 # Indication of VI mode
@@ -111,6 +118,11 @@ blox_hook__precmd_git_fetch() {
   # Kill child if necessary
   if [[ "${ASYNC_PROC}" != 0 ]]; then
     kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
+  fi
+
+  # Do not run in SSH
+  if [[ -n $SSH_CONNECTION ]]; then
+    return
   fi
 
   if blox_block__git_helper__is_git_repo && [[ $BLOX_CONF__ENABLE_ASYNC == true ]]; then

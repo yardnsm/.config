@@ -36,7 +36,7 @@ fi
 if [[ $(command -v osascript) ]]; then
   itunes="$(osascript "$DOTFILES"/_misc/applescripts/itunes.scpt)"
   spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
-  soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
+  # soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
 
   music_res="N/A"
 

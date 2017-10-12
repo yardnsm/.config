@@ -12,6 +12,7 @@ brew_install 'gitup' 'cask'
 brew_install 'sequel-pro' 'cask'
 brew_install 'vimr' 'cask'
 brew_install 'visual-studio-code' 'cask'
+brew_install 'wireshark' 'cask'
 
 brew_install '1password' 'cask'
 
