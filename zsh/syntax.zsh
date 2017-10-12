@@ -1,6 +1,6 @@
 # Taken from: https://github.com/anishathalye/dotfiles/blob/master/zsh/syntax.zsh
 
-if [[ "$(tput colors)" == "256" ]]; then
+if [[ "$(tput colors)" == "256" ]] && [[ -n $ZSH_HIGHLIGHT_STYLES ]]; then
   ZSH_HIGHLIGHT_STYLES[default]=none
   ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=160
   ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=037,bold #,standout
