@@ -20,6 +20,11 @@ export REPORTTIME=8
 
 # ---------------------------------------------
 
+# Setting fpath
+fpath=($ZSH/functions $fpath)
+
+# ---------------------------------------------
+
 # Source all .zsh files within the dotfiles repo
 # within one level
 for config ($DOTFILES/*/*.zsh-before) source $config
@@ -28,8 +33,3 @@ for config ($DOTFILES/*/*.zsh) source $config
 # Source .zsh files from ~/dotfiles-local
 [[ -d "$DOTFILES_LOCAL" ]] \
   && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
-
-# ---------------------------------------------
-
-# Setting fpath
-fpath=($ZSH/functions $fpath)
