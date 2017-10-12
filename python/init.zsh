@@ -1,2 +1,4 @@
 # Init pyenv
-eval "$(pyenv init -)"
+if command -v "pyenv"; then
+  eval "$(pyenv init -)"
+fi

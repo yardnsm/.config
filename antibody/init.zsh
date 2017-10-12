@@ -1,5 +1,7 @@
 # Init antibody
-source <(antibody init)
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  source <(antibody init)
+fi
 
 antibody bundle <<EOBUNDLES
   lukechilds/zsh-nvm
