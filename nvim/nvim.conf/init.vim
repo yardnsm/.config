@@ -20,6 +20,8 @@ set encoding=utf-8
 
 set modelines=1                       " enable modelines
 
+let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
@@ -46,17 +48,21 @@ Plug 'tpope/vim-characterize'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Valloric/MatchTagAlways'
+
+Plug 'Valloric/MatchTagAlways', {
+  \ 'for': ['html', 'xml', 'jsx', 'xhtml']
+  \ }
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'matze/vim-move'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' } " using yarn here since nvm can screw up npm's $PATH
-Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
-Plug 'Shougo/neco-syntax'
 Plug 'zchee/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g ternjs' }
+
+Plug 'wellle/tmux-complete.vim'
+Plug 'Shougo/neco-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -65,7 +71,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'moll/vim-node'
-Plug 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 Plug 'python-mode/python-mode'
 

@@ -9,25 +9,19 @@ tm_segment() {
 
   res=""
 
-  [[ $icon == "" ]] || res+="#[bg=${color}, fg=brightblack, noreverse] ${icon} "
-  [[ $text == "" ]] || res+="#[bg=brightblack, fg=${color}, noreverse] ${text} "
+  [[ -z $color ]] && color="colour237"
+
+  [[ -n $icon ]] && res+="#[fg=${color}, noreverse] ${icon} "
+  [[ -n $text ]] && res+="#[fg=${color}, noreverse] ${text} "
   res+="#[bg=default, fg=default]"
 
   echo -ne "$res"
 }
 
 tm_divider() {
-  echo -ne " #[none]"
+  echo -ne "#[fg=colour237] • #[bg=default, fg=default]"
 }
 
-# ---------------------------------------------
-
-# Zoomed indicator
-
-if tmux list-panes -F '#F' | grep -q Z; then
-  tm_segment "Z" red ""
-  tm_divider
-fi
 
 # ---------------------------------------------
 
@@ -38,14 +32,16 @@ if [[ $(command -v osascript) ]]; then
   spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
   # soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
 
-  music_res="N/A"
+  music_res=""
 
   [[ $soundcloud != "" ]] && music_res=$soundcloud
   [[ $spotify != "" ]] && music_res=$spotify
   [[ $itunes != "" ]] && music_res=$itunes
 
-  tm_segment "♫" cyan "$music_res"
-  tm_divider
+  if [[ -n "$music_res" ]]; then
+    tm_segment "♫" "cyan" "$music_res"
+    tm_divider
+  fi
 fi
 
 # ---------------------------------------------
@@ -56,11 +52,10 @@ if [[ $(command -v pmset) ]]; then
   battery_percentage="$(pmset -g batt | awk '{print $3}' | grep '%')"
   battery_status="$(pmset -g batt | awk '{print $4}' | grep 'char')"
   battery_color="yellow"
-  battery_symbol="⇋"
 
-  [[ $battery_status == 'discharging;' ]] && battery_color="magenta" && battery_symbol="↼"
+  [[ $battery_status == 'discharging;' ]] && battery_color="magenta"
 
-  tm_segment "$battery_symbol" $battery_color "${battery_percentage%?}"
+  tm_segment "" "$battery_color" "${battery_percentage%?}"
   tm_divider
 fi
 
@@ -68,13 +63,11 @@ fi
 
 # Machine name
 
-tm_segment "♦︎" blue "#h"
-tm_divider
-tm_segment "" blue "$(whoami)"
+tm_segment "" "blue" "#h"
 tm_divider
 
 # ---------------------------------------------
 
 # Date and time
 
-tm_segment "" blue "$(date +'%d %b - %R')"
+tm_segment "" "colour243" "$(date +'%A, %d %b %Y %H:%M')"

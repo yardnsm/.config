@@ -1,11 +1,11 @@
 let g:ale_linters = {
-  \ 'javascript': ['eslint'],
-  \ 'python': ['flake8'],
-  \ }
+      \ 'javascript': ['eslint'],
+      \ 'python': ['flake8'],
+      \ }
 
 let g:ale_fixers = {
-  \ 'javascript': ['eslint'],
-  \ }
+      \ 'javascript': ['eslint'],
+      \ }
 
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'W'

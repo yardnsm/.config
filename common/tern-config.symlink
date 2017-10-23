@@ -1,6 +1,7 @@
 {
   "plugins": {
     "node": {},
+    "node_resolve": {},
     "es_modules": {},
     "jsx": {}
   },

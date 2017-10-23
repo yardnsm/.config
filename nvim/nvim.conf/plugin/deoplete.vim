@@ -1,3 +1,4 @@
+" Enable at start
 let g:deoplete#enable_at_startup = 1
 
 " Set tab completion
@@ -12,3 +13,4 @@ endfunction"}}}
 
 " Close preview window after completion
 autocmd CompleteDone * silent! pclose!
+" set completeopt-=preview
