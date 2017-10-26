@@ -70,4 +70,4 @@ tm_divider
 
 # Date and time
 
-tm_segment "" "colour243" "$(date +'%A, %d %b %Y %H:%M')"
+tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"

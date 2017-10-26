@@ -33,8 +33,8 @@ alias mv='mv -i'
 # chmod
 alias x+="chmod +x"
 
-# Exit like.. vim
-alias :q="exit"
+# Exit quick
+alias qq="exit"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'

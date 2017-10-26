@@ -23,39 +23,49 @@ BLOX_SEG__UPPER_LEFT=(blox_block__host blox_block__bgjobs blox_block__symbol)
 BLOX_SEG__UPPER_RIGHT=(blox_block__exec_time blox_block__vi \
   blox_block__cwd_ng blox_block__nodejs_ng blox_block__git blox_block__git_enhanced)
 
-# Custom strcture in SSH
+# Custom structure in SSH
 if [[ -n $SSH_CONNECTION ]]; then
   BLOX_BLOCK__GIT_UNPULLED_SYMBOL='d'
   BLOX_BLOCK__GIT_UNPUSHED_SYMBOL='p'
 
-  BLOX_SEG__UPPER_RIGHT=(blox_block__vi blox_block__cwd_ng blox_block__git)
+  BLOX_BLOCK__HOST_USER_SHOW_ALWAYS=true
+  BLOX_BLOCK__HOST_MACHINE_SHOW_ALWAYS=true
+
+  BLOX_SEG__UPPER_RIGHT=(blox_block__cwd_ng blox_block__git)
 fi
 
 # ---------------------------------------------
-# Custom blocks
-
 # Improved CWD block
+
 blox_block__cwd_ng() {
   echo "%F{140}%(4~|.../%3~|%~)%f"
 }
 
+# ---------------------------------------------
 # Output node version only if nvm was loaded
+
 blox_block__nodejs_ng() {
   if ! $(type node | grep -q 'shell function'); then
     blox_block__nodejs
   fi
 }
 
+# ---------------------------------------------
 # Indication of VI mode
+
 blox_block__vi() {
   local vim_mode_format="%B%F{yellow}[NORMAL]%f%b"
   echo "${${KEYMAP/vicmd/$vim_mode_format}/(main|viins)/}"
 }
 
+# ---------------------------------------------
+# Last command exec time
+
 # The following were taken from https://github.com/miekg/lean/
 # cmd_timestamp_start: start
 # cmd_timestamp_stop: stop
 # cmd_timstatmp_persist: persist the timestamp to next redraw
+
 blox_block__exec_time() {
   local stop=${cmd_timestamp_stop:-$EPOCHSECONDS}
   local start=${cmd_timestamp_start:-$stop}
@@ -75,7 +85,7 @@ blox_helper__humen_time() {
   echo "${seconds}s"
 }
 
-blox_hook__preexec() {
+blox_hook__preexec_exec_time() {
   unset cmd_timestamp_stop
   cmd_timestamp_start=$EPOCHSECONDS
 }
@@ -123,11 +133,6 @@ blox_hook__precmd_git_fetch() {
     kill -s HUP $ASYNC_PROC >/dev/null 2>&1 || :
   fi
 
-  # Do not run in SSH
-  if [[ -n $SSH_CONNECTION ]]; then
-    return
-  fi
-
   if blox_block__git_helper__is_git_repo && [[ $BLOX_CONF__ENABLE_ASYNC == true ]]; then
     async &!
     ASYNC_PROC=$!
@@ -153,15 +158,20 @@ function TRAPUSR2() {
 # ---------------------------------------------
 # Set Vi mode
 
-bindkey -v
-bindkey "^?" backward-delete-char
-export KEYTIMEOUT=1
+blox_helper__enable_vi() {
+  bindkey -v
+  bindkey "^?" backward-delete-char
+  export KEYTIMEOUT=1
 
-function zle-keymap-select {
-  blox_helper__redraw_prompt
+  function zle-keymap-select {
+    blox_helper__redraw_prompt
+  }
+
+  zle -N zle-keymap-select
 }
 
-zle -N zle-keymap-select
+# Do not enable vi mode in SSH
+[[ -z $SSH_CONNECTION ]] && blox_helper__enable_vi
 
 # ---------------------------------------------
 
@@ -178,7 +188,11 @@ blox_helper__redraw_prompt() {
 
 prompt blox
 
-# Should be added lastly!
-add-zsh-hook precmd blox_hook__precmd_git_fetch
-add-zsh-hook precmd blox_hook__precmd_exec_time
-add-zsh-hook preexec blox_hook__preexec
+# ---------------------------------------------
+# Set-up hooks
+
+if [[ -z $SSH_CONNECTION ]]; then
+  add-zsh-hook precmd blox_hook__precmd_git_fetch
+  add-zsh-hook precmd blox_hook__precmd_exec_time
+  add-zsh-hook preexec blox_hook__preexec_exec_time
+fi
