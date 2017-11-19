@@ -30,6 +30,11 @@ get_answer() {
 # Ask for sudo permission
 ask_for_sudo() {
   sudo -v &> /dev/null
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done &> /dev/null &
 }
 
 check_for_sudo() {
