@@ -26,7 +26,7 @@ install_local_dotfiles() {
 
     source "$DOTFILES_LOCAL/install.sh"
   else
-    print_status "Mo local installation script was found"
+    print_status "No local installation script was found"
   fi
 }
 
