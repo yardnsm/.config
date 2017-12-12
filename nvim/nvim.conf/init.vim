@@ -69,7 +69,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
