@@ -23,6 +23,15 @@ run_install_local() {
   source "$DOTFILES_LOCAL/install.sh" "$@"
 }
 
+
+# ---------------------------------------------
+
+run_topic() {
+  declare -r topic_to_install=$1
+
+  install_specific_topic "$topic_to_install"
+}
+
 # ---------------------------------------------
 
 list_tasks() {
@@ -110,6 +119,7 @@ print_help() {
     dotsetup <command> [options]
 
   Commands
+    run [topic]             Run [topic] installation file
     install                 Run the install script
     install-local           run the local dotfiles installation script
     tasks                   List and run tasks
@@ -126,7 +136,14 @@ EOF
 # ---------------------------------------------
 
 main() {
-  case "$1" in
+  declare -r cmd=$1
+  shift
+
+  case "$cmd" in
+    run )
+      run_topic "$@"
+      exit 0
+      ;;
     install )
       run_install "$@"
       exit 0
