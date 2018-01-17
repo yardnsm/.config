@@ -5,4 +5,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH=$PYENV_ROOT/bin:$PATH
 
 # pyenv default version
-export PYENV_VERSION="3.6.3"
+export PYENV_VERSION="system"

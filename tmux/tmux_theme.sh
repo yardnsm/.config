@@ -26,7 +26,7 @@ set -g message-bg black
 
 # Window items
 setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#{?window_bell_flag,#[fg=brightred],#[fg=colour243]},#[fg=colour235]}#W "
-setw -g window-status-current-format "#[fg=brightcyan, bg=black, noreverse]#{?window_zoomed_flag,[#W],#W} "
+setw -g window-status-current-format "#[fg=brightcyan bold, bg=black, noreverse]#{?window_zoomed_flag,[#W],#W} "
 setw -g window-status-current-attr dim
 setw -g window-status-bg green
 setw -g window-status-fg black

@@ -11,6 +11,10 @@ function! s:check_back_space() abort "{{{
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
-" Close preview window after completion
-autocmd CompleteDone * silent! pclose!
-" set completeopt-=preview
+" Insert a newline after pressing enter
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
+set completeopt-=preview
