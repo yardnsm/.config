@@ -32,9 +32,11 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
-Plug 'whatyouhide/vim-gotham'
+" Plug 'whatyouhide/vim-gotham'
+Plug 'chriskempson/base16-vim'
 
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -47,8 +49,12 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-unimpaired'
 
-Plug 'rlue/vim-getting-things-down'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-emoji'
+Plug 'junegunn/goyo.vim'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
@@ -58,7 +64,7 @@ Plug 'Valloric/MatchTagAlways', {
   \ }
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'matze/vim-move'
+Plug 'mileszs/ack.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-zsh'
@@ -67,10 +73,6 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g ternjs' }
 
 Plug 'wellle/tmux-complete.vim'
 Plug 'Shougo/neco-vim'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-emoji'
 
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -121,7 +123,13 @@ autocmd TermOpen * let w:airline_disabled = 1
 " Colors and Syntax {{{
 
 syntax on                             " enable syntax highlighting
-colorscheme gotham                    " set colorscheme
+colorscheme base16-default-dark       " set colorscheme
+
+" Setup base16-shell
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 if !has("gui_running")
   set background=dark                 " assume a dark background
@@ -231,9 +239,9 @@ nnoremap k gk
 vnoremap > >gv
 vnoremap < <gv
 
-" Location window
-nnoremap <leader>lo :lopen<CR>
-nnoremap <leader>lc :lclose<CR>
+" Quickfix window
+nnoremap <leader>co :copen<CR>
+nnoremap <leader>cc :cclose<CR>
 
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
@@ -278,11 +286,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Terminal mappings
-nnoremap <Leader>tn <C-w>n:terminal<CR>
 nnoremap <Leader>ts <C-w>n:terminal<CR>
 nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
-nnoremap <Leader>tt :enew<CR>:terminal<CR>
-nnoremap <Leader>t. :te<CR>
+nnoremap <Leader>tt :terminal<CR>
 
 tnoremap <leader><esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h

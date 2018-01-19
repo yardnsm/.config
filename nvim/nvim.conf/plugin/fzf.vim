@@ -24,6 +24,7 @@ endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 nnoremap <C-p> :Files<CR>
+nnoremap <leader>a :Ag<CR>
 nnoremap <leader>lb :Buffers<CR>
 nnoremap <leader>lt :Filetypes<CR>
 nnoremap <leader>lm :Marks<CR>

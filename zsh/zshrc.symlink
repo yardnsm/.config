@@ -14,6 +14,7 @@ setopt EXTENDED_GLOB
 export DOTFILES=$HOME/dotfiles
 export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
+export CONFIG=$DOTFILES/_config
 
 # Display info for tasks long than 8sec
 export REPORTTIME=8
@@ -33,3 +34,18 @@ for config ($DOTFILES/*/*.zsh) source $config
 # Source .zsh files from ~/dotfiles-local
 [[ -d "$DOTFILES_LOCAL" ]] \
   && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
+
+
+export THEME="base16-ir-black"
+if [ -z "$BACKGROUND" ]; then
+  export BACKGROUND="dark"
+fi
+
+# ---------------------------------------------
+# Setup basr16-shell
+
+BASE16_SHELL=$CONFIG/base16-shell/
+
+[ -n "$PS1" ] && \
+  [ -s $BASE16_SHELL/profile_helper.sh ] && \
+  eval "$($BASE16_SHELL/profile_helper.sh)"
