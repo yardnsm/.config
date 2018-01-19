@@ -32,6 +32,7 @@ brew_install 'jq'
 brew_install 'diff-so-fancy'
 brew_install 'imagemagick'
 brew_install 'the_silver_searcher'
+brew_install 'ripgrep'
 brew_install 'watchman'
 
 brew_install 'asciinema'

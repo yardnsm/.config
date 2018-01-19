@@ -79,6 +79,8 @@ _execute_directly() {
 }
 
 update_dotfiles() {
+  declare -r current_commit_hash="$(git rev-parse --short HEAD)"
+
   print_title "Updating dotfiles"
 
   _execute_directly "cd $DOTFILES || exit 1" \
@@ -102,6 +104,32 @@ update_dotfiles() {
 
   _execute_directly "git submodule update --init --recursive --remote" \
     "Update submodules"
+
+  # -----------------------------------
+
+  print_title "Running updated topics"
+
+  cd "$DOTFILES"
+
+  local files_changed="$(git diff --name-only HEAD "$current_commit_hash")"
+  local topics_to_install=""
+
+  while read -r filepath; do
+    dirname="$(cut -d "/" -f1 <<< "$filepath")"
+
+    if is_topic_exist "$dirname"; then
+      topics_to_install+="$dirname\n"
+    fi
+  done <<< "$files_changed"
+
+  topics_to_install="$(echo -e "$topics_to_install" | uniq)"
+  topics_to_install=( $topics_to_install ) # don't ask.
+
+  for topic in "${topics_to_install[@]}"; do
+    install_specific_topic "$topic"
+  done
+
+  # -----------------------------------
 
   print_divider
 

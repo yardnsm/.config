@@ -8,10 +8,10 @@ print_result $? 'homebrew'
 
 # Tap stuff
 if cmd_exists 'brew'; then
-  execute "brew tap caskroom/cask" "cask"
-  execute "brew tap caskroom/versions" "cask-versions"
-  execute "brew tap caskroom/fonts" "cask-fonts"
-  execute "brew tap ravenac95/sudolikeaboss" "ravenac95/sudolikeaboss"
+  brew_tap "caskroom/cask"
+  brew_tap "caskroom/versions"
+  brew_tap "caskroom/fonts"
+  brew_tap "ravenac95/sudolikeaboss"
 else
   print_error "homebrew is not installed!"
 fi
