@@ -43,6 +43,8 @@ let g:lightline = {
 
 " ------------------------------------------------------------------------------
 " Custom components for lightline
+" They're mainly used for hiding the components in specific file
+" types (such as NERDTree and Quickfix)
 
 function! IsLightlineSupportedFiletype()
   let l:unsupported_filetypes = [ 'qf', 'nerdtree' ]

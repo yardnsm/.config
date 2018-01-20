@@ -11,15 +11,15 @@ tm_segment() {
 
   [[ -z $color ]] && color="colour237"
 
-  [[ -n $icon ]] && res+="#[fg=${color}, noreverse] ${icon} "
-  [[ -n $text ]] && res+="#[fg=${color}, noreverse] ${text} "
+  [[ -n $icon ]] && res+="#[ fg=${color}, noreverse] ${icon}"
+  [[ -n $text ]] && res+="#[fg=${color} bg=default, noreverse] ${text} "
   res+="#[bg=default, fg=default]"
 
   echo -ne "$res"
 }
 
 tm_divider() {
-  echo -ne "#[fg=colour237] • #[bg=default, fg=default]"
+  echo -ne "#[fg=colour237]|#[bg=default, fg=default]"
 }
 
 
@@ -28,18 +28,21 @@ tm_divider() {
 # Music
 
 if [[ $(command -v osascript) ]]; then
-  itunes="$(osascript "$DOTFILES"/_misc/applescripts/itunes.scpt)"
   spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
-  # soundcloud="$(osascript "$DOTFILES"/_misc/applescripts/soundcloud.js)"
+  is_playing="$(osascript "$DOTFILES"/_misc/applescripts/spotify_is_playing.scpt)"
 
-  music_res=""
+  # Animate the music icon cuz i got no life
+  # ¯\_(ツ)_/¯
+  frames=( "⢄" "⢂" "⢁" "⡁" "⡈" "⡐" "⡠" )
+  epoch="$(date +%s)"
+  frame_index="$(( $epoch % ${#frames[@]} ))"
 
-  [[ $soundcloud != "" ]] && music_res=$soundcloud
-  [[ $spotify != "" ]] && music_res=$spotify
-  [[ $itunes != "" ]] && music_res=$itunes
+  [[ "$is_playing" == 1 ]] && \
+    music_icon="${frames[$frame_index]}" || \
+    music_icon=""
 
-  if [[ -n "$music_res" ]]; then
-    tm_segment "♫" "cyan" "$music_res"
+  if [[ -n "$spotify" ]]; then
+    tm_segment "$music_icon" "cyan" "$spotify"
     tm_divider
   fi
 fi
@@ -61,13 +64,13 @@ fi
 
 # ---------------------------------------------
 
-# Machine name
+# Date and time
 
-tm_segment "" "blue" "#h"
+tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"
 tm_divider
 
 # ---------------------------------------------
 
-# Date and time
+# Machine name
 
-tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"
+tm_segment "" "blue" "#h"

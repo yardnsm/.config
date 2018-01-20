@@ -4,23 +4,28 @@
 
 print_info "Installing NPM global dependencies"
 
-# Dev stuff
-npm_install 'bower'
-npm_install 'http-server'
-npm_install 'gulp'
-npm_install 'nodemon'
-npm_install 'json-server'
-npm_install 'yo'
-npm_install 'npm-upgrade'
-npm_install 'trymodule'
-npm_install 'np'
-npm_install 'firebase-tools'
-npm_install 'tern'
-npm_install 'tern-jsx'
-npm_install 'ava'
-npm_install 'hicat'
+declare -r dependencies=(
+  'bower'
+  'http-server'
+  'gulp'
+  'nodemon'
+  'json-server'
+  'yo'
+  'npm-upgrade'
+  'trymodule'
+  'np'
+  'firebase-tools'
+  'tern'
+  'tern-jsx'
+  'ava'
+  'hicat'
+  'javascript-typescript-langserver'
 
-# Misc
-npm_install 'speed-test'
-npm_install 'fast-cli'
-npm_install 'emoj'
+  'speed-test'
+  'fast-cli'
+  'emoj'
+)
+
+for dep in "${dependencies[@]}"; do
+  npm_install "$dep"
+done

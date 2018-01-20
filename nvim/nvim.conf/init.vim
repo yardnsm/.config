@@ -32,11 +32,9 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
-" Plug 'whatyouhide/vim-gotham'
 Plug 'chriskempson/base16-vim'
-
-" Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
+
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -44,44 +42,59 @@ Plug 'kshenoy/vim-signature'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'mileszs/ack.vim'
+
+" tpope deserves his own section
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish' " mainly for changing cases
 
+" same for junegunn
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'junegunn/goyo.vim'
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
+" Autocompletion
+Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
+Plug 'Shougo/neco-vim'
 
+" Deoplete source (will be used in NCM)
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-zsh'
+
+" ------------------------------------------------
+" Language specific stuff (besides autocompletion)
+" ------------------------------------------------
+
+" SGML stuff
+Plug 'alvan/vim-closetag'
 Plug 'Valloric/MatchTagAlways', {
   \ 'for': ['html', 'xml', 'jsx', 'xhtml']
   \ }
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'mileszs/ack.vim'
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-zsh'
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g ternjs' }
-
-Plug 'wellle/tmux-complete.vim'
-Plug 'Shougo/neco-vim'
-
-Plug 'pangloss/vim-javascript'
+" JavaScript stuff
+" Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
+" TypeScript stuff
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
+" Python stuff
 Plug 'python-mode/python-mode'
 
 call plug#end()
@@ -134,9 +147,6 @@ endif
 if !has("gui_running")
   set background=dark                 " assume a dark background
   set t_Co=256                        " we use a 256-color terminal
-
-  " Change fold bg
-  hi Folded ctermbg=green
 endif
 
 " }}}
