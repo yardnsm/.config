@@ -35,7 +35,7 @@ if [[ $(command -v osascript) ]]; then
   # ¯\_(ツ)_/¯
   frames=( "⢄" "⢂" "⢁" "⡁" "⡈" "⡐" "⡠" )
   epoch="$(date +%s)"
-  frame_index="$(( $epoch % ${#frames[@]} ))"
+  frame_index="$(( epoch % ${#frames[@]} ))"
 
   [[ "$is_playing" == 1 ]] && \
     music_icon="${frames[$frame_index]}" || \

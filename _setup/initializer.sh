@@ -14,6 +14,7 @@ if [[ -z ${sourced+x} ]]; then
   source "$current_dir/utils/functions/gem.sh"
   source "$current_dir/utils/functions/npm.sh"
   source "$current_dir/utils/functions/pip.sh"
+  source "$current_dir/utils/functions/yarn.sh"
 
   source "$current_dir/utils/ask.sh"
   source "$current_dir/utils/commands.sh"

@@ -4,8 +4,14 @@
 
 print_info "Installing Gems"
 
-gem_install 'bundler'
-gem_install 'sass'
-gem_install 'compass'
-gem_install 'haml'
-gem_install 'teamocil'
+declare -r gems=(
+  'bundler'
+  'sass'
+  'compass'
+  'haml'
+  'teamocil'
+)
+
+for gem in "${gems[@]}"; do
+  gem_install "$gem"
+done
