@@ -78,6 +78,9 @@ Plug 'zchee/deoplete-zsh'
 " Language specific stuff (besides autocompletion)
 " ------------------------------------------------
 
+" Universal shit
+Plug 'sheerun/vim-polyglot'
+
 " SGML stuff
 Plug 'alvan/vim-closetag'
 Plug 'Valloric/MatchTagAlways', {
@@ -85,13 +88,11 @@ Plug 'Valloric/MatchTagAlways', {
   \ }
 
 " JavaScript stuff
-" Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " TypeScript stuff
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
 " Python stuff

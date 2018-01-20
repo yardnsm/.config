@@ -74,6 +74,9 @@ bind -n C-b setw synchronize-panes \; send-keys clear Enter \; setw synchronize-
 unbind ^A
 bind ^A select-pane -t :.+
 
+# Set default name for new windows
+bind-key c new-window -n '<unamed>'
+
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
