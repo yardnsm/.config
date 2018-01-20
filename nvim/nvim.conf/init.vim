@@ -147,7 +147,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-if !has("gui_running")
+if !has('gui_vimr')
   set background=dark                 " assume a dark background
   set t_Co=256                        " we use a 256-color terminal
 endif
@@ -232,7 +232,7 @@ set colorcolumn=100                   " cuz percision matter
 " ------------------------------------------------------------------------------
 " GUI stuff {{{
 "
-if has("gui_running")
+if has('gui_vimr')
   set cursorline                      " highlight the current line
 endif
 
