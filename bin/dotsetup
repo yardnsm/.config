@@ -23,13 +23,25 @@ run_install_local() {
   source "$DOTFILES_LOCAL/install.sh" "$@"
 }
 
-
 # ---------------------------------------------
 
 run_topic() {
   declare -r topic_to_install=$1
 
   install_specific_topic "$topic_to_install"
+}
+
+# ---------------------------------------------
+
+list_topics() {
+  print_title "Available topics"
+  echo
+
+  local topics=( $(get_all_topics) )
+
+  for topic in "${topics[@]}"; do
+    echo -ne "  $(basename "$topic")\n"
+  done
 }
 
 # ---------------------------------------------
@@ -149,7 +161,8 @@ print_help() {
   Commands
     run [topic]             Run [topic] installation file
     install                 Run the install script
-    install-local           run the local dotfiles installation script
+    install-local           Run the local dotfiles installation script
+    list                    List tasks
     tasks                   List and run tasks
     update                  Fetch the latest version
 
@@ -178,6 +191,10 @@ main() {
       ;;
     install-local )
       run_install_local "$@"
+      exit 0
+      ;;
+    list )
+      list_topics
       exit 0
       ;;
     tasks )
