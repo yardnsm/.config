@@ -41,6 +41,10 @@ if [[ $(command -v osascript) ]]; then
     music_icon="${frames[$frame_index]}" || \
     music_icon=""
 
+  # Truncate the result
+  [[ ${#spotify} -gt 25 ]] && \
+    spotify="$(echo "$spotify" | cut -c 1-25)..."
+
   if [[ -n "$spotify" ]]; then
     tm_segment "$music_icon" "cyan" "$spotify"
     tm_divider
