@@ -38,3 +38,6 @@ alias qq="exit"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Revert back to defauly base16 theme
+alias deft='base16_classic-dark'

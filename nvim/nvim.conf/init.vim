@@ -33,7 +33,9 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
 Plug 'chriskempson/base16-vim'
+
 Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-buftabline'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
