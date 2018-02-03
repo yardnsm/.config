@@ -91,7 +91,7 @@ _execute_directly() {
 }
 
 update_dotfiles() {
-  declare -r current_commit_hash="$(git rev-parse --short HEAD)"
+  declare -r current_commit_hash="$(cd "$DOTFILES" && git rev-parse --short HEAD)"
 
   print_title "Updating dotfiles"
 
