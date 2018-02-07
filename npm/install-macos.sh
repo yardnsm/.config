@@ -20,6 +20,7 @@ declare -r dependencies=(
   'ava'
   'hicat'
   'javascript-typescript-langserver'
+  'typescript'
 
   'speed-test'
   'fast-cli'

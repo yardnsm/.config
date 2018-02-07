@@ -41,6 +41,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'kshenoy/vim-signature'
+Plug 'ktonga/vim-follow-my-lead'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -48,6 +49,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'roxma/vim-tmux-clipboard'
+
 Plug 'mileszs/ack.vim'
 
 " tpope deserves his own section
@@ -80,9 +83,6 @@ Plug 'zchee/deoplete-zsh'
 " Language specific stuff (besides autocompletion)
 " ------------------------------------------------
 
-" Universal shit
-Plug 'sheerun/vim-polyglot'
-
 " SGML stuff
 Plug 'alvan/vim-closetag'
 Plug 'Valloric/MatchTagAlways', {
@@ -90,7 +90,6 @@ Plug 'Valloric/MatchTagAlways', {
   \ }
 
 " JavaScript stuff
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'moll/vim-node'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
@@ -99,6 +98,9 @@ Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
 " Python stuff
 Plug 'python-mode/python-mode'
+
+" Universal shit
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -119,7 +121,7 @@ set showbreak=↪
 set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 
 " Change the split border
-set fillchars+=vert:\┃
+set fillchars+=vert:\  " ┃
 
 " Change the cursor shape depending on mode
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
@@ -129,9 +131,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 " ------------------------------------------------------------------------------
 " Autocommands {{{
 
-" Terminal stuff
-autocmd TermOpen * setlocal statusline=%{b:term_title}
-autocmd TermOpen * let w:airline_disabled = 1
+      " ¯\_(ツ)_/¯
 
 " }}}
 
@@ -233,7 +233,7 @@ set colorcolumn=100                   " cuz percision matter
 " GUI stuff {{{
 "
 if has('gui_vimr')
-  set cursorline                      " highlight the current line
+  " set cursorline                      " highlight the current line
 endif
 
 " }}}

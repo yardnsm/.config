@@ -8,6 +8,10 @@ function! s:hide_comp_and_newline() abort
   return (pumvisible() ? "\<C-y>\<CR>" : "\<CR>")
 endfunction
 
+" Trigger autocompletion
+let g:cm_auto_popup = 1
+imap <C-g> <Plug>(cm_force_refresh)
+
 " ------------------------------------------------------------------------------
 " Enable deoplete sources
 " https://github.com/roxma/nvim-completion-manager/issues/50#issuecomment-285652366
@@ -26,3 +30,7 @@ func! g:Deoplete_ncm()
   call cm#complete('deoplete', cm#context(), g:deoplete#_context.complete_position + 1, g:deoplete#_context.candidates)
   return ''
 endfunc
+
+" Disable deoplete default sources
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = [ 'buffer', 'member', 'tag', 'file', 'around' ]

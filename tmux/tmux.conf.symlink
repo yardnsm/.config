@@ -14,7 +14,7 @@ set-option -ga terminal-overrides ",xterm-256color:Tc"
 # client connected to that window
 setw -g aggressive-resize on
 
-# make delay shorter
+# Make delay shorter
 set -sg escape-time 1
 
 # Unding default prefix and set it to Ctrl-a
@@ -35,6 +35,9 @@ set-option -g allow-rename off
 
 # Enable mouse mode by default
 # set -g mouse on
+
+# Support focus events
+set -g focus-events on
 
 # ---------------------------------------------
 
