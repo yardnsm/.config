@@ -15,7 +15,7 @@ set -g pane-border-fg brightblack
 set -g pane-active-border-fg blue
 
 # Show border on top
-setw -g pane-border-status bottom
+# setw -g pane-border-status bottom
 setw -g pane-border-format '─'
 
 # Status bar colors
@@ -36,5 +36,6 @@ set -g window-status-attr reverse
 set -g window-status-activity-attr none
 
 # Make this shit happen
-set -g status-left "#[fg=yellow] ♜ #[fg=blue nobold] #S#[fg=colour235] | "
+# ♜
+set -g status-left "#[fg=yellow] 🍕 #[fg=blue nobold] #S#[fg=colour235] | "
 set -g status-right "#($DOTFILES/tmux/right_segments.sh)"
