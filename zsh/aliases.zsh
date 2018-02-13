@@ -41,3 +41,6 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Revert back to defauly base16 theme
 alias deft='base16_classic-dark'
+
+# 🤔
+alias mp3='youtube-dl --extract-audio --audio-format mp3 --no-playlist -o "~/Downloads/%(title)s-%(id)s.%(ext)s"'
