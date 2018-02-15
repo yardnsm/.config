@@ -41,31 +41,27 @@ print_in_white() {
 # Mesages
 
 print_title() {
-  print_in_white "\n $(tput bold; tput smul)$1$(tput sgr0)\n"
+  print_in_white "\n$(tput bold) -  $1$(tput sgr0)\n"
 }
 
 print_info() {
-  print_in_cyan "\n  $1\n"
+  print_in_cyan "\n    $1\n"
 }
 
 print_error() {
-  print_in_red "   [✘] $1\n"
-}
-
-print_running() {
-  print_in_blue "   [.] $1"
+  print_in_red "     ✘  $1\n"
 }
 
 print_question() {
-  print_in_yellow "   [?] $1"
+  print_in_yellow "     ?  $1"
 }
 
 print_status() {
-  print_in_yellow "   [!] $1\n"
+  print_in_yellow "     ℹ  $1\n"
 }
 
 print_success() {
-  print_in_green "   [✓︎] $1\n"
+  print_in_green "     ✔︎  $1\n"
 }
 
 # ---------------------------------------------
@@ -87,7 +83,7 @@ function print_divider() {
 # Print welcome message
 print_welcome_message() {
 
-  clear
+  tput cl
 
   print_in_blue "
           __        __   ____ __ __
@@ -101,7 +97,7 @@ print_welcome_message() {
   print_in_blue "  Base Dir: "; printf "%s\n" "$DOTFILES"
   print_in_cyan "  $(tput bold)Note:$(tput sgr0) Mostly compatible with macOS \n"
 
-  echo ""
+  printf "\n"
 }
 
 # Print finish message
