@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# ---------------------------------------------
+
+declare -r DOTFILES_GITHUB_REPO="https://github.com/yardnsm/dotfiles"
+declare -r DOTFILES_DIR="$HOME/dotfiles"
+
+declare -a REQUIRED_COMMANDS=(
+  'git'
+  'ssh'
+)
+
+# ---------------------------------------------
+
+step() {
+  echo "  > $1"
+}
+
+# ---------------------------------------------
+
+clone_dotfiles() {
+  step "Cloning dotfiles to $DOTFILES_DIR"
+
+  git clone "$DOTFILES_GITHUB_REPO" "$DOTFILES_DIR"
+}
+
+# ---------------------------------------------
+
+main() {
+
+  # Check if dotfiles exists
+  if [[ -d $DOTFILES_DIR ]]; then
+    step "Dotfiles directory exists. Aborting..."
+    exit 1
+  fi
+
+  # Verify that the required commands are available
+  for cmd in "${REQUIRED_COMMANDS[@]}"; do
+    if ! command -v "$cmd" &> /dev/null; then
+      step "$cmd is not installed. Aborting..."
+      exit 1
+    fi
+  done
+
+  clone_dotfiles
+
+  cd "$DOTFILES_DIR" \
+    || exit 1
+
+  source './_setup/initializer.sh'
+
+  source './_setup/bootstrap/setup_xcode.sh'
+  source './_setup/bootstrap/setup_github_ssh_keys.sh'
+  source './_setup/bootstrap/setup_zsh.sh'
+  source './_setup/bootstrap/install_dotfiles.sh'
+}
+
+main "$@"
