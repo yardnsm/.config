@@ -4,7 +4,7 @@
 
 is_connection_valid() {
   ssh -T git@github.com &> /dev/null
-  [[ $? -ne 1 ]]
+  [[ $? -eq 1 ]]
 }
 
 verify_connection() {
@@ -39,8 +39,8 @@ main() {
     copy_to_clipboard "$(cat "${ssh_key_path}.pub")"
     print_result $? "Copy public SSH key to clipboard"
 
-    print_status "Please proceed manually"
     open_in_browser "https://github.com/settings/keys"
+    print_result $? "Opening GitHub settings page"
 
     verify_connection & show_spinner $! \
       "Verifying SSH connection"

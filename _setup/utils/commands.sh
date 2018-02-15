@@ -17,9 +17,9 @@ execute() {
 # Copy smth to clipboard
 copy_to_clipboard() {
   if cmd_exists "pbcopy"; then
-    pbcopy < "$1"
+    echo "$1" | pbcopy
   elif cmd_exists "xclip"; then
-    xclip -selection clip < "$1"
+    echo "$1" | xclip -selection clip
   else
     return 1
   fi
