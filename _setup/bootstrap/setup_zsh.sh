@@ -5,7 +5,7 @@
 main() {
   print_title "Setting ZSH"
 
-  if [[ "$SHELL" -eq "$(which zsh)" ]]; then
+  if [[ -n "$ZSH_VERSION" ]]; then
     print_success "ZSH is already your shell"
   elif which zsh &> /dev/null; then
     print_status "Change shell to ZSH (re-login is required)\n"
