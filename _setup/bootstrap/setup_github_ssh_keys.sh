@@ -22,9 +22,17 @@ verify_connection() {
 main() {
   local ssh_key_path="$HOME/.ssh/github"
 
-  if is_connection_valid || ! [[ -f "$ssh_key_path" ]]; then
+  print_title "Generating SSH key for GitHub"
 
-    print_title "Generating an SSH key for you"
+  if is_connection_valid; then
+
+    print_success "Connection to GitHub is valid"
+
+  elif [[ -f "$ssh_key_path" ]]; then
+
+    print_success "SSH key exists"
+
+  else
 
     ask "Please enter your email address: " && echo
     ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$ssh_key_path" && echo
