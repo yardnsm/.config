@@ -4,7 +4,7 @@
 
 is_connection_valid() {
   ssh -T git@github.com &> /dev/null
-  return $?
+  [[ $? -ne 1 ]]
 }
 
 verify_connection() {
@@ -24,20 +24,20 @@ main() {
 
   if is_connection_valid || ! [[ -f "$ssh_key_path" ]]; then
 
-    title "Generating an SSH key for you"
+    print_title "Generating an SSH key for you"
 
-    ask "Please enter your email address" && echo
-    ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$ssh_key_path"
+    ask "Please enter your email address: " && echo
+    ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$ssh_key_path" && echo
     print_result $? "Generate SSH keys"
 
-    eval "$(ssh-agent -s)"
-    print_result $? "Starting SSH agent"
+    execute "$(ssh-agent -s)" \
+      "Starting SSH agent"
 
-    ssh-add -K ~/.ssh/id_rsa
-    print_result $? "Adding id_rsa to the ssh-agent"
+    execute "ssh-add -K ~/.ssh/id_rsa" \
+      "Adding id_rsa to the ssh-agent"
 
-    copy_to_clipboard "$(cat "${ssh_key_path}.pub")" \
-      "Copy public SSH key to clipboard"
+    copy_to_clipboard "$(cat "${ssh_key_path}.pub")"
+    print_result $? "Copy public SSH key to clipboard"
 
     print_status "Please proceed manually"
     open_in_browser "https://github.com/settings/keys"
