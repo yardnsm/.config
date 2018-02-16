@@ -14,6 +14,6 @@ for file in $symlinks; do
     print_error "~${target#$HOME} already exists, Skipping."
   else
     ln -sf "$file" "$target" &> /dev/null
-    print_result $? "Creating symlink for $(basename "$target")"
+    print_result $? "$file -> $target"
   fi
 done

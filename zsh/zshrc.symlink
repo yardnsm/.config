@@ -35,12 +35,6 @@ for config ($DOTFILES/*/*.zsh) source $config
 [[ -d "$DOTFILES_LOCAL" ]] \
   && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
 
-
-export THEME="base16-ir-black"
-if [ -z "$BACKGROUND" ]; then
-  export BACKGROUND="dark"
-fi
-
 # ---------------------------------------------
 # Setup basr16-shell
 
