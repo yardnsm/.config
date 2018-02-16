@@ -8,28 +8,17 @@ from scratch, while focus on organization.
 The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for
 ubuntu and debian).
 
+Simply run the following command in your terminal:
+
 ```console
-
-# Install Xcode Command Line Tools (if on mac)
-xcode-select --install
-
-# Clone this repo
-# Make sure to generate an SSH key:
-# https://help.github.com/articles/generating-an-ssh-key/
-git clone https://github.com/yardnsm/dotfiles.git ~/dotfiles
-
-# Change your shell the ZSH
-chsh -s $(which zsh)
-
-# Run the installer!
-cd ~/dotfiles
-./install.sh
+$ bash <(curl https://github.com/yardnsm/dotfiles/blob/master/_setup/bootstrap/main.sh)
 ```
 
 ## Order and hierarchy
 
 - Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
-- Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to the topic.
+- Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to
+  the topic.
 
 ## License
 
