@@ -11,7 +11,7 @@ gem_install() {
   package="$1"
 
   if [[ ${gem_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\n"
+    print_status "Fetching installed packages. This could take a while...\\n"
     gem_list=$(gem list)
   fi
 

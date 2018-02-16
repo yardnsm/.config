@@ -45,6 +45,7 @@ install_specific_topic() {
 }
 
 # Run the installation script for each topic
+# shellcheck disable=SC2207,SC2206
 install_topics() {
   local topics_to_install=( $1 )
   local topics_to_exclude=( $2 )

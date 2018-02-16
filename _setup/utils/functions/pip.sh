@@ -11,7 +11,7 @@ pip_install() {
   package="$1"
 
   if [[ ${pip_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\n"
+    print_status "Fetching installed packages. This could take a while...\\n"
     pip_list=$(pip list --format=legacy)
   fi
 

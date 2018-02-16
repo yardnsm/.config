@@ -82,6 +82,7 @@ print_help() {
     ./install.sh [options]
 
   Options
+    -y, --yes               Skip confirmation questions
     -o, --only              Topics to install only
     -e, --exclude           Topics so exclude
     --install-local         Run the local installation script

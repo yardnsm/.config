@@ -1,0 +1,20 @@
+install:
+  - ./install.sh -y
+
+matrix:
+  include:
+
+    - os: osx
+      before_script:
+        - brew install shellcheck
+
+    - os: linux
+      dist: trusty
+      before_script:
+        - sudo apt-get update -qqy
+        - sudo apt-get install -qqy shellcheck
+
+script:
+  - ./_test/shellcheck.sh
+
+sudo: required

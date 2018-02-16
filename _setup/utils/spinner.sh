@@ -28,7 +28,7 @@ show_spinner() {
     print_in_blue "     $curr_frame  $MSG"
 
     # Clear it
-    printf "\r"
+    printf "\\r"
 
     # Wait till next frame
     sleep $DELAY

@@ -5,35 +5,35 @@
 # Print in colors
 
 print_in_green() {
-  printf "\e[0;32m%b\e[0m" "$1"
+  printf "\\e[0;32m%b\\e[0m" "$1"
 }
 
 print_in_blue() {
-  printf "\e[0;34m%b\e[0m" "$1"
+  printf "\\e[0;34m%b\\e[0m" "$1"
 }
 
 print_in_purple() {
-  printf "\e[0;35m%b\e[0m" "$1"
+  printf "\\e[0;35m%b\\e[0m" "$1"
 }
 
 print_in_cyan() {
-  printf "\e[36m%b\e[0m" "$1"
+  printf "\\e[36m%b\\e[0m" "$1"
 }
 
 print_in_red() {
-  printf "\e[0;31m%b\e[0m" "$1"
+  printf "\\e[0;31m%b\\e[0m" "$1"
 }
 
 print_in_yellow() {
-  printf "\e[0;33m%b\e[0m" "$1"
+  printf "\\e[0;33m%b\\e[0m" "$1"
 }
 
 print_in_darkgrey() {
-  printf "\e[0;90m%b\e[0m" "$1"
+  printf "\\e[0;90m%b\\e[0m" "$1"
 }
 
 print_in_white() {
-  printf "\e[1;37m%b\e[0m" "$1"
+  printf "\\e[1;37m%b\\e[0m" "$1"
 }
 
 # ---------------------------------------------
@@ -41,15 +41,15 @@ print_in_white() {
 # Mesages
 
 print_title() {
-  print_in_white "\n$(tput bold) -  $1$(tput sgr0)\n"
+  print_in_white "\\n$(tput bold) -  $1$(tput sgr0)\\n"
 }
 
 print_info() {
-  print_in_cyan "\n     $1\n\n"
+  print_in_cyan "\\n     $1\\n\\n"
 }
 
 print_error() {
-  print_in_red "     ✘  $1\n"
+  print_in_red "     ✘  $1\\n"
 }
 
 print_question() {
@@ -57,11 +57,11 @@ print_question() {
 }
 
 print_status() {
-  print_in_yellow "     ℹ  $1\n"
+  print_in_yellow "     ℹ  $1\\n"
 }
 
 print_success() {
-  print_in_green "     ✔︎  $1\n"
+  print_in_green "     ✔︎  $1\\n"
 }
 
 # ---------------------------------------------
@@ -77,7 +77,7 @@ print_result() {
 
 # Print a divider (newline)
 function print_divider() {
-  printf "\n"
+  printf "\\n"
 }
 
 # Print welcome message
@@ -85,6 +85,7 @@ print_welcome_message() {
 
   tput cl
 
+  # shellcheck disable=SC1117
   print_in_blue "
           __        __   ____ __ __
      ____/ /____   / /_ / __//_// /___   _____
@@ -94,10 +95,10 @@ print_welcome_message() {
 
 "
 
-  print_in_blue "  Base Dir: "; printf "%s\n" "$DOTFILES"
-  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Mostly compatible with macOS \n"
+  print_in_blue "  Base Dir: "; printf "%s\\n" "$DOTFILES"
+  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Mostly compatible with macOS \\n"
 
-  printf "\n"
+  printf "\\n"
 }
 
 # Print finish message

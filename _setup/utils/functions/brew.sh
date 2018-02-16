@@ -13,7 +13,7 @@ brew_install() {
   args="$3"
 
   if [[ ${brew_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\n"
+    print_status "Fetching installed packages. This could take a while...\\n"
     brew_list=$(brew list && brew cask list)
   fi
 
