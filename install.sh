@@ -52,7 +52,6 @@ start_procedure() {
   if ! [[ -n $auto_yes ]]; then
     print_info "Just to make sure"
     ask_for_confirmation "Continue? "
-    print_divider
   fi
 
   # Check if answer is yes

@@ -45,7 +45,7 @@ print_title() {
 }
 
 print_info() {
-  print_in_cyan "\n    $1\n"
+  print_in_cyan "\n     $1\n\n"
 }
 
 print_error() {

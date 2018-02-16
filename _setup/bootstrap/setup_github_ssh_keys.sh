@@ -25,13 +25,9 @@ main() {
   print_title "Generating SSH key for GitHub"
 
   if is_connection_valid; then
-
     print_success "Connection to GitHub is valid"
-
   elif [[ -f "$ssh_key_path" ]]; then
-
     print_success "SSH key exists"
-
   else
 
     ask "Please enter your email address: " && echo

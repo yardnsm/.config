@@ -1,10 +1,12 @@
 # dotfiles
 
-These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this repo from scratch, while focus on organization.
+These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this repo
+from scratch, while focus on organization.
 
 ## Installation
 
-The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for ubuntu and debian).
+The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for
+ubuntu and debian).
 
 ```console
 
