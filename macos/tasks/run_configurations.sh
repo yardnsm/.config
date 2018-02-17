@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../../_setup/initializer.sh"
+
+# ---------------------------------------------
+
 # Based on alrra"s .osx file, with a few custom settings:
 # https://github.com/alrra/dotfiles/raw/master/os/os_x/preferences/set_ui_and_ux_preferences.sh
 

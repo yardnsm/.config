@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-current_dir="$(dirname "${BASH_SOURCE[0]}")"
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../_setup/initializer.sh"
 
 # ---------------------------------------------
 
-print_info "Setup OSX configurations"
-source "$current_dir/tasks/run_configurations.sh"
-
-print_info "Change applications settings"
-source "$current_dir/tasks/set_applications_settings.sh"
+source "./tasks/run_configurations.sh"
+source "./tasks/set_applications_settings.sh"

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../../_setup/initializer.sh"
+
+# ---------------------------------------------
+
 # Install Homebrew
 if ! cmd_exists 'brew'; then
   printf "\\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null

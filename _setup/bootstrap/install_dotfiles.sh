@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../initializer.sh"
+
 # ---------------------------------------------
 
 main() {
@@ -8,8 +11,7 @@ main() {
   print_status "Bootstraping has finished. Installing dotfiles..."
   sleep 3
 
-  cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && source '../../install.sh'
+  source '../../install.sh'
 }
 
 main "$@"

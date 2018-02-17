@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../../_setup/initializer.sh"
+
+# ---------------------------------------------
+
 # Updating Homebrew
 if cmd_exists 'brew'; then
   execute "brew update" "brew update"

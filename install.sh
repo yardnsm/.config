@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-current_dir="$(dirname "${BASH_SOURCE[0]}")"
-
-# ---------------------------------------------
-
-source "$current_dir/_setup/initializer.sh"
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "./_setup/initializer.sh"
 
 # ---------------------------------------------
 
@@ -15,6 +12,29 @@ declare topics_to_exclude=()
 
 declare current_flag=""
 declare use_topics_file=1
+
+# ---------------------------------------------
+
+add_topic_to_exclude() {
+  # 'only' takes priority, so we need to fill "$topics_to_exclude"
+  # only if "$topics_to_install" is empty
+  if is_topic_exist "$1"; then
+    [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$1")
+  else
+    print_error "Topic $1 does not exist!"
+    exit 1
+  fi
+}
+
+add_topic_to_install() {
+  if is_topic_exist "$1"; then
+    topics_to_exclude=()
+    topics_to_install+=("$1")
+  else
+    print_error "Topic $1 does not exist!"
+    exit 1
+  fi
+}
 
 # ---------------------------------------------
 
@@ -53,11 +73,9 @@ read_from_topics_file() {
     if is_topic_exist "$topic_name"; then
 
       if [[ $excluded -eq 1 ]]; then
-        # As in arguments parsing, `only` takes priority
-        [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$topic_name")
+        add_topic_to_exclude "$topic_name"
       else
-        topics_to_exclude=()
-        topics_to_install+=("$topic_name")
+        add_topic_to_install "$topic_name"
       fi
     else
       print_error "Error in \`$TOPICS_FILE\` file: topic \`$topic_name\` does not exist!"
@@ -89,7 +107,7 @@ start_procedure() {
 
   # Run preinstall script
   print_info "Make sure everything alright"
-  source "$DOTFILES/_setup/preinstall.sh"
+  source "./_setup/preinstall.sh"
 
   # Ask if it's okay
   if ! [[ -n $auto_yes ]]; then
@@ -171,23 +189,10 @@ main() {
 
         case $current_flag in
           "exclude" )
-            # 'only' takes priority, so we need to fill "$topics_to_exclude"
-            # only if "$topics_to_install" is empty
-            if is_topic_exist "$1"; then
-              [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$1")
-            else
-              print_error "Topic $1 does not exist!"
-              exit 1
-            fi
+            add_topic_to_exclude "$1"
             ;;
           "only" )
-            if is_topic_exist "$1"; then
-              topics_to_exclude=()
-              topics_to_install+=("$1")
-            else
-              print_error "Topic $1 does not exist!"
-              exit 1
-            fi
+            add_topic_to_install "$1"
             ;;
           * )
             print_error "Unknown option $1";

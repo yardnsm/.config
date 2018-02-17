@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../../_setup/initializer.sh"
+
+# ---------------------------------------------
+
 declare -r formulae=(
   'node'
   'rbenv'

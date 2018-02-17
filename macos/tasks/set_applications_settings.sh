@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../../_setup/initializer.sh"
+
+# ---------------------------------------------
+
 print_info "Transmission"
 
 execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \

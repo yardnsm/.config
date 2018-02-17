@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-current_dir="$(dirname "${BASH_SOURCE[0]}")"
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  || exit 1
 
 # ---------------------------------------------
 
@@ -9,19 +10,19 @@ if [[ -z ${sourced+x} ]]; then
 
   sourced=true
 
-  source "$current_dir/utils/functions/apt.sh"
-  source "$current_dir/utils/functions/brew.sh"
-  source "$current_dir/utils/functions/gem.sh"
-  source "$current_dir/utils/functions/npm.sh"
-  source "$current_dir/utils/functions/pip.sh"
-  source "$current_dir/utils/functions/yarn.sh"
+  source "./utils/functions/apt.sh"
+  source "./utils/functions/brew.sh"
+  source "./utils/functions/gem.sh"
+  source "./utils/functions/npm.sh"
+  source "./utils/functions/pip.sh"
+  source "./utils/functions/yarn.sh"
 
-  source "$current_dir/utils/ask.sh"
-  source "$current_dir/utils/commands.sh"
-  source "$current_dir/utils/topics.sh"
-  source "$current_dir/utils/messages.sh"
-  source "$current_dir/utils/os.sh"
-  source "$current_dir/utils/spinner.sh"
+  source "./utils/ask.sh"
+  source "./utils/commands.sh"
+  source "./utils/topics.sh"
+  source "./utils/messages.sh"
+  source "./utils/os.sh"
+  source "./utils/spinner.sh"
 
-  source "$current_dir/variables.sh"
+  source "./variables.sh"
 fi
