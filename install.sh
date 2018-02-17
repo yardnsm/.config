@@ -34,7 +34,7 @@ install_local_dotfiles() {
   fi
 }
 
-populate_topics_file() {
+read_from_topics_file() {
   ! [[ -f "$TOPICS_FILE" ]] && return 1
 
   while read -r line; do
@@ -73,7 +73,7 @@ start_procedure() {
   print_welcome_message
 
   if [[ $use_topics_file -eq 1 ]]; then
-    populate_topics_file
+    read_from_topics_file
 
     [[ $? -ne 1 ]] \
       && print_status "A \`$TOPICS_FILE\` file was found and used\\n"
