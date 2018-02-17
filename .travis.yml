@@ -6,7 +6,7 @@ before_install:
   - cd $HOME/dotfiles
 
 install:
-  - ./install.sh -y
+  - sudo ./install.sh -y
 
 matrix:
   include:
