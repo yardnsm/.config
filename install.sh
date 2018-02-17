@@ -8,9 +8,13 @@ source "$current_dir/_setup/initializer.sh"
 
 # ---------------------------------------------
 
+declare -r TOPICS_FILE=".topics"
+
 declare topics_to_install=()
 declare topics_to_exclude=()
+
 declare current_flag=""
+declare use_topics_file=1
 
 # ---------------------------------------------
 
@@ -30,17 +34,56 @@ install_local_dotfiles() {
   fi
 }
 
+populate_topics_file() {
+  ! [[ -f "$TOPICS_FILE" ]] && return 1
+
+  while read -r line; do
+    local excluded=0
+    local topic_name="$line"
+
+    [[ "${line:0:1}" == "#" ]] \
+      && continue
+
+    # Check if should be excluded
+    if [[ "${line:0:1}" == "!" ]]; then
+      excluded=1
+      topic_name="${line:1}"
+    fi
+
+    if is_topic_exist "$topic_name"; then
+
+      if [[ $excluded -eq 1 ]]; then
+        # As in arguments parsing, `only` takes priority
+        [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$topic_name")
+      else
+        topics_to_exclude=()
+        topics_to_install+=("$topic_name")
+      fi
+    else
+      print_error "Error in \`$TOPICS_FILE\` file: topic \`$topic_name\` does not exist!"
+      exit 1
+    fi
+  done < "$TOPICS_FILE"
+}
+
 # ---------------------------------------------
 
 start_procedure() {
 
   print_welcome_message
 
-  [[ ${#topics_to_install} -ne 0 ]] && \
-    print_status "Topics to install: ${topics_to_install[*]}"
+  if [[ $use_topics_file -eq 1 ]]; then
+    populate_topics_file
 
-  [[ ${#topics_to_exclude} -ne 0 ]] && \
-    print_status "Topics to exclude: ${topics_to_exclude[*]}"
+    [[ $? -ne 1 ]] \
+      && print_status "A \`$TOPICS_FILE\` file was found and used\\n"
+  fi
+
+  [[ ${#topics_to_install} -ne 0 ]] \
+    && print_status "Topics to install: ${topics_to_install[*]}"
+
+  [[ ${#topics_to_exclude} -ne 0 ]] \
+    && print_status "Topics to exclude: ${topics_to_exclude[*]}"
 
   print_title "Getting ready"
 
@@ -86,6 +129,7 @@ print_help() {
     -o, --only              Topics to install only
     -e, --exclude           Topics so exclude
     --install-local         Run the local installation script
+    --no-topics-file        Do not use topics file
     -h, --help              Show help output
 
   Examples
@@ -103,17 +147,21 @@ main() {
         auto_yes="true"
         shift
         ;;
+      --no-topics-file )
+        use_topics_file=0
+        shift
+        ;;
       -e | --exclude )
         current_flag="exclude"
+        shift
+        ;;
+      -o | --only )
+        current_flag="only"
         shift
         ;;
       --install-local )
         install_local_dotfiles
         exit 0
-        ;;
-      -o | --only )
-        current_flag="only"
-        shift
         ;;
       -h | --help )
         print_help
@@ -123,8 +171,8 @@ main() {
 
         case $current_flag in
           "exclude" )
-            # 'only' should be in higher priority, so only if
-            # $topic_to_install is empty, fill topic_to_ignore
+            # 'only' takes priority, so we need to fill "$topics_to_exclude"
+            # only if "$topics_to_install" is empty
             if is_topic_exist "$1"; then
               [[ ${#topics_to_install} -eq 0 ]] && topics_to_exclude+=("$1")
             else

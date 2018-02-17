@@ -28,6 +28,9 @@ run_install_local() {
 run_topic() {
   declare -r topic_to_install=$1
 
+  print_title "Getting ready"
+  check_for_sudo
+
   install_specific_topic "$topic_to_install"
 }
 
@@ -41,45 +44,6 @@ list_topics() {
 
   for topic in "${topics[@]}"; do
     echo -ne "  $(basename "$topic")\n"
-  done
-}
-
-# ---------------------------------------------
-
-list_tasks() {
-
-  print_title "Getting ready"
-  check_for_sudo
-
-  local topics=( $(get_all_topics) )
-  local options=()
-
-  local os
-  os=$(get_os)
-
-  for topic in "${topics[@]}"; do
-    if [[ -f $topic/install.sh ]] || [[ -f $topic/install-$os.sh ]]; then
-      options+=( $(basename "$topic") )
-    fi
-  done
-
-  PS3=$'\n  Choose a topic to install: '
-
-  print_title "Available topics\n"
-
-  select opt in "${options[@]}"; do
-    case $opt in
-      *)
-
-        if [ -z $opt ]; then
-          print_error "Unavailable topic"
-          exit 1;
-        fi
-
-        install_specific_topic "$opt"
-        exit 0
-        ;;
-    esac
   done
 }
 
@@ -163,7 +127,6 @@ print_help() {
     install                 Run the install script
     install-local           Run the local dotfiles installation script
     list                    List tasks
-    tasks                   List and run tasks
     update                  Fetch the latest version
 
   Options
@@ -195,10 +158,6 @@ main() {
       ;;
     list )
       list_topics
-      exit 0
-      ;;
-    tasks )
-      list_tasks
       exit 0
       ;;
     update )

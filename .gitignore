@@ -11,3 +11,6 @@ Session.vim
 
 # Vim plugins
 nvim/nvim.conf/plugged
+
+# Topics file
+.topics
