@@ -139,13 +139,17 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 " Colors and Syntax {{{
 
 syntax on                             " enable syntax highlighting
-colorscheme base16-default-dark       " set colorscheme
 
-" Setup base16-shell
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+try
+  colorscheme base16-default-dark       " set colorscheme
+
+  " Setup base16-shell
+  if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+  endif
+catch
+endtry
 
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
