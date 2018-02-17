@@ -6,7 +6,9 @@ before_install:
   - cd $HOME/dotfiles
 
 install:
-  - sudo -v
+  # For some reason, Travis has an issue with asking for sudo while the script is running,
+  # so we're `sudo`ing before it'll run to update the timestamp (`sudo -v` does not work either)
+  - sudo echo
   - ./install.sh -y
 
 matrix:
