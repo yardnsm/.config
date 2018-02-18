@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
+# This script will be sourced in other scripts, so we don't want
+# it to mess with the cwd
+pushd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null \
   || exit 1
 
 # ---------------------------------------------
@@ -26,3 +28,8 @@ if [[ -z ${sourced+x} ]]; then
 
   source "./variables.sh"
 fi
+
+# ---------------------------------------------
+
+popd &> /dev/null \
+  || exit 1

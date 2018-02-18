@@ -29,7 +29,7 @@ get_answer() {
 
 # Ask for sudo permission
 ask_for_sudo() {
-  [[ "$TRAVIS_SUDO" == "false" ]] & return 1
+  [[ "$TRAVIS_SUDO" == "false" ]] && return 1
 
   sudo -v &> /dev/null
   while true; do

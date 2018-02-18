@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../../_setup/initializer.sh"
-
 # ---------------------------------------------
 
 # Based on alrra"s .osx file, with a few custom settings:
