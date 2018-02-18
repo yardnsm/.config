@@ -14,5 +14,5 @@ print_result $? "Creating symlink for nvim.conf"
 
 print_info "Installing plugins"
 
-nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qa!'
-print_result $? "Installed plugins"
+execute "printf '\\n' | nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
+  "Installing plugins"

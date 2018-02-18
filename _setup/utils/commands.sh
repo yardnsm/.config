@@ -10,8 +10,21 @@ cmd_exists() {
 
 # Execute a command and print a message
 execute() {
-  eval "$1" &> /dev/null & show_spinner $! "${2}"
-  print_result $? "${2:-$1}"
+  local -r CMD="$1"
+  local -r MSG="$2"
+
+  local exit_code=0
+  local pid=""
+
+  eval "$CMD" &> /dev/null &
+  pid=$!
+
+  show_spinner $pid "${MSG}"
+
+  wait $pid &> /dev/null
+  exit_code=$?
+
+  print_result $exit_code "${MSG:-$CMD}"
 }
 
 # Copy smth to clipboard
