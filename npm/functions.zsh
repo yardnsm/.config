@@ -1,4 +1,5 @@
 function yolo() {
-  echo "\n  > rm -rf node_modules && yarn install --no-lockfile\n"
-  eval "rm -rf node_modules && yarn install --no-lockfile"
+  cmd="rm -rf node_modules && npm install --no-package-lock"
+  echo "\n  > ${cmd}\n"
+  eval "${cmd}"
 }

@@ -75,10 +75,6 @@ Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
 Plug 'Shougo/neco-vim'
 
-" Deoplete source (will be used in NCM)
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-zsh'
-
 " ------------------------------------------------
 " Language specific stuff (besides autocompletion)
 " ------------------------------------------------
@@ -230,6 +226,8 @@ set splitbelow                        " split below by default
 set splitright                        " split right by default
 
 set colorcolumn=100                   " cuz percision matter
+
+set shortmess+=c                      " do not show completion-menu messages
 
 " }}}
 
