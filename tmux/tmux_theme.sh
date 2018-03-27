@@ -36,6 +36,7 @@ set -g window-status-attr reverse
 set -g window-status-activity-attr none
 
 # Make this shit happen
-# ♜
-set -g status-left "#[fg=yellow] 🍕 #[fg=blue nobold] #S#[fg=colour235] | "
-set -g status-right "#($DOTFILES/tmux/right_segments.sh)"
+set -g status-left "#[fg=yellow] ♜ #[fg=blue nobold] #S#[fg=colour235] | "
+
+# Show when prefix is selected + right segments
+set -g status-right "#{?client_prefix,#[fg=blue bold]^A #[fg=colour237 nobold]|#[bg=default fg=default],}#($DOTFILES/tmux/right_segments.sh)"

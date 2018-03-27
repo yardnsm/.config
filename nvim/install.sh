@@ -7,6 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_info "Symlink nvim config"
 
+mkdir -p "$HOME/.config"
 ln -s "$DOTFILES/nvim/nvim.conf" "$HOME/.config/nvim" &> /dev/null
 print_result $? "Creating symlink for nvim.conf"
 

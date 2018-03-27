@@ -15,7 +15,7 @@ set-option -ga terminal-overrides ",xterm-256color:Tc"
 setw -g aggressive-resize on
 
 # Make delay shorter
-set -sg escape-time 1
+set -sg escape-time 0
 
 # Unding default prefix and set it to Ctrl-a
 unbind C-b
@@ -39,11 +39,16 @@ set-option -g allow-rename off
 # Support focus events
 set -g focus-events on
 
+# Persist tmux messages a little longer, regardless of `status-interval`
+set -g display-time 4000
+
 # ---------------------------------------------
 
 # Spliting (and keep the path)
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
+bind "\\" split-window -fh -c "#{pane_current_path}"
+bind _ split-window -fv -c "#{pane_current_path}"
 
 # Resize
 bind -r H resize-pane -L 5
@@ -61,6 +66,8 @@ bind l select-pane -R
 unbind =
 bind = select-layout tiled
 
+# ---------------------------------------------
+
 # Reload config file
 bind r source-file ~/.tmux.conf \; display "Reloaded"
 
@@ -70,15 +77,12 @@ bind y setw synchronize-panes
 # Toggle mouse mode
 bind M set-option mouse
 
-# Clear all panes
-bind -n C-b setw synchronize-panes \; send-keys clear Enter \; setw synchronize-panes
-
 # Quick pane cycling
 unbind ^A
 bind ^A select-pane -t :.+
 
 # Set default name for new windows
-bind-key c new-window -n '<unamed>'
+bind-key c new-window -n '<unamed>' -c "#{pane_current_path}"
 
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
@@ -95,15 +99,6 @@ bind-key -T copy-mode-vi C-k select-pane -U
 bind-key -T copy-mode-vi C-l select-pane -R
 bind-key -T copy-mode-vi C-\ select-pane -l
 
-# Add support for `sudolikeaboss`
-# Make sure to have `coreutils` installed.
-# unbind u
-# bind u run-shell \
-#     "timeout 3s sudolikeaboss > ~/.tmux-buffer-tmp || printf ''" \; \
-#   load-buffer -b tmp-copy-buffer ~/.tmux-buffer-tmp \; \
-#   paste-buffer -b tmp-copy-buffer -d \; \
-#   run-shell -b "rm ~/.tmux-buffer-tmp"
-
 # Enable cursor shape modification in vim
 # (https://github.com/neovim/neovim/wiki/FAQ)
 set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
@@ -112,7 +107,6 @@ set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
 # Set copy-mode to act more like vim
 set -g mode-keys vi
-bind p paste-buffer
 
 bind-key -Tcopy-mode-vi 'v' send -X begin-selection
 bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel pbcopy
@@ -121,3 +115,20 @@ bind-key -Tcopy-mode-vi Escape send -X cancel
 # ---------------------------------------------
 
 source $DOTFILES/tmux/tmux_theme.sh
+
+# ---------------------------------------------
+
+# Plugins
+
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Plugins configuration
+set -g @resurrect-capture-pane-contents 'on'
+
+set -g @continuum-boot 'on'
+set -g @continuum-boot-options 'iterm,fullscreen'
+
+# ---------------------------------------------
+
+run $DOTFILES/_config/tpm/tpm

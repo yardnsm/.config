@@ -50,6 +50,7 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 Plug 'mileszs/ack.vim'
 
@@ -94,6 +95,9 @@ Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
 " Python stuff
 Plug 'python-mode/python-mode'
+
+" Tmux stuff
+Plug 'tmux-plugins/vim-tmux'
 
 " Universal shit
 Plug 'sheerun/vim-polyglot'
