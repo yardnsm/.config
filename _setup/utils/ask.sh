@@ -29,7 +29,10 @@ get_answer() {
 
 # Ask for sudo permission
 ask_for_sudo() {
-  [[ "$TRAVIS_SUDO" == "false" ]] && return 1
+  [[ -n "$CI" ]] && \
+    [[ -n "$TRAVIS" ]] && \
+    [[ "$(get_os)" == "macos" ]] && \
+    return 1
 
   sudo -v &> /dev/null
   while true; do
