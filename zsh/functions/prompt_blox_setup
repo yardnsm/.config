@@ -1,1 +1,2 @@
-source $DOTFILES/_config/blox-zsh-theme/blox.zsh
+#source $DOTFILES/_config/blox-zsh-theme/blox.zsh
+source $HOME/dev/github/blox-zsh-theme/blox.zsh
