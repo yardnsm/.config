@@ -1,3 +1,14 @@
+# Core variables
+export DOTFILES=$HOME/dotfiles
+export DOTFILES_LOCAL=$HOME/dotfiles-local
+export ZSH=$DOTFILES/zsh
+export CONFIG=$DOTFILES/_config
+
+# Display info for tasks long than 8sec
+export REPORTTIME=8
+
+# ---------------------------------------------
+
 # Setting fpath
 fpath=($ZSH/functions $fpath)
 
@@ -12,17 +23,6 @@ autoload -U promptinit && promptinit
 
 # For globbing
 setopt EXTENDED_GLOB
-
-# ---------------------------------------------
-
-# Core variables
-export DOTFILES=$HOME/dotfiles
-export DOTFILES_LOCAL=$HOME/dotfiles-local
-export ZSH=$DOTFILES/zsh
-export CONFIG=$DOTFILES/_config
-
-# Display info for tasks long than 8sec
-export REPORTTIME=8
 
 # ---------------------------------------------
 
