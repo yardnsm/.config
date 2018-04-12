@@ -13,18 +13,23 @@ env:
   # `infocmp xterm-256color`.
   TERM: xterm-256color
 
-# Window dimensions in character columns and lines
-# (changes require restart)
-dimensions:
-  columns: 115
-  lines: 25
+window:
+  # Window dimensions in character columns and lines
+  # (changes require restart)
+  dimensions:
+    columns: 115
+    lines: 25
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-padding:
-  x: 32
-  y: 32
+  # Adds this many blank pixels of padding around the window
+  # Units are physical pixels; this is not DPI aware.
+  # (change requires restart)
+  padding:
+    x: 2
+    y: 2
+
+  # Window decorations
+  # Setting this to false will result in window without borders and title bar.
+  decorations: true
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
@@ -36,21 +41,18 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Fira Code
-    # Style can be specified to pick a specific face.
-    # style: Regular
+    family: Hack
+    style: Regular
 
   # The bold font face
   bold:
-    family: Fira Code
-    # Style can be specified to pick a specific face.
-    # style: Bold
+    family: Hack
+    style: Bold
 
   # The italic font face
   italic:
-    family: Fira Code Retina
-    # Style can be specified to pick a specific face.
-    # style: Italic
+    family: Hack
+    style: Italic
 
   # Point size of the font
   size: 14.0
@@ -58,15 +60,15 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -80,13 +82,12 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Colors (Gotham)
-# https://github.com/whatyouhide/gotham-contrib/blob/master/alacritty/gotham.yml
+# Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
-    background: '0x0a0f14'
-    foreground: '0x8bbebb'
+    background: '0x000000'
+    foreground: '0xeaeaea'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
@@ -95,25 +96,36 @@ colors:
 
   # Normal colors
   normal:
-    black: '0x0a0f14'
-    red: '0xc23127'
-    green: '0x2aa889'
-    yellow: '0xedb442'
-    blue: '0x1f677d'
-    magenta: '0x4e5166'
-    cyan: '0x33859e'
-    white: '0x8bbebb'
+    black:   '0x000000'
+    red:     '0xd54e53'
+    green:   '0xb9ca4a'
+    yellow:  '0xe6c547'
+    blue:    '0x7aa6da'
+    magenta: '0xc397d8'
+    cyan:    '0x70c0ba'
+    white:   '0xffffff'
 
   # Bright colors
   bright:
-    black: '0x10151b'
-    red: '0xd26936'
-    green: '0x081f2d'
-    yellow: '0x245361'
-    blue: '0x093749'
-    magenta: '0x888ca6'
-    cyan: '0x599cab'
-    white: '0xd3ebe9'
+    black:   '0x666666'
+    red:     '0xff3334'
+    green:   '0x9ec400'
+    yellow:  '0xe7c547'
+    blue:    '0x7aa6da'
+    magenta: '0xb77ee0'
+    cyan:    '0x54ced6'
+    white:   '0xffffff'
+
+  # Dim colors (Optional)
+  dim:
+    black:   '0x333333'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xdddddd'
 
 
 # Visual Bell
@@ -164,13 +176,38 @@ mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
 mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+
+  # Faux Scrollback
+  #
+  # The `faux_scrollback_lines` setting controls the number
+  # of lines the terminal should scroll when the alternate
+  # screen buffer is active. This is used to allow mouse
+  # scrolling for applications like `man`.
+  #
+  # To disable this completely, set `faux_scrollback_lines` to 0.
+  faux_scrollback_lines: 1
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
+dynamic_title: true
+
 hide_cursor_when_typing: false
+
+# Style of the cursor
+#
+# Values for 'cursor_style':
+# - Block
+# - Underline
+# - Beam
+cursor_style: Block
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -179,9 +216,8 @@ live_config_reload: true
 #
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
-#
 shell:
-  program: /usr/local/bin/zsh
+  program: /bin/zsh
   args:
     - --login
 
@@ -193,6 +229,9 @@ shell:
 # as well (F1, F2, ..). The number keys above the main keyboard are encoded as
 # `Key1`, `Key2`, etc. Keys on the number pad are encoded `Number1`, `Number2`,
 # etc.  These all match the glutin::VirtualKeyCode variants.
+#
+# A list with all available `key` names can be found here:
+# https://docs.rs/glutin/*/glutin/enum.VirtualKeyCode.html#variants
 #
 # Possible values for `mods`
 # `Command`, `Super` refer to the super/command/windows key

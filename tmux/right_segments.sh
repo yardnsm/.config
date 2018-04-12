@@ -11,7 +11,7 @@ tm_segment() {
 
   [[ -z $color ]] && color="colour237"
 
-  [[ -n $icon ]] && res+="#[ fg=${color}, noreverse] ${icon}"
+  [[ -n $icon ]] && res+="#[fg=${color}, noreverse] ${icon}"
   [[ -n $text ]] && res+="#[fg=${color} bg=default, noreverse] ${text} "
   res+="#[bg=default, fg=default]"
 
@@ -26,8 +26,10 @@ tm_divider() {
 # ---------------------------------------------
 
 # Music
+segment_music() {
+  [[ $(command -v osascript) ]] \
+    || return 1
 
-if [[ $(command -v osascript) ]]; then
   spotify="$(osascript "$DOTFILES"/_misc/applescripts/spotify.scpt)"
   is_playing="$(osascript "$DOTFILES"/_misc/applescripts/spotify_is_playing.scpt)"
 
@@ -49,13 +51,55 @@ if [[ $(command -v osascript) ]]; then
     tm_segment "$music_icon" "cyan" "$spotify"
     tm_divider
   fi
-fi
+}
+
+# ---------------------------------------------
+
+# Adapted from yoavmmn's dotfiles:
+# https://github.com/yoavmmn/dotfiles/blob/master/tmux/tmux_local/right_segments.sh#L23-L60
+
+_load_weather() {
+  curl -s http://wttr.in/Tel%20Aviv\?0TmQ > "$TMP_WEATHER_FILE"
+  echo "$EPOCHSECONDS" >> "$TMP_WEATHER_FILE"
+}
+
+# Weather
+segment_weather() {
+  local -r TMP_WEATHER_FILE="$HOME/.tmux_weather.tmp"
+  local -r REFRESH_RATE=$(( 20 * 60 ))
+  local -r HOT_POINT=17
+
+  [[ -f "$TMP_WEATHER_FILE" ]] \
+    || _load_weather
+
+  local epoch="$(tail -n 1 "$TMP_WEATHER_FILE")"
+  local delta=$(( EPOCHSECONDS - epoch ))
+
+  [[ $delta -gt $REFRESH_RATE ]] \
+    && _load_weather
+
+  local weather="$(grep -o "[0-9]* °C" < "$TMP_WEATHER_FILE")"
+  local temprature=$(echo "$weather" | grep -o "[0-9]*")
+
+  local weather_icon="❆"
+  local weather_color="blue"
+
+  if [[ "$temprature" -gt "$HOT_POINT" ]]; then
+    weather_icon="☀"
+    weather_color="yellow"
+  fi
+
+  tm_segment "$weather_icon " "$weather_color" "$weather"
+  tm_divider
+}
 
 # ---------------------------------------------
 
 # Bettery status
+segment_battery() {
+  [[ $(command -v pmset) ]] \
+    || return 1
 
-if [[ $(command -v pmset) ]]; then
   battery_percentage="$(pmset -g batt | awk '{print $3}' | grep '%')"
   battery_status="$(pmset -g batt | awk '{print $4}' | grep 'char')"
   battery_color="yellow"
@@ -64,17 +108,27 @@ if [[ $(command -v pmset) ]]; then
 
   tm_segment "" "$battery_color" "${battery_percentage%?}"
   tm_divider
-fi
+}
 
 # ---------------------------------------------
 
 # Date and time
-
-tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"
-tm_divider
+segment_date() {
+  tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"
+  tm_divider
+}
 
 # ---------------------------------------------
 
 # Machine name
+segment_host() {
+  tm_segment "" "blue" "#h"
+}
 
-tm_segment "" "blue" "#h"
+# ---------------------------------------------
+
+segment_music
+segment_weather
+segment_battery
+segment_date
+segment_host
