@@ -19,7 +19,7 @@ BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
 BLOX_SEG__UPPER_LEFT=(host bgjobs symbol)
 
-BLOX_SEG__UPPER_RIGHT=(exec_time vi cwd_ng nodejs_ng git git_enhanced)
+BLOX_SEG__UPPER_RIGHT=(exec_time vi cwd_ng virtualenv pyenv nodejs_ng git git_enhanced)
 
 # ---------------------------------------------
 # Custom SSH settings
