@@ -17,7 +17,7 @@ brew_install() {
     brew_list=$(brew list && brew cask list)
   fi
 
-  if [[ "$(echo "${brew_list}" | grep "${formula}")" ]]; then
+  if echo "${brew_list}" | grep -q "${formula}"; then
     print_success "$formula (already installed)"
   else
     execute "brew $tap install $formula $args" "$formula"
@@ -38,7 +38,7 @@ brew_tap() {
     brew_taps_list=$(brew tap)
   fi
 
-  if [[ "$(echo "${brew_taps_list}" | grep "${tap}")" ]]; then
+  if echo "${brew_taps_list}" | grep -q "${tap}"; then
     print_success "$tap (already installed)"
   else
     execute "brew tap $tap" "Tapping $formula"

@@ -72,14 +72,14 @@ segment_weather() {
   [[ -f "$TMP_WEATHER_FILE" ]] \
     || _load_weather
 
-  local epoch="$(tail -n 1 "$TMP_WEATHER_FILE")"
-  local delta=$(( EPOCHSECONDS - epoch ))
+  local epoch; epoch="$(tail -n 1 "$TMP_WEATHER_FILE")"
+  local delta; delta=$(( EPOCHSECONDS - epoch ))
 
   [[ $delta -gt $REFRESH_RATE ]] \
     && _load_weather
 
-  local weather="$(grep -o "[0-9]* °C" < "$TMP_WEATHER_FILE")"
-  local temprature=$(echo "$weather" | grep -o "[0-9]*")
+  local weather; weather="$(grep -o "[0-9]* °C" < "$TMP_WEATHER_FILE")"
+  local temprature; temprature=$(echo "$weather" | grep -o "[0-9]*")
 
   local weather_icon="❆"
   local weather_color="blue"

@@ -21,6 +21,7 @@ declare -r formulae=(
   'sudolikeaboss'
   'coreutils'
   'ansible'
+  'readline'
 
   'wget'
   'tig'

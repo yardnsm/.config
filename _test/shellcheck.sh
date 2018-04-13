@@ -14,17 +14,16 @@ if ! cmd_exists "shellcheck"; then
   print_error "shellcheck is not installed!"
 fi
 
-find . \
+find .. \
   -type f \
-  ! -path './_config/*' \
-  ! -path './_misc/*' \
-  ! -path './nvim/nvim.conf/plugged/*' \
+  ! -path '../_config/*' \
+  ! -path '../_misc/*' \
+  ! -path '../nvim/nvim.conf/plugged/*' \
   -name '*.sh' \
   -exec shellcheck \
     -e SC1091 \
     -e SC1090 \
     -e SC2015 \
-    -e SC2143 \
   {} +
 
 print_result $? "Shellcheck"

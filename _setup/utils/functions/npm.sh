@@ -15,7 +15,7 @@ npm_install() {
     npm_list=$(npm list -g --depth 0 -s)
   fi
 
-  if [[ "$(echo "${npm_list}" | grep "${package}@")" ]]; then
+  if echo "${npm_list}" | grep -q "${package}@"; then
     print_success "$package (already installed)"
   else
     execute "sudo npm install $package -g" "$package"

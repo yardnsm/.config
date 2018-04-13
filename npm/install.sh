@@ -31,5 +31,5 @@ declare -r dependencies=(
 )
 
 for dep in "${dependencies[@]}"; do
-  yarn_install "$dep"
+  npm_install "$dep"
 done

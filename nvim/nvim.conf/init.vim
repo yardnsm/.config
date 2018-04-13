@@ -95,7 +95,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
 " Python stuff
-Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 " Tmux stuff
 Plug 'tmux-plugins/vim-tmux'

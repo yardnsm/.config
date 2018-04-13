@@ -17,9 +17,9 @@ yarn_install() {
     yarn_list=$(yarn global list --depth 0)
   fi
 
-  if [[ "$(echo "${npm_list}" | grep "${package}@")" ]]; then
+  if echo "${npm_list}" | grep -q "${package}@"; then
     print_success "$package (already installed via npm)"
-  elif [[ "$(echo "${yarn_list}" | grep "${package}@")" ]]; then
+  elif echo "${yarn_list}" | grep -q "${package}@"; then
     print_success "$package (already installed via yarn)"
   else
     execute "yarn global add $package" "$package (via yarn)"

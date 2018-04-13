@@ -22,7 +22,7 @@ show_spinner() {
   local curr_frame=""
 
   # As long as the process is running
-  while [[ "$(ps a | awk '{print $1}' | grep "$PID")" ]]; do
+  while ps a | awk '{print $1}' | grep -q "$PID" &> /dev/null; do
     curr_frame="${FRAMES:i++%${#FRAMES}:1}"
 
     print_in_blue "     $curr_frame  $MSG"
