@@ -17,9 +17,9 @@ BLOX_BLOCK__SYMBOL_COLOR=140
 BLOX_BLOCK__GIT_CLEAN_SYMBOL='+'
 BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
-BLOX_SEG__UPPER_LEFT=(host bgjobs symbol)
+BLOX_SEG__UPPER_LEFT=(host virtualenv bgjobs symbol)
 
-BLOX_SEG__UPPER_RIGHT=(exec_time vi cwd_ng virtualenv pyenv nodejs_ng git git_enhanced)
+BLOX_SEG__UPPER_RIGHT=(exec_time vi cwd_ng pyenv nodejs_ng git git_enhanced)
 
 # ---------------------------------------------
 # Custom SSH settings

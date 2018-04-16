@@ -64,7 +64,6 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-abolish' " mainly for changing cases
 
 " same for junegunn
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
