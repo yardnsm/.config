@@ -40,7 +40,7 @@ set-option -g allow-rename off
 set -g focus-events on
 
 # Persist tmux messages a little longer, regardless of `status-interval`
-set -g display-time 4000
+set -g display-time 2000
 
 # ---------------------------------------------
 
@@ -122,6 +122,7 @@ source $DOTFILES/tmux/tmux_theme.sh
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'yardnsm/tmux-1password'
 
 # Plugins configuration
 set -g @resurrect-capture-pane-contents 'on'

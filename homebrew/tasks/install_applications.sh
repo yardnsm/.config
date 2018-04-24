@@ -14,8 +14,10 @@ declare -r applications=(
   'vimr'
   'visual-studio-code'
   'wireshark'
+  'hex-fiend'
 
   '1password'
+  '1password-cli'
 
   'google-chrome'
   'google-chrome-canary'
