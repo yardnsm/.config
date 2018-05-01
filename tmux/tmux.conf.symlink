@@ -132,4 +132,4 @@ set -g @continuum-boot-options 'iterm,fullscreen'
 
 # ---------------------------------------------
 
-run $DOTFILES/_config/tpm/tpm
+run $DOTFILES/_submodules/tpm/tpm

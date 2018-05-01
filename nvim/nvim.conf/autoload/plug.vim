@@ -1,1 +1,1 @@
-source $HOME/dotfiles/_config/vim-plug/plug.vim
+source $HOME/dotfiles/_submodules/vim-plug/plug.vim

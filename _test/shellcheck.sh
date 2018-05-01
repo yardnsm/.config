@@ -16,7 +16,7 @@ fi
 
 find .. \
   -type f \
-  ! -path '../_config/*' \
+  ! -path '../_submodules/*' \
   ! -path '../_misc/*' \
   ! -path '../nvim/nvim.conf/plugged/*' \
   -name '*.sh' \

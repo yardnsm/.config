@@ -7,5 +7,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_info "Installing plugins"
 
-execute "$DOTFILES/_config/tpm/scripts/install_plugins.sh" \
+execute "$DOTFILES/_submodules/tpm/scripts/install_plugins.sh" \
   "Installing tmux plugins (using tpm)"
