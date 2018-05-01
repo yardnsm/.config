@@ -69,7 +69,7 @@ bind = select-layout tiled
 # ---------------------------------------------
 
 # Reload config file
-bind r source-file ~/.tmux.conf \; display "Reloaded"
+bind r display "Reloading..." \; source-file ~/.tmux.conf \; display "Reloaded!"
 
 # Synchronize all panes
 bind y setw synchronize-panes
