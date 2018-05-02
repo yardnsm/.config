@@ -19,6 +19,8 @@ declare -r applications=(
   '1password'
   '1password-cli'
 
+  'keybase'
+
   'google-chrome'
   'google-chrome-canary'
 

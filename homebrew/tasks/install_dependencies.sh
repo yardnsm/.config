@@ -17,11 +17,12 @@ declare -r formulae=(
   'python3'
   'pyenv'
   'pyenv-pip-migrate'
+  'pyenv-virtualenv'
   'shellcheck'
   'sudolikeaboss'
   'coreutils'
+  'gpg'
   'ansible'
-  'readline'
 
   'wget'
   'tig'
@@ -46,6 +47,8 @@ declare -r formulae=(
   'figlet'
   'tree'
   'youtube-dl'
+
+  'readline'
 )
 
 for formula in "${formulae[@]}"; do
