@@ -60,7 +60,7 @@ segment_music() {
 
 _load_weather() {
   curl -s http://wttr.in/Tel%20Aviv\?0TmQ > "$TMP_WEATHER_FILE"
-  echo "$EPOCHSECONDS" >> "$TMP_WEATHER_FILE"
+  date +%s >> "$TMP_WEATHER_FILE"
 }
 
 # Weather
@@ -72,8 +72,9 @@ segment_weather() {
   [[ -f "$TMP_WEATHER_FILE" ]] \
     || _load_weather
 
-  local epoch; epoch="$(tail -n 1 "$TMP_WEATHER_FILE")"
-  local delta; delta=$(( EPOCHSECONDS - epoch ))
+  local last_epoch; last_epoch="$(tail -n 1 "$TMP_WEATHER_FILE")"
+  local epoch; epoch="$(date +%s)"
+  local delta; delta=$(( epoch - last_epoch ))
 
   [[ $delta -gt $REFRESH_RATE ]] \
     && _load_weather
