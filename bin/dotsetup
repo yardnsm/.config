@@ -26,7 +26,7 @@ run_install_local() {
 # ---------------------------------------------
 
 run_topic() {
-  declare -r topic_to_install=$1
+  declare -r topic_to_install="$1"
 
   print_title "Getting ready"
   check_for_sudo
@@ -43,7 +43,7 @@ list_topics() {
   local topics=( $(get_all_topics) )
 
   for topic in "${topics[@]}"; do
-    echo -ne "  $(basename "$topic")\n"
+    echo -ne "    $(basename "$topic")\\n"
   done
 }
 
@@ -85,7 +85,8 @@ update_dotfiles() {
 
   print_title "Running updated topics"
 
-  cd "$DOTFILES"
+  cd "$DOTFILES" \
+    || exit 1
 
   local files_changed="$(git diff --name-only HEAD "$current_commit_hash")"
   local topics_to_install=""
@@ -99,7 +100,7 @@ update_dotfiles() {
   done <<< "$files_changed"
 
   topics_to_install="$(echo -e "$topics_to_install" | uniq)"
-  topics_to_install=( $topics_to_install ) # don't ask.
+  topics_to_install=( $topics_to_install )
 
   for topic in "${topics_to_install[@]}"; do
     install_specific_topic "$topic"

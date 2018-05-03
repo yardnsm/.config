@@ -49,19 +49,23 @@ print_info() {
 }
 
 print_error() {
-  print_in_red "     ✘  $1\\n"
+  # shellcheck disable=SC2059
+  print_in_red "     ✘" && printf "  $1\\n"
 }
 
 print_question() {
-  print_in_yellow "     ?  $1"
+  # shellcheck disable=SC2059
+  print_in_yellow "     ?" && printf "  $1"
 }
 
 print_status() {
-  print_in_yellow "     ℹ  $1\\n"
+  # shellcheck disable=SC2059
+  print_in_yellow "     ℹ" && printf "  $1\\n"
 }
 
 print_success() {
-  print_in_green "     ✔︎  $1\\n"
+  # shellcheck disable=SC2059
+  print_in_green "     ✔︎" && printf "  $1\\n"
 }
 
 # ---------------------------------------------
