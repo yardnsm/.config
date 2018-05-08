@@ -13,14 +13,21 @@ execute "sudo apt-get update -qqy" "apt-get (update)"
 
 print_info "Install APT packages"
 
-apt_install 'sudo'
-apt_install 'git'
-apt_install 'make'
-apt_install 'curl'
-apt_install 'tmux'
-apt_install 'zsh'
-apt_install 'ruby-full'
-apt_install 'rbenv'
+declare -r packages=(
+  'sudo'
+  'git'
+  'make'
+  'curl'
+  'tmux'
+  'zsh'
+  'ruby-full'
+  'rbenv'
+)
+
+for package in "${packages[@]}"; do
+  apt_install "$package"
+done
+
 
 # ---------------------------------------------
 
