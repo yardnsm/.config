@@ -1,29 +1,19 @@
 #!/usr/bin/env bash
 
-# ---------------------------------------------
-
-source "$DOTFILES/_setup/initializer.sh"
-
-# ---------------------------------------------
-
-[[ -z $DOTFILES ]] && \
-  declare -r DOTFILES=$HOME/dotfiles
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+  && source "../_setup/initializer.sh"
 
 # ---------------------------------------------
 
 run_install() {
   shift
-  source "$DOTFILES/install.sh" "$@"
+  source "../install.sh" "$@"
 }
-
-# ---------------------------------------------
 
 run_install_local() {
   shift
   source "$DOTFILES_LOCAL/install.sh" "$@"
 }
-
-# ---------------------------------------------
 
 run_topic() {
   declare -r topic_to_install="$1"
@@ -34,12 +24,11 @@ run_topic() {
   install_specific_topic "$topic_to_install"
 }
 
-# ---------------------------------------------
-
 list_topics() {
   print_title "Available topics"
   echo
 
+  # shellcheck disable=SC2207
   local topics=( $(get_all_topics) )
 
   for topic in "${topics[@]}"; do
@@ -55,11 +44,11 @@ _execute_directly() {
 }
 
 update_dotfiles() {
-  declare -r current_commit_hash="$(cd "$DOTFILES" && git rev-parse --short HEAD)"
+  local -r current_commit_hash="$(git rev-parse --short HEAD)"
 
   print_title "Updating dotfiles"
 
-  _execute_directly "cd $DOTFILES || exit 1" \
+  _execute_directly "cd .. || exit 1" \
     "Performing inside the dotfiles repo"
 
   _execute_directly "git pull --rebase" \
@@ -85,24 +74,22 @@ update_dotfiles() {
 
   print_title "Running updated topics"
 
-  cd "$DOTFILES" \
-    || exit 1
-
-  local files_changed="$(git diff --name-only HEAD "$current_commit_hash")"
-  local topics_to_install=""
+  local files_changed; files_changed="$(cd .. && git diff --name-only HEAD "$current_commit_hash")"
+  local topics_to_install_list
+  local topics_to_install_array
 
   while read -r filepath; do
     dirname="$(cut -d "/" -f1 <<< "$filepath")"
 
     if is_topic_exist "$dirname"; then
-      topics_to_install+="$dirname\n"
+      topics_to_install_list+="$dirname\\n"
     fi
   done <<< "$files_changed"
 
-  topics_to_install="$(echo -e "$topics_to_install" | uniq)"
-  topics_to_install=( $topics_to_install )
+  topics_to_install_list="$(echo -e "$topics_to_install_list" | uniq)"
+  topics_to_install_array=( $topics_to_install_list )
 
-  for topic in "${topics_to_install[@]}"; do
+  for topic in "${topics_to_install_array[@]}"; do
     install_specific_topic "$topic"
   done
 
