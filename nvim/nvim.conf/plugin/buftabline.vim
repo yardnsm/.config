@@ -3,8 +3,7 @@ let g:buftabline_indicators = 1
 let g:buftabline_separators = 1
 let g:buftabline_numbers = 2
 
-highlight link BufTabLineActive TabLineSel
-highlight BufTabLineCurrent cterm=bold ctermfg=2 gui=bold guifg=#90A959
+highlight BufTabLineCurrent cterm=bold ctermfg=2 gui=bold guifg=#2aa889
 
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)

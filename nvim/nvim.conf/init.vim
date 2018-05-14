@@ -36,7 +36,7 @@ let g:python3_host_prog = '/Users/yardnsm/.pyenv/versions/neovim3/bin/python'
 
 call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
-Plug 'chriskempson/base16-vim'
+Plug 'whatyouhide/vim-gotham'
 
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -145,7 +145,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 syntax on                             " enable syntax highlighting
 
 try
-  colorscheme base16-default-dark       " set colorscheme
+  colorscheme gotham       " set colorscheme
 
   " Setup base16-shell
   if filereadable(expand("~/.vimrc_background"))

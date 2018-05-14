@@ -1,5 +1,5 @@
 let g:lightline = {
-  \ 'colorscheme': 'Dracula',
+  \ 'colorscheme': 'gotham',
   \
   \ 'inactive': {
   \   'left': [
