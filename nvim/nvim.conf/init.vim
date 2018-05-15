@@ -86,9 +86,7 @@ Plug 'Shougo/neco-vim'
 
 " SGML stuff
 Plug 'alvan/vim-closetag'
-Plug 'Valloric/MatchTagAlways', {
-  \ 'for': ['html', 'xml', 'jsx', 'xhtml']
-  \ }
+Plug 'Valloric/MatchTagAlways'
 
 " JavaScript stuff
 Plug 'moll/vim-node'
@@ -238,7 +236,7 @@ set splitright                        " split right by default
 
 set colorcolumn=100                   " cuz percision matter
 
-set shortmess+=c                      " do not show completion-menu messages
+" set shortmess+=c                      " do not show completion-menu messages
 
 " }}}
 
