@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AdaptiveFrameRateThroughputThreshold</key>
-	<integer>1000000</integer>
+	<integer>60</integer>
 	<key>AdjustWindowForFontSizeChange</key>
 	<true/>
 	<key>AllowClipboardAccess</key>
@@ -1982,6 +1982,8 @@
 	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
+	<key>DisableMetalWhenUnplugged</key>
+	<true/>
 	<key>EnableDivisionView</key>
 	<false/>
 	<key>EnableRendezvous</key>
@@ -2069,15 +2071,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>391 1068 865 94 0 900 1920 1057 </string>
+	<string>391 1101 865 420 0 1050 1920 1058 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>410 382 620 392 0 0 1440 900 </string>
+	<string>650 1566 620 392 0 1050 1920 1080 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>969 1477 918 452 0 1050 1920 1058 </string>
+	<string>649 1646 1018 447 0 1050 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>183 1201 1370 865 0 1050 1920 1058 </string>
+	<string>652 1246 924 451 0 1050 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>304 193 890 479 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
@@ -2086,7 +2088,7 @@
 			<key>ASCII Anti Aliased</key>
 			<true/>
 			<key>ASCII Ligatures</key>
-			<true/>
+			<false/>
 			<key>Allow Title Reporting</key>
 			<false/>
 			<key>Ambiguous Double Width</key>
@@ -2956,11 +2958,9 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-14T16:53:34Z</date>
+	<date>2018-05-14T22:09:28Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.1.6beta5</string>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2969,6 +2969,8 @@
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
+	<key>ShowMetalFPSmeter</key>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SlowFrameRate</key>
@@ -2988,9 +2990,9 @@
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
-	<integer>5</integer>
+	<integer>2</integer>
 	<key>TerminalVMargin</key>
-	<integer>5</integer>
+	<integer>2</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
@@ -3006,6 +3008,8 @@
 	<key>UseCompactLabel</key>
 	<true/>
 	<key>UseLionStyleFullscreen</key>
+	<true/>
+	<key>UseMetal</key>
 	<true/>
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
@@ -3024,7 +3028,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.2</string>
+	<string>3.1.6beta5</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>
