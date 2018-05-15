@@ -44,7 +44,7 @@ set -g display-time 2000
 
 # ---------------------------------------------
 
-# Spliting (and keep the path)
+# Spliting (and keep the cwd)
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 bind "\\" split-window -fh -c "#{pane_current_path}"

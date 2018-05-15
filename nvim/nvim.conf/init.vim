@@ -39,19 +39,19 @@ call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 Plug 'whatyouhide/vim-gotham'
 
 Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-buftabline'
+" Plug 'ap/vim-buftabline'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'kshenoy/vim-signature'
-Plug 'ktonga/vim-follow-my-lead'
+" Plug 'ktonga/vim-follow-my-lead'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
@@ -98,8 +98,11 @@ Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 " Python stuff
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
-" Tmux stuff
+" Tmux config stuff
 Plug 'tmux-plugins/vim-tmux'
+
+" Markdown shit (mainly for the fenced code blocks)
+Plug 'plasticboy/vim-markdown'
 
 " Universal shit
 Plug 'sheerun/vim-polyglot'
@@ -157,8 +160,9 @@ if !has('gui_vimr')
   set background=dark                 " assume a dark background
   set t_Co=256                        " we use a 256-color terminal
 
-  " Set colors for folds
+  " Some fixes to Gotham
   highlight Folded ctermbg=green ctermfg=blue
+  highlight VertSplit ctermfg=4 ctermbg=10
 endif
 
 " }}}
@@ -218,7 +222,7 @@ set mouse=                            " disable mouse support by default
 
 set showcmd                           " show command in normal (when typed)
 set lazyredraw                        " redraw only when we need to
-set nocursorline                      " do not highlight current line
+set cursorline                        " highlight current line (may cause vim to be slower)
 
 set wildmenu                          " enable wildmenu for completion
 set wildmode=full
@@ -271,11 +275,10 @@ nnoremap <leader>cc :cclose<CR>
 nnoremap <leader><space> :set hlsearch!<CR>
 
 " Enable hlsearch before searching
-" AND also use 'very magic' mode
-nnoremap / :set hlsearch<CR>/\v
-vnoremap / :set hlsearch<CR>/\v
-nnoremap ? :set hlsearch<CR>?\v
-vnoremap ? :set hlsearch<CR>?\v
+nnoremap / :set hlsearch<CR>/
+vnoremap / :set hlsearch<CR>/
+nnoremap ? :set hlsearch<CR>?
+vnoremap ? :set hlsearch<CR>?
 
 " Quick access to .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -285,10 +288,11 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <space> za
 
 " Making working with buffers less painful
-nnoremap <leader>T :enew<CR>
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>p :bprevious<CR>
 nnoremap <leader>bq :bp <BAR> bd #<CR>
+
+" In favor of vim-unimpaired
+" nnoremap <leader>n :bnext<CR>
+" nnoremap <leader>p :bprevious<CR>
 
 " Disable arrow keys for now...
 noremap <left>  <nop>
@@ -302,12 +306,12 @@ inoremap <right> <nop>
 inoremap <up>    <nop>
 inoremap <down>  <nop>
 
-" Splits (there's a problem with <C-h>, ref:
-" https://github.com/neovim/neovim/issues/2048)
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Splits
+" Letting `vim-tmux-navigator` to manage these
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " Terminal mappings
 nnoremap <Leader>ts <C-w>n:terminal<CR>
