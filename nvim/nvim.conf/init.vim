@@ -26,8 +26,8 @@ set modelines=1                       " enable modelines
 " let g:python_host_prog = '/usr/local/bin/python2'
 " let g:python3_host_prog = '/usr/local/bin/python3'
 
-let g:python_host_prog = '/Users/yardnsm/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/yardnsm/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 " }}}
 
@@ -145,7 +145,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 syntax on                             " enable syntax highlighting
 
 try
-  colorscheme gotham       " set colorscheme
+  colorscheme gotham                  " set colorscheme
 
   " Setup base16-shell
   if filereadable(expand("~/.vimrc_background"))
@@ -158,6 +158,9 @@ endtry
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
   set t_Co=256                        " we use a 256-color terminal
+
+  " Set colors for folds
+  highlight Folded ctermbg=green ctermfg=blue
 endif
 
 " }}}

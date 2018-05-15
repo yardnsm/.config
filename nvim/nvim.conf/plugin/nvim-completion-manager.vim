@@ -15,3 +15,6 @@ imap <C-g> <Plug>(cm_force_refresh)
 " Sub-string matching
 " https://github.com/roxma/nvim-completion-manager/issues/12#issuecomment-325618268
 let g:cm_matcher = {'module': 'cm_matchers.substr_matcher', 'case': 'smartcase'}
+
+" Disable preview window
+set completeopt-=preview
