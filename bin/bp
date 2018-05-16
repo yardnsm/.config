@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+
+# ---------------------------------------------
+
+declare -r BOILERPLATES_HOME="$HOME/dev/gitlab/boilerplates"
+
+# ---------------------------------------------
+
+print_error() {
+  printf "\\e[0;31m\\033[1mERROR\\033[0m\\e[0m %s\\n" "$1"
+}
+
+print_step() {
+  printf "\\e[0;33m\\033[1mSTEP\\033[0m\\e[0m %s\\n" "$1"
+}
+
+print_success() {
+  printf "\\e[0;32m\\033[1mSUCCESS\\033[0m\\e[0m %s\\n" "$1"
+}
+
+# ---------------------------------------------
+
+list_boilerplates() {
+  find "$BOILERPLATES_HOME" \
+    -type d \
+    -depth 1 \
+    ! -path "*/\\.*" \
+    -exec basename "{}" \;
+}
+
+copy_boilerplate() {
+  local -r BP_NAME="$1"
+  local -r DEST_BASENAME="$2"
+
+  local -r CWD="$(pwd)"
+  local -r DEST_PATH="$CWD/$DEST_BASENAME"
+  local -r TMP_DIR="$(mktemp -d)"
+
+  if [[ -z "$BP_NAME" ]]; then
+    print_error "Argument [bp_name] is required"
+    exit 1
+  fi
+
+  if [[ -z "$DEST_BASENAME" ]]; then
+    print_error "Argument [dest] is required"
+    exit 1
+  fi
+
+  if ! [[ -e "$BOILERPLATES_HOME/$BP_NAME" ]]; then
+    print_error "Boilerplate $BP_NAME is not exist"
+    exit 1
+  fi
+
+  if [[ -e "$DEST_PATH" ]]; then
+    print_error "Destination $DEST_BASENAME already exists"
+    exit 1
+  fi
+
+  print_step "Creating a temporary git repository in $TMP_DIR"
+  git init "$TMP_DIR" --bare &> /dev/null
+
+  cd "$BOILERPLATES_HOME" \
+    || exit 1
+
+  print_step "Create a subtree split in $BOILERPLATES_HOME"
+  git subtree split --prefix="$BP_NAME" -b tmp-branch &> /dev/null
+
+  print_step "Pusing the split into the temporary repository"
+  git push -f "$TMP_DIR" tmp-branch:master &> /dev/null
+
+  print_step "Deleting the split from the boilerplates repository"
+  git branch -D tmp-branch &> /dev/null
+
+  cd "$CWD" \
+    || exit 1
+
+  print_step "Cloning the temporary repository into $DEST_PATH"
+  git clone "$TMP_DIR" "$DEST_BASENAME" &> /dev/null
+
+  cd "$DEST_BASENAME" \
+    || exit 1
+
+  print_step "Removing .git folder"
+  rm -rf .git
+
+  print_success "Done. Check out $DEST_PATH"
+}
+
+# ---------------------------------------------
+
+print_help() {
+  cat <<EOF
+
+  Boilerplates manager
+
+  Usage
+    bp <command> [options]
+
+  Commands
+    ls                  List available boilerplates
+    cp                  Copy a boilerplate
+
+  Options
+    -h, --help              Show help output
+EOF
+}
+
+# ---------------------------------------------
+
+main() {
+  declare -r cmd=$1
+  shift
+
+  case "$cmd" in
+    ls )
+      list_boilerplates "$@"
+      exit 0
+      ;;
+    cp )
+      copy_boilerplate "$@"
+      exit 0
+      ;;
+    install-local )
+      ;;
+    "" | -h | --help)
+      print_help
+      exit 0
+      ;;
+    * )
+      print_error "Unknown command $cmd";
+      exit 1;
+      ;;
+  esac
+}
+
+main "$@"
