@@ -38,6 +38,7 @@ else
   add-zsh-hook precmd blox_hook__precmd_git_fetch
   add-zsh-hook precmd blox_hook__precmd_exec_time
   add-zsh-hook preexec blox_hook__preexec_exec_time
+  add-zsh-hook precmd blox_hook__precmd_reset_cursor
 
   # Enable VI mode
   blox_helper__enable_vi
@@ -53,6 +54,10 @@ blox_helper__redraw_prompt() {
   zle && zle reset-prompt
 
   BLOX_CONF__PROMPT_PREFIX="\n"
+}
+
+blox_hook__precmd_reset_cursor() {
+  tput cnorm
 }
 
 # ---------------------------------------------

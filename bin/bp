@@ -29,30 +29,30 @@ list_boilerplates() {
 }
 
 copy_boilerplate() {
-  local -r BP_NAME="$1"
-  local -r DEST_BASENAME="$2"
+  local -r ARG_BP_NAME="$1"
+  local -r ARG_DEST="$2"
 
   local -r CWD="$(pwd)"
-  local -r DEST_PATH="$CWD/$DEST_BASENAME"
+  local -r DEST_REALPATH="$(realpath $ARG_DEST)"
   local -r TMP_DIR="$(mktemp -d)"
 
-  if [[ -z "$BP_NAME" ]]; then
+  if [[ -z "$ARG_BP_NAME" ]]; then
     print_error "Argument [bp_name] is required"
     exit 1
   fi
 
-  if [[ -z "$DEST_BASENAME" ]]; then
+  if [[ -z "$ARG_DEST" ]]; then
     print_error "Argument [dest] is required"
     exit 1
   fi
 
-  if ! [[ -e "$BOILERPLATES_HOME/$BP_NAME" ]]; then
-    print_error "Boilerplate $BP_NAME is not exist"
+  if ! [[ -e "$BOILERPLATES_HOME/$ARG_BP_NAME" ]]; then
+    print_error "Boilerplate $ARG_BP_NAME is not exist"
     exit 1
   fi
 
-  if [[ -e "$DEST_PATH" ]]; then
-    print_error "Destination $DEST_BASENAME already exists"
+  if [[ -e "$DEST_REALPATH" ]]; then
+    print_error "Destination $DEST_REALPATH already exists"
     exit 1
   fi
 
@@ -63,7 +63,7 @@ copy_boilerplate() {
     || exit 1
 
   print_step "Create a subtree split in $BOILERPLATES_HOME"
-  git subtree split --prefix="$BP_NAME" -b tmp-branch &> /dev/null
+  git subtree split --prefix="$ARG_BP_NAME" -b tmp-branch &> /dev/null
 
   print_step "Pusing the split into the temporary repository"
   git push -f "$TMP_DIR" tmp-branch:master &> /dev/null
@@ -71,19 +71,16 @@ copy_boilerplate() {
   print_step "Deleting the split from the boilerplates repository"
   git branch -D tmp-branch &> /dev/null
 
-  cd "$CWD" \
-    || exit 1
+  print_step "Cloning the temporary repository into $DEST_REALPATH"
+  git clone "$TMP_DIR" "$DEST_REALPATH" &> /dev/null
 
-  print_step "Cloning the temporary repository into $DEST_PATH"
-  git clone "$TMP_DIR" "$DEST_BASENAME" &> /dev/null
-
-  cd "$DEST_BASENAME" \
+  cd "$DEST_REALPATH" \
     || exit 1
 
   print_step "Removing .git folder"
   rm -rf .git
 
-  print_success "Done. Check out $DEST_PATH"
+  print_success "Done. Check out $DEST_REALPATH"
 }
 
 # ---------------------------------------------
