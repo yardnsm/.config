@@ -92,9 +92,11 @@ $ dotsetup
 ## Local dotfiles
 
 The installation script will look for a directory located at `~/dotfiles-local`. It'll create the
-appropriate symlinks and will run the local installation file if available
-(`~/dotfiles-local/install.sh`). In addition, available `.zsh` files in the local dotfiles directory
-will be sourced when the shell loads.
+appropriate symlinks (for files ending with `.symlink`) and will run the local installation file
+if available (`~/dotfiles-local/install.sh`).
+
+In addition, available `.zsh` files in the local dotfiles directory will be sourced when the shell
+loads. Additional git configuration can be can be placed in `~/.gitconfig.local`
 
 ## License
 

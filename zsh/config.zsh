@@ -6,6 +6,9 @@ HISTSIZE=10000
 HISTFILE="$HOME/.zsh_history"
 SAVEHIST=$HISTSIZE
 
+# Display info for tasks long than 8sec
+REPORTTIME=8
+
 # More history
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
@@ -30,8 +33,14 @@ setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
-# Guess what
+# More powerful globs
 setopt EXTENDED_GLOB
 
 # Allows to comment lines in an interactive shell
 setopt INTERACTIVE_COMMENTS
+
+# ---------------------------------------------
+
+# Make tab completion behave like vim's smartcase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
