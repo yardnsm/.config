@@ -4,9 +4,6 @@ export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
 export SUBMODULES_PATH=$DOTFILES/_submodules
 
-# Display info for tasks long than 8sec
-export REPORTTIME=8
-
 # ---------------------------------------------
 
 # Setting fpath

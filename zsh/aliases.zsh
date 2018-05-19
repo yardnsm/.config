@@ -16,7 +16,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # ls
-alias ls="ls -G"
+alias ls="ls --color"
 alias l="ls -lah"
 alias la="ls -AF"
 alias ll="ls -lFh"
