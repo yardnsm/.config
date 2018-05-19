@@ -59,16 +59,18 @@ update_dotfiles() {
 
   # -----------------------------------
 
-  print_title "Updating local dotfiles"
+  if [[ -d "$DOTFILES_LOCAL" ]]; then
+    print_title "Updating local dotfiles"
 
-  _execute_directly "cd $DOTFILES_LOCAL || exit 1" \
-    "Performing inside the local dotfiles repo"
+    _execute_directly "cd $DOTFILES_LOCAL || exit 1" \
+      "Performing inside the local dotfiles repo"
 
-  _execute_directly "git pull --rebase" \
-    "Pull latest changes"
+    _execute_directly "git pull --rebase" \
+      "Pull latest changes"
 
-  _execute_directly "git submodule update --init --recursive --remote" \
-    "Update submodules"
+    _execute_directly "git submodule update --init --recursive --remote" \
+      "Update submodules"
+  fi
 
   # -----------------------------------
 

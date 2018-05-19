@@ -32,8 +32,7 @@ copy_boilerplate() {
   local -r ARG_BP_NAME="$1"
   local -r ARG_DEST="$2"
 
-  local -r CWD="$(pwd)"
-  local -r DEST_REALPATH="$(realpath $ARG_DEST)"
+  local -r DEST_REALPATH="$(realpath "$ARG_DEST" 2> /dev/null)"
   local -r TMP_DIR="$(mktemp -d)"
 
   if [[ -z "$ARG_BP_NAME" ]]; then
@@ -94,8 +93,8 @@ print_help() {
     bp <command> [options]
 
   Commands
-    ls                  List available boilerplates
-    cp                  Copy a boilerplate
+    ls                      List available boilerplates
+    cp                      Copy a boilerplate
 
   Options
     -h, --help              Show help output
@@ -116,8 +115,6 @@ main() {
     cp )
       copy_boilerplate "$@"
       exit 0
-      ;;
-    install-local )
       ;;
     "" | -h | --help)
       print_help
