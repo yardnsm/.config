@@ -13,7 +13,6 @@
 " General {{{
 
 set nocompatible                      " don't behave like Vi
-filetype plugin indent on             " automatically detect file types.
 
 set fileencoding=utf-8
 set encoding=utf-8
@@ -26,63 +25,63 @@ set modelines=1                       " enable modelines
 " let g:python_host_prog = '/usr/local/bin/python2'
 " let g:python3_host_prog = '/usr/local/bin/python3'
 
+" see ~/dotfiles/nvim/setup-python-env.sh
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Plugins {{{
 
 call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
 
+" Colors
 Plug 'whatyouhide/vim-gotham'
 
+" Status line
 Plug 'itchyny/lightline.vim'
-" Plug 'ap/vim-buftabline'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
-Plug 'kshenoy/vim-signature'
-" Plug 'ktonga/vim-follow-my-lead'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " a simple file tree
+Plug 'airblade/vim-gitgutter' " shows git diff in the gutter
+Plug 'kshenoy/vim-signature' " displays marks in the gutter (and more)
+Plug 'terryma/vim-multiple-cursors' " multiple cursors for vim!
 
-Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim' " enable support for editorconfig files
 
-Plug 'jiangmiao/auto-pairs'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'AndrewRadev/splitjoin.vim'
+Plug 'christoomey/vim-tmux-navigator' " navigation between tmux and bim splits
+Plug 'roxma/vim-tmux-clipboard' " integration for vim and tmux's clipboard
+Plug 'tmux-plugins/vim-tmux-focus-events' " make focus events work inside tmux
 
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'roxma/vim-tmux-clipboard'
-Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'mileszs/ack.vim' " support for Ack within vim (I use it for Ag, though)
 
-Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive' " a git wrapper for vim
+Plug 'tpope/vim-rhubarb' " GitHub extension for vim-fugitive
+Plug 'tpope/vim-surround' " easly work with surroundings
+Plug 'tpope/vim-commentary' " commant stuff out
+Plug 'tpope/vim-characterize' " more character info in `ga`
+Plug 'tpope/vim-unimpaired' " some sensible bracket mappings
+Plug 'tpope/vim-endwise' " automatically close `end` blocks (`endif`, `done`, etc.)
+Plug 'tpope/vim-repeat' " enable repeating support (`.`) for plugin maps
 
-" tpope deserves his own section
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
+Plug 'junegunn/vim-easy-align' " an alignment plugin
+Plug 'jiangmiao/auto-pairs' " insert or delete pairs
+Plug 'junegunn/vim-emoji' " emoji in vim!
+Plug 'junegunn/vim-peekaboo' " view the registers content when using `\"`, `@` or <C-R
 
-" same for junegunn
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-emoji'
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " the fzf binary
+Plug 'junegunn/fzf.vim' " some commands to utilize fzf within vim
 
 " Autocompletion
 Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
-Plug 'Shougo/neco-vim'
+Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' } " ternjs completion engine
+Plug 'Shougo/neco-vim' " support for vim script
 
-" ------------------------------------------------
+Plug 'w0rp/ale' " linting support
+
 " Language specific stuff (besides autocompletion)
-" ------------------------------------------------
+" ------------------------------------------------------------------------------
 
 " SGML stuff
 Plug 'alvan/vim-closetag'
@@ -107,9 +106,17 @@ Plug 'plasticboy/vim-markdown'
 " Universal shit
 Plug 'sheerun/vim-polyglot'
 
+" MacOS specific plugins
+" ------------------------------------------------------------------------------
+
+if has('mac')
+  Plug 'junegunn/vim-xmark', { 'do': 'make' }
+endif
+
 call plug#end()
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Editor {{{
@@ -117,7 +124,7 @@ call plug#end()
 set number                            " show line numbers
 set linebreak                         " wraps between words
 set list                              " show invisibles
-set scrolloff=8                       " allows to scroll of the screen
+set scrolloff=8                       " allows to scroll of fthe screen
 
 set backspace=indent,eol,start        " proper backspacing
 
@@ -128,55 +135,70 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 " Change the split border
 set fillchars+=vert:\  " ┃
 
-" Change the cursor shape depending on mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Autocommands {{{
 
-      " ¯\_(ツ)_/¯
+augroup vimrc
+  autocmd!
+
+  " Unset paste on InsertLeave
+  autocmd InsertLeave * silent! set nopaste
+augroup END
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Colors and Syntax {{{
 
 syntax on                             " enable syntax highlighting
 
-try
-  colorscheme gotham                  " set colorscheme
-
-  " Setup base16-shell
-  if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-  endif
-catch
-endtry
-
+" Settings for the terminal
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
   set t_Co=256                        " we use a 256-color terminal
 
-  " Some fixes to Gotham
-  highlight Folded ctermbg=green ctermfg=blue
-  highlight VertSplit ctermfg=4 ctermbg=10
+  " Colorscheme overrides
+  augroup CustomColors
+    autocmd!
+
+    " For gotham
+    autocmd ColorScheme gotham
+          \   highlight Folded ctermbg=green ctermfg=blue
+          \ | highlight VertSplit ctermfg=4 ctermbg=10
+  augroup END
 endif
 
+try
+  colorscheme gotham                  " set colorscheme
+
+  " Setup base16-shell
+  if g:colors_name == 'base16-default-dark'
+    if filereadable(expand("~/.vimrc_background"))
+      let base16colorspace=256
+      source ~/.vimrc_background
+    endif
+  endif
+catch
+endtry
+
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Folding {{{
 
-set nofoldenable                      " do not enable folding by default
-set foldmethod=indent                 " based folds on indentation
+set nofoldenable                      " do not enable folding by default (<leader>tf)
+set foldmethod=indent                 " base folds on indentation by default
 set foldmarker={{{,}}}                " fold marker
 set foldlevelstart=10                 " open most folds by default
-set foldnestmax=10                    " 10 nested fold at max
+set foldnestmax=10                    " max nested folds
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Search {{{
@@ -185,24 +207,28 @@ set incsearch                         " shows matches as you type
 set smartcase                         " if caps, watch case
 set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
-set gdefault                          " make search&replaces global for the line
+set gdefault                          " make search and replace global for the line
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Indent {{{
 
+filetype plugin indent on             " automatically detect file types for indentation
+
 set autoindent
 set smartindent
 set smarttab
-set expandtab                         " spaces FTW
-set shiftround                        " round indent to multiples of shiftwidth
+set expandtab                         " use spaces
+set shiftround                        " round indent to multiplies of shiftwidth
 
-set shiftwidth=2
+set shiftwidth=2                      " for `>>`, `<<`, `==`
 set softtabstop=2                     " number of spaces in <tab> when editing
-set tabstop=2                         " number of visual spaces per <tab>
+set tabstop=2                         " number of *visual* spaces per <tab>
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " File system {{{
@@ -214,6 +240,7 @@ set noswapfile                        " disable swaps
 set noundofile                        " disable undofiles
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Misc {{{
@@ -225,9 +252,9 @@ set lazyredraw                        " redraw only when we need to
 set cursorline                        " highlight current line (may cause vim to be slower)
 
 set wildmenu                          " enable wildmenu for completion
-set wildmode=full
+set wildmode=full                     " completion mode
 
-set laststatus=2                      " always show status
+set laststatus=2                      " always show the status line
 
 set timeout
 set timeoutlen=1000
@@ -240,21 +267,26 @@ set splitright                        " split right by default
 
 set colorcolumn=100                   " cuz percision matter
 
-" set shortmess+=c                      " do not show completion-menu messages
+set shortmess+=c                      " do not show completion-menu messages
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " GUI stuff {{{
-"
+
+" Using VimR mainly
 if has('gui_vimr')
-  " set cursorline                      " highlight the current line
+
+  " ¯\_(ツ)_/¯
+
 endif
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
-" Mappings and abbreviations {{{
+" Mappings {{{
 
 let mapleader=','                     " change the map leader
 let maplocalleader=','
@@ -290,9 +322,9 @@ nnoremap <space> za
 " Making working with buffers less painful
 nnoremap <leader>bq :bp <BAR> bd #<CR>
 
-" In favor of vim-unimpaired
-" nnoremap <leader>n :bnext<CR>
-" nnoremap <leader>p :bprevious<CR>
+" Circular windows navigation
+nnoremap <tab>   <c-w>w
+nnoremap <S-tab> <c-w>W
 
 " Disable arrow keys for now...
 noremap <left>  <nop>
@@ -306,30 +338,11 @@ inoremap <right> <nop>
 inoremap <up>    <nop>
 inoremap <down>  <nop>
 
-" Splits
-" Letting `vim-tmux-navigator` to manage these
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
-" Terminal mappings
-nnoremap <Leader>ts <C-w>n:terminal<CR>
-nnoremap <Leader>tv <C-w>v<C-w>l:terminal<CR>
-nnoremap <Leader>tt :terminal<CR>
-
-tnoremap <leader><esc> <C-\><C-n>
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-
-" Typing ':' requires 2 keystrokes (S-;).
-" Let's fix that
+" Typing ':' with only one keystroke
 nnoremap ; :
 
-" Uppercase the current word
-" nnoremap <C-U> gUaw
+" qq to record, Q to run
+nnoremap Q @q
 
 " Toggle mouse support
 function! MouseToggle()
@@ -347,14 +360,45 @@ nnoremap <leader>tn :set relativenumber!<CR>
 " Toggle pastemode
 nnoremap <leader>tp :set paste!<CR>
 
+" Toggle indent
+nnoremap <leader>tf :set foldenable!<CR>
+
+" Toggle cursorline
+nnoremap <leader>tc :set cursorline!<CR>
+
 " Copy to clipboard
 vnoremap <C-c> "+y
 
-" Some abbreviations
+" Retired
+" I use this section for reference
+" ------------------------------------------------------------------------------
+
+" Splits
+" Letting `vim-tmux-navigator` to manage these
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+
+" In favor of vim-unimpaired
+" nnoremap <leader>n :bnext<CR>
+" nnoremap <leader>p :bprevious<CR>
+
+" }}}
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Abbreviations {{{
+
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev qQ q!
 
+" Insert a Shebang
+" https://github.com/junegunn/dotfiles/blob/master/vimrc#L567
+inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
+
 " }}}
+" ------------------------------------------------------------------------------

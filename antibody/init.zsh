@@ -4,9 +4,15 @@ source <(antibody init)
 antibody bundle <<EOBUNDLES
   lukechilds/zsh-nvm
   rupa/z
-  zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-completions
-  zsh-users/zsh-autosuggestions
   chrissicool/zsh-256color
   supercrabtree/k
 EOBUNDLES
+
+# Plugins to use when not inside an ssh session
+if [[ -z $SSH_CONNECTION ]]; then
+  antibody bundle <<EOBUNDLES
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-autosuggestions
+EOBUNDLES
+fi

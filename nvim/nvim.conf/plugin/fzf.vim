@@ -1,4 +1,5 @@
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
