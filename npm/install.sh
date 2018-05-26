@@ -22,8 +22,13 @@ declare -r dependencies=(
   'tern-jsx'
   'ava'
   'hicat'
-  'javascript-typescript-langserver'
   'typescript'
+
+  'javascript-typescript-langserver'
+  'vscode-css-languageserver-bin'
+  'typescript-language-server'
+  'vscode-html-languageserver-bin'
+  'vscode-json-languageserver-bin'
 
   'speed-test'
   'fast-cli'

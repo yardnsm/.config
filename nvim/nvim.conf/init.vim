@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker foldlevel=0:
+" vm: set foldmethod=marker foldlevel=0:
 
 " ------------------------------------------------------------------------------
 "         _
@@ -13,6 +13,7 @@
 " General {{{
 
 set nocompatible                      " don't behave like Vi
+filetype plugin indent on             " automatically detect file types for indentation
 
 set fileencoding=utf-8
 set encoding=utf-8
@@ -42,6 +43,9 @@ Plug 'whatyouhide/vim-gotham'
 
 " Status line
 Plug 'itchyny/lightline.vim'
+
+" Linting support
+Plug 'w0rp/ale'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " a simple file tree
 Plug 'airblade/vim-gitgutter' " shows git diff in the gutter
@@ -74,11 +78,31 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " the fzf bina
 Plug 'junegunn/fzf.vim' " some commands to utilize fzf within vim
 
 " Autocompletion
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' } " ternjs completion engine
-Plug 'Shougo/neco-vim' " support for vim script
+" ------------------------------------------------------------------------------
 
-Plug 'w0rp/ale' " linting support
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-emoji.vim'
+Plug 'wellle/tmux-complete.vim'
+
+" Syntax completion
+Plug 'Shougo/neco-syntax'
+Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
+
+" Vim Script
+Plug 'Shougo/neco-vim'
+Plug 'prabirshrestha/asyncomplete-necovim.vim'
+
+" Language servers
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+" TypeScript & JavaScript
+Plug 'runoshun/tscompletejob'
+Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
 
 " Language specific stuff (besides autocompletion)
 " ------------------------------------------------------------------------------
@@ -112,6 +136,7 @@ Plug 'sheerun/vim-polyglot'
 if has('mac')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
 endif
+
 
 call plug#end()
 
@@ -214,8 +239,6 @@ set gdefault                          " make search and replace global for the l
 
 " ------------------------------------------------------------------------------
 " Indent {{{
-
-filetype plugin indent on             " automatically detect file types for indentation
 
 set autoindent
 set smartindent

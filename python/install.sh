@@ -13,6 +13,7 @@ declare -r pips=(
   'jedi'
   'neovim'
   'pypcap'
+  'python-language-server[all]'
 
   'virtualenv'
   'pew'

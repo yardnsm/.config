@@ -28,7 +28,9 @@ setw -g pane-base-index 1
 
 # Visual notification of activity in other windows
 setw -g monitor-activity on
-set -g visual-activity on
+
+# Prevent tmux from displaying "Activity in window X" messages.
+set -g visual-activity off
 
 # Don't rename windows automatically
 set-option -g allow-rename off

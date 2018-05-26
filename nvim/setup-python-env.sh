@@ -13,6 +13,9 @@ setup_python3() {
   print_info "Installing neovim pip module"
   pip install neovim
 
+  print_info "Installing additional pipes"
+  pip install python-language-server jedi
+
   pyenv deactivate
 }
 
@@ -23,6 +26,9 @@ setup_python2() {
 
   print_info "Installing neovim pip module"
   pip install neovim
+
+  print_info "Installing additional pipes"
+  pip install python-language-server jedi
 
   pyenv deactivate
 }
