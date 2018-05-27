@@ -44,3 +44,5 @@ setopt INTERACTIVE_COMMENTS
 # Make tab completion behave like vim's smartcase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+# Enable menu selection
+zstyle ':completion:*' menu select

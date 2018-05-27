@@ -218,6 +218,7 @@ set smartcase                         " if caps, watch case
 set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
 set gdefault                          " make search and replace global for the line
+set magic                             " turn magic on for regular expressions
 
 " }}}
 " ------------------------------------------------------------------------------
@@ -256,7 +257,7 @@ set noundofile                        " disable undofiles
 set mouse=                            " disable mouse support by default
 
 set showcmd                           " show command in normal (when typed)
-set lazyredraw                        " redraw only when we need to
+set lazyredraw                        " don't redraw while performing macros
 set cursorline                        " highlight current line (may cause vim to be slower)
 
 set wildmenu                          " enable wildmenu for completion
@@ -396,9 +397,17 @@ vnoremap <C-c> "+y
 " ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
+" Commands {{{
+
+" Save file as sudo
+" http://vim.wikia.com/wiki/Su-write
+command W w !sudo tee % > /dev/null
+
+" }}}
+
+" ------------------------------------------------------------------------------
 " Abbreviations {{{
 
-cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq

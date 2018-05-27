@@ -1,9 +1,47 @@
+# vim: set foldmethod=marker foldlevel=0:
+
+# ------------------------------------------------------------------------------
+# Core {{{
+
 [include]
   path = ~/.gitconfig.local
 
 [core]
   excludesfile = ~/.gitignore_global
   pager = diff-so-fancy | less --tabs=2 -RFX
+
+[push]
+  default = simple
+
+[credential]
+  helper = osxkeychain
+
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Merges and diffs {{{
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[merge]
+  tool = vimdiff
+
+[mergetool]
+  prompt = true
+
+[difftool]
+  prompt = false
+
+[diff]
+  tool = vimdiff
+
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Aliases {{{
 
 [alias]
   ua = reset HEAD
@@ -21,23 +59,11 @@
   reset-hard = reset --hard HEAD
   clean4realz = clean -f
 
-[push]
-  default = simple
+# }}}
+# ------------------------------------------------------------------------------
 
-[merge]
-  tool = vimdiff
-
-[mergetool]
-  prompt = true
-
-[mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-
-[difftool]
-  prompt = false
-
-[diff]
-  tool = vimdiff
+# ------------------------------------------------------------------------------
+# Colors {{{
 
 [color]
   diff = auto
@@ -62,10 +88,16 @@
   changed = yellow reverse
   untracked = red reverse
 
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Git LFS {{{
+
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
 
-[credential]
-  helper = osxkeychain
+# }}}
+# ------------------------------------------------------------------------------

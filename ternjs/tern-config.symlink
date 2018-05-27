@@ -8,7 +8,8 @@
   "libs": [
     "ecma5",
     "ecma6",
-    "browser"
+    "browser",
+    "react"
   ],
   "ecmaVersion": 6
 }

@@ -1,3 +1,8 @@
+# vim: set foldmethod=marker foldlevel=0:
+
+# ------------------------------------------------------------------------------
+# Core {{{
+
 # Reattach each new window to the user bootstrap namespace
 if-shell \
   'test "$(uname -s)" = Darwin' \
@@ -44,7 +49,22 @@ set -g focus-events on
 # Persist tmux messages a little longer, regardless of `status-interval`
 set -g display-time 2000
 
-# ---------------------------------------------
+# Enable cursor shape modification in vim
+# (https://github.com/neovim/neovim/wiki/FAQ)
+set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+
+# Set copy-mode to act more like vim
+set -g mode-keys vi
+
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel pbcopy
+bind-key -Tcopy-mode-vi Escape send -X cancel
+
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Splits {{{
 
 # Spliting (and keep the cwd)
 bind | split-window -h -c "#{pane_current_path}"
@@ -68,7 +88,11 @@ bind l select-pane -R
 unbind =
 bind = select-layout tiled
 
-# ---------------------------------------------
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Key binding {{{
 
 # Reload config file
 bind r display "Reloading..." \; source-file ~/.tmux.conf \; display "Reloaded!"
@@ -86,45 +110,61 @@ bind ^A select-pane -t :.+
 # Set default name for new windows
 bind-key c new-window -n '<unamed>' -c "#{pane_current_path}"
 
-# Smart pane switching with awareness of Vim splits.
-# See: https://github.com/christoomey/vim-tmux-navigator
-is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
-bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
-bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
-bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
-bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
-bind-key -T copy-mode-vi C-h select-pane -L
-bind-key -T copy-mode-vi C-j select-pane -D
-bind-key -T copy-mode-vi C-k select-pane -U
-bind-key -T copy-mode-vi C-l select-pane -R
-bind-key -T copy-mode-vi C-\ select-pane -l
+# }}}
+# ------------------------------------------------------------------------------
 
-# Enable cursor shape modification in vim
-# (https://github.com/neovim/neovim/wiki/FAQ)
-set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+# ------------------------------------------------------------------------------
+# Theme {{{
 
-# ---------------------------------------------
+# Status bar config
+set -g status on
+set -g status-position bottom
+set -g status-interval 1
+set -g status-justify "left"
+set -g status-left-length 200
+set -g status-right-length 200
 
-# Set copy-mode to act more like vim
-set -g mode-keys vi
+# Pane border
+set -g pane-border-fg brightblack
+set -g pane-active-border-fg blue
 
-bind-key -Tcopy-mode-vi 'v' send -X begin-selection
-bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel pbcopy
-bind-key -Tcopy-mode-vi Escape send -X cancel
+# Show border on top
+# setw -g pane-border-status bottom
+setw -g pane-border-format '─'
 
-# ---------------------------------------------
+# Status bar colors
+set -g status-fg brightwhite
+set -g status-bg black
+set -g message-fg yellow
+set -g message-bg black
 
-source $DOTFILES/tmux/tmux_theme.sh
+# Window items
+setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=red]⋅ ,#[fg=colour235]}#I #W"
+setw -g window-status-current-format "#[fg=brightcyan bold, bg=black, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
+setw -g window-status-separator '#[fg=colour235] | '
+setw -g window-status-current-attr dim
+setw -g window-status-bg green
+setw -g window-status-fg black
 
-# ---------------------------------------------
+set -g window-status-attr reverse
+set -g window-status-activity-attr none
 
-# Plugins
+# Make this shit happen
+set -g status-left "#[fg=yellow] ♜ #[fg=blue nobold] #S#[fg=colour235] | "
+
+# Show when prefix is selected + right segments
+set -g status-right "#{?client_prefix,#[fg=blue bold]^A #[fg=colour237 nobold]|#[bg=default fg=default],}#($DOTFILES/tmux/right_segments.sh)"
+
+# }}}
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Plugins {{{
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'yardnsm/tmux-1password'
+set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # Plugins configuration
 set -g @resurrect-capture-pane-contents 'on'
@@ -132,6 +172,7 @@ set -g @resurrect-capture-pane-contents 'on'
 set -g @continuum-boot 'on'
 set -g @continuum-boot-options 'iterm,fullscreen'
 
-# ---------------------------------------------
+# }}}
+# ------------------------------------------------------------------------------
 
 run $DOTFILES/_submodules/tpm/tpm
