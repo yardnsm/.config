@@ -1,0 +1,1 @@
+xmap ga <Plug>(EasyAlign)

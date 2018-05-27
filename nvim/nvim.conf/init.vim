@@ -1,4 +1,4 @@
-" vm: set foldmethod=marker foldlevel=0:
+" vim: set foldmethod=marker foldlevel=0:
 
 " ------------------------------------------------------------------------------
 "         _
@@ -47,62 +47,52 @@ Plug 'itchyny/lightline.vim'
 " Linting support
 Plug 'w0rp/ale'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " a simple file tree
-Plug 'airblade/vim-gitgutter' " shows git diff in the gutter
-Plug 'kshenoy/vim-signature' " displays marks in the gutter (and more)
-Plug 'terryma/vim-multiple-cursors' " multiple cursors for vim!
+" File tree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-Plug 'editorconfig/editorconfig-vim' " enable support for editorconfig files
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
-Plug 'christoomey/vim-tmux-navigator' " navigation between tmux and bim splits
-Plug 'roxma/vim-tmux-clipboard' " integration for vim and tmux's clipboard
+Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
+Plug 'kshenoy/vim-signature'              " displays marks in the gutter (and more)
+Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
+
+Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
+
+Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
+Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
 Plug 'tmux-plugins/vim-tmux-focus-events' " make focus events work inside tmux
 
-Plug 'mileszs/ack.vim' " support for Ack within vim (I use it for Ag, though)
+Plug 'mileszs/ack.vim'                    " support for Ack within vim (I use it for Ag, though)
 
-Plug 'tpope/vim-fugitive' " a git wrapper for vim
-Plug 'tpope/vim-rhubarb' " GitHub extension for vim-fugitive
-Plug 'tpope/vim-surround' " easly work with surroundings
-Plug 'tpope/vim-commentary' " commant stuff out
-Plug 'tpope/vim-characterize' " more character info in `ga`
-Plug 'tpope/vim-unimpaired' " some sensible bracket mappings
-Plug 'tpope/vim-endwise' " automatically close `end` blocks (`endif`, `done`, etc.)
-Plug 'tpope/vim-repeat' " enable repeating support (`.`) for plugin maps
+Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
+Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
+Plug 'tpope/vim-surround'                 " easly work with surroundings
+Plug 'tpope/vim-commentary'               " comment stuff out
+Plug 'tpope/vim-characterize'             " more character info in `ga`
+Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
+Plug 'tpope/vim-endwise'                  " automatically close `end` blocks (`endif`, `done`, etc.)
+Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
 
-Plug 'junegunn/vim-easy-align' " an alignment plugin
-Plug 'jiangmiao/auto-pairs' " insert or delete pairs
-Plug 'junegunn/vim-emoji' " emoji in vim!
-Plug 'junegunn/vim-peekaboo' " view the registers content when using `\"`, `@` or <C-R
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' } " the fzf binary
-Plug 'junegunn/fzf.vim' " some commands to utilize fzf within vim
+Plug 'junegunn/vim-easy-align'            " an alignment plugin
+Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
+Plug 'junegunn/vim-emoji'                 " emoji in vim!
+Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
 
 " Autocompletion
 " ------------------------------------------------------------------------------
 
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
 
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-emoji.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
-
-" Syntax completion
-Plug 'Shougo/neco-syntax'
-Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
-
-" Vim Script
+Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
-Plug 'prabirshrestha/asyncomplete-necovim.vim'
-
-" Language servers
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-" TypeScript & JavaScript
-Plug 'runoshun/tscompletejob'
-Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
 
 " Language specific stuff (besides autocompletion)
 " ------------------------------------------------------------------------------
@@ -113,10 +103,6 @@ Plug 'Valloric/MatchTagAlways'
 
 " JavaScript stuff
 Plug 'moll/vim-node'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
-" TypeScript stuff
-Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins' }
 
 " Python stuff
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -136,7 +122,6 @@ Plug 'sheerun/vim-polyglot'
 if has('mac')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
 endif
-
 
 call plug#end()
 

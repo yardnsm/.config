@@ -28,7 +28,7 @@ declare -r dependencies=(
   'vscode-css-languageserver-bin'
   'typescript-language-server'
   'vscode-html-languageserver-bin'
-  'vscode-json-languageserver-bin'
+  'bash-language-server'
 
   'speed-test'
   'fast-cli'
