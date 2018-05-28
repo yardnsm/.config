@@ -33,7 +33,6 @@ $ ./install.sh --help
   Options
     -y, --yes               Skip confirmation questions
     -e, --exclude           Exclude [...topics] from installation
-    --no-topics-file        Do not use topics file
     -l, --install-local     Run the local installation script
     -h, --help              Show help output
 
