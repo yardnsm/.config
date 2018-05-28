@@ -86,7 +86,7 @@ $ dotsetup
 - Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
 - Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to
   the topic.
-- Symbolic links will be created in `$HOME` for files with the `.symlink` extension.
+- Symbolic links created at `$HOME`.
 - `.zsh` files will be sourced when the shell loads.
 
 ## Local dotfiles

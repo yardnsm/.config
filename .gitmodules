@@ -1,9 +1,6 @@
 [submodule "_submodules/blox-zsh-theme"]
   path = _submodules/blox-zsh-theme
   url = https://github.com/yardnsm/blox-zsh-theme
-[submodule "_submodules/vim-plug"]
-  path = _submodules/vim-plug
-  url = https://github.com/junegunn/vim-plug
 [submodule "_submodules/base16-shell"]
   path = _submodules/base16-shell
   url = https://github.com/chriskempson/base16-shell

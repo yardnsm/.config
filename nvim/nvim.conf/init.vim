@@ -36,7 +36,7 @@ let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 " ------------------------------------------------------------------------------
 " Plugins {{{
 
-call plug#begin($HOME . '/dotfiles/nvim/nvim.conf/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Colors
 Plug 'whatyouhide/vim-gotham'
