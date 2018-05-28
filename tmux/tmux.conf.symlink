@@ -92,7 +92,7 @@ bind = select-layout tiled
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-# Key binding {{{
+# Key bindings {{{
 
 # Reload config file
 bind r display "Reloading..." \; source-file ~/.tmux.conf \; display "Reloaded!"
@@ -175,4 +175,5 @@ set -g @continuum-boot-options 'iterm,fullscreen'
 # }}}
 # ------------------------------------------------------------------------------
 
+# Initialize TPM
 run $DOTFILES/_submodules/tpm/tpm

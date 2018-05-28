@@ -101,6 +101,9 @@ Plug 'Shougo/neco-vim'
 Plug 'alvan/vim-closetag'
 Plug 'Valloric/MatchTagAlways'
 
+" CSS stuff
+Plug 'ap/vim-css-color'
+
 " JavaScript stuff
 Plug 'moll/vim-node'
 
@@ -131,10 +134,26 @@ call plug#end()
 " ------------------------------------------------------------------------------
 " Editor {{{
 
+set mouse=                            " disable mouse support by default
+
 set number                            " show line numbers
 set linebreak                         " wraps between words
 set list                              " show invisibles
 set scrolloff=8                       " allows to scroll of fthe screen
+set hidden                            " allow switching buffers w/o saving
+
+set nojoinspaces                      " only insert a single space after '.', '!' and '?' with the join command
+
+set wildmenu                          " enable wildmenu for completion
+set wildmode=full                     " completion mode
+
+set cursorline                        " highlight current line (may cause vim to be slower)
+set colorcolumn=100                   " cuz percision matter
+
+set showcmd                           " show command in normal (when typed)
+set laststatus=2                      " always show the status line
+
+set report=0                          " always display the count of lines yanked or deleted on the message line
 
 set backspace=indent,eol,start        " proper backspacing
 
@@ -254,27 +273,14 @@ set noundofile                        " disable undofiles
 " ------------------------------------------------------------------------------
 " Misc {{{
 
-set mouse=                            " disable mouse support by default
-
-set showcmd                           " show command in normal (when typed)
 set lazyredraw                        " don't redraw while performing macros
-set cursorline                        " highlight current line (may cause vim to be slower)
-
-set wildmenu                          " enable wildmenu for completion
-set wildmode=full                     " completion mode
-
-set laststatus=2                      " always show the status line
 
 set timeout
 set timeoutlen=1000
 set ttimeoutlen=50
 
-set hidden                            " allow switching buffers w/o saving
-
 set splitbelow                        " split below by default
 set splitright                        " split right by default
-
-set colorcolumn=100                   " cuz percision matter
 
 set shortmess+=c                      " do not show completion-menu messages
 
@@ -307,6 +313,9 @@ nnoremap k gk
 " Keep blocks selected after indenting
 vnoremap > >gv
 vnoremap < <gv
+
+" Search and replace the word under the cursor (with confirmation prompt)
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//c<Left><Left>
 
 " Quickfix window
 nnoremap <leader>co :copen<CR>
@@ -404,6 +413,7 @@ vnoremap <C-c> "+y
 command W w !sudo tee % > /dev/null
 
 " }}}
+" ------------------------------------------------------------------------------
 
 " ------------------------------------------------------------------------------
 " Abbreviations {{{
