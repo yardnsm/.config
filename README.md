@@ -37,8 +37,8 @@ $ ./install.sh --help
     -h, --help              Show help output
 
   Examples
+    ./install.sh common git
     ./install.sh --exclude npm homebrew
-    ./install.sh --only common git
 ```
 
 ### `dotsetup`
