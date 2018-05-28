@@ -20,27 +20,25 @@ is_topic_exist() {
 
 # Install a specific topic
 install_specific_topic() {
-  local topic=$1
+  local -r TOPIC=$1
+  local -r OS="$(get_os)"
 
-  local os
-  os=$(get_os)
-
-  if is_topic_exist "$topic"; then
+  if is_topic_exist "$TOPIC"; then
 
     # Check if has an install script
-    if [[ -f $DOTFILES/$topic/install.sh ]]; then
-      print_title "Current topic is '$topic'"
-      source "$DOTFILES/$topic/install.sh"
+    if [[ -f $DOTFILES/$TOPIC/install.sh ]]; then
+      print_title "Current topic is '$TOPIC'"
+      source "$DOTFILES/$TOPIC/install.sh"
     fi
 
-    # Check for os-specific installtion
-    if [[ -f $DOTFILES/$topic/install-$os.sh ]]; then
-      print_title "Running os-specific installation for '$topic'"
-      source "$DOTFILES/$topic/install-$os.sh"
+    # Check for OS-specific installtion
+    if [[ -f $DOTFILES/$TOPIC/install-$OS.sh ]]; then
+      print_title "Running os-specific installation for '$TOPIC'"
+      source "$DOTFILES/$TOPIC/install-$OS.sh"
     fi
   else
-    print_title "Current topic is '$topic'"
-    print_error "Topic $topic does not exist!"
+    print_title "Current topic is '$TOPIC'"
+    print_error "Topic $TOPIC does not exist!"
   fi
 }
 
@@ -50,17 +48,22 @@ install_topics() {
   local topics_to_install=( $1 )
   local topics_to_exclude=( $2 )
 
-  [[ ${#topics_to_install} -eq 0 ]] && topics_to_install=( $(get_all_topics) )
+  local topic
+  local is_ignored
+
+  [[ ${#topics_to_install} -eq 0 ]] \
+    && topics_to_install=( $(get_all_topics) )
 
   for topic in "${topics_to_install[@]}"; do
 
     topic=$(basename "$topic")
-    topic=${topic%/}
+    is_ignored=""
 
     # Check if needs to be ignored
-    is_ignored=""
     for ignored in "${topics_to_exclude[@]}"; do
-      [[ $topic == "$ignored" ]] && is_ignored="true" && break
+      [[ $topic == "$ignored" ]] \
+        && is_ignored="true" \
+        && break
     done
 
     if ! [[ -n $is_ignored ]]; then

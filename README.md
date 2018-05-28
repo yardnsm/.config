@@ -28,14 +28,13 @@ $ ./install.sh --help
   Installs the dotfiles
 
   Usage
-    ./install.sh [options]
+    ./install.sh [options] [...topics]
 
   Options
     -y, --yes               Skip confirmation questions
-    -o, --only              Topics to install only
-    -e, --exclude           Topics so exclude
-    --install-local         Run the local installation script
+    -e, --exclude           Exclude [...topics] from installation
     --no-topics-file        Do not use topics file
+    -l, --install-local     Run the local installation script
     -h, --help              Show help output
 
   Examples
@@ -43,20 +42,9 @@ $ ./install.sh --help
     ./install.sh --only common git
 ```
 
-The script will look for a `.topics` file, where you can specify topics to install or exclude from
-the installation. For example:
-
-```
-brew
-nvim
-
-# You can exclude topic using `!`
-!npm
-```
-
 ### `dotsetup`
 
-[`dotsetup`](bin/dotsetup) is a script that used to manage the dotfiles. It can be used to run the
+[`dotsetup`](bin/dotsetup) is an executable for managing the dotfiles. It can be used to run the
 installation script, list available topics, run a specific topic and update the dotfiles repository.
 
 ```console
@@ -68,9 +56,8 @@ $ dotsetup
     dotsetup <command> [options]
 
   Commands
-    run [topic]             Run [topic] installation file
-    install                 Run the install script
-    install-local           Run the local dotfiles installation script
+    run [topic]             Run the installation file of [topic]
+    install                 Run the installation script
     list                    List tasks
     update                  Fetch the latest version
 
@@ -83,17 +70,17 @@ $ dotsetup
 
 ## Order and hierarchy
 
-- Directories starting with `_` are related to the repo itself (install files, utils, submodules...).
+- Directories starting with `_` are related to the repo itself (install files, utils,
+  submodules...).
 - Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to
   the topic.
-- Symbolic links created at `$HOME`.
+- Symbolic links created at `$HOME` ([`./common/install.sh`](./common/install.sh)).
 - `.zsh` files will be sourced when the shell loads.
 
 ## Local dotfiles
 
-The installation script will look for a directory located at `~/dotfiles-local`. It'll create the
-appropriate symlinks (for files ending with `.symlink`) and will run the local installation file
-if available (`~/dotfiles-local/install.sh`).
+The installation script will look for a directory located at `~/dotfiles-local`. It'll run the local
+installation file if available (`~/dotfiles-local/install.sh`).
 
 In addition, available `.zsh` files in the local dotfiles directory will be sourced when the shell
 loads. Additional git configuration can be can be placed in `~/.gitconfig.local`

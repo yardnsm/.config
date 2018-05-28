@@ -25,6 +25,7 @@ execute() {
   exit_code=$?
 
   print_result $exit_code "${MSG:-$CMD}"
+  return $exit_code
 }
 
 # Copy smth to clipboard

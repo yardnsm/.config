@@ -6,22 +6,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 run_install() {
-  shift
   source "../install.sh" "$@"
 }
 
-run_install_local() {
-  shift
-  source "$DOTFILES_LOCAL/install.sh" "$@"
-}
-
 run_topic() {
-  declare -r topic_to_install="$1"
-
-  print_title "Getting ready"
-  check_for_sudo
-
-  install_specific_topic "$topic_to_install"
+  install_specific_topic "$1"
 }
 
 list_topics() {
@@ -38,23 +27,19 @@ list_topics() {
 
 # ---------------------------------------------
 
-_execute_directly() {
-  eval "$1" &> /dev/null
-  print_result $? "${2}"
-}
-
 update_dotfiles() {
-  local -r current_commit_hash="$(git rev-parse --short HEAD)"
+
+  cd "$DOTFILES" \
+    || exit 1
+
+  local -r CURRENT_COMMIT_HASH="$(git rev-parse --short HEAD)"
 
   print_title "Updating dotfiles"
 
-  _execute_directly "cd .. || exit 1" \
-    "Performing inside the dotfiles repo"
-
-  _execute_directly "git pull --rebase" \
+  execute "git pull --rebase" \
     "Pull latest changes"
 
-  _execute_directly "git submodule update --init --recursive --remote" \
+  execute "git submodule update --init --recursive --remote" \
     "Update submodules"
 
   # -----------------------------------
@@ -62,13 +47,13 @@ update_dotfiles() {
   if [[ -d "$DOTFILES_LOCAL" ]]; then
     print_title "Updating local dotfiles"
 
-    _execute_directly "cd $DOTFILES_LOCAL || exit 1" \
-      "Performing inside the local dotfiles repo"
+    cd "$DOTFILES_LOCAL" \
+      || exit 1
 
-    _execute_directly "git pull --rebase" \
+    execute "git pull --rebase" \
       "Pull latest changes"
 
-    _execute_directly "git submodule update --init --recursive --remote" \
+    execute "git submodule update --init --recursive --remote" \
       "Update submodules"
   fi
 
@@ -76,10 +61,16 @@ update_dotfiles() {
 
   print_title "Running updated topics"
 
-  local files_changed; files_changed="$(cd .. && git diff --name-only HEAD "$current_commit_hash")"
+  cd "$DOTFILES" \
+    || exit 1
+
+  local files_changed
   local topics_to_install_list
   local topics_to_install_array
 
+  files_changed="$(git diff --name-only HEAD "$CURRENT_COMMIT_HASH")"
+
+  # Get all of the changes topics
   while read -r filepath; do
     dirname="$(cut -d "/" -f1 <<< "$filepath")"
 
@@ -88,7 +79,10 @@ update_dotfiles() {
     fi
   done <<< "$files_changed"
 
+  # Remove duplicates
   topics_to_install_list="$(echo -e "$topics_to_install_list" | uniq)"
+
+  # Convert the list into array
   topics_to_install_array=( $topics_to_install_list )
 
   for topic in "${topics_to_install_array[@]}"; do
@@ -110,12 +104,11 @@ print_help() {
   Dotfiles maintenance
 
   Usage
-    dotsetup <command> [options]
+    dotsetup <command
 
   Commands
-    run [topic]             Run [topic] installation file
-    install                 Run the install script
-    install-local           Run the local dotfiles installation script
+    run [topic]             Run the installation file of [topic]
+    install                 Run the installation script
     list                    List tasks
     update                  Fetch the latest version
 
@@ -130,20 +123,16 @@ EOF
 # ---------------------------------------------
 
 main() {
-  declare -r cmd=$1
+  declare -r CMD=$1
   shift
 
-  case "$cmd" in
+  case "$CMD" in
     run )
       run_topic "$@"
       exit 0
       ;;
     install )
       run_install "$@"
-      exit 0
-      ;;
-    install-local )
-      run_install_local "$@"
       exit 0
       ;;
     list )
