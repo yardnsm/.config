@@ -80,6 +80,8 @@ Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
 Plug 'junegunn/vim-emoji'                 " emoji in vim!
 Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
 
+Plug 'SirVer/ultisnips'                   " snippets
+
 " Autocompletion
 " ------------------------------------------------------------------------------
 
@@ -410,7 +412,7 @@ vnoremap <C-c> "+y
 
 " Save file as sudo
 " http://vim.wikia.com/wiki/Su-write
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " }}}
 " ------------------------------------------------------------------------------
