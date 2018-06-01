@@ -1,5 +1,10 @@
-augroup html
-  autocmd!
+" vim: set foldmethod=marker foldlevel=0:
 
-  autocmd Filetype html imap </ </<C-X><C-O>
-augroup END
+" ------------------------------------------------------------------------------
+" Mappings {{{
+
+" Auto close html tags
+imap <buffer> </ </<C-X><C-O>
+
+" }}}
+" ------------------------------------------------------------------------------

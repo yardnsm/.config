@@ -1,11 +1,11 @@
 " vim: set foldmethod=marker foldlevel=0:
 
 " ------------------------------------------------------------------------------
-" Indent settings {{{
+" Settings {{{
 
-setlocal expandtab
-setlocal shiftwidth=4
-setlocal tabstop=4
+" https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c<Paste>
+setlocal textwidth=72
+setlocal colorcolumn=50
 
 " }}}
 " ------------------------------------------------------------------------------

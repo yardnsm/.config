@@ -1,9 +1,20 @@
-augroup javascript
-  autocmd!
+" vim: set foldmethod=marker foldlevel=0:
 
-  autocmd Filetype javascript nnoremap <buffer> <localleader>r :!node %<CR>
-augroup END
+" ------------------------------------------------------------------------------
+" Intent settings {{{
 
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal tabstop=2
+
+" }}}
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Mappings {{{
+
+" Execute the current file
+nnoremap <buffer> <localleader>r :!node %<CR>
+
+" }}}
+" ------------------------------------------------------------------------------

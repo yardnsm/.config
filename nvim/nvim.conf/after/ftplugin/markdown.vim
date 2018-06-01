@@ -1,11 +1,10 @@
 " vim: set foldmethod=marker foldlevel=0:
 
 " ------------------------------------------------------------------------------
-" Indent settings {{{
+" Settings {{{
 
-setlocal expandtab
-setlocal shiftwidth=4
-setlocal tabstop=4
+setlocal spell
+setlocal linebreak
 
 " }}}
 " ------------------------------------------------------------------------------
