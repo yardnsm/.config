@@ -74,6 +74,7 @@ Plug 'tpope/vim-characterize'             " more character info in `ga`
 Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
 Plug 'tpope/vim-endwise'                  " automatically close `end` blocks (`endif`, `done`, etc.)
 Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
+Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
@@ -344,7 +345,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <space> za
 
 " Making working with buffers less painful
-nnoremap <leader>bq :bp <BAR> bd #<CR>
+" nnoremap <leader>bq :bp <BAR> bd #<CR>
 
 " Circular windows navigation
 nnoremap <tab>   <c-w>w
@@ -414,9 +415,7 @@ vnoremap <C-c> "+y
 " ------------------------------------------------------------------------------
 " Commands {{{
 
-" Save file as sudo
-" http://vim.wikia.com/wiki/Su-write
-command! W w !sudo tee % > /dev/null
+    " ¯\_(ツ)_/¯
 
 " }}}
 " ------------------------------------------------------------------------------

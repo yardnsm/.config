@@ -130,9 +130,25 @@ nnoremap ; :
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
 
+" ------------------------------------
+
+"
+" Abbreviations
+"
+
 " Some abbreviations
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev qQ q!
+
+" ------------------------------------
+
+"
+" Commands
+"
+
+" Save file as sudo
+" http://vim.wikia.com/wiki/Su-write
+command! W w !sudo tee % > /dev/null
