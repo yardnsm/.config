@@ -19,7 +19,7 @@ tm_segment() {
 }
 
 tm_divider() {
-  echo -ne "#[fg=colour237]|#[bg=default, fg=default]"
+  echo -ne "#[fg=colour237]⋅#[bg=default, fg=default]"
 }
 
 
@@ -107,7 +107,7 @@ segment_battery() {
 
   [[ $battery_status == 'discharging;' ]] && battery_color="magenta"
 
-  tm_segment "" "$battery_color" "${battery_percentage%?}"
+  tm_segment "ϟ" "$battery_color" "${battery_percentage%?}"
   tm_divider
 }
 
@@ -123,13 +123,13 @@ segment_date() {
 
 # Machine name
 segment_host() {
-  tm_segment "" "blue" "#h"
+  tm_segment "" "colour243" "#h"
 }
 
 # ---------------------------------------------
 
 segment_music
-segment_weather
+# segment_weather
 segment_battery
 segment_date
 segment_host

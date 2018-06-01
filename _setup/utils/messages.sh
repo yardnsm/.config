@@ -99,8 +99,11 @@ print_welcome_message() {
 
 "
 
-  print_in_blue "  Base Dir: "; printf "%s\\n" "$DOTFILES"
-  print_in_cyan "  $(tput bold)Note:$(tput sgr0) Mostly compatible with macOS \\n"
+  print_in_cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
+
+  if [[ -d "$DOTFILES_LOCAL" ]]; then
+    print_in_cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
+  fi
 
   printf "\\n"
 }

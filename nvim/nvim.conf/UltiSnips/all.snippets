@@ -24,7 +24,7 @@ def generate_string_of(char, len):
 
 
 # The (oneline) comment character matching the file type
-primary_comment_character = get_comment_format()[0]
+primary_comment_character = get_comment_format()[0].strip()
 
 # A comment separator (---------...)
 comment_separator = "%s %s" % (primary_comment_character, generate_string_of('-', 78))
