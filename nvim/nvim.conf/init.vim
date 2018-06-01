@@ -116,9 +116,6 @@ Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Tmux config stuff
 Plug 'tmux-plugins/vim-tmux'
 
-" Markdown shit (mainly for the fenced code blocks)
-Plug 'plasticboy/vim-markdown'
-
 " Universal shit
 Plug 'sheerun/vim-polyglot'
 
