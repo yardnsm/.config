@@ -104,7 +104,7 @@ print_help() {
   Dotfiles maintenance
 
   Usage
-    dotsetup <command
+    dotsetup <command> [options]
 
   Commands
     run [topic]             Run the installation file of [topic]
