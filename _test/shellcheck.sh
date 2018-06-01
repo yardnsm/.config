@@ -19,6 +19,7 @@ find .. \
   ! -path '../_submodules/*' \
   ! -path '../_misc/*' \
   ! -path '../nvim/nvim.conf/plugged/*' \
+  ! -path '../alacritty/alacritty/*' \
   -name '*.sh' \
   -exec shellcheck \
     -e SC1091 \
