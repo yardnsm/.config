@@ -319,7 +319,11 @@ vnoremap < <gv
 " Search and replace the word under the cursor (with confirmation prompt)
 nnoremap <leader>* :%s/\<<C-r><C-w>\>//c<Left><Left>
 
-" Quickfix window
+" Location list
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>lc :lclose<CR>
+
+" Quickfix list
 nnoremap <leader>co :copen<CR>
 nnoremap <leader>cc :cclose<CR>
 
