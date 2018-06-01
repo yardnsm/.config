@@ -1,9 +1,9 @@
 " ------------------------------------------------------------------------------
-" Indent settings {{{
+" Settings {{{
 
-setlocal expandtab
-setlocal shiftwidth=4
-setlocal tabstop=4
+" Set `marker` as foldmethod for vim files
+setlocal foldmethod=marker
+setlocal foldlevel=0
 
 " }}}
 " ------------------------------------------------------------------------------
