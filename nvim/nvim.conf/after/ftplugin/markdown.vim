@@ -3,6 +3,7 @@
 
 setlocal spell
 setlocal linebreak
+setlocal textwidth=100
 
 " }}}
 " ------------------------------------------------------------------------------
