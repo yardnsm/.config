@@ -23,6 +23,7 @@ declare -r formulae=(
   'coreutils'
   'gpg'
   'ansible'
+  'maven'
 
   'wget'
   'tig'
