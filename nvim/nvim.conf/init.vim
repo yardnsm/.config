@@ -41,9 +41,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Colors
 Plug 'whatyouhide/vim-gotham'
 
-" Status line
-Plug 'itchyny/lightline.vim'
-
 " Linting support
 Plug 'w0rp/ale'
 
@@ -104,9 +101,6 @@ Plug 'Shougo/neco-vim'
 Plug 'alvan/vim-closetag'
 Plug 'Valloric/MatchTagAlways'
 
-" CSS stuff
-Plug 'ap/vim-css-color'
-
 " JavaScript stuff
 Plug 'moll/vim-node'
 
@@ -137,6 +131,7 @@ call plug#end()
 set mouse=                            " disable mouse support by default
 
 set number                            " show line numbers
+set relativenumber                    " set relative numbers
 set linebreak                         " wraps between words
 set list                              " show invisibles
 set scrolloff=8                       " allows to scroll of fthe screen
@@ -151,7 +146,6 @@ set cursorline                        " highlight current line (may cause vim to
 set colorcolumn=100                   " cuz percision matter
 
 set showcmd                           " show command in normal (when typed)
-set laststatus=2                      " always show the status line
 
 set report=0                          " always display the count of lines yanked or deleted on the message line
 
@@ -198,6 +192,10 @@ if !has('gui_vimr')
     autocmd ColorScheme gotham
           \   highlight Folded ctermbg=green ctermfg=blue
           \ | highlight VertSplit ctermfg=4 ctermbg=10
+
+          " \ | highlight CursorLineNr ctermfg=3
+
+
   augroup END
 endif
 
@@ -213,6 +211,70 @@ try
   endif
 catch
 endtry
+
+" }}}
+" ------------------------------------------------------------------------------
+
+" ------------------------------------------------------------------------------
+" Statusline {{{
+
+" Check out './autoload/statusline.vim'
+
+" Always show the status line
+set laststatus=2
+
+" Highlights
+hi User1 ctermfg=15 ctermbg=4 cterm=bold guifg=#d3ebe9 guibg=#195466
+hi User2 ctermfg=15 ctermbg=12 guifg=#d3ebe9 guibg=#195466
+hi User3 ctermfg=14 ctermbg=10 guifg=#599cab guibg=#091f2e
+hi User4 ctermfg=14 ctermbg=8 guifg=#599cab guibg=#11151c
+hi User5 ctermfg=10 ctermbg=8 guifg=#091f2e guibg=#11151c
+
+" Highlights for lint warnings and errors
+hi User6 ctermfg=15 ctermbg=9 guifg=#d3ebe9 guibg=#d26937
+hi User7 ctermfg=15 ctermbg=1 guifg=#d3ebe9 guibg=#c23127
+
+function! BuildStatusLine(mode) abort
+  let l:result = ''
+
+  if a:mode ==# 'active'
+    let l:result .= '%1* %n '                          " buffer number
+    let l:result .= '%2* %f '                          " filename
+    let l:result .= '%3*%{statusline#Readonly()}'      " readonly
+    let l:result .= '%3*%{statusline#Modified()}'      " modified
+    let l:result .= '%3*%{statusline#Paste()} '        " paste
+
+    let l:result .= '%4*%='                            " going to the right side
+
+    let l:result .= ' %4* %{statusline#Filetype()}'    " filetype
+    let l:result .= ' | %4*%{statusline#Percentage()}' " line percentage
+    let l:result .= ' %3* %{statusline#LineInfo()}'    " line info
+
+    let l:result .= '%6*%{statusline#ALEWarnings()}'   " lint warning
+    let l:result .= '%7*%{statusline#ALEErrors()}'     " lint errors
+
+  elseif a:mode ==# 'inactive'
+    let l:result .= '%5* ‹‹ %f [%n] ›› '               " filename and buffer number
+
+  else
+    let l:result .= '%2* ' . a:mode . ' %4*'
+  endif
+
+  return l:result
+endfunction
+
+set statusline=%!BuildStatusLine('active')
+
+augroup MyStatusLine
+  autocmd!
+
+  autocmd WinEnter * setlocal statusline=%!BuildStatusLine('active')
+  autocmd WinLeave * setlocal statusline=%!BuildStatusLine('inactive')
+
+  autocmd FileType nerdtree setlocal statusline=%!BuildStatusLine('NERD')
+  autocmd FileType qf setlocal statusline=%!BuildStatusLine('Quickfix')
+augroup END
+
 
 " }}}
 " ------------------------------------------------------------------------------
