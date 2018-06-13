@@ -51,6 +51,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'wikitopian/hardmode'                " stepping up the game...
+
 Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
 Plug 'kshenoy/vim-signature'              " displays marks in the gutter (and more)
 Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
@@ -164,7 +166,7 @@ set fillchars+=vert:\  " ┃
 " ------------------------------------------------------------------------------
 " Autocommands {{{
 
-augroup vimrc
+augroup vimrc_au
   autocmd!
 
   " Unset paste on InsertLeave
@@ -185,7 +187,7 @@ if !has('gui_vimr')
   set t_Co=256                        " we use a 256-color terminal
 
   " Colorscheme overrides
-  augroup CustomColors
+  augroup custom_colors_au
     autocmd!
 
     " For gotham
@@ -257,7 +259,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%5* ‹‹ %f [%n] ›› '               " filename and buffer number
 
   else
-    let l:result .= '%2* ' . a:mode . ' %4*'
+    let l:result .= '%2* ' . a:mode . ' %3* %4*'
   endif
 
   return l:result
@@ -265,7 +267,7 @@ endfunction
 
 set statusline=%!BuildStatusLine('active')
 
-augroup MyStatusLine
+augroup statusline_au
   autocmd!
 
   autocmd WinEnter * setlocal statusline=%!BuildStatusLine('active')
