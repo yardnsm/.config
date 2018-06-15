@@ -1,15 +1,15 @@
 # ---------------------------------------------
 # Indication of VI mode
 
-blox_block__vi() {
-  local vim_mode_format="%B%F{yellow}[NORMAL]%f%b"
-  echo "${${KEYMAP/vicmd/$vim_mode_format}/(main|viins)/}"
+blox_block__vi_mode() {
+  local vi_mode_format="%B%F{yellow}[NORMAL]%f%b"
+  echo "${${KEYMAP/vicmd/$vi_mode_format}/(main|viins)/}"
 }
 
 # ---------------------------------------------
-# Set Vi mode
+# Enable Vi mode
 
-blox_helper__enable_vi() {
+blox_helper__enable_vi_mode() {
   bindkey -v
   bindkey "^?" backward-delete-char
   export KEYTIMEOUT=1

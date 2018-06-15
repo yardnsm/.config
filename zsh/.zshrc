@@ -24,7 +24,7 @@ autoload -U promptinit && promptinit
 # within one level
 for config ($DOTFILES/*/*.zsh-before) source $config
 for config ($DOTFILES/*/*.zsh) source $config
-for config ($DOTFILES/zsh/prompt/*.zsh) source $config
+for config ($DOTFILES/zsh/prompt/**/*.zsh) source $config
 
 # Source .zsh files from ~/dotfiles-local
 [[ -d "$DOTFILES_LOCAL" ]] \

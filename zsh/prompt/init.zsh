@@ -10,6 +10,8 @@ autoload -U promptinit && promptinit
 
 BLOX_CONF__ONELINE=true
 
+BLOX_BLOCK__CWD_COLOR=140
+
 BLOX_BLOCK__SYMBOL_SYMBOL='λ'
 BLOX_BLOCK__SYMBOL_EXIT_SYMBOL='λ'
 BLOX_BLOCK__SYMBOL_COLOR=140
@@ -17,9 +19,8 @@ BLOX_BLOCK__SYMBOL_COLOR=140
 BLOX_BLOCK__GIT_CLEAN_SYMBOL='+'
 BLOX_BLOCK__GIT_DIRTY_SYMBOL='-'
 
-BLOX_SEG__UPPER_LEFT=(host virtualenv bgjobs symbol cwd_ng)
-
-BLOX_SEG__UPPER_RIGHT=(exec_time vi pyenv nodejs_ng git git_enhanced)
+BLOX_SEG__UPPER_LEFT=(host virtualenv bgjobs symbol cwd)
+BLOX_SEG__UPPER_RIGHT=(exec_time vi_mode pyenv nodejs git)
 
 # ---------------------------------------------
 # Custom SSH settings
@@ -36,12 +37,10 @@ else
 
   # Hooks
   add-zsh-hook precmd blox_hook__precmd_git_fetch
-  add-zsh-hook precmd blox_hook__precmd_exec_time
-  add-zsh-hook preexec blox_hook__preexec_exec_time
   add-zsh-hook precmd blox_hook__precmd_reset_cursor
 
   # Enable VI mode
-  blox_helper__enable_vi
+  blox_helper__enable_vi_mode
 fi
 
 # ---------------------------------------------
