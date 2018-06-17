@@ -11,10 +11,7 @@ fpath=($ZSH/functions $fpath)
 
 # ---------------------------------------------
 
-# Initialize completion
-autoload -U compinit && compinit
-
-# Load Colors
+# Load colors and setup promptinit
 autoload -U colors && colors
 autoload -U promptinit && promptinit
 
@@ -29,6 +26,11 @@ for config ($DOTFILES/zsh/prompt/**/*.zsh) source $config
 # Source .zsh files from ~/dotfiles-local
 [[ -d "$DOTFILES_LOCAL" ]] \
   && for config ($DOTFILES_LOCAL/**/*.zsh) source $config
+
+# ---------------------------------------------
+
+# Initialize completion
+autoload -U compinit && compinit
 
 # ---------------------------------------------
 # Setup base6-shell
