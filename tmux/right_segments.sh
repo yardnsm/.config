@@ -115,7 +115,7 @@ segment_battery() {
 
 # Date and time
 segment_date() {
-  tm_segment "" "colour243" "$(date +'%d %b %Y %H:%M')"
+  tm_segment "" "brightblack" "$(date +'%d %b %Y %H:%M')"
   tm_divider
 }
 
@@ -123,7 +123,13 @@ segment_date() {
 
 # Machine name
 segment_host() {
-  tm_segment "" "colour243" "#h"
+  local user
+
+  [[ -n "$SSH_CONNECTION" ]] \
+    && user="$(whoami)@"
+
+
+  tm_segment "" "colour243" "$user#h"
 }
 
 # ---------------------------------------------
