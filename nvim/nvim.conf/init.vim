@@ -241,23 +241,23 @@ function! BuildStatusLine(mode) abort
   let l:result = ''
 
   if a:mode ==# 'active'
-    let l:result .= '%1* %n |'                          " buffer number
-    let l:result .= '%2* %f '                          " filename
-    let l:result .= '%3*%{statusline#Readonly()}'      " readonly
-    let l:result .= '%3*%{statusline#Modified()}'      " modified
-    let l:result .= '%3*%{statusline#Paste()} '        " paste
+    let l:result .= '%1* %n |'                        " buffer number
+    let l:result .= '%2* %f '                         " filename
+    let l:result .= '%3*%{statusline#Readonly()}'     " readonly
+    let l:result .= '%3*%{statusline#Modified()}'     " modified
+    let l:result .= '%3*%{statusline#Paste()} '       " paste
 
-    let l:result .= '%3*%='                            " going to the right side
+    let l:result .= '%3*%='                           " going to the right side
 
-    let l:result .= ' %3* %{statusline#Filetype()}'    " filetype
-    let l:result .= ' | %3*%{statusline#Percentage()}' " line percentage
-    let l:result .= ' %2* %{statusline#LineInfo()} '    " line info
+    let l:result .= '%3* %{statusline#Filetype()} | ' " filetype
+    let l:result .= '%3*%{statusline#Percentage()} '  " line percentage
+    let l:result .= '%2* %{statusline#LineInfo()} '   " line infop
 
-    let l:result .= '%6*%{statusline#ALEWarnings()}'   " lint warning
-    let l:result .= '%7*%{statusline#ALEErrors()}'     " lint errors
+    let l:result .= '%6*%{statusline#ALEWarnings()}'  " lint warning
+    let l:result .= '%7*%{statusline#ALEErrors()}'    " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%3* ‹‹ %f [%n] ›› '               " filename and buffer number
+    let l:result .= '%3* ‹‹ %f [%n] ›› '              " filename and buffer number
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
@@ -432,14 +432,7 @@ nnoremap ; :
 nnoremap Q @q
 
 " Toggle mouse support
-function! MouseToggle()
-  if &mouse == 'a'
-    set mouse=
-  else
-    set mouse=a
-  endif
-endfunc
-nnoremap <leader>tm :call MouseToggle()<CR>
+nnoremap <leader>tm :call functions#MouseToggle()<CR>
 
 " Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
@@ -477,7 +470,8 @@ vnoremap <C-c> "+y
 " ------------------------------------------------------------------------------
 " Commands {{{
 
-    " ¯\_(ツ)_/¯
+" Strip traling spaces
+command! StripTrailingWhitespace call functions#StripTrailingWhitespace()
 
 " }}}
 " ------------------------------------------------------------------------------

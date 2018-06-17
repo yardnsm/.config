@@ -1,2 +1,2 @@
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+xmap gl <Plug>(EasyAlign)
+nmap gl <Plug>(EasyAlign)
