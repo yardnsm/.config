@@ -1,7 +1,10 @@
+let $VIMWIKI_HOME = $HOME . '/dev/gitlab/knowledge'
+
 let g:vimwiki_list = [{
-      \ 'path': '~/dev/gitlab/knowledge/',
+      \ 'path': $VIMWIKI_HOME,
       \ 'syntax': 'markdown',
-      \ 'ext': '.wiki',
+      \ 'ext': '.md',
+      \ 'index': 'README'
       \ }]
 
 " Disable links concealing
@@ -16,8 +19,12 @@ let g:vimwiki_folding = 'expr'
 " Disable concealing
 let g:vimwiki_conceallevel = 0
 
+" Use vimwiki syntax only in files within the wiki
+let g:vimwiki_global_ext = 0
+
 augroup vimwiki_au
   autocmd!
 
-  autocmd BufRead index.wiki :setlocal conceallevel=2
+  " Enable concealing only in the index file
+  autocmd BufRead,BufNew,BufNewFile $VIMWIKI_HOME/README.md setlocal conceallevel=2
 augroup END
