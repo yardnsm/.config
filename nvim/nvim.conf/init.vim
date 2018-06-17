@@ -40,6 +40,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Colors
 Plug 'whatyouhide/vim-gotham'
+Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 
 " Linting support
 Plug 'w0rp/ale'
@@ -81,6 +83,7 @@ Plug 'junegunn/vim-emoji'                 " emoji in vim!
 Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
 
 Plug 'SirVer/ultisnips'                   " snippets
+Plug 'vimwiki/vimwiki'                    " wiki for vim
 
 " Autocompletion
 " ------------------------------------------------------------------------------
@@ -202,7 +205,7 @@ if !has('gui_vimr')
 endif
 
 try
-  colorscheme gotham                  " set colorscheme
+  colorscheme base16-tomorrow-night                  " set colorscheme
 
   " Setup base16-shell
   if g:colors_name == 'base16-default-dark'
@@ -226,40 +229,38 @@ endtry
 set laststatus=2
 
 " Highlights
-hi User1 ctermfg=15 ctermbg=4 cterm=bold guifg=#d3ebe9 guibg=#195466
-hi User2 ctermfg=15 ctermbg=12 guifg=#d3ebe9 guibg=#195466
-hi User3 ctermfg=14 ctermbg=10 guifg=#599cab guibg=#091f2e
-hi User4 ctermfg=14 ctermbg=8 guifg=#599cab guibg=#11151c
-hi User5 ctermfg=10 ctermbg=8 guifg=#091f2e guibg=#11151c
+hi User1 ctermfg=10 ctermbg=4 cterm=bold
+hi User2 ctermfg=10 ctermbg=4
+hi User3 ctermfg=6 ctermbg=10
 
 " Highlights for lint warnings and errors
-hi User6 ctermfg=15 ctermbg=9 guifg=#d3ebe9 guibg=#d26937
-hi User7 ctermfg=15 ctermbg=1 guifg=#d3ebe9 guibg=#c23127
+hi User6 ctermfg=10 ctermbg=9
+hi User7 ctermfg=15 ctermbg=1
 
 function! BuildStatusLine(mode) abort
   let l:result = ''
 
   if a:mode ==# 'active'
-    let l:result .= '%1* %n '                          " buffer number
+    let l:result .= '%1* %n |'                          " buffer number
     let l:result .= '%2* %f '                          " filename
     let l:result .= '%3*%{statusline#Readonly()}'      " readonly
     let l:result .= '%3*%{statusline#Modified()}'      " modified
     let l:result .= '%3*%{statusline#Paste()} '        " paste
 
-    let l:result .= '%4*%='                            " going to the right side
+    let l:result .= '%3*%='                            " going to the right side
 
-    let l:result .= ' %4* %{statusline#Filetype()}'    " filetype
-    let l:result .= ' | %4*%{statusline#Percentage()}' " line percentage
-    let l:result .= ' %3* %{statusline#LineInfo()}'    " line info
+    let l:result .= ' %3* %{statusline#Filetype()}'    " filetype
+    let l:result .= ' | %3*%{statusline#Percentage()}' " line percentage
+    let l:result .= ' %2* %{statusline#LineInfo()} '    " line info
 
     let l:result .= '%6*%{statusline#ALEWarnings()}'   " lint warning
     let l:result .= '%7*%{statusline#ALEErrors()}'     " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%5* ‹‹ %f [%n] ›› '               " filename and buffer number
+    let l:result .= '%3* ‹‹ %f [%n] ›› '               " filename and buffer number
 
   else
-    let l:result .= '%2* ' . a:mode . ' %3* %4*'
+    let l:result .= '%1* ' . a:mode . ' %3*'
   endif
 
   return l:result
