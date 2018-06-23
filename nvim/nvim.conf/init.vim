@@ -200,6 +200,13 @@ if !has('gui_vimr')
 
           " \ | highlight CursorLineNr ctermfg=3
 
+    " For base16-tomorrow-night
+    autocmd ColorScheme base16-tomorrow-night
+          \   highlight Comment ctermfg=11
+          \ | highlight Folded ctermbg=green ctermfg=11
+          \ | highlight SpellBad cterm=undercurl ctermbg=1
+          \ | highlight SpellCap cterm=undercurl ctermbg=4
+          \ | highlight SpellLocal cterm=undercurl ctermbg=8
 
   augroup END
 endif
@@ -241,23 +248,23 @@ function! BuildStatusLine(mode) abort
   let l:result = ''
 
   if a:mode ==# 'active'
-    let l:result .= '%1* %n |'                        " buffer number
-    let l:result .= '%2* %f '                         " filename
-    let l:result .= '%3*%{statusline#Readonly()}'     " readonly
-    let l:result .= '%3*%{statusline#Modified()}'     " modified
-    let l:result .= '%3*%{statusline#Paste()} '       " paste
+    let l:result .= '%1* %n |'                       " buffer number
+    let l:result .= '%2* %f '                        " filename
+    let l:result .= '%3* %r'                         " readonly
+    let l:result .= '%3*%m'                          " modified
+    let l:result .= '%3*%{statusline#Paste()} '      " paste
 
-    let l:result .= '%3*%='                           " going to the right side
+    let l:result .= '%3*%='                          " going to the right side
 
-    let l:result .= '%3* %{statusline#Filetype()} | ' " filetype
-    let l:result .= '%3*%{statusline#Percentage()} '  " line percentage
-    let l:result .= '%2* %{statusline#LineInfo()} '   " line infop
+    let l:result .= '%3*%{statusline#Filetype()} | ' " filetype
+    let l:result .= '%3*%3p%% '                      " line percentage
+    let l:result .= '%2* %3l:%-2c '                  " line info
 
-    let l:result .= '%6*%{statusline#ALEWarnings()}'  " lint warning
-    let l:result .= '%7*%{statusline#ALEErrors()}'    " lint errors
+    let l:result .= '%6*%{statusline#ALEWarnings()}' " lint warning
+    let l:result .= '%7*%{statusline#ALEErrors()}'   " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%3* ‹‹ %f [%n] ›› '              " filename and buffer number
+    let l:result .= '%3* ‹‹ %f [%n] ›› '             " filename and buffer number
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
@@ -275,7 +282,7 @@ augroup statusline_au
   autocmd WinLeave * setlocal statusline=%!BuildStatusLine('inactive')
 
   autocmd FileType nerdtree setlocal statusline=%!BuildStatusLine('NERD')
-  autocmd FileType qf setlocal statusline=%!BuildStatusLine('Quickfix')
+  autocmd FileType qf setlocal statusline=%!BuildStatusLine('%q')
 augroup END
 
 
@@ -395,38 +402,21 @@ nnoremap <leader><space> :set hlsearch!<CR>
 
 " Enable hlsearch before searching
 nnoremap / :set hlsearch<CR>/
-vnoremap / :set hlsearch<CR>/
 nnoremap ? :set hlsearch<CR>?
-vnoremap ? :set hlsearch<CR>?
 
 " Quick access to .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>zm
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" Space open/closes folds
+" Space opens/closes folds
 nnoremap <space> za
 
-" Making working with buffers less painful
-" nnoremap <leader>bq :bp <BAR> bd #<CR>
+" Convert the current word to uppercase when in INSERT mode
+inoremap <C-u> <ESC>gUiwgi
 
 " Circular windows navigation
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
-
-" Disable arrow keys for now...
-noremap <left>  <nop>
-noremap <right> <nop>
-noremap <up>    <nop>
-noremap <down>  <nop>
-
-" ...and also in INSERT mode
-inoremap <left>  <nop>
-inoremap <right> <nop>
-inoremap <up>    <nop>
-inoremap <down>  <nop>
-
-" Typing ':' with only one keystroke
-nnoremap ; :
 
 " qq to record, Q to run
 nnoremap Q @q
@@ -440,7 +430,7 @@ nnoremap <leader>tn :set relativenumber!<CR>
 " Toggle pastemode
 nnoremap <leader>tp :set paste!<CR>
 
-" Toggle indent
+" Toggle folding
 nnoremap <leader>tf :set foldenable!<CR>
 
 " Toggle cursorline
@@ -448,6 +438,18 @@ nnoremap <leader>tc :set cursorline!<CR>
 
 " Copy to clipboard
 vnoremap <C-c> "+y
+
+" Since I use <C-a> as tmux's prefix,
+" Map <C-y> to <C-a> (incrementing a number)
+nnoremap <C-y> <C-a>
+
+" Make `S` works like `X` is to `x`
+nnoremap S hs
+
+" Move to the next closed fold
+" https://stackoverflow.com/a/9407015
+nnoremap <silent> ]z :call functions#NextClosedFold('j')<cr>
+nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " Retired
 " I use this section for reference
@@ -463,6 +465,22 @@ vnoremap <C-c> "+y
 " In favor of vim-unimpaired
 " nnoremap <leader>n :bnext<CR>
 " nnoremap <leader>p :bprevious<CR>
+
+" In favor of hardmode
+" noremap <left>  <nop>
+" noremap <right> <nop>
+" noremap <up>    <nop>
+" noremap <down>  <nop>
+" inoremap <left>  <nop>
+" inoremap <right> <nop>
+" inoremap <up>    <nop>
+" inoremap <down>  <nop>
+
+" Typing ':' with only one keystroke
+" nnoremap ; :
+
+" Making working with buffers less painful
+" nnoremap <leader>bq :bp <BAR> bd #<CR>
 
 " }}}
 " ------------------------------------------------------------------------------

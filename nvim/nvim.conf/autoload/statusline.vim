@@ -1,25 +1,9 @@
-function! statusline#Readonly()
-    return &readonly ? ' [RO]' : ''
-endfunction
-
-function! statusline#Modified()
-    return &modified ? ' [+]' : ''
-endfunction
-
 function! statusline#Paste()
-    return &paste ? ' [PASTE]' : ''
+    return &paste ? '[PASTE]' : ''
 endfunction
 
 function! statusline#Filetype()
   return &filetype !=# '' ? &filetype : 'no ft'
-endfunction
-
-function! statusline#Percentage()
-  return printf('%3.0f%%',  line('.') * 100 / line('$'))
-endfunction
-
-function! statusline#LineInfo()
-  return printf('%3d:%-2d', line('.'), col('.'))
 endfunction
 
 function! statusline#ALEWarnings() abort

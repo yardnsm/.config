@@ -4,7 +4,8 @@ let g:vimwiki_list = [{
       \ 'path': $VIMWIKI_HOME,
       \ 'syntax': 'markdown',
       \ 'ext': '.md',
-      \ 'index': 'README'
+      \ 'index': 'README',
+      \ 'nested_syntaxes': {'python': 'python', 'javascript': 'javascript', 'bash': 'sh'},
       \ }]
 
 " Disable links concealing
