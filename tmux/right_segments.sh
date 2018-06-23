@@ -3,23 +3,32 @@
 # ---------------------------------------------
 
 tm_segment() {
-  icon=$1
-  color=$2
-  text=$3
+  local -r icon=$1
+  local -r color=$2
+  local -r text=$3
 
-  res=""
+  local res=""
 
-  [[ -z $color ]] && color="colour237"
+  # Default color
+  [[ -z $color ]] \
+    && color="colour237"
 
-  [[ -n $icon ]] && res+="#[fg=${color}, noreverse] ${icon}"
-  [[ -n $text ]] && res+="#[fg=${color} bg=default, noreverse] ${text} "
+  # Icon
+  [[ -n $icon ]] \
+    && res+="#[fg=${color}, noreverse]${icon} "
+
+  # Text
+  [[ -n $text ]] \
+    && res+="#[fg=${color} bg=default, noreverse]${text}"
+
+  # Reset
   res+="#[bg=default, fg=default]"
 
   echo -ne "$res"
 }
 
 tm_divider() {
-  echo -ne "#[fg=colour237]⋅#[bg=default, fg=default]"
+  echo -ne "#{window-status-separator}"
 }
 
 
