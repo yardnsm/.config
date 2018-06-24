@@ -22,10 +22,10 @@ function blox_hook__precmd_git_fetch() {
     # After the async process the prompt will be redrawen, so
     # we need to persist the current execution information
     # till the next redraw
-    BLOX_BLOCK__EXEC_TIME_PERSIST=1
+    BLOX_BLOCK__EXEC_TIME_PERSIST=true
     BLOX_BLOCK__EXEC_TIME_STOP=$EPOCHSECONDS
   else
-    BLOX_BLOCK__EXEC_TIME_PERSIST=0
+    BLOX_BLOCK__EXEC_TIME_PERSIST=false
   fi
 }
 
