@@ -34,6 +34,6 @@ function TRAPUSR2() {
 
   blox_helper__redraw_prompt
 
-  BLOX_BLOCK__EXEC_TIME_PERSIST=0
+  BLOX_BLOCK__EXEC_TIME_PERSIST=false
   blox_block__exec_time_hook__precmd
 }
