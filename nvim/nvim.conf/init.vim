@@ -418,8 +418,8 @@ inoremap <C-u> <ESC>gUiwgi
 nnoremap <tab>   <c-w>w
 nnoremap <S-tab> <c-w>W
 
-" qq to record, Q to run
-nnoremap Q @q
+" For some reason, mapping the <tab> key breaks <Ctrl-I>
+nnoremap <C-i> <tab>
 
 " Toggle mouse support
 nnoremap <leader>tm :call functions#MouseToggle()<CR>
@@ -482,6 +482,9 @@ nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 " Making working with buffers less painful
 " nnoremap <leader>bq :bp <BAR> bd #<CR>
 
+" qq to record, Q to run
+" nnoremap Q @q
+
 " }}}
 " ------------------------------------------------------------------------------
 
@@ -490,6 +493,9 @@ nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " Strip traling spaces
 command! StripTrailingWhitespace call functions#StripTrailingWhitespace()
+
+" Delete a buffer without closing the window
+command! BQ :bp | :sp | :bn | :bd
 
 " }}}
 " ------------------------------------------------------------------------------
@@ -501,6 +507,7 @@ cnoreabbrev Q q
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev qQ q!
+cnoreabbrev bq BQ
 
 " Insert a Shebang
 " https://github.com/junegunn/dotfiles/blob/master/vimrc#L567
