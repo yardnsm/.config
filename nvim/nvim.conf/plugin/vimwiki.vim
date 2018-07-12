@@ -28,4 +28,7 @@ augroup vimwiki_au
 
   " Enable concealing only in the index file
   autocmd BufRead,BufNew,BufNewFile $VIMWIKI_HOME/README.md setlocal conceallevel=2
+
+  " Automatically fold the contents in the index file
+  autocmd BufRead,BufNew,BufNewFile $VIMWIKI_HOME/README.md setlocal foldenable foldlevel=2
 augroup END

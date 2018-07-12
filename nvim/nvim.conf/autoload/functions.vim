@@ -17,7 +17,7 @@ function! functions#StripTrailingWhitespace()
 endfunction
 
 " Go to next closed fold (see `]z` and `[z` mappings)
-function! NextClosedFold(dir)
+function! functions#NextClosedFold(dir)
   let cmd = 'norm!z' . a:dir
   let view = winsaveview()
   let [l0, l, open] = [0, view.lnum, 1]

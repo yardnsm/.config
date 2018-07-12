@@ -187,7 +187,8 @@ syntax on                             " enable syntax highlighting
 " Settings for the terminal
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
-  set t_Co=256                        " we use a 256-color terminal
+
+  " set t_Co=256                        " we use a 256-color terminal
 
   " Colorscheme overrides
   augroup custom_colors_au
@@ -197,22 +198,26 @@ if !has('gui_vimr')
     autocmd ColorScheme gotham
           \   highlight Folded ctermbg=green ctermfg=blue
           \ | highlight VertSplit ctermfg=4 ctermbg=10
+          \ | highlight MatchTag ctermbg=12 ctermfg=9
 
           " \ | highlight CursorLineNr ctermfg=3
 
-    " For base16-tomorrow-night
-    autocmd ColorScheme base16-tomorrow-night
+    " For base16-classic-dark
+    autocmd ColorScheme base16-classic-dark
           \   highlight Comment ctermfg=11
           \ | highlight Folded ctermbg=green ctermfg=11
           \ | highlight SpellBad cterm=undercurl ctermbg=1
           \ | highlight SpellCap cterm=undercurl ctermbg=4
+          \ | highlight SpellRare cterm=undercurl ctermbg=11
           \ | highlight SpellLocal cterm=undercurl ctermbg=8
+          \ | highlight MatchTag ctermbg=11 ctermfg=1
+          \ | highlight Statement cterm=bold
 
   augroup END
 endif
 
 try
-  colorscheme base16-tomorrow-night                  " set colorscheme
+  colorscheme base16-classic-dark     " set colorscheme
 
   " Setup base16-shell
   if g:colors_name == 'base16-default-dark'
@@ -236,6 +241,7 @@ endtry
 set laststatus=2
 
 " Highlights
+" TODO: add to an augroup
 hi User1 ctermfg=10 ctermbg=4 cterm=bold
 hi User2 ctermfg=10 ctermbg=4
 hi User3 ctermfg=6 ctermbg=10
