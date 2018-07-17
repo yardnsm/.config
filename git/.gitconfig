@@ -63,12 +63,16 @@
   co = checkout
   d = diff
   s = status -sb
+
   l = log --graph --pretty=format:'%C(green bold)%h %C(blue)- %an, %ar%Creset%x09- %Creset%s %C(blue)%d'
   ll = log --stat --abbrev-commit
+  cnt = shortlog -sn
   my = !git log --branches=* --no-merges --pretty=format:'%C(yellow bold)%h %Cblue%ad%Cgreen%d %Creset%s' --date=short --author=\"$(git config user.name)\"
 
   reset-hard = reset --hard HEAD
-  clean4realz = clean -f
+  clean-untracked = !git clean -nd && echo "==!== ARE YOU SURE? [type 'yes' to confirm] ==!==" && read -r && [[ "$REPLY" == "yes" ]] && git clean -fd || echo "ABORTED!"
+  clean-ignored = !git clean -nXd && echo "==!== ARE YOU SURE? [type 'yes' to confirm] ==!==" && read -r && [[ "$REPLY" == "yes" ]] && git clean -fXd || echo "ABORTED!"
+  clean-all = !git clean -nxd && echo "==!== ARE YOU SURE? [type 'yes' to confirm] ==!==" && read -r && [[ "$REPLY" == "yes" ]] && git clean -fXd || echo "ABORTED!"
 
 # }}}
 # ------------------------------------------------------------------------------
