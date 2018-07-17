@@ -37,7 +37,7 @@ main() {
     execute "$(ssh-agent -s)" \
       "Starting SSH agent"
 
-    execute "ssh-add -K ~/.ssh/id_rsa" \
+    execute "ssh-add -K ${ssh_key_path}" \
       "Adding id_rsa to the ssh-agent"
 
     copy_to_clipboard "$(cat "${ssh_key_path}.pub")"
