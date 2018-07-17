@@ -32,3 +32,6 @@ augroup vimwiki_au
   " Automatically fold the contents in the index file
   autocmd BufRead,BufNew,BufNewFile $VIMWIKI_HOME/README.md setlocal foldenable foldlevel=2
 augroup END
+
+" I use <C-Space> for MacOS' Spotlight, so...
+nmap <A-Space> <C-Space>
