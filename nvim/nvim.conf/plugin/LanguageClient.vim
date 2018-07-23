@@ -5,6 +5,37 @@ let g:LanguageClient_serverCommands = {}
 " Disable diagnostics
 let g:LanguageClient_diagnosticsEnable = 0
 
+" Change the highlights of diagnostics messages
+" LanguageClient-neovim clears the specified highlights if the diagnostics are
+" disabled, causing ALE highlights to also be cleared (since it uses ALE
+" highlights). Doing this prevents it from clearing ALE highlights.
+let g:LanguageClient_diagnosticsDisplay = {
+      \    1: {
+      \         "name": "Error",
+      \         "texthl": "LChl",
+      \         "signText": "✖",
+      \         "signTexthl": "LChl",
+      \     },
+      \     2: {
+      \         "name": "Warning",
+      \         "texthl": "LChl",
+      \         "signText": "⚠",
+      \         "signTexthl": "LChl",
+      \     },
+      \     3: {
+      \         "name": "Information",
+      \         "texthl": "LChl",
+      \         "signText": "ℹ",
+      \         "signTexthl": "LChl",
+      \     },
+      \     4: {
+      \         "name": "Hint",
+      \         "texthl": "LChl",
+      \         "signText": "➤",
+      \         "signTexthl": "LChl",
+      \     },
+      \ }
+
 " Mappings
 nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
