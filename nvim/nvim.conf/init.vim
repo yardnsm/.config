@@ -55,6 +55,9 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'wikitopian/hardmode'                " stepping up the game...
 
+Plug 'alvan/vim-closetag'                 " auto-close SGML tags
+Plug 'Valloric/MatchTagAlways'            " highlights matching tags
+
 Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
 Plug 'kshenoy/vim-signature'              " displays marks in the gutter (and more)
 Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
@@ -64,6 +67,7 @@ Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig file
 Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
 Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
 Plug 'tmux-plugins/vim-tmux-focus-events' " make focus events work inside tmux
+Plug 'tmux-plugins/vim-tmux'              " some nice stuff for editing `.tmux.conf`
 
 Plug 'mileszs/ack.vim'                    " support for Ack within vim (I use it for Ag, though)
 
@@ -85,6 +89,13 @@ Plug 'junegunn/vim-peekaboo'              " view the registers content when usin
 Plug 'SirVer/ultisnips'                   " snippets
 Plug 'vimwiki/vimwiki'                    " wiki for vim
 
+Plug 'moll/vim-node'                      " allowg to `gf` properly on `require`
+
+Plug 'python-mode/python-mode',           " python support
+      \ { 'branch': 'develop' }
+
+Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
+
 " Autocompletion
 " ------------------------------------------------------------------------------
 
@@ -98,25 +109,6 @@ Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
-
-" Language specific stuff (besides autocompletion)
-" ------------------------------------------------------------------------------
-
-" SGML stuff
-Plug 'alvan/vim-closetag'
-Plug 'Valloric/MatchTagAlways'
-
-" JavaScript stuff
-Plug 'moll/vim-node'
-
-" Python stuff
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
-
-" Tmux config stuff
-Plug 'tmux-plugins/vim-tmux'
-
-" Universal shit
-Plug 'sheerun/vim-polyglot'
 
 " MacOS specific plugins
 " ------------------------------------------------------------------------------
@@ -244,7 +236,7 @@ set laststatus=2
 " TODO: add to an augroup
 hi User1 ctermfg=10 ctermbg=4 cterm=bold
 hi User2 ctermfg=10 ctermbg=4
-hi User3 ctermfg=6 ctermbg=10
+hi User3 ctermfg=6 ctermbg=11
 
 " Highlights for lint warnings and errors
 hi User6 ctermfg=10 ctermbg=9
@@ -270,7 +262,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%7*%{statusline#ALEErrors()}'   " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%3* ‹‹ %f [%n] ›› '             " filename and buffer number
+    let l:result .= '%3* ‹‹ %f [%n] ›› %m'           " filename, buffer number and modified
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
@@ -286,6 +278,9 @@ augroup statusline_au
 
   autocmd WinEnter * setlocal statusline=%!BuildStatusLine('active')
   autocmd WinLeave * setlocal statusline=%!BuildStatusLine('inactive')
+
+  autocmd FocusGained * setlocal statusline=%!BuildStatusLine('active')
+  autocmd FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
 
   autocmd FileType nerdtree setlocal statusline=%!BuildStatusLine('NERD')
   autocmd FileType qf setlocal statusline=%!BuildStatusLine('%q')
