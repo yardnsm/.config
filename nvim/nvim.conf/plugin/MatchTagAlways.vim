@@ -3,6 +3,7 @@ let g:mta_filetypes = {
   \ 'xhtml' : 1,
   \ 'xml' : 1,
   \ 'javascript.jsx' : 1,
+  \ 'typescript.jsx' : 1,
   \ }
 
 let g:mta_use_matchparen_group = 0
