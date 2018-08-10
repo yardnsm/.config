@@ -97,6 +97,8 @@ print_welcome_message() {
    / /_/ // /_/ // /_ / __// // //  __//__  /
    \__,_/ \____/ \__//_/  /_//_/ \___//____/
 
+     https://github.com/yardnsm/dotfiles/
+
 "
 
   print_in_cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
@@ -104,8 +106,6 @@ print_welcome_message() {
   if [[ -d "$DOTFILES_LOCAL" ]]; then
     print_in_cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
   fi
-
-  printf "\\n"
 }
 
 # Print finish message
