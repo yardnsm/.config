@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# This s a little script that helps me manage my boilerplates. I have a git
+# repository where I keep all of them: each sub directory is a boilerplate
+# project (an empty node module template or a chrome extension, for instance).
+
+# I use git's `subtree` command to copy a certain boilerplate. It's better than
+# simply using `cp`, as it does not copy ignored files and directories. Also,
+# it is possible to keep the commit history relevant to the subtree we're
+# copying.
+
 # ---------------------------------------------
 
 declare -r BOILERPLATES_HOME="$HOME/dev/gitlab/boilerplates"
