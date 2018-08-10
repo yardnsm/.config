@@ -17,9 +17,6 @@ setopt EXTENDED_HISTORY
 # Ignore all duplicate entries in the history
 setopt HIST_IGNORE_ALL_DUPS
 
-# Also autocomplete aliases
-setopt COMPLETE_ALIASES
-
 # Always automatically show a list of ambiguous completions
 setopt AUTO_LIST
 
