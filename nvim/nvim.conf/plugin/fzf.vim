@@ -17,10 +17,9 @@ let g:fzf_colors = {
 
 " fzf status line
 function! s:fzf_statusline()
-  highlight fzf1 ctermfg=161 ctermbg=0
+  highlight fzf1 ctermfg=161 ctermbg=0 cterm=bold
   highlight fzf1 guifg=161 guibg=0
-  setlocal statusline=%#fzf1#~~>\ fzf
-  setlocal statusline+=\ %{emoji#for('see_no_evil')}
+  setlocal statusline=%#fzf1#~~>\ fzf\ ԅ(≖‿≖ԅ)
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 

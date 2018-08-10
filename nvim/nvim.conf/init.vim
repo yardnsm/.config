@@ -60,7 +60,7 @@ Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
 Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
 Plug 'kshenoy/vim-signature'              " displays marks in the gutter (and more)
-Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
+" Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
 
 Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
 
@@ -83,8 +83,8 @@ Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
-Plug 'junegunn/vim-emoji'                 " emoji in vim!
-Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
+" Plug 'junegunn/vim-emoji'                 " emoji in vim!
+" Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
 
 Plug 'SirVer/ultisnips'                   " snippets
 Plug 'vimwiki/vimwiki'                    " wiki for vim
@@ -204,6 +204,8 @@ if !has('gui_vimr')
           \ | highlight SpellLocal cterm=undercurl ctermbg=8
           \ | highlight MatchTag ctermbg=11 ctermfg=1
           \ | highlight Statement cterm=bold
+          \ | highlight StatusLine cterm=bold
+          \ | highlight StatusLineNC ctermbg=11 ctermfg=11
 
   augroup END
 endif
@@ -246,8 +248,7 @@ function! BuildStatusLine(mode) abort
   let l:result = ''
 
   if a:mode ==# 'active'
-    let l:result .= '%1* %n |'                       " buffer number
-    let l:result .= '%2* %f '                        " filename
+    let l:result .= '%1* %f '                        " filename
     let l:result .= '%3* %r'                         " readonly
     let l:result .= '%3*%m'                          " modified
     let l:result .= '%3*%{statusline#Paste()} '      " paste
@@ -262,7 +263,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%7*%{statusline#ALEErrors()}'   " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%3* ‹‹ %f [%n] ›› %m'           " filename, buffer number and modified
+    let l:result .= '%f %m'           " filename, buffer number and modified
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
@@ -311,6 +312,7 @@ set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
 set gdefault                          " make search and replace global for the line
 set magic                             " turn magic on for regular expressions
+set inccommand=split                  " shows the effects of a command incrementally, as you type
 
 " }}}
 " ------------------------------------------------------------------------------
