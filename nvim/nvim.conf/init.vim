@@ -236,7 +236,7 @@ set laststatus=2
 
 " Highlights
 " TODO: add to an augroup
-hi User1 ctermfg=10 ctermbg=4 cterm=bold
+hi User1 ctermfg=10 ctermbg=4
 hi User2 ctermfg=10 ctermbg=4
 hi User3 ctermfg=6 ctermbg=11
 
@@ -390,15 +390,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Search and replace the word under the cursor (with confirmation prompt)
-nnoremap <leader>* :%s/\<<C-r><C-w>\>//c<Left><Left>
-
-" Location list
-nnoremap <leader>lo :lopen<CR>
-nnoremap <leader>lc :lclose<CR>
-
-" Quickfix list
-nnoremap <leader>co :copen<CR>
-nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>sw :%s/\<<C-r><C-w>\>//c<Left><Left>
+nnoremap <leader>ss :%s/<C-r><C-w>//c<Left><Left>
 
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
@@ -417,26 +410,11 @@ nnoremap <space> za
 " Convert the current word to uppercase when in INSERT mode
 inoremap <C-u> <ESC>gUiwgi
 
-" Circular windows navigation
-nnoremap <tab>   <c-w>w
-nnoremap <S-tab> <c-w>W
-
-" For some reason, mapping the <tab> key breaks <Ctrl-I>
-nnoremap <C-i> <tab>
-
-" Toggle mouse support
+" Toggles
 nnoremap <leader>tm :call functions#MouseToggle()<CR>
-
-" Relative number toggle
 nnoremap <leader>tn :set relativenumber!<CR>
-
-" Toggle pastemode
 nnoremap <leader>tp :set paste!<CR>
-
-" Toggle folding
 nnoremap <leader>tf :set foldenable!<CR>
-
-" Toggle cursorline
 nnoremap <leader>tc :set cursorline!<CR>
 
 " Copy to clipboard
@@ -448,11 +426,6 @@ nnoremap <C-y> <C-a>
 
 " Make `S` works like `X` is to `x`
 nnoremap S hs
-
-" Move to the next closed fold
-" https://stackoverflow.com/a/9407015
-nnoremap <silent> ]z :call functions#NextClosedFold('j')<cr>
-nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " Retired
 " I use this section for reference
@@ -487,6 +460,23 @@ nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " qq to record, Q to run
 " nnoremap Q @q
+
+" " Circular windows navigation
+" nnoremap <tab>   <c-w>w
+" nnoremap <S-tab> <c-w>W
+
+" " Location list
+" nnoremap <leader>lo :lopen<CR>
+" nnoremap <leader>lc :lclose<CR>
+
+" " Quickfix list
+" nnoremap <leader>co :copen<CR>
+" nnoremap <leader>cc :cclose<CR>
+
+" " Move to the next closed fold
+" " https://stackoverflow.com/a/9407015
+" nnoremap <silent> ]z :call functions#NextClosedFold('j')<cr>
+" nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " }}}
 " ------------------------------------------------------------------------------
