@@ -51,6 +51,7 @@ let g:LanguageClient_serverCommands['javascript.jsx'] = ['typescript-language-se
 " ------------------------------------------------------------------------------
 
 let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
+let g:LanguageClient_serverCommands['typescript.tsx'] = ['typescript-language-server', '--stdio']
 
 " HTML
 " ------------------------------------------------------------------------------
@@ -68,8 +69,3 @@ let g:LanguageClient_serverCommands['python'] = ['pyls']
 let g:LanguageClient_serverCommands['css'] = ['css-languageserver', '--stdio']
 let g:LanguageClient_serverCommands['less'] = ['css-languageserver', '--stdio']
 let g:LanguageClient_serverCommands['scss'] = ['css-languageserver', '--stdio']
-
-" Bash
-" ------------------------------------------------------------------------------
-
-let g:LanguageClient_serverCommands['sh'] = ['bash-language-server', 'start']

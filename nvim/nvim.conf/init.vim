@@ -9,7 +9,6 @@
 "                     yardnsm's .vimrc
 " ------------------------------------------------------------------------------
 
-" ------------------------------------------------------------------------------
 " General {{{
 
 set nocompatible                      " don't behave like Vi
@@ -26,14 +25,11 @@ set modelines=1                       " enable modelines
 " let g:python_host_prog = '/usr/local/bin/python2'
 " let g:python3_host_prog = '/usr/local/bin/python3'
 
-" see ~/dotfiles/nvim/setup-python-env.sh
+" See ~/dotfiles/nvim/setup-python-env.sh
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Plugins {{{
 
 call plug#begin('~/.config/nvim/plugged')
@@ -59,8 +55,6 @@ Plug 'alvan/vim-closetag'                 " auto-close SGML tags
 Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
 Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
-Plug 'kshenoy/vim-signature'              " displays marks in the gutter (and more)
-" Plug 'terryma/vim-multiple-cursors'       " multiple cursors for vim!
 
 Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
 
@@ -68,8 +62,6 @@ Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim spli
 Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
 Plug 'tmux-plugins/vim-tmux-focus-events' " make focus events work inside tmux
 Plug 'tmux-plugins/vim-tmux'              " some nice stuff for editing `.tmux.conf`
-
-Plug 'mileszs/ack.vim'                    " support for Ack within vim (I use it for Ag, though)
 
 Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
 Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
@@ -83,8 +75,6 @@ Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
-" Plug 'junegunn/vim-emoji'                 " emoji in vim!
-" Plug 'junegunn/vim-peekaboo'              " view the registers content when using `\"`, `@` or <C-R>
 
 Plug 'SirVer/ultisnips'                   " snippets
 Plug 'vimwiki/vimwiki'                    " wiki for vim
@@ -96,6 +86,9 @@ Plug 'python-mode/python-mode',           " python support
 
 Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 
+" My plugins :)
+Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+
 " Autocompletion
 " ------------------------------------------------------------------------------
 
@@ -105,9 +98,7 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-zsh'
 Plug 'wellle/tmux-complete.vim'
-Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
 
 " MacOS specific plugins
@@ -120,9 +111,6 @@ endif
 call plug#end()
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Editor {{{
 
 set mouse=                            " disable mouse support by default
@@ -143,10 +131,7 @@ set cursorline                        " highlight current line (may cause vim to
 set colorcolumn=100                   " cuz percision matter
 
 set showcmd                           " show command in normal (when typed)
-
 set report=0                          " always display the count of lines yanked or deleted on the message line
-
-set backspace=indent,eol,start        " proper backspacing
 
 " Invisibles
 set showbreak=↪
@@ -156,9 +141,6 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 set fillchars+=vert:\  " ┃
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Autocommands {{{
 
 augroup vimrc_au
@@ -169,9 +151,6 @@ augroup vimrc_au
 augroup END
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Colors and Syntax {{{
 
 syntax on                             " enable syntax highlighting
@@ -224,9 +203,6 @@ catch
 endtry
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Statusline {{{
 
 " Check out './autoload/statusline.vim'
@@ -236,7 +212,7 @@ set laststatus=2
 
 " Highlights
 " TODO: add to an augroup
-hi User1 ctermfg=10 ctermbg=4
+hi User1 ctermfg=10 ctermbg=4 cterm=bold
 hi User2 ctermfg=10 ctermbg=4
 hi User3 ctermfg=6 ctermbg=11
 
@@ -289,21 +265,14 @@ augroup END
 
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Folding {{{
 
-set nofoldenable                      " do not enable folding by default (<leader>tf)
 set foldmethod=indent                 " base folds on indentation by default
 set foldmarker={{{,}}}                " fold marker
 set foldlevelstart=10                 " open most folds by default
 set foldnestmax=10                    " max nested folds
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Search {{{
 
 set incsearch                         " shows matches as you type
@@ -312,12 +281,9 @@ set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
 set gdefault                          " make search and replace global for the line
 set magic                             " turn magic on for regular expressions
-set inccommand=split                  " shows the effects of a command incrementally, as you type
+set inccommand=split                  " shows the effects of the substitute command incrementally, as you type
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Indent {{{
 
 set autoindent
@@ -331,9 +297,6 @@ set softtabstop=2                     " number of spaces in <tab> when editing
 set tabstop=2                         " number of *visual* spaces per <tab>
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " File system {{{
 
 set autoread                          " detect when a file is changed
@@ -343,9 +306,6 @@ set noswapfile                        " disable swaps
 set noundofile                        " disable undofiles
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Misc {{{
 
 set lazyredraw                        " don't redraw while performing macros
@@ -360,9 +320,6 @@ set splitright                        " split right by default
 set shortmess+=c                      " do not show completion-menu messages
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " GUI stuff {{{
 
 " Using VimR mainly
@@ -373,9 +330,6 @@ if has('gui_vimr')
 endif
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Mappings {{{
 
 let mapleader=','                     " change the map leader
@@ -479,9 +433,6 @@ nnoremap S hs
 " nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Commands {{{
 
 " Strip traling spaces
@@ -491,9 +442,6 @@ command! StripTrailingWhitespace call functions#StripTrailingWhitespace()
 command! BQ :bp | :sp | :bn | :bd
 
 " }}}
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Abbreviations {{{
 
 cnoreabbrev Q q
@@ -507,4 +455,3 @@ cnoreabbrev bq BQ
 inoreabbrev <expr> #!! "#!/usr/bin/env" . (empty(&filetype) ? '' : ' '.&filetype)
 
 " }}}
-" ------------------------------------------------------------------------------
