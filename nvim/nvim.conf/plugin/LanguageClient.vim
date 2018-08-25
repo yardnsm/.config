@@ -51,7 +51,7 @@ let g:LanguageClient_serverCommands['javascript.jsx'] = ['typescript-language-se
 " ------------------------------------------------------------------------------
 
 let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
-let g:LanguageClient_serverCommands['typescript.tsx'] = ['typescript-language-server', '--stdio']
+let g:LanguageClient_serverCommands['typescript.jsx'] = ['typescript-language-server', '--stdio']
 
 " HTML
 " ------------------------------------------------------------------------------

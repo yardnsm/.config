@@ -159,8 +159,6 @@ syntax on                             " enable syntax highlighting
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
 
-  " set t_Co=256                        " we use a 256-color terminal
-
   " Colorscheme overrides
   augroup custom_colors_au
     autocmd!
