@@ -1,7 +1,6 @@
 " 'vim-unimpaired' overrides
-" ------------------------------------------------------------------------------
 
-" Tabs
+" Use `t` for tabs, as I'm not using tags (...yet)
 nnoremap ]t :tabn<CR>
 nnoremap [t :tabp<CR>
 

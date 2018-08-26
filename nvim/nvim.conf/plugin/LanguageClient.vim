@@ -41,31 +41,33 @@ nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
-" JavaScript
-" ------------------------------------------------------------------------------
+" JavaScript {{{
 
 let g:LanguageClient_serverCommands['javascript'] = ['typescript-language-server', '--stdio']
 let g:LanguageClient_serverCommands['javascript.jsx'] = ['typescript-language-server', '--stdio']
 
-" TypeScript
-" ------------------------------------------------------------------------------
+" }}}
+" TypeScript {{{
 
 let g:LanguageClient_serverCommands['typescript'] = ['typescript-language-server', '--stdio']
 let g:LanguageClient_serverCommands['typescript.jsx'] = ['typescript-language-server', '--stdio']
 
-" HTML
-" ------------------------------------------------------------------------------
+" }}}
+" HTML {{{
 
 let g:LanguageClient_serverCommands['html'] = ['html-languageserver', '--stdio']
 
-" Python
-" ------------------------------------------------------------------------------
+" }}}
+" Python {{{
 
 let g:LanguageClient_serverCommands['python'] = ['pyls']
 
-" CSS, LESS, SCSS
-" ------------------------------------------------------------------------------
+" }}}
+" CSS, LESS, SCSS {{{
 
 let g:LanguageClient_serverCommands['css'] = ['css-languageserver', '--stdio']
 let g:LanguageClient_serverCommands['less'] = ['css-languageserver', '--stdio']
 let g:LanguageClient_serverCommands['scss'] = ['css-languageserver', '--stdio']
+
+" }}}
+

@@ -14,5 +14,8 @@ endfunction
 " Disable preview window
 set completeopt-=preview
 
+" Complete path relativly to the current buffer
+let g:deoplete#file#enable_buffer_path = 1
+
 " Autocomplete delay
 call deoplete#custom#option('auto_complete_delay', 10)

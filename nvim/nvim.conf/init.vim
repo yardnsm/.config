@@ -90,8 +90,6 @@ Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion
-" ------------------------------------------------------------------------------
-
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
@@ -102,8 +100,6 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'Shougo/neco-vim'
 
 " MacOS specific plugins
-" ------------------------------------------------------------------------------
-
 if has('mac')
   Plug 'junegunn/vim-xmark', { 'do': 'make' }
 endif
@@ -203,8 +199,6 @@ endtry
 " }}}
 " Statusline {{{
 
-" Check out './autoload/statusline.vim'
-
 " Always show the status line
 set laststatus=2
 
@@ -237,7 +231,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%7*%{statusline#ALEErrors()}'   " lint errors
 
   elseif a:mode ==# 'inactive'
-    let l:result .= '%f %m'           " filename, buffer number and modified
+    let l:result .= ' %f %m'           " filename, buffer number and modified
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
@@ -251,11 +245,8 @@ set statusline=%!BuildStatusLine('active')
 augroup statusline_au
   autocmd!
 
-  autocmd WinEnter * setlocal statusline=%!BuildStatusLine('active')
-  autocmd WinLeave * setlocal statusline=%!BuildStatusLine('inactive')
-
-  autocmd FocusGained * setlocal statusline=%!BuildStatusLine('active')
-  autocmd FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
+  autocmd WinEnter,FocusGained * setlocal statusline=%!BuildStatusLine('active')
+  autocmd WinLeave,FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
 
   autocmd FileType nerdtree setlocal statusline=%!BuildStatusLine('NERD')
   autocmd FileType qf setlocal statusline=%!BuildStatusLine('%q')
@@ -280,6 +271,11 @@ set hlsearch                          " highlight search results
 set gdefault                          " make search and replace global for the line
 set magic                             " turn magic on for regular expressions
 set inccommand=split                  " shows the effects of the substitute command incrementally, as you type
+
+" Use `ag` instead of `grep`
+if executable('ag')
+  set grepprg=ag\ --vimgrep\ --smart-case\ --hidden\ --ignore\ .git
+endif
 
 " }}}
 " Indent {{{
@@ -372,63 +368,8 @@ nnoremap <leader>tc :set cursorline!<CR>
 " Copy to clipboard
 vnoremap <C-c> "+y
 
-" Since I use <C-a> as tmux's prefix,
-" Map <C-y> to <C-a> (incrementing a number)
-nnoremap <C-y> <C-a>
-
 " Make `S` works like `X` is to `x`
 nnoremap S hs
-
-" Retired
-" I use this section for reference
-" ------------------------------------------------------------------------------
-
-" Splits
-" Letting `vim-tmux-navigator` to manage these
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
-" In favor of vim-unimpaired
-" nnoremap <leader>n :bnext<CR>
-" nnoremap <leader>p :bprevious<CR>
-
-" In favor of hardmode
-" noremap <left>  <nop>
-" noremap <right> <nop>
-" noremap <up>    <nop>
-" noremap <down>  <nop>
-" inoremap <left>  <nop>
-" inoremap <right> <nop>
-" inoremap <up>    <nop>
-" inoremap <down>  <nop>
-
-" Typing ':' with only one keystroke
-" nnoremap ; :
-
-" Making working with buffers less painful
-" nnoremap <leader>bq :bp <BAR> bd #<CR>
-
-" qq to record, Q to run
-" nnoremap Q @q
-
-" " Circular windows navigation
-" nnoremap <tab>   <c-w>w
-" nnoremap <S-tab> <c-w>W
-
-" " Location list
-" nnoremap <leader>lo :lopen<CR>
-" nnoremap <leader>lc :lclose<CR>
-
-" " Quickfix list
-" nnoremap <leader>co :copen<CR>
-" nnoremap <leader>cc :cclose<CR>
-
-" " Move to the next closed fold
-" " https://stackoverflow.com/a/9407015
-" nnoremap <silent> ]z :call functions#NextClosedFold('j')<cr>
-" nnoremap <silent> [z :call functions#NextClosedFold('k')<cr>
 
 " }}}
 " Commands {{{
@@ -443,6 +384,8 @@ command! BQ :bp | :sp | :bn | :bd
 " Abbreviations {{{
 
 cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev QA qa
 cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev qQ q!
