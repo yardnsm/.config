@@ -4,6 +4,7 @@
 
 declare -r formulae=(
   'node'
+  'yarn --without-node'
   'rbenv'
   'git'
   'zsh'
@@ -55,6 +56,3 @@ declare -r formulae=(
 for formula in "${formulae[@]}"; do
   brew_install "$formula"
 done
-
-# Formulae with arguments
-brew_install 'yarn' '' '--without-node'
