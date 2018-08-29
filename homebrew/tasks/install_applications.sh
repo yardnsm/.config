@@ -2,8 +2,6 @@
 
 # ---------------------------------------------
 
-print_info "Applications"
-
 declare -r applications=(
   'java'
   'github-desktop'
@@ -15,6 +13,7 @@ declare -r applications=(
   'visual-studio-code'
   'wireshark'
   'hex-fiend'
+  'android-platform-tools'
 
   '1password'
   '1password-cli'
@@ -33,6 +32,8 @@ declare -r applications=(
   'transmission'
   'slack'
   'spotify'
+  'vlc'
+  'zeplin'
 
   # 'adobe-photoshop-cc'
   # 'android-studio'
@@ -41,20 +42,11 @@ declare -r applications=(
   # 'firefox-developeredition'
   # 'opera'
   # 'android-file-transfer'
-  # 'vlc'
   # 'keycastr'
   # 'skype'
   # 'firefox'
   # 'google-drive'
 )
-
-for app in "${applications[@]}"; do
-  brew_install "$app" 'cask'
-done
-
-# ---------------------------------------------
-
-print_info "Fonts"
 
 declare -r fonts=(
   'font-hack'
@@ -70,6 +62,21 @@ declare -r fonts=(
   'font-open-sans-hebrew-condensed'
 )
 
-for font in "${fonts[@]}"; do
-  brew_install "$font" 'cask'
-done
+# ---------------------------------------------
+
+main() {
+  print_info "Applications"
+
+  for app in "${applications[@]}"; do
+    brew_install "$app" 'cask'
+  done
+
+
+  print_info "Fonts"
+
+  for font in "${fonts[@]}"; do
+    brew_install "$font" 'cask'
+  done
+}
+
+main "$@"

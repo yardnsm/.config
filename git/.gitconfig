@@ -1,6 +1,5 @@
 # vim: set foldmethod=marker foldlevel=0:
 
-# ------------------------------------------------------------------------------
 # Core {{{
 
 [include]
@@ -28,9 +27,6 @@
   helper = osxkeychain
 
 # }}}
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
 # Merges and diffs {{{
 
 [mergetool "vimdiff"]
@@ -49,9 +45,6 @@
   tool = vimdiff
 
 # }}}
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
 # Aliases {{{
 
 [alias]
@@ -66,7 +59,7 @@
 
   l = log --graph --pretty=format:'%C(green bold)%h %C(blue)- %an, %ar%Creset%x09- %Creset%s %C(blue)%d'
   ll = log --stat --abbrev-commit
-  cnt = shortlog -sn
+  rank = shortlog -sn
   my = !git log --branches=* --no-merges --pretty=format:'%C(yellow bold)%h %Cblue%ad%Cgreen%d %Creset%s' --date=short --author=\"$(git config user.name)\"
 
   reset-hard = reset --hard HEAD
@@ -75,9 +68,6 @@
   clean-all = !git clean -nxd && echo "==!== ARE YOU SURE? [type 'yes' to confirm] ==!==" && read -r && [[ "$REPLY" == "yes" ]] && git clean -fXd || echo "ABORTED!"
 
 # }}}
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
 # Colors {{{
 
 [color]
@@ -104,9 +94,6 @@
   untracked = red reverse
 
 # }}}
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
 # Git LFS {{{
 
 [filter "lfs"]
@@ -115,4 +102,3 @@
   required = true
 
 # }}}
-# ------------------------------------------------------------------------------

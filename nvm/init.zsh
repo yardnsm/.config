@@ -18,4 +18,5 @@ _nvmrc_autoload_hook() {
   fi
 }
 
-add-zsh-hook chpwd _nvmrc_autoload_hook && _nvmrc_autoload_hook
+add-zsh-hook chpwd _nvmrc_autoload_hook \
+  && _nvmrc_autoload_hook

@@ -40,6 +40,7 @@ declare -r formulae=(
   'the_silver_searcher'
   'ripgrep'
   'watchman'
+  'readline'
 
   'asciinema'
   'm-cli'
@@ -49,10 +50,14 @@ declare -r formulae=(
   'figlet'
   'tree'
   'youtube-dl'
-
-  'readline'
 )
 
-for formula in "${formulae[@]}"; do
-  brew_install "$formula"
-done
+# ---------------------------------------------
+
+main () {
+  for formula in "${formulae[@]}"; do
+    brew_install "$formula"
+  done
+}
+
+main "$@"

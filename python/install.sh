@@ -5,8 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-print_info "Installing pips"
-
 declare -r pips=(
   'yapf'
   'flake8'
@@ -23,6 +21,14 @@ declare -r pips=(
   'pyx'
 )
 
-for pip in "${pips[@]}"; do
-  pip_install "$pip"
-done
+# ---------------------------------------------
+
+main() {
+  print_info "Installing pips"
+
+  for pip in "${pips[@]}"; do
+    pip_install "$pip"
+  done
+}
+
+main "$@"

@@ -5,8 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-print_info "Installing Gems"
-
 declare -r gems=(
   'bundler'
   'sass'
@@ -15,6 +13,14 @@ declare -r gems=(
   'teamocil'
 )
 
-for gem in "${gems[@]}"; do
-  gem_install "$gem"
-done
+# ---------------------------------------------
+
+main() {
+  print_info "Installing Gems"
+
+  for gem in "${gems[@]}"; do
+    gem_install "$gem"
+  done
+}
+
+main "$@"

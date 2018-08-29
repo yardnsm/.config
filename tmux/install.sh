@@ -5,7 +5,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-print_info "Installing plugins"
+main() {
+  print_info "Installing plugins"
 
-execute "$DOTFILES/_submodules/tpm/scripts/install_plugins.sh" \
-  "Installing tmux plugins (using tpm)"
+  execute "$DOTFILES/_submodules/tpm/scripts/install_plugins.sh" \
+    "Installing tmux plugins (using tpm)"
+}
+
+main "$@"

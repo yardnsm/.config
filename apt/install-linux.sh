@@ -5,14 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-print_info "Updating apt"
-
-execute "sudo apt-get update -qqy" "apt-get (update)"
-
-# ---------------------------------------------
-
-print_info "Install APT packages"
-
 declare -r packages=(
   'sudo'
   'git'
@@ -24,13 +16,40 @@ declare -r packages=(
   'rbenv'
 )
 
-for package in "${packages[@]}"; do
-  apt_install "$package"
-done
+# ---------------------------------------------
 
+_apt_update() {
+  print_info "Updating apt"
+
+  execute "sudo apt-get update -qqy" \
+    "apt-get (update)"
+}
 
 # ---------------------------------------------
 
-print_info "Cleanup"
+_apt_install_packages() {
+  print_info "Install APT packages"
 
-execute "sudo apt-get autoremove -qqy" "apt-get (autoremove)"
+  for package in "${packages[@]}"; do
+    apt_install "$package"
+  done
+}
+
+# ---------------------------------------------
+
+_apt_cleanup() {
+  print_info "Cleanup"
+
+  execute "sudo apt-get autoremove -qqy" \
+    "apt-get (autoremove)"
+}
+
+# ---------------------------------------------
+
+main() {
+  _apt_update
+  _apt_install_packages
+  _apt_cleanup
+}
+
+main "$@"

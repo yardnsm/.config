@@ -2,7 +2,8 @@
 alias o="open"
 alias oo="open ."
 
-alias afk="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+# Start the screen saver
+alias afk="/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
 
 # Hide/Show desktop icons
 alias hdesk="defaults write com.apple.finder CreateDesktop -bool false; killall Finder"

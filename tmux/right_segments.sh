@@ -7,7 +7,7 @@ tm_segment() {
   local -r color=$2
   local -r text=$3
 
-  local res=""
+  local res
 
   # Default color
   [[ -z $color ]] \

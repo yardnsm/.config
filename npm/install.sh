@@ -5,8 +5,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-print_info "Installing NPM global dependencies"
-
 declare -r dependencies=(
   'bower'
   'http-server'
@@ -35,6 +33,14 @@ declare -r dependencies=(
   'emoj'
 )
 
-for dep in "${dependencies[@]}"; do
-  npm_install "$dep"
-done
+# ---------------------------------------------
+
+main() {
+  print_info "Installing NPM global dependencies"
+
+  for dep in "${dependencies[@]}"; do
+    npm_install "$dep"
+  done
+}
+
+main "$@"

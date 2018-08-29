@@ -3,8 +3,6 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
   && source "../_setup/initializer.sh"
 
-# ---------------------------------------------
-
 main() {
   print_info "Installing rustup"
   curl https://sh.rustup.rs -sSf | sh

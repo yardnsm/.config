@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# ---------------------------------------------
-
 # Taken from https://github.com/junegunn/fzf/wiki/Examples#git
 main() {
   local branches

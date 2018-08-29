@@ -5,5 +5,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
-source "./tasks/run_configurations.sh"
-source "./tasks/set_applications_settings.sh"
+main() {
+  source "./tasks/run_configurations.sh"
+  source "./tasks/set_applications_settings.sh"
+}
+
+main "$@"
