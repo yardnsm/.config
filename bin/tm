@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-source "$DOTFILES/_setup/initializer.sh"
-
-# ---------------------------------------------
-
 # Taken from https://github.com/junegunn/fzf/wiki/Examples#tmux
 main() {
   local change
@@ -21,7 +17,7 @@ main() {
 
   session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --height 10 --exit-0) \
     && tmux $change -t "$session" \
-    || print_info "No sessions found"
+    || printf "\\n       > No sessions found\\n"
 }
 
 main "$@"
