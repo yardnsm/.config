@@ -1,6 +1,10 @@
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
 
+# Using the common $TERM for SSH as the remote server probably won't have my
+# current one
+alias ssh='TERM=xterm-256color ssh'
+
 # Reload zsh config
 alias reload='source ~/.zshrc'
 
