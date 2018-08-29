@@ -9,7 +9,8 @@ get_all_topics() {
     -type d \
     ! -name '_*' \
     ! -name '.*' \
-    ! -name 'dotfiles'
+    ! -name 'dotfiles' \
+     -exec basename {} \;
 }
 
 # Check if a topic exists
@@ -37,7 +38,7 @@ install_specific_topic() {
       source "$DOTFILES/$TOPIC/install-$OS.sh"
     fi
   else
-    print_title "Current topic is '$TOPIC'"
+    print_title "Current topic is '$TOPIC'\\n"
     print_error "Topic $TOPIC does not exist!"
   fi
 }
@@ -56,7 +57,6 @@ install_topics() {
 
   for topic in "${topics_to_install[@]}"; do
 
-    topic=$(basename "$topic")
     is_ignored=""
 
     # Check if needs to be ignored
@@ -66,7 +66,7 @@ install_topics() {
         && break
     done
 
-    if ! [[ -n $is_ignored ]]; then
+    if [[ -z $is_ignored ]]; then
       install_specific_topic "$topic"
     fi
   done

@@ -21,7 +21,7 @@ list_topics() {
   local topics=( $(get_all_topics) )
 
   for topic in "${topics[@]}"; do
-    echo -ne "    $(basename "$topic")\\n"
+    echo -ne "     $topic\\n"
   done
 }
 

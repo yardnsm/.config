@@ -8,23 +8,27 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # I realy don't want to add shellcheck as a submodule,
 # so this script assume you got it installed on your machine.
 
-print_info "Running shellcheck"
+main() {
+  print_info "Running shellcheck"
 
-if ! cmd_exists "shellcheck"; then
-  print_error "shellcheck is not installed!"
-fi
+  if ! cmd_exists "shellcheck"; then
+    print_error "shellcheck is not installed!"
+  fi
 
-find .. \
-  -type f \
-  ! -path '../_submodules/*' \
-  ! -path '../_misc/*' \
-  ! -path '../nvim/nvim.conf/plugged/*' \
-  ! -path '../alacritty/alacritty/*' \
-  -name '*.sh' \
-  -exec shellcheck \
-    -e SC1091 \
-    -e SC1090 \
-    -e SC2015 \
-  {} +
+  find .. \
+    -type f \
+    ! -path '../_submodules/*' \
+    ! -path '../_misc/*' \
+    ! -path '../nvim/nvim.conf/plugged/*' \
+    ! -path '../alacritty/alacritty/*' \
+    -name '*.sh' \
+    -exec shellcheck \
+      -e SC1091 \
+      -e SC1090 \
+      -e SC2015 \
+    {} +
 
-print_result $? "Shellcheck"
+  print_result $? "Shellcheck"
+}
+
+main "$@"

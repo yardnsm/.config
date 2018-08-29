@@ -29,6 +29,8 @@ get_answer() {
 
 # Ask for sudo permission
 ask_for_sudo() {
+
+  # Travis has an issue with `sudo` on mac, so we'll just wont use it for now.
   [[ -n "$CI" ]] && \
     [[ -n "$TRAVIS" ]] && \
     [[ "$(get_os)" == "macos" ]] && \
@@ -47,6 +49,7 @@ ask_for_sudo() {
   done &> /dev/null &
 }
 
+# Check for sudo permissions. Ask for one if not granted before.
 check_for_sudo() {
   print_info "Checking for sudo permissions"
   ask_for_sudo

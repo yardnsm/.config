@@ -2,8 +2,6 @@
 
 # ---------------------------------------------
 
-# Print in colors
-
 print_in_green() {
   printf "\\e[0;32m%b\\e[0m" "$1"
 }
@@ -38,10 +36,8 @@ print_in_white() {
 
 # ---------------------------------------------
 
-# Mesages
-
 print_title() {
-  print_in_white "\\n$(tput bold) -  $1$(tput sgr0)\\n"
+  print_in_white "\\n$(tput bold)  -  $1$(tput sgr0)\\n"
 }
 
 print_info() {
@@ -72,7 +68,7 @@ print_success() {
 
 # Print the message based the last exit
 print_result() {
-  [ "$1" -eq 0 ] \
+  [[ "$1" -eq 0 ]] \
     && print_success "$2" \
     || print_error "$2"
 
@@ -103,9 +99,8 @@ print_welcome_message() {
 
   print_in_cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
 
-  if [[ -d "$DOTFILES_LOCAL" ]]; then
-    print_in_cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
-  fi
+  [[ -d "$DOTFILES_LOCAL" ]] \
+    && print_in_cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
 }
 
 # Print finish message
