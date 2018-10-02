@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Create a new draft file and open it with $EDITOR
+# Examples:
+#
+#   $ draft
+#   Will open the drafts folder in $EDITOR
+#
+#   $ draft website planning
+#   Will open the file `2018-09-30_website_planning.md` in $EDITOR
+
+# ---------------------------------------------
+
+declare -r DRAFTS_HOME="$HOME/dev/gitlab/knowledge/drafts/"
+
+main() {
+  [[ $# -eq 0 ]] \
+    && $EDITOR "$DRAFTS_HOME" && return 0
+
+  local -r date_fmt="$(date +%Y-%m-%d)"
+  local -r name_fmt=$(sed 's/ /_/g' <<< "$@")
+
+  $EDITOR "$DRAFTS_HOME/${date_fmt}_${name_fmt}.md"
+}
+
+main "$@"
