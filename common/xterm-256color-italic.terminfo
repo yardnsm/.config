@@ -1,0 +1,13 @@
+#
+# Taken from:
+#
+#     https://medium.com/@dubistkomisch/how-to-actually-get-italics-and-true-colour-to-work-in-iterm-tmux-vim-9ebe55ebc2be
+#
+# Install via:
+#
+#     $ tic -x xterm-256color-italic.terminfo
+#
+
+xterm-256color-italic|xterm with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,

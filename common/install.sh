@@ -13,6 +13,8 @@ declare -a SYMLINKS=(
   "../git/.gitconfig"
   "../git/.gitignore_global"
 
+  "../gpg/gpg-agent.conf, .gnupg/gpg-agent.conf"
+
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
 
