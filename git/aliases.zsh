@@ -1,6 +1,7 @@
 alias g='git'
 alias gs='git status -sb'
 alias ga='git add'
+alias gap='git add --patch'
 alias gaa='git add .'
 alias gc='git commit'
 alias gac='git add . && git commit'

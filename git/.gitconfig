@@ -17,7 +17,7 @@
   verbose = true
 
 [push]
-  default = simple
+  default = current
   followTags = true
 
 [pull]
@@ -43,6 +43,10 @@
 
 [diff]
   tool = vimdiff
+
+[rerere]
+  # Enable Reuse Recorded Resolution
+  enabled = true
 
 # }}}
 # Aliases {{{
