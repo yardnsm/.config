@@ -23,7 +23,14 @@ function! s:fzf_statusline()
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-nnoremap <C-p> :Files<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>m :Marks<CR>
+
+" If inside a git repo, use :GFiles
+if isdirectory(".git")
+  nmap <C-p> :GFiles --cached --others --exclude-standard<CR>
+else
+  " otherwise, use :FZF
+  nmap <C-p> :Files<CR>
+endif

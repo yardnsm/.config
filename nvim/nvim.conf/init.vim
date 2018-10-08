@@ -54,7 +54,7 @@ Plug 'wikitopian/hardmode'                " stepping up the game...
 Plug 'alvan/vim-closetag'                 " auto-close SGML tags
 Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
-Plug 'airblade/vim-gitgutter'             " shows git diff in the gutter
+Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
 
 Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
 
@@ -67,11 +67,11 @@ Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
 Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
 Plug 'tpope/vim-surround'                 " easly work with surroundings
 Plug 'tpope/vim-commentary'               " comment stuff out
-Plug 'tpope/vim-characterize'             " more character info in `ga`
 Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
 Plug 'tpope/vim-endwise'                  " automatically close `end` blocks (`endif`, `done`, etc.)
 Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
 Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
+Plug 'tpope/vim-scriptease'                     " helper commands for writing Vim plugins
 
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
@@ -196,6 +196,9 @@ try
 catch
 endtry
 
+" Highlight conflict markerts
+match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " }}}
 " Statusline {{{
 
@@ -295,9 +298,13 @@ set tabstop=2                         " number of *visual* spaces per <tab>
 
 set autoread                          " detect when a file is changed
 
-set nobackup                          " disable backups
-set noswapfile                        " disable swaps
 set noundofile                        " disable undofiles
+
+" set nobackup                          " disable backups
+set backupdir=~/.vim-backup/,/tmp//
+
+" set noswapfile                        " disable swaps
+set directory=~/.vim-swp/,/tmp//
 
 " }}}
 " Misc {{{
@@ -332,6 +339,8 @@ let maplocalleader=','
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+nnoremap ^ g^
+nnoremap $ g$
 
 " Keep blocks selected after indenting
 vnoremap > >gv
@@ -370,6 +379,10 @@ vnoremap <C-c> "+y
 
 " Make `S` works like `X` is to `x`
 nnoremap S hs
+
+" Scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " }}}
 " Commands {{{

@@ -45,11 +45,9 @@ endsnippet
 # ------------------------------------------------------------------------------
 
 snippet scc "Separator comment" b
-
 `!p
 snip.rv = comment_separator
 `
-
 $0
 endsnippet
 
@@ -71,6 +69,18 @@ $0
 
 `!p snip.rv = primary_comment_character` }}}
 `!p snip.rv = comment_separator`
+endsnippet
+
+# ------------------------------------------------------------------------------
+# Dates
+# ------------------------------------------------------------------------------
+
+snippet date
+`strftime("%Y-%m-%d")`
+endsnippet
+
+snippet ddate
+`strftime("%B %d, %Y")`
 endsnippet
 
 # ------------------------------------------------------------------------------
@@ -109,6 +119,6 @@ snippet :tab
 ⇥
 endsnippet
 
-snippet :shrug "shrug ascci" b
+snippet :shrug "shrug ascci"
 ¯\_(ツ)_/¯
 endsnippet
