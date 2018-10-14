@@ -6,6 +6,7 @@ _is_nvm_loaded() {
 
 _nvmrc_autoload_hook() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
+    echo "Found .nvmrc; running nvm use"
     nvm use
     return;
   fi
