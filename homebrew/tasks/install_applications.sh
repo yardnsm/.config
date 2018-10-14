@@ -55,6 +55,7 @@ declare -r fonts=(
   'font-ubuntu'
   'font-cousine'
   'font-mononoki'
+  'font-iosevka'
 
   'font-open-sans'
   'font-open-sans-condensed'
