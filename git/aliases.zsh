@@ -12,6 +12,7 @@ alias gl='git pull'
 alias gp='git push'
 alias gpyolo='git push --no-verify'
 alias gd='git diff'
+alias gdc='git diff --cached'
 
 # Go back to the root of the git repo
 alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
