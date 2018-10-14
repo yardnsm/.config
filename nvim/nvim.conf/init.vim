@@ -38,6 +38,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'whatyouhide/vim-gotham'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
+Plug 'andreypopp/vim-colors-plain'
 
 " Linting support
 Plug 'w0rp/ale'
@@ -71,10 +72,10 @@ Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
 Plug 'tpope/vim-endwise'                  " automatically close `end` blocks (`endif`, `done`, etc.)
 Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
 Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
-Plug 'tpope/vim-scriptease'                     " helper commands for writing Vim plugins
+Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plugins
 
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
-Plug 'jiangmiao/auto-pairs'               " insert or delete pairs
+Plug 'rstacruz/vim-closer'                " a more conservative version of auto-pairs
 
 Plug 'SirVer/ultisnips'                   " snippets
 Plug 'vimwiki/vimwiki'                    " wiki for vim
@@ -177,8 +178,8 @@ if !has('gui_vimr')
           \ | highlight SpellLocal cterm=undercurl ctermbg=8
           \ | highlight MatchTag ctermbg=11 ctermfg=1
           \ | highlight Statement cterm=bold
-          \ | highlight StatusLine cterm=bold
-          \ | highlight StatusLineNC ctermbg=11 ctermfg=11
+          \ | highlight StatusLine ctermbg=10 cterm=bold
+          \ | highlight StatusLineNC ctermbg=10 ctermfg=10
 
   augroup END
 endif
@@ -207,13 +208,14 @@ set laststatus=2
 
 " Highlights
 " TODO: add to an augroup
-hi User1 ctermfg=10 ctermbg=4 cterm=bold
-hi User2 ctermfg=10 ctermbg=4
-hi User3 ctermfg=6 ctermbg=11
+hi User1 ctermfg=15 ctermbg=11 cterm=bold
+hi User2 ctermfg=15 ctermbg=11
+hi User3 ctermfg=6 ctermbg=10
 
 " Highlights for lint warnings and errors
-hi User6 ctermfg=10 ctermbg=9
-hi User7 ctermfg=15 ctermbg=1
+hi User6 ctermfg=9 ctermbg=0 cterm=bold
+hi User7 ctermfg=1 ctermbg=0 cterm=bold
+hi User8 ctermfg=3 ctermbg=0
 
 function! BuildStatusLine(mode) abort
   let l:result = ''
@@ -222,19 +224,37 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%1* %f '                        " filename
     let l:result .= '%3* %r'                         " readonly
     let l:result .= '%3*%m'                          " modified
-    let l:result .= '%3*%{statusline#Paste()} '      " paste
+    let l:result .= '%3*%{statusline#Paste()}'       " paste
+    let l:result .= '%3*%{statusline#Spell()} '      " spell
 
     let l:result .= '%3*%='                          " going to the right side
 
-    let l:result .= '%3*%{statusline#Filetype()} | ' " filetype
+    let l:result .= '%3*%{statusline#Filetype()} ' " filetype
     let l:result .= '%3*%3p%% '                      " line percentage
     let l:result .= '%2* %3l:%-2c '                  " line info
 
-    let l:result .= '%6*%{statusline#ALEWarnings()}' " lint warning
-    let l:result .= '%7*%{statusline#ALEErrors()}'   " lint errors
+    " ALE errors and warning
+    let l:ale_errors = statusline#ALEErrors()
+    let l:ale_warnings = statusline#ALEWarnings()
+
+    if l:ale_warnings
+      if l:ale_errors
+        let l:result .= printf('%%6* ‹%d›', l:ale_warnings)
+      else
+        let l:result .= printf('%%6* ‹%d› ● %%3* ', l:ale_warnings)
+      endif
+    endif
+
+    if l:ale_errors
+      let l:result .= printf('%%7* ‹%d› ● %%3* ', l:ale_errors)
+    endif
+
+    if !l:ale_errors && !l:ale_warnings
+      let l:result .= '%8* ● %3* '
+    endif
 
   elseif a:mode ==# 'inactive'
-    let l:result .= ' %f %m'           " filename, buffer number and modified
+    let l:result .= ' %f  %m'           " filename, buffer number and modified
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*'
