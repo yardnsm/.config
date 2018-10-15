@@ -31,6 +31,8 @@ declare -r dependencies=(
   'speed-test'
   'fast-cli'
   'emoj'
+
+  'stylelint-config-standard'
 )
 
 # ---------------------------------------------
