@@ -18,6 +18,8 @@ declare -a SYMLINKS=(
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
 
+  "../stylelint/.stylelint"
+
   "../terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color"
   "../terminfo/xterm-256color-italic.terminfo, .terminfo/78/xterm-256color-italic"
 
