@@ -61,7 +61,7 @@ print_status() {
 
 print_success() {
   # shellcheck disable=SC2059
-  print_in_green "     ✔︎" && printf "  $1\\n"
+  print_in_green "     ●" && printf "  $1\\n"
 }
 
 # ---------------------------------------------

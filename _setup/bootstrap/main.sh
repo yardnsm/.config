@@ -18,14 +18,6 @@ step() {
 
 # ---------------------------------------------
 
-clone_dotfiles() {
-  step "Cloning dotfiles to $DOTFILES_DIR"
-
-  git clone "$DOTFILES_GITHUB_REPO" "$DOTFILES_DIR"
-}
-
-# ---------------------------------------------
-
 main() {
 
   # Check if dotfiles exists
@@ -42,7 +34,8 @@ main() {
     fi
   done
 
-  clone_dotfiles
+  step "Cloning dotfiles to $DOTFILES_DIR"
+  git clone "$DOTFILES_GITHUB_REPO" "$DOTFILES_DIR"
 
   cd "$DOTFILES_DIR" \
     || exit 1

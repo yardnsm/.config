@@ -17,9 +17,12 @@ _get_pip_command() {
 # Install a Pip
 
 pip_list=""
-pip_command="$(_get_pip_command)"
+pip_command=""
 
 pip_install() {
+
+  [[ -z "$pip_command" ]] \
+    && pip_command="$(_get_pip_command)"
 
   package="$1"
 

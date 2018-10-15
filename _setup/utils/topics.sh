@@ -61,9 +61,10 @@ install_topics() {
 
     # Check if needs to be ignored
     for ignored in "${topics_to_exclude[@]}"; do
-      [[ $topic == "$ignored" ]] \
-        && is_ignored="true" \
-        && break
+      if [[ $topic == "$ignored" ]]; then
+        is_ignored="true"
+        break
+      fi
     done
 
     if [[ -z $is_ignored ]]; then
