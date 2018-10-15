@@ -56,7 +56,7 @@ execute "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false" \
 execute "defaults write NSGlobalDomain 'InitialKeyRepeat_Level_Saved' -int 10" \
   "Set delay until repeat"
 
-execute "defaults write NSGlobalDomain KeyRepeat -float 0.000000000001" \
+execute "defaults write NSGlobalDomain KeyRepeat -float 1" \
   "Set the key repeat rate to fast"
 
 execute "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false" \
