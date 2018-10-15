@@ -28,39 +28,44 @@ $ ./install.sh --help
   Installs the dotfiles
 
   Usage
+
     ./install.sh [options] [...topics]
 
   Options
+
     -y, --yes               Skip confirmation questions
     -e, --exclude           Exclude [...topics] from installation
     -l, --install-local     Run the local installation script
     -h, --help              Show help output
 
   Examples
+
     ./install.sh common git
     ./install.sh --exclude npm homebrew
 ```
 
-### `dotsetup`
+### `dots`
 
-[`dotsetup`](bin/dotsetup) is an executable for managing the dotfiles. It can be used to run the
+[`dots`](bin/dots) is an executable for managing the dotfiles. It can be used to run the
 installation script, list available topics, run a specific topic and update the dotfiles repository.
 
 ```console
-$ dotsetup
+$ dots
 
   Dotfiles maintenance
 
   Usage
-    dotsetup <command> [options]
+
+    dots <command> [options]
 
   Commands
-    run [topic]             Run the installation file of [topic]
-    install                 Run the installation script
-    list                    List tasks
-    update                  Fetch the latest version
+
+    run [topic]     Run the installation file of [topic]
+    install         Run the installation script
+    list            List tasks
 
   Options
+
     -h, --help              Show help output
 
   Options are being passed to the install script

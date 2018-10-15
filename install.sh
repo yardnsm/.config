@@ -89,22 +89,30 @@ start_procedure() {
 # ---------------------------------------------
 
 print_help() {
+  local script_name="./install.sh"
+
+  [[ -n "$DOTS" ]] \
+    && script_name="dots install"
+
   cat <<EOF
 
   Installs the dotfiles
 
   Usage
-    ./install.sh [options] [...topics]
+
+    $script_name [options] [...topics]
 
   Options
+
     -y, --yes               Skip confirmation questions
     -e, --exclude           Exclude [...topics] from installation
     -l, --install-local     Run the local installation script
     -h, --help              Show help output
 
   Examples
-    ./install.sh common git
-    ./install.sh --exclude npm homebrew
+
+    $script_name common git
+    $script_name --exclude npm homebrew
 EOF
 }
 

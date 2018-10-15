@@ -43,6 +43,7 @@ print_help() {
     list            List tasks
 
   Options
+
     -h, --help              Show help output
 
   Options are being passed to the install script
@@ -62,6 +63,7 @@ main() {
       exit 0
       ;;
     install )
+      export DOTS=1
       run_install "$@"
       exit 0
       ;;
