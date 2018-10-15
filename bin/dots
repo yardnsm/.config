@@ -33,12 +33,14 @@ print_help() {
   Dotfiles maintenance
 
   Usage
-    dotsetup <command> [options]
+
+    dots <command> [options]
 
   Commands
-    run [topic]             Run the installation file of [topic]
-    install                 Run the installation script
-    list                    List tasks
+
+    run [topic]     Run the installation file of [topic]
+    install         Run the installation script
+    list            List tasks
 
   Options
     -h, --help              Show help output
