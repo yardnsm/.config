@@ -2,6 +2,7 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tslint', 'tsserver'],
       \ 'python': ['flake8'],
+      \ 'scss': [],
       \ }
 
 let g:ale_fixers = {

@@ -217,6 +217,11 @@ hi User6 ctermfg=9 ctermbg=0 cterm=bold
 hi User7 ctermfg=1 ctermbg=0 cterm=bold
 hi User8 ctermfg=3 ctermbg=0
 
+let g:statusline_ft_titles = {
+      \ 'nerdtree': 'NERD',
+      \ 'qf': '%q',
+      \ }
+
 function! BuildStatusLine(mode) abort
   let l:result = ''
 
@@ -257,22 +262,23 @@ function! BuildStatusLine(mode) abort
     let l:result .= ' %f  %m'           " filename, buffer number and modified
 
   else
-    let l:result .= '%1* ' . a:mode . ' %3*'
+    let l:result .= '%1* ' . a:mode . ' %3*%=%8* ● %3* '
   endif
 
   return l:result
 endfunction
 
-set statusline=%!BuildStatusLine('active')
-
 augroup statusline_au
   autocmd!
 
-  autocmd WinEnter,FocusGained * setlocal statusline=%!BuildStatusLine('active')
-  autocmd WinLeave,FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
+  autocmd WinEnter,FocusGained,FileType *
+        \ if has_key(g:statusline_ft_titles, &ft) |
+        \   setlocal statusline=%!BuildStatusLine(g:statusline_ft_titles[&ft]) |
+        \ else |
+        \   setlocal statusline=%!BuildStatusLine('active') |
+        \ endif
 
-  autocmd FileType nerdtree setlocal statusline=%!BuildStatusLine('NERD')
-  autocmd FileType qf setlocal statusline=%!BuildStatusLine('%q')
+  autocmd WinLeave,FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
 augroup END
 
 
