@@ -18,6 +18,9 @@ declare -a SYMLINKS=(
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
 
+  "../terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color"
+  "../terminfo/xterm-256color-italic.terminfo, .terminfo/78/xterm-256color-italic"
+
   "../ternjs/.tern-config"
 
   "../tmux/.tmux.conf"
