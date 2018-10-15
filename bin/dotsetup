@@ -27,77 +27,6 @@ list_topics() {
 
 # ---------------------------------------------
 
-update_dotfiles() {
-
-  cd "$DOTFILES" \
-    || exit 1
-
-  local -r CURRENT_COMMIT_HASH="$(git rev-parse --short HEAD)"
-
-  print_title "Updating dotfiles"
-
-  execute "git pull --rebase" \
-    "Pull latest changes"
-
-  execute "git submodule update --init --recursive --remote" \
-    "Update submodules"
-
-  # -----------------------------------
-
-  if [[ -d "$DOTFILES_LOCAL" ]]; then
-    print_title "Updating local dotfiles"
-
-    cd "$DOTFILES_LOCAL" \
-      || exit 1
-
-    execute "git pull --rebase" \
-      "Pull latest changes"
-
-    execute "git submodule update --init --recursive --remote" \
-      "Update submodules"
-  fi
-
-  # -----------------------------------
-
-  print_title "Running updated topics"
-
-  cd "$DOTFILES" \
-    || exit 1
-
-  local files_changed
-  local topics_to_install_list
-  local topics_to_install_array
-
-  files_changed="$(git diff --name-only HEAD "$CURRENT_COMMIT_HASH")"
-
-  # Get all of the changes topics
-  while read -r filepath; do
-    dirname="$(cut -d "/" -f1 <<< "$filepath")"
-
-    if is_topic_exist "$dirname"; then
-      topics_to_install_list+="$dirname\\n"
-    fi
-  done <<< "$files_changed"
-
-  # Remove duplicates
-  topics_to_install_list="$(echo -e "$topics_to_install_list" | uniq)"
-
-  # Convert the list into array
-  topics_to_install_array=( $topics_to_install_list )
-
-  for topic in "${topics_to_install_array[@]}"; do
-    install_specific_topic "$topic"
-  done
-
-  # -----------------------------------
-
-  print_divider
-
-  print_success "🤘  Done! Run \`reload\` in order to see full changes."
-}
-
-# ---------------------------------------------
-
 print_help() {
   cat <<EOF
 
@@ -110,7 +39,6 @@ print_help() {
     run [topic]             Run the installation file of [topic]
     install                 Run the installation script
     list                    List tasks
-    update                  Fetch the latest version
 
   Options
     -h, --help              Show help output
