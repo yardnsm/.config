@@ -7,9 +7,6 @@ export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
 export SUBMODULES_PATH=$DOTFILES/_submodules
 
-# }}}
-# Setting `fpath` {{{
-
 fpath=($ZSH/functions $fpath)
 
 # }}}
