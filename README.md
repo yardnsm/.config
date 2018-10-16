@@ -62,7 +62,7 @@ $ dots
 
     run [topic]     Run the installation file of [topic]
     install         Run the installation script
-    list            List tasks
+    list            List all topics
 
   Options
 

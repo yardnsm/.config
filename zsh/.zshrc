@@ -7,7 +7,11 @@ export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
 export SUBMODULES_PATH=$DOTFILES/_submodules
 
-fpath=($ZSH/functions $fpath)
+fpath=(
+  $ZSH/completions
+  $ZSH/functions
+  $fpath
+)
 
 # }}}
 # Sourcing {{{
