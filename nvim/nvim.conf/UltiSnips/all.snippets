@@ -1,6 +1,5 @@
-#==============================================================================#
-#               Some simple, poorly written snippets the I made.               #
-#==============================================================================#
+# ------------------------------------------------------------------------------
+# Some simple, poorly written snippets the I made.
 
 global !p
 def get_comment_format():
@@ -32,8 +31,6 @@ endglobal
 
 
 # ------------------------------------------------------------------------------
-# Vim's modeline
-# ------------------------------------------------------------------------------
 
 snippet vml "Foldmarker modeline" b
 `!p snip.rv = primary_comment_character` vim: set foldmethod=marker foldlevel=0:
@@ -42,11 +39,9 @@ endsnippet
 
 # ------------------------------------------------------------------------------
 # Comments
-# ------------------------------------------------------------------------------
 
 snippet scc "Separator comment" b
-`!p
-snip.rv = comment_separator
+`!p snip.rv = comment_separator
 `
 $0
 endsnippet
@@ -54,12 +49,10 @@ endsnippet
 snippet pcc "A primary comment" b
 `!p snip.rv = comment_separator`
 `!p snip.rv = primary_comment_character` ${0:${VISUAL:COMMENT TEXT}}
-`!p snip.rv = comment_separator`
 endsnippet
 
 # ------------------------------------------------------------------------------
 # Foldable section, utilizing vim's foldmarker ({{{,}}})
-# ------------------------------------------------------------------------------
 
 snippet fcc "A foldable section" b
 `!p snip.rv = comment_separator`
@@ -73,7 +66,6 @@ endsnippet
 
 # ------------------------------------------------------------------------------
 # Dates
-# ------------------------------------------------------------------------------
 
 snippet date
 `strftime("%Y-%m-%d")`
@@ -85,7 +77,6 @@ endsnippet
 
 # ------------------------------------------------------------------------------
 # Special characters
-# ------------------------------------------------------------------------------
 
 snippet :cmd
 ⌘
