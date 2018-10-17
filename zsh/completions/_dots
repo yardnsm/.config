@@ -5,45 +5,53 @@
 # This is probably thr shittiest completion file you can find.
 # ------------------------------------------------------------------------------
 
+_commands=(
+  'run:Run the installation file of a topic'
+  'install:run the installation script'
+  'list:List all topics'
+)
+
+_dots_commands() {
+  _describe 'command' _commands
+}
+
 _dots() {
-  local line
+  local context state state_descr line
+  typeset -A opt_args
 
-  _arguments -C \
-    {-h,--help}'[Show help output]' \
-    "1: :(run install list)" \
-    "*::arg:->args"
+  _arguments \
+    '(-h --help)'{-h,--help}'[Show help output]' \
+    '1: :_dots_commands' \
+    '*:: :->command_args'
 
-  case $line[1] in
-    run)
-      _dots_run
-      ;;
-    install)
-      _dots_install
-      ;;
+  case $state in
+    command_args)
+      case $words[1] in
+        run)
+          _dots_run
+        ;;
+        install)
+          _dots_install
+        ;;
+      esac
+    ;;
   esac
 }
 
 _dots_run() {
-  _description=( $(_list_topics) )
+  _description=( $(_get_runnable_topics) )
   _describe 'topics' _description
 }
 
 _dots_install() {
-  _arguments \
-    {-y,--yes}'[Skip confirmation questions]' \
-    {-e,--exclude}'[Exclude topics from installation]' \
-    {-l,--install-local}'[Run the local installation script]' \
-    {-h,--help}'[Show help output]' \
-      '1: :($(_list_topics))' \
-    '*::arg:->args'
+  _install.sh 1
 }
 
-_list_topics() {
+_get_runnable_topics() {
   find "$DOTFILES" \
-    -maxdepth 1 \
-    -type d \
-    ! -name '_*' \
-    ! -name '.*' \
-    ! -name 'dotfiles' \
-    -exec basename {} \;
+    -mindepth 2 \
+    -maxdepth 2 \
+    -type f \
+    -regex '.*/install\(.*\).sh' \
+    -exec sh -c 'echo $(basename $(dirname {}))' \;
 }

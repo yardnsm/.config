@@ -47,6 +47,8 @@ start_procedure() {
   print_welcome_message
 
   if [[ ${#topics} -ne 0 ]]; then
+    echo
+
     if [[ ${exclude_topics} -eq 1 ]]; then
       print_status "Topics to exclude: ${topics[*]}"
     else
