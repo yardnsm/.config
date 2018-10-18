@@ -15,7 +15,7 @@ main() {
   print_info "Install Homebrew dependencies"
   source "./tasks/install_dependencies.sh"
 
-  print_info "Install applications and fonts"
+  # Title printing is in that script
   source "./tasks/install_applications.sh"
 
   print_info "Cleaning up"
