@@ -13,6 +13,7 @@ main() {
 
   if ! cmd_exists "shellcheck"; then
     print_error "shellcheck is not installed!"
+    return 1
   fi
 
   find .. \
@@ -21,6 +22,7 @@ main() {
     ! -path '../_misc/*' \
     ! -path '../nvim/nvim.conf/plugged/*' \
     ! -path '../alacritty/alacritty/*' \
+    ! -path '../zsh/completions/*' \
     -name '*.sh' \
     -exec shellcheck \
       -e SC1091 \

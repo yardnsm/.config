@@ -1,7 +1,5 @@
 #compdef _install.sh install.sh
 
-# vim:ft=zsh:
-
 _install.sh() {
   [[ "$(pwd)" != "$DOTFILES" ]] \
     && [[ -z "$1" ]] \
@@ -23,3 +21,6 @@ _get_runnable_topics() {
     -regex '.*/install\(.*\).sh' \
     -exec sh -c 'echo $(basename $(dirname {}))' \;
 }
+
+# ------------------------------------------------------------------------------
+# vim:ft=zsh:

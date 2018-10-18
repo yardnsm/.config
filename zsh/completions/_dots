@@ -1,8 +1,6 @@
 #compdef _dots dots
 
-# vim:ft=zsh:
-
-# This is probably thr shittiest completion file you can find.
+# This is probably the shittiest completion file you can find.
 # ------------------------------------------------------------------------------
 
 _commands=(
@@ -55,3 +53,6 @@ _get_runnable_topics() {
     -regex '.*/install\(.*\).sh' \
     -exec sh -c 'echo $(basename $(dirname {}))' \;
 }
+
+# ------------------------------------------------------------------------------
+# vim:ft=zsh:
