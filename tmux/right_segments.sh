@@ -57,7 +57,7 @@ segment_music() {
   frame_index="$(( epoch % ${#frames[@]} ))"
 
   [[ "$is_playing" == 1 ]] && \
-    music_icon="${frames[$frame_index]}" || \
+    music_icon="${frames[$frame_index]} " || \
     music_icon=""
 
   # Truncate the result
@@ -65,7 +65,7 @@ segment_music() {
     spotify="$(echo "$spotify" | cut -c 1-25)..."
 
   if [[ -n "$spotify" ]]; then
-    tm_segment "$music_icon $spotify" "cyan"
+    tm_segment "${music_icon}${spotify}" "cyan"
     tm_divider
   fi
 }
