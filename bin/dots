@@ -10,6 +10,12 @@ run_install() {
 }
 
 run_topic() {
+  if [[ -z "$1" ]]; then
+    echo
+    print_error "No topic provided"
+    return 1
+  fi
+
   install_specific_topic "$1"
 }
 
@@ -17,8 +23,20 @@ list_topics() {
   print_title "Available topics"
   echo
 
+  local list_runnable=0
+
+  if [[ "$1" == "-r" ]] || [[ "$1" == "--runnable" ]]; then
+    list_runnable=1
+  fi
+
   # shellcheck disable=SC2207
-  local topics=( $(get_all_topics) )
+  local topics
+
+  if [[ $list_runnable -eq 0 ]]; then
+    topics=( $(get_all_topics) )
+  else
+    topics=( $(get_runnable_topics) )
+  fi
 
   for topic in "${topics[@]}"; do
     echo -ne "     $topic\\n"
@@ -44,6 +62,7 @@ print_help() {
 
   Options
 
+    -r, --runnable          Show only runnable topics in 'run'
     -h, --help              Show help output
 
   Options are being passed to the install script
@@ -68,19 +87,20 @@ main() {
       exit 0
       ;;
     list )
-      list_topics
+      list_topics "$@"
       exit 0
       ;;
-    update )
-      update_dotfiles
-      exit 0
+    -r | --runnable)
+      list_runnable=1
+      shift
       ;;
     "" | -h | --help)
       print_help
       exit 0
       ;;
     * )
-      print_error "Unknown option $1";
+      echo
+      print_error "Unknown option $CMD";
       exit 1;
       ;;
   esac

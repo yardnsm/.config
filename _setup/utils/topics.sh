@@ -2,7 +2,7 @@
 
 # ---------------------------------------------
 
-# Get all topics (full path)
+# Get all topics
 get_all_topics() {
   find "$DOTFILES" \
     -maxdepth 1 \
@@ -11,6 +11,16 @@ get_all_topics() {
     ! -name '.*' \
     ! -name 'dotfiles' \
      -exec basename {} \;
+}
+
+# Get all the runnable topics
+get_runnable_topics() {
+  find "$DOTFILES" \
+    -mindepth 2 \
+    -maxdepth 2 \
+    -type f \
+    -regex '.*/install\(.*\).sh' \
+    -exec sh -c 'echo $(basename $(dirname "$1"))' _ {} \;
 }
 
 # Check if a topic exists

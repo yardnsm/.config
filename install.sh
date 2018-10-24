@@ -16,6 +16,7 @@ add_topic() {
   if is_topic_exist "$1"; then
     topics+=( "$1" )
   else
+    echo
     print_error "Error: topic $1 does not exist!"
     exit 1
   fi

@@ -28,6 +28,9 @@ _dots() {
         run)
           _dots_run
         ;;
+        list)
+          _dots_list
+        ;;
         install)
           _dots_install
         ;;
@@ -39,6 +42,11 @@ _dots() {
 _dots_run() {
   _description=( $(_get_runnable_topics) )
   _describe 'topics' _description
+}
+
+_dots_list() {
+  _arguments -C \
+    '(-r --runnable)'{-r,--runnable}'[Show only runnable topics]' \
 }
 
 _dots_install() {
