@@ -90,15 +90,17 @@ Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
-" Autocompletion
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
+" Autocompletion, only for neovim
+if has('nvim')
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wellle/tmux-complete.vim'
-Plug 'Shougo/neco-vim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'wellle/tmux-complete.vim'
+  Plug 'Shougo/neco-vim'
+endif
 
 " MacOS specific plugins
 if has('mac')
