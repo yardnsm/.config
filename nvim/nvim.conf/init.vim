@@ -1,12 +1,12 @@
 " vim: set foldmethod=marker foldlevel=0:
 
 " ------------------------------------------------------------------------------
-"         _
-"  __   _(_)_ __ ___  _ __ ___
-"  \ \ / / | '_ ` _ \| '__/ __|
-"   \ V /| | | | | | | | | (__
-"  (_)_/ |_|_| |_| |_|_|  \___|
-"                     yardnsm's .vimrc
+"      _       _ __  _       _
+"     (_)___  (_) /_(_)   __(_)___ ___
+"    / / __ \/ / __/ / | / / / __ `__ \
+"   / / / / / / /_/ /| |/ / / / / / / /
+"  /_/_/ /_/_/\__/_(_)___/_/_/ /_/ /_/
+"                     yardnsm's init.vim
 " ------------------------------------------------------------------------------
 
 " General {{{
@@ -299,7 +299,11 @@ set ignorecase                        " ignore case if all lowercase
 set hlsearch                          " highlight search results
 set gdefault                          " make search and replace global for the line
 set magic                             " turn magic on for regular expressions
-set inccommand=split                  " shows the effects of the substitute command incrementally, as you type
+
+if has('nvim')
+  set inccommand=split                " shows the effects of the substitute
+                                      " command incrementally, as you type
+endif
 
 " Use `ag` instead of `grep`
 if executable('ag')

@@ -5,9 +5,9 @@ nnoremap ]t :tabn<CR>
 nnoremap [t :tabp<CR>
 
 " Disbale the `pasting` mappings
-unmap =p
-unmap =P
+silent! unmap =p
+silent! unmap =P
 
 " Disable the legacy options mappings
-unmap =o
-unmap =op
+silent! unmap =o
+silent! unmap =op
