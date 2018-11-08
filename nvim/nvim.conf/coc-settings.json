@@ -1,0 +1,13 @@
+{
+  // COC preferences
+  "coc.preferences.diagnostic.enable": false,
+  "coc.preferences.timeout": 200,
+  "coc.preferences.customSources": ["word","include"],
+
+  // Emoji source
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
+  "coc.source.emoji.enable": false,
+
+  // Pyls source
+  "pyls.trace.server": "off"
+}

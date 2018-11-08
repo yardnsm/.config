@@ -92,13 +92,15 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion, only for neovim
 if has('nvim')
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'wellle/tmux-complete.vim'
+  " Make sure to run:
+  "
+  "   :CocInstall coc-tsserver
+  "   :CocInstall coc-html
+  "   :CocInstall coc-json
+  "   :CocInstall coc-css
+  "   :CocInstall coc-pyls
+  "
+  Plug 'neoclide/coc.nvim', { 'do': 'npm install' }
   Plug 'Shougo/neco-vim'
 endif
 
@@ -400,7 +402,7 @@ nnoremap <space> za
 inoremap <C-u> <ESC>gUiwgi
 
 " Toggles
-nnoremap <leader>tm :call functions#MouseToggle()<CR>
+nnoremap <leader>tm :call functions#ToggleMouse()<CR>
 nnoremap <leader>tn :set relativenumber!<CR>
 nnoremap <leader>tp :set paste!<CR>
 nnoremap <leader>tf :set foldenable!<CR>
