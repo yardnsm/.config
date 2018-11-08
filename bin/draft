@@ -15,7 +15,13 @@ declare -r DRAFTS_HOME="$HOME/dev/gitlab/knowledge/drafts/"
 
 main() {
   [[ $# -eq 0 ]] \
-    && $EDITOR "$DRAFTS_HOME" && return 0
+    && $EDITOR "$DRAFTS_HOME" \
+    && return 0
+
+  # If there is an exact file, open it
+  [[ -f "$DRAFTS_HOME/$1" ]] \
+    && $EDITOR "$DRAFTS_HOME/$1" \
+    && return 0
 
   local -r date_fmt="$(date +%Y-%m-%d)"
   local -r name_fmt=$(sed 's/ /_/g' <<< "$@")

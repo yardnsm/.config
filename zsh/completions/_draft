@@ -1,0 +1,15 @@
+#compdef _draft draft
+
+_draft() {
+  _arguments -C \
+    '*: :($(_get_drafts))'
+}
+
+_get_drafts() {
+  find "$HOME/dev/gitlab/knowledge/drafts/" \
+    -type f \
+    -exec basename {} \;
+}
+
+# ------------------------------------------------------------------------------
+# vim:ft=zsh:
