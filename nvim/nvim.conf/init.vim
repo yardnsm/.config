@@ -94,13 +94,9 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 if has('nvim')
   " Make sure to run:
   "
-  "   :CocInstall coc-tsserver
-  "   :CocInstall coc-html
-  "   :CocInstall coc-json
-  "   :CocInstall coc-css
-  "   :CocInstall coc-pyls
+  "   :CocInstall coc-tsserver coc-html coc-json coc-css coc-pyls
   "
-  Plug 'neoclide/coc.nvim', { 'do': 'npm install' }
+  Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'Shougo/neco-vim'
 endif
 
