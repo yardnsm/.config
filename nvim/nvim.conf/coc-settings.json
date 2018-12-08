@@ -3,6 +3,7 @@
   "coc.preferences.diagnostic.enable": false,
   "coc.preferences.timeout": 200,
   "coc.preferences.customSources": ["word","include"],
+  "coc.preferences.extensionUpdateCheck": "never",
 
   // Emoji source
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],

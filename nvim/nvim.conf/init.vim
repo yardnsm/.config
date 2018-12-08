@@ -260,7 +260,7 @@ function! BuildStatusLine(mode) abort
     endif
 
   elseif a:mode ==# 'inactive'
-    let l:result .= ' %f  %m'           " filename, buffer number and modified
+    let l:result .= ' %f  %m%= ●  '           " filename, modified and indicator
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*%=%4* ● %3* '
