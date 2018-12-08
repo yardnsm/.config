@@ -23,19 +23,19 @@ list_topics() {
   print_title "Available topics"
   echo
 
-  local list_runnable=0
+  local list_all=0
 
-  if [[ "$1" == "-r" ]] || [[ "$1" == "--runnable" ]]; then
-    list_runnable=1
+  if [[ "$1" == "-a" ]] || [[ "$1" == "--all" ]]; then
+    list_all=1
   fi
 
   # shellcheck disable=SC2207
   local topics
 
-  if [[ $list_runnable -eq 0 ]]; then
-    topics=( $(get_all_topics) )
-  else
+  if [[ $list_all -eq 0 ]]; then
     topics=( $(get_runnable_topics) )
+  else
+    topics=( $(get_all_topics) )
   fi
 
   for topic in "${topics[@]}"; do
@@ -62,7 +62,7 @@ print_help() {
 
   Options
 
-    -r, --runnable          Show only runnable topics in 'run'
+    -a, --all               Show all topics in 'list'
     -h, --help              Show help output
 
   Options are being passed to the install script
@@ -89,10 +89,6 @@ main() {
     list )
       list_topics "$@"
       exit 0
-      ;;
-    -r | --runnable)
-      list_runnable=1
-      shift
       ;;
     "" | -h | --help)
       print_help

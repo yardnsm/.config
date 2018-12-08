@@ -46,7 +46,7 @@ _dots_run() {
 
 _dots_list() {
   _arguments -C \
-    '(-r --runnable)'{-r,--runnable}'[Show only runnable topics]' \
+    '(-a --all)'{-a,--all}'[Show all topics]' \
 }
 
 _dots_install() {
