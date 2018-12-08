@@ -213,6 +213,7 @@ hi User2 ctermfg=15 ctermbg=11
 hi User3 ctermfg=6 ctermbg=10
 
 " Highlights for lint warnings and errors
+hi User5 ctermfg=4 ctermbg=0 cterm=bold
 hi User6 ctermfg=9 ctermbg=0 cterm=bold
 hi User7 ctermfg=1 ctermbg=0 cterm=bold
 hi User8 ctermfg=3 ctermbg=0
@@ -234,7 +235,7 @@ function! BuildStatusLine(mode) abort
 
     let l:result .= '%3*%='                          " going to the right side
 
-    let l:result .= '%3*%{statusline#Filetype()} ' " filetype
+    let l:result .= '%3*%{statusline#Filetype()} '   " filetype
     let l:result .= '%3*%3p%% '                      " line percentage
     let l:result .= '%2* %3l:%-2c '                  " line info
 
@@ -262,7 +263,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= ' %f  %m'           " filename, buffer number and modified
 
   else
-    let l:result .= '%1* ' . a:mode . ' %3*%=%8* ● %3* '
+    let l:result .= '%1* ' . a:mode . ' %3*%=%4* ● %3* '
   endif
 
   return l:result
@@ -413,6 +414,9 @@ nnoremap S hs
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" Count matches
+nnoremap <leader>c :%s///gn<CR>
 
 " }}}
 " Commands {{{
