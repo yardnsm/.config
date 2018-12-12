@@ -115,6 +115,7 @@ set mouse=                            " disable mouse support by default
 set number                            " show line numbers
 set relativenumber                    " set relative numbers
 set linebreak                         " wraps between words
+set textwidth=100                     " cuz percision matter
 set list                              " show invisibles
 set scrolloff=8                       " allows to scroll of fthe screen
 set hidden                            " allow switching buffers w/o saving
@@ -125,7 +126,7 @@ set wildmenu                          " enable wildmenu for completion
 set wildmode=full                     " completion mode
 
 set cursorline                        " highlight current line (may cause vim to be slower)
-set colorcolumn=100                   " cuz percision matter
+set colorcolumn=+0                    " make the 'colorcolumn' same as 'textwidth'
 
 set showcmd                           " show command in normal (when typed)
 set report=0                          " always display the count of lines yanked or deleted on the message line
@@ -169,6 +170,7 @@ if !has('gui_vimr')
           " \ | highlight CursorLineNr ctermfg=3
 
     " For base16-classic-dark
+    " User1..9 highlights are used for the statusline
     autocmd ColorScheme base16-classic-dark
           \   highlight Comment ctermfg=11
           \ | highlight Folded ctermbg=green ctermfg=11
@@ -179,7 +181,14 @@ if !has('gui_vimr')
           \ | highlight MatchTag ctermbg=11 ctermfg=1
           \ | highlight Statement cterm=bold
           \ | highlight StatusLine ctermbg=10 cterm=bold
-          \ | highlight StatusLineNC ctermbg=10 ctermfg=10
+          \
+          \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold
+          \ | highlight User2 ctermfg=15 ctermbg=11
+          \ | highlight User3 ctermfg=6 ctermbg=10
+          \ | highlight User5 ctermfg=4 ctermbg=0 cterm=bold
+          \ | highlight User6 ctermfg=9 ctermbg=0 cterm=bold
+          \ | highlight User7 ctermfg=1 ctermbg=0 cterm=bold
+          \ | highlight User8 ctermfg=3 ctermbg=0
 
   augroup END
 endif
@@ -203,20 +212,22 @@ match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " }}}
 " Statusline {{{
 
+" Highlights Info: {{{
+"
+" User1 - Primary
+" User2 - Secondary
+" User3 - Neutral (bg)
+"
+" User5 - Blue   (neutral) lint indicator
+" User6 - Red    (error)   lint indicator
+" User7 - Yellow (warning) lint indicator
+" User8 - Green  (success) lint indicator
+"
+" }}}
+
 " Always show the status line
 set laststatus=2
 
-" Highlights
-" TODO: add to an augroup
-hi User1 ctermfg=15 ctermbg=11 cterm=bold
-hi User2 ctermfg=15 ctermbg=11
-hi User3 ctermfg=6 ctermbg=10
-
-" Highlights for lint warnings and errors
-hi User5 ctermfg=4 ctermbg=0 cterm=bold
-hi User6 ctermfg=9 ctermbg=0 cterm=bold
-hi User7 ctermfg=1 ctermbg=0 cterm=bold
-hi User8 ctermfg=3 ctermbg=0
 
 let g:statusline_ft_titles = {
       \ 'nerdtree': 'NERD',
@@ -263,7 +274,7 @@ function! BuildStatusLine(mode) abort
     let l:result .= ' %f  %m%= ●  '           " filename, modified and indicator
 
   else
-    let l:result .= '%1* ' . a:mode . ' %3*%=%4* ● %3* '
+    let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
   endif
 
   return l:result
