@@ -50,6 +50,10 @@ declare -r formulae=(
   'figlet'
   'tree'
   'youtube-dl'
+
+  'libxml2'
+  'mhash'
+  'mcrypt'
 )
 
 # ---------------------------------------------
