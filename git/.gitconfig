@@ -31,6 +31,11 @@
 
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  trustExitCode = true
+
+[mergetool "fugitive"]
+  cmd = nvim -f -c "Gdiff" "$MERGED"
+  trustExitCode = true
 
 [mergetool]
   prompt = true
