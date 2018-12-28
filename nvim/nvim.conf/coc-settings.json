@@ -2,7 +2,7 @@
   // COC preferences
   "coc.preferences.diagnostic.enable": false,
   "coc.preferences.timeout": 200,
-  "coc.preferences.customSources": ["word","include"],
+  "coc.preferences.customSources": ["word", "include"],
   "coc.preferences.extensionUpdateCheck": "never",
 
   // Emoji source
@@ -10,5 +10,12 @@
   "coc.source.emoji.enable": false,
 
   // Pyls source
-  "pyls.trace.server": "off"
+  "pyls.trace.server": "off",
+
+  "languageserver": {
+    "stylable": {
+      "module": "/usr/local/lib/node_modules/stylable-intelligence/dist/src/lib/server.js",
+      "filetypes": ["stylable", "typescript.jsx", "javascript.jsx"]
+    }
+  }
 }
