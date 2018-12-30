@@ -24,6 +24,7 @@ if [[ -z ${sourced+x} ]]; then
   source "./utils/messages.sh"
   source "./utils/os.sh"
   source "./utils/spinner.sh"
+  source "./utils/symlink.sh"
 
   source "./variables.sh"
 fi
