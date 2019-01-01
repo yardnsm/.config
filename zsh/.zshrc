@@ -5,7 +5,7 @@
 export DOTFILES=$HOME/dotfiles
 export DOTFILES_LOCAL=$HOME/dotfiles-local
 export ZSH=$DOTFILES/zsh
-export SUBMODULES_PATH=$DOTFILES/_submodules
+export SUBMODULES_PATH=$DOTFILES/.submodules
 
 fpath=(
   $ZSH/completions

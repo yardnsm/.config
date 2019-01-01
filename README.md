@@ -13,7 +13,7 @@ ubuntu and debian).
 Simply run the following command in your terminal:
 
 ```console
-$ bash <(curl -LsS https://raw.github.com/yardnsm/dotfiles/master/_setup/bootstrap/main.sh)
+$ bash <(curl -LsS https://raw.github.com/yardnsm/dotfiles/master/.setup/bootstrap/main.sh)
 ```
 
 ### Installation executable
