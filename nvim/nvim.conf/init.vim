@@ -77,7 +77,6 @@ Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plug
 Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'rstacruz/vim-closer'                " a more conservative version of auto-pairs
 
-Plug 'SirVer/ultisnips'                   " snippets
 Plug 'vimwiki/vimwiki'                    " wiki for vim
 
 Plug 'moll/vim-node'                      " allowg to `gf` properly on `require`
@@ -98,6 +97,8 @@ if has('nvim')
   "
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'Shougo/neco-vim'
+
+  Plug 'SirVer/ultisnips'                 " snippets
 endif
 
 " MacOS specific plugins
