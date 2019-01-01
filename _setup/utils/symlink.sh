@@ -5,13 +5,12 @@
 #
 # Create symlinks.
 #
-# This function accepts an array of symlink. Each item in the array may be in the following form:
+# This function accepts an array of symlinks. Each item in the array may be in the following form:
 #
-#     '$SOURCE_PATH, $DEST_PATH
+#     $SOURCE_PATH[, $DEST_PATH]
 #
-# $SOURCE_PATH may be relative or absolute paths, and $DEST_PATH must be a relative path, relative
-# to $HOME. Relative paths will be resolved relativly to the CWD, so make sure you've `cd`ed to the
-# desired directory before running this function.
+# $SOURCE_PATH may be a relative (to the CWD) or an absolute path, and $DEST_PATH must be a relative
+# path to $HOME. You can omit $DEST_PATH, and the symlink will be created directly at $HOME.
 #
 create_symlinks() {
   local -r SYMLINKS=( "$@" )
