@@ -240,6 +240,12 @@ function! BuildStatusLine(mode) abort
 
   if a:mode ==# 'active'
     let l:result .= '%1* %f '                        " filename
+
+    " Buffer number if in diff node
+    if &diff
+      let l:result .= '[%n] '
+    endif
+
     let l:result .= '%3* %r'                         " readonly
     let l:result .= '%3*%m'                          " modified
     let l:result .= '%3*%{statusline#Paste()}'       " paste
@@ -272,7 +278,14 @@ function! BuildStatusLine(mode) abort
     endif
 
   elseif a:mode ==# 'inactive'
-    let l:result .= ' %f  %m%= ●  '           " filename, modified and indicator
+    let l:result .= ' %f '               " filename
+
+    " Buffer number if in diff node
+    if &diff
+      let l:result .= '[%n] '
+    endif
+
+    let l:result .= '%m%= ●  '           " modified and blank indicator
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
