@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../_setup/initializer.sh"
+  && source "../.setup/initializer.sh"
 
 # ---------------------------------------------
 
@@ -18,8 +18,8 @@ main() {
 
   find .. \
     -type f \
-    ! -path '../_submodules/*' \
-    ! -path '../_misc/*' \
+    ! -path '../.submodules/*' \
+    ! -path '../.misc/*' \
     ! -path '../nvim/nvim.conf/plugged/*' \
     ! -path '../alacritty/alacritty/*' \
     ! -path '../zsh/completions/*' \
