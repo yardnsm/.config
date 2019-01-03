@@ -34,14 +34,14 @@
   trustExitCode = true
 
 [mergetool "fugitive"]
-  cmd = nvim -f -c "Gdiff" "$MERGED"
+  cmd = nvim -f -c "Gvdiff" "$MERGED"
   trustExitCode = true
 
 [mergetool]
   prompt = true
 
 [merge]
-  tool = vimdiff
+  tool = fugitive
 
 [difftool]
   prompt = false
