@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../_setup/initializer.sh"
+  && source "../.setup/initializer.sh"
 
 # ---------------------------------------------
 
 main() {
   print_info "Installing plugins"
 
-  execute "$DOTFILES/_submodules/tpm/scripts/install_plugins.sh" \
+  execute "$DOTFILES/.submodules/tpm/scripts/install_plugins.sh" \
     "Installing tmux plugins (using tpm)"
 }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "./_setup/initializer.sh"
+  && source "./.setup/initializer.sh"
 
 # ---------------------------------------------
 
@@ -61,7 +61,7 @@ start_procedure() {
 
   # Run preinstall script
   print_info "Make sure everything's alright"
-  source "./_setup/preinstall.sh"
+  source "./.setup/preinstall.sh"
 
   # Ask if it's okay
   if ! [[ $auto_yes -eq 1 ]]; then

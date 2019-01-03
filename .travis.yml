@@ -23,6 +23,6 @@ matrix:
         - sudo apt-get install -qqy shellcheck
 
 script:
-  - ./_test/shellcheck.sh
+  - ./.test/shellcheck.sh
 
 sudo: required
