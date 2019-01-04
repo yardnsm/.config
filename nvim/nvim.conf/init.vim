@@ -35,10 +35,7 @@ let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 call plug#begin('~/.config/nvim/plugged')
 
 " Colors
-Plug 'whatyouhide/vim-gotham'
 Plug 'chriskempson/base16-vim'
-Plug 'morhetz/gruvbox'
-Plug 'andreypopp/vim-colors-plain'
 
 " Linting support
 Plug 'w0rp/ale'
@@ -93,12 +90,14 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 if has('nvim')
   " Make sure to run:
   "
-  "   :CocInstall coc-tsserver coc-html coc-json coc-css coc-pyls
+  "   :CocInstall coc-tsserver coc-html coc-json coc-css coc-pyls coc-snippets coc-eslint
+  "               coc-prettier coc-phpls
   "
   Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'Shougo/neco-vim'
 
-  Plug 'SirVer/ultisnips'                 " snippets
+  " Snippets
+  Plug 'SirVer/ultisnips'
 endif
 
 " MacOS specific plugins
@@ -258,8 +257,8 @@ function! BuildStatusLine(mode) abort
     let l:result .= '%2* %3l:%-2c '                  " line info
 
     " ALE errors and warning
-    let l:ale_errors = statusline#ALEErrors()
-    let l:ale_warnings = statusline#ALEWarnings()
+    let l:ale_errors = statusline#Errors()
+    let l:ale_warnings = statusline#Warnings()
 
     if l:ale_warnings
       if l:ale_errors
@@ -285,7 +284,7 @@ function! BuildStatusLine(mode) abort
       let l:result .= '[%n] '
     endif
 
-    let l:result .= '%m%= ●  '           " modified and blank indicator
+    let l:result .= ' %m%= ●  '           " modified and blank indicator
 
   else
     let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
@@ -375,6 +374,7 @@ set splitbelow                        " split below by default
 set splitright                        " split right by default
 
 set shortmess+=c                      " do not show completion-menu messages
+set completeopt-=preview              " disable preview window
 
 " }}}
 " GUI stuff {{{

@@ -6,9 +6,14 @@ _is_nvm_loaded() {
 
 _nvmrc_autoload_hook() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
-    echo "Found .nvmrc; running nvm use"
-    nvm use
-    return;
+    echo "nvm: Found .nvmrc; activating nvm"
+    nvm current &> /dev/null
+
+    if ! node --version | grep -q "$(cat .nvmrc)"; then
+      echo "nvm: current node version is different than .nvmrc; running nvm use"
+      nvm use
+      return;
+    fi
   fi
 
   _is_nvm_loaded || return

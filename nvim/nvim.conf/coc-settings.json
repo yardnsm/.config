@@ -1,16 +1,24 @@
 {
-  // COC preferences
-  "coc.preferences.diagnostic.enable": false,
-  "coc.preferences.timeout": 200,
-  "coc.preferences.customSources": ["word", "include"],
+  "coc.preferences.diagnostic.enable": true,
+
+  "coc.preferences.diagnostic.errorSign": "E",
+  "coc.preferences.diagnostic.warningSign": "W",
+  "coc.preferences.diagnostic.hintSign": "!",
+  "coc.preferences.diagnostic.infoSign": "I",
+
+  "coc.preferences.timeout": 500,
   "coc.preferences.extensionUpdateCheck": "never",
 
-  // Emoji source
-  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
-  "coc.source.emoji.enable": false,
+  "coc.preferences.hoverTarget": "echo",
 
-  // Pyls source
   "pyls.trace.server": "off",
+
+  "coc.source.file.trimSameExts":[
+    ".ts",
+    ".js",
+    ".tsx",
+    ".jsx"
+  ],
 
   "languageserver": {
     "stylable": {
