@@ -110,7 +110,7 @@ segment_host() {
 
 # ---------------------------------------------
 
-segment_headphones
+# segment_headphones
 segment_music
 segment_battery
 segment_date
