@@ -8,6 +8,18 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 declare -r VIM_PLUG_PATH="$HOME/.local/share/nvim/site/autoload/plug.vim"
 declare -r VIM_PLUG_FILE="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
+declare -a COC_EXTENSIONS=(
+  'coc-tsserver'
+  'coc-html'
+  'coc-json'
+  'coc-css'
+  'coc-pyls'
+  'coc-snippets'
+  'coc-eslint'
+  'coc-prettier'
+  'coc-ultisnips'
+)
+
 # ---------------------------------------------
 
 main() {
@@ -22,8 +34,16 @@ main() {
 
   print_info "Installing plugins"
 
-  execute "printf '\\n' | nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
+  execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
     "Installing plugins"
+
+  print_info "Installing coc.nvim extensions"
+
+  for ext in "${COC_EXTENSIONS[@]}"; do
+    # coc.nvim uses yarn for some reason, so we'll also use it here
+    execute "cd $HOME/.config/coc/extensions && yarn add $ext" \
+      "Installing $ext"
+  done
 }
 
 main "$@"

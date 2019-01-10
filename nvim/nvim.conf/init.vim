@@ -83,18 +83,16 @@ Plug 'python-mode/python-mode',           " python support
 
 Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 
+Plug 'reasonml-editor/vim-reason-plus'    " Reason support
+
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion, only for neovim
 if has('nvim')
-  " Make sure to run:
-  "
-  "   :CocInstall coc-tsserver coc-html coc-json coc-css coc-pyls coc-snippets coc-eslint
-  "               coc-prettier coc-phpls
-  "
-  Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
   Plug 'Shougo/neco-vim'
+  Plug 'neoclide/coc-neco'
+  Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 
   " Snippets
   Plug 'SirVer/ultisnips'

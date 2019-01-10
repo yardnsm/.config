@@ -1,2 +1,2 @@
-" Expand snippets with <C-j>
-let g:UltiSnipsExpandTrigger = "<C-j>"
+" Expand snippets with <C-y>
+let g:UltiSnipsExpandTrigger = "<C-y>"
