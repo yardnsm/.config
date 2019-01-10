@@ -17,7 +17,7 @@ execute() {
   local pid=""
 
   eval "$CMD" &> /dev/null &
-  pid=$!
+  pid="$!"
 
   show_spinner $pid "${MSG}"
 

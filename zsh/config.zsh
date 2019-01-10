@@ -36,6 +36,9 @@ setopt EXTENDED_GLOB
 # Allows to comment lines in an interactive shell
 setopt INTERACTIVE_COMMENTS
 
+# Disable th
+setopt NO_WARN_CREATE_GLOBAL
+
 # ---------------------------------------------
 
 # Make tab completion behave like vim's smartcase
