@@ -21,6 +21,7 @@ declare -r dependencies=(
   'ava'
   'hicat'
   'typescript'
+  'bs-platform'
 
   'javascript-typescript-langserver'
   'vscode-css-languageserver-bin'
