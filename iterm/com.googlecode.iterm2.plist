@@ -2961,13 +2961,15 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 606 620 392 0 0 1920 1200 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 126 606 469 0 0 1680 1050 </string>
+	<string>329 159 606 469 0 0 1920 1200 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>604 753 928 394 0 0 1920 1200 </string>
+	<string>604 749 770 429 0 0 1920 1200 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>2045 594 592 584 1920 150 1680 1050 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1033 589 837 422 0 0 1920 1177 </string>
+	<string>243 413 809 452 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>320 602 627 350 0 0 1920 1177 </string>
+	<string>-1350 268 991 530 -1680 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>-1412 109 809 476 -1680 0 1680 1050 </string>
 	<key>New Bookmarks</key>
@@ -4709,7 +4711,7 @@
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
 	<key>TabStyle</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
@@ -4722,6 +4724,8 @@
 	<integer>10</integer>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
+	<key>UKCrashReporterLastCrashReportDate</key>
+	<real>1546514688</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseAdaptiveFrameRate</key>
