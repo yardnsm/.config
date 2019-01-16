@@ -432,7 +432,7 @@ nnoremap <leader>tc :set cursorline!<CR>
 vnoremap <C-c> "+y
 
 " Make `S` works like `X` is to `x`
-nnoremap S hs
+nnoremap S ch
 
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
