@@ -1,3 +1,5 @@
+" Settings for fzf.nvim
+
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 let g:fzf_colors = {
@@ -15,13 +17,20 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment']
   \ }
 
-" fzf status line
+" Status line {{{
+
 function! s:fzf_statusline()
   highlight fzf1 ctermfg=161 ctermbg=0 cterm=bold
   highlight fzf1 guifg=161 guibg=0
   setlocal statusline=%#fzf1#~~>\ fzf\ ԅ(≖‿≖ԅ)
 endfunction
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+augroup fzf_statusline_au
+  autocmd! User FzfStatusLine call <SID>fzf_statusline()
+augroup END
+
+" }}}
+" Mappings {{{
 
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -34,3 +43,5 @@ else
   " otherwise, use :FZF
   nmap <C-p> :Files<CR>
 endif
+
+" }}}

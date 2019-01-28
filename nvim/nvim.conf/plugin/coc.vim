@@ -1,6 +1,4 @@
-"
 " Settings for coc.nvim
-"
 
 " Enable completion using <Tab> {{{
 
@@ -61,5 +59,13 @@ highlight CocErrorHighlight ctermbg=11 cterm=undercurl
 
 highlight link CocInfoSign Question
 highlight CocInfoHighlight ctermbg=11 cterm=undercurl
+
+" }}}
+" Autocommands {{{
+
+augroup coc_au
+  " autocmd InsertEnter * setlocal cmdheight=2
+  " autocmd InsertLeave * setlocal cmdheight=1
+augroup END
 
 " }}}

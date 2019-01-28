@@ -1,3 +1,5 @@
+" Settings for MatchTagAlways
+
 let g:mta_filetypes = {
   \ 'html' : 1,
   \ 'xhtml' : 1,

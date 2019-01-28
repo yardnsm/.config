@@ -1,3 +1,5 @@
+" Settings for vim-closer
+
 augroup closer_au
   autocmd!
 

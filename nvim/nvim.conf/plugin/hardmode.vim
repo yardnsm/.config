@@ -1,3 +1,5 @@
+" Settings for hardmode
+
 augroup hardmode_au
   autocmd!
 

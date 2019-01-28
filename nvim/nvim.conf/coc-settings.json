@@ -13,7 +13,9 @@
 
   "pyls.trace.server": "off",
 
-  "coc.source.file.trimSameExts":[
+  "list.previewHighlightGroup": "Visual",
+
+  "coc.source.file.trimSameExts": [
     ".ts",
     ".js",
     ".tsx",

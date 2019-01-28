@@ -1,3 +1,5 @@
+" Settings for vim-signify
+
 let g:signify_vcs_list = ['git']
 
 " Make it vim-gitgutter

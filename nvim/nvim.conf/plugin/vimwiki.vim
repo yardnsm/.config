@@ -1,3 +1,5 @@
+" Settings for vimwiki
+
 let $VIMWIKI_HOME = $HOME . '/dev/gitlab/knowledge'
 
 let g:vimwiki_list = [{

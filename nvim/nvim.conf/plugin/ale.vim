@@ -1,3 +1,5 @@
+" Settings for ale
+
 let g:ale_linters = {
       \ 'javascript': [],
       \ 'typescript': [],

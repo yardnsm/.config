@@ -15,3 +15,11 @@ function! functions#StripTrailingWhitespace()
     normal `^
   endif
 endfunction
+
+" Search in all currently opened buffers
+" Taken from http://vim.wikia.com/wiki/Search_on_all_opened_buffers
+function! functions#Vimgrepall(pattern)
+  call setqflist([])
+  exe 'bufdo vimgrepadd ' . a:pattern . ' %'
+  cnext
+endfunction

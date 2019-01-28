@@ -1,3 +1,5 @@
+" Settings for NERDTree
+
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 1

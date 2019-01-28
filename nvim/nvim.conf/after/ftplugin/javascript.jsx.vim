@@ -10,6 +10,6 @@ setlocal tabstop=2
 " Mappings {{{
 
 " Execute the current file in node
-nnoremap <buffer> <localleader>r :!node %<CR>
+nnoremap <buffer> <leader>r :!node %<CR>
 
 " }}}

@@ -450,6 +450,9 @@ command! StripTrailingWhitespace call functions#StripTrailingWhitespace()
 " Delete a buffer without closing the window
 command! BQ :bp | :sp | :bn | :bd
 
+" Call the Vimgrepall functions
+command! -nargs=1 GrepAll call functions#Vimgrepall(<f-args>)
+
 " }}}
 " Abbreviations {{{
 
