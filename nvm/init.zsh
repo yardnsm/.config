@@ -1,6 +1,6 @@
 # Automate `nvm use`
 
-function __set_nvm_hooks() {
+function _set_nvm_hooks() {
   _is_nvm_loaded() {
     type "nvm_find_nvmrc" > /dev/null 2>&1
   }
