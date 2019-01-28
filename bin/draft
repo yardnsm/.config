@@ -4,7 +4,7 @@
 # Examples:
 #
 #   $ draft
-#   Will open the drafts folder in $EDITOR
+#   Will open fzf for completion
 #
 #   $ draft website planning
 #   Will open the file `2018-09-30_website_planning.md` in $EDITOR
@@ -14,9 +14,16 @@
 declare -r DRAFTS_HOME="$HOME/dev/gitlab/knowledge/drafts/"
 
 main() {
-  [[ $# -eq 0 ]] \
-    && $EDITOR "$DRAFTS_HOME" \
-    && return 0
+  local file
+
+  if [[ $# -eq 0 ]]; then
+    file="$(find "$DRAFTS_HOME" -name '*.md' -exec basename {} \; | fzf)"
+
+    [[ -n "$file" ]] \
+      && $EDITOR "$DRAFTS_HOME/$file"
+
+    return 0
+  fi
 
   # If there is an exact file, open it
   [[ -f "$DRAFTS_HOME/$1" ]] \
