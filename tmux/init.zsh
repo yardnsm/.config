@@ -8,5 +8,6 @@ _tmux_update_window_name() {
     tmux setw automatic-rename
   fi
 }
+
 add-zsh-hook chpwd _tmux_update_window_name \
   && _tmux_update_window_name
