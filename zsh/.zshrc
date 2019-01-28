@@ -35,4 +35,6 @@ autoload -U promptinit && promptinit
 # Initialize completion
 autoload -U compinit && compinit
 
+autoload -U edit-command-line
+
 # }}}
