@@ -2,7 +2,6 @@
 source <(antibody init)
 
 antibody bundle <<EOBUNDLES
-  lukechilds/zsh-nvm
   rupa/z
   zsh-users/zsh-completions
   supercrabtree/k
