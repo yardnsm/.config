@@ -11,7 +11,7 @@
 
 # ---------------------------------------------
 
-declare -r DRAFTS_HOME="$HOME/dev/gitlab/knowledge/drafts/"
+declare -r DRAFTS_HOME="$HOME/knowledge/drafts/"
 
 main() {
   local file

@@ -6,7 +6,7 @@ _draft() {
 }
 
 _get_drafts() {
-  find "$HOME/dev/gitlab/knowledge/drafts/" \
+  find "$HOME/knowledge/drafts/" \
     -type f \
     -exec basename {} \;
 }

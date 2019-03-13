@@ -1,6 +1,6 @@
 " Settings for vimwiki
 
-let $VIMWIKI_HOME = $HOME . '/dev/gitlab/knowledge'
+let $VIMWIKI_HOME = $HOME . '/knowledge'
 
 let g:vimwiki_list = [{
       \ 'path': $VIMWIKI_HOME,
