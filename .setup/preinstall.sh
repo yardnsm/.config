@@ -22,25 +22,37 @@ check_xcode_tools() {
   if [[ "$(get_os)" == 'macos' ]]; then
     if ! xcode-select --print-path &> /dev/null; then
       print_error "Xcode Command Line tools are not installed!"
-      exit 1
+
+      cat <<EOF
+
+          Install them via:
+
+            $ xcode-select --install
+
+EOF
+    else
+      print_success "Xcode Command Line tools are installed"
     fi
-    print_success "Xcode Command Line tools are installed"
   fi
 }
 
 # Initializing git submodules
 check_git_submodules() {
-  [[ $(pwd) == "$DOTFILES" ]] \
-    && git submodule update --init --recursive --remote -q
+  pushd "$DOTFILES" &> /dev/null \
+    || return 1
 
-  print_result $? "Initializing git modules"
+  execute "git submodule update --init --recursive --remote -q" \
+    "Initializing git modules"
+
+  popd &> /dev/null \
+    || return 1
 }
 
 # ---------------------------------------------
 
 main() {
   check_os
-  check_os
+  check_xcode_tools
   check_git_submodules
 }
 

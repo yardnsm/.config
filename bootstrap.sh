@@ -40,12 +40,8 @@ main() {
   cd "$DOTFILES_DIR" \
     || exit 1
 
-  source './_setup/initializer.sh'
-
-  source './_setup/bootstrap/setup_xcode.sh'
-  source './_setup/bootstrap/setup_github_ssh_keys.sh'
-  source './_setup/bootstrap/setup_zsh.sh'
-  source './_setup/bootstrap/install_dotfiles.sh'
+  # Let's get the party started.
+  source './install.sh'
 }
 
 main "$@"

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../initializer.sh"
+  && source "../.setup/initializer.sh"
 
 # ---------------------------------------------
 
 main() {
-  print_title "Setting ZSH"
+  print_info "Setting ZSH"
 
   if [[ -n "$ZSH_VERSION" ]]; then
     print_success "ZSH is already your shell"

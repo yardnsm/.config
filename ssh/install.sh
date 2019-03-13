@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../initializer.sh"
+  && source "../.setup/initializer.sh"
 
 # ---------------------------------------------
 
@@ -25,7 +25,7 @@ verify_connection() {
 main() {
   local ssh_key_path="$HOME/.ssh/github"
 
-  print_title "Generating SSH key for GitHub"
+  print_info "Generating SSH key for GitHub"
 
   if is_connection_valid; then
     print_success "Connection to GitHub is valid"
