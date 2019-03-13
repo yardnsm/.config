@@ -1,12 +1,9 @@
-FNM_ENV_LOADED=0
+eval "$(fnm env --multi)"
 
 _fnm_autoload_hook() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     echo "fnm: Found .nvmrc"
-
-    [[ $FNM_ENV_LOADED == 0 ]] && \
-      eval `fnm env` && \
-      FNM_ENV_LOADED=1
+    fnm use
   fi
 }
 
