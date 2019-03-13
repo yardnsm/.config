@@ -39,8 +39,8 @@ list_topics() {
   fi
 
   for topic in "${topics[@]}"; do
-    echo -ne "     $topic\\n"
-  done
+    printf "     %-8s\\n" "${topic}"
+  done | column
 }
 
 # ---------------------------------------------
