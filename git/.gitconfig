@@ -1,9 +1,9 @@
 # vim: set foldmethod=marker foldlevel=0:
 
-# Core {{{
-
 [include]
   path = ~/.gitconfig.local
+
+# Core {{{
 
 [core]
   excludesfile = ~/.gitignore_global
