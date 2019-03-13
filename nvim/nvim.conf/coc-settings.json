@@ -26,11 +26,6 @@
     "stylable": {
       "module": "/usr/local/lib/node_modules/stylable-intelligence/dist/src/lib/server.js",
       "filetypes": ["stylable", "typescript.jsx", "javascript.jsx"]
-    },
-
-    "reason": {
-      "command": "/Users/yardensm/Downloads/reason-language-server/reason-language-server.exe",
-      "filetypes": ["reason"]
     }
   }
 }
