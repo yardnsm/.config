@@ -20,8 +20,17 @@ let s:neovim_paths = [
       \ ]
 
 for p in s:neovim_paths
-  execute "set rtp^=" . p
+
+  " Add it to rtp if exists
+  if !empty(glob(p))
+    execute "set rtp^=" . p
+  endif
 endfor
 
 let &packpath = &runtimepath
-source ~/.config/nvim/init.vim
+
+if has('win32')
+  source C:\\Program Files (x86)\\Vim\\vimfiles\\init.vim
+else
+  source ~/.config/nvim/init.vim
+endif

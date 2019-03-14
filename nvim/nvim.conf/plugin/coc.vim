@@ -1,5 +1,9 @@
 " Settings for coc.nvim
 
+if !exists('g:coc_enanled')
+  finish
+endif
+
 " Enable completion using <Tab> {{{
 
 function! s:check_back_space() abort

@@ -180,13 +180,13 @@ if !has('gui_vimr')
           \ | highlight Statement cterm=bold
           \ | highlight StatusLine ctermbg=10 cterm=bold
           \
-          \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold
-          \ | highlight User2 ctermfg=15 ctermbg=11
-          \ | highlight User3 ctermfg=6 ctermbg=10
-          \ | highlight User5 ctermfg=4 ctermbg=0 cterm=bold
-          \ | highlight User6 ctermfg=9 ctermbg=0 cterm=bold
-          \ | highlight User7 ctermfg=1 ctermbg=0 cterm=bold
-          \ | highlight User8 ctermfg=3 ctermbg=0
+          \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
+          \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
+          \ | highlight User3 ctermfg=6  ctermbg=10            guifg=#75B5AA guibg=#202020
+          \ | highlight User5 ctermfg=4  ctermbg=0  cterm=bold guifg=#6A9FB5 guibg=#151515 gui=bold
+          \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
+          \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
+          \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
 
   augroup END
 endif
@@ -225,7 +225,6 @@ match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Always show the status line
 set laststatus=2
-
 
 let g:statusline_ft_titles = {
       \ 'nerdtree': 'NERD',
@@ -375,13 +374,19 @@ set shortmess+=c                      " do not show completion-menu messages
 set completeopt-=preview              " disable preview window
 
 " }}}
-" GUI stuff {{{
+" Platform-specific stuff {{{
 
-" Using VimR mainly
+" VimR
 if has('gui_vimr')
 
   " ¯\_(ツ)_/¯
 
+endif
+
+" Windows
+if has('win32')
+  source $VIMRUNTIME/mswin.vim
+  behave mswin
 endif
 
 " }}}
