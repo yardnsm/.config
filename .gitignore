@@ -11,6 +11,7 @@ Session.vim
 
 # Vim plugins
 nvim/nvim.conf/plugged
+nvim/nvim.conf/autoload/plug.vim
 
 # Alacritty build folder
 alacritty/alacritty
