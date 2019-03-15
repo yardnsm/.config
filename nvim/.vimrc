@@ -29,8 +29,10 @@ endfor
 
 let &packpath = &runtimepath
 
-if has('win32')
-  source C:\\Program Files (x86)\\Vim\\vimfiles\\init.vim
-else
-  source ~/.config/nvim/init.vim
-endif
+" if has('win32')
+"   source C:\\Program Files (x86)\\Vim\\vimfiles\\init.vim
+" else
+"   source ~/.config/nvim/init.vim
+" endif
+
+source ~/.config/nvim/init.vim

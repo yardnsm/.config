@@ -383,10 +383,24 @@ if has('gui_vimr')
 
 endif
 
+" GVim (on windows specific)
+if has('gui')
+  set guifont=Consolas:h10
+
+  set guioptions-=T
+  set guioptions-=r
+  set guioptions-=L
+endif
+
 " Windows
 if has('win32')
   source $VIMRUNTIME/mswin.vim
   behave mswin
+
+  " Do not keep backup or swp files
+  set nobackup
+  set nowritebackup
+  set noswapfile
 endif
 
 " }}}
