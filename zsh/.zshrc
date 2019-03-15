@@ -17,7 +17,6 @@ fpath=(
 # Sourcing {{{
 
 # Source all .zsh files within the dotfiles repo
-for config ($DOTFILES/*/*.zsh-before) source $config
 for config ($DOTFILES/*/*.zsh) source $config
 for config ($DOTFILES/zsh/prompt/**/*.zsh) source $config
 
