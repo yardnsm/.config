@@ -57,8 +57,14 @@ create_zip() {
 
   mkdir -p "$(dirname "$zip_path")"
 
-  zip -r "$zip_path" "$1" &> /dev/null & \
+  pushd "$1" &> /dev/null \
+    || return 1
+
+  zip -r "$zip_path" . &> /dev/null & \
     show_spinner $! "Zipping $1"
+
+  popd &> /dev/null \
+    || return 1
 
   print_divider
   print_divider
