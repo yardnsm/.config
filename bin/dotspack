@@ -105,6 +105,7 @@ EOF
   # Vim configs
   pack "$DOTFILES/nvim/.vimrc" "$tmp_dir/.vimrc"
   pack "$DOTFILES/nvim/nvim.conf" "$tmp_dir/.config/nvim"
+  pack "$HOME/.config/coc/" "$tmp_dir/.config/coc"
 
   # Tmux stuff
   pack "$DOTFILES/tmux/.tmux.conf" "$tmp_dir/.tmux.conf"
@@ -131,7 +132,7 @@ EOF
   pack "$DOTFILES/git/.gitignore_global" "$tmp_dir/.gitignore_global"
 
   # fzf
-  pack "$HOME/fzf" "$tmp_dir/fzf"
+  pack "$HOME/.fzf" "$tmp_dir/.fzf"
 
   print_info "Removing unused vim plugins"
   remove_vim_plugins "$tmp_dir/.config/nvim/plugged"

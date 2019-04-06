@@ -87,25 +87,8 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion
 Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
-
-" coc.nvim extensions
-let s:coc_extensions = [
-      \ 'neoclide/coc-tsserver',
-      \ 'neoclide/coc-html',
-      \ 'neoclide/coc-json',
-      \ 'neoclide/coc-css',
-      \ 'neoclide/coc-snippets',
-      \ 'neoclide/coc-eslint',
-      \ 'neoclide/coc-prettier',
-      \ 'neoclide/coc-python',
-      \ 'neoclide/coc-neco',
-      \ 'marlonfan/coc-phpls',
-      \ ]
-
-for ext in s:coc_extensions
-  Plug ext, { 'do': 'yarn install --frozen-lockfile --ignore-engines' }
-endfor
 
 if has('nvim')
   Plug 'SirVer/ultisnips'                " Snippets
