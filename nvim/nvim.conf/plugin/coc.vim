@@ -1,9 +1,5 @@
 " Settings for coc.nvim
 
-if !exists('g:coc_enanled')
-  finish
-endif
-
 " Enable completion using <Tab> {{{
 
 function! s:check_back_space() abort
@@ -25,9 +21,18 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap <silent> <leader>f <Plug>(coc-fix-current)
 nmap <silent> <leader>l <Plug>(coc-codeaction)
 vmap <silent> <leader>l <Plug>(coc-codeaction-selected)
+
+nnoremap <silent> <leader>c  :<C-u>CocList commands<CR>
+
+" Expand snippets
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" }}}
+" Commands {{{
+
+command! -nargs=0 Format :call CocAction('format')
 
 " }}}
 " Insert a newline after pressing enter {{{
@@ -68,8 +73,9 @@ highlight CocInfoHighlight ctermbg=11 cterm=undercurl
 " Autocommands {{{
 
 augroup coc_au
-  " autocmd InsertEnter * setlocal cmdheight=2
-  " autocmd InsertLeave * setlocal cmdheight=1
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd InsertEnter * set cmdheight=2
+  autocmd InsertLeave * set cmdheight=1
 augroup END
 
 " }}}

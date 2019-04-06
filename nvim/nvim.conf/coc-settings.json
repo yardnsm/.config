@@ -1,17 +1,13 @@
 {
-  "coc.preferences.diagnostic.enable": true,
+  "diagnostic.enable": true,
 
-  "coc.preferences.diagnostic.errorSign": "E",
-  "coc.preferences.diagnostic.warningSign": "W",
-  "coc.preferences.diagnostic.hintSign": "!",
-  "coc.preferences.diagnostic.infoSign": "I",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "diagnostic.hintSign": "!",
+  "diagnostic.infoSign": "I",
 
-  "coc.preferences.timeout": 500,
+  "suggest.timeout": 500,
   "coc.preferences.extensionUpdateCheck": "never",
-
-  "coc.preferences.hoverTarget": "echo",
-
-  "pyls.trace.server": "off",
 
   "list.previewHighlightGroup": "Visual",
 

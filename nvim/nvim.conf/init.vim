@@ -78,9 +78,6 @@ Plug 'vimwiki/vimwiki'                    " wiki for vim
 
 Plug 'moll/vim-node'                      " allowg to `gf` properly on `require`
 
-Plug 'python-mode/python-mode',           " python support
-      \ { 'branch': 'develop' }
-
 Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 
 Plug 'reasonml-editor/vim-reason-plus'    " Reason support
@@ -88,14 +85,30 @@ Plug 'reasonml-editor/vim-reason-plus'    " Reason support
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
-" Autocompletion, only for neovim
-if has('nvim')
-  Plug 'Shougo/neco-vim'
-  Plug 'neoclide/coc-neco'
-  Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+" Autocompletion
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 
-  " Snippets
-  Plug 'SirVer/ultisnips'
+" coc.nvim extensions
+let s:coc_extensions = [
+      \ 'neoclide/coc-tsserver',
+      \ 'neoclide/coc-html',
+      \ 'neoclide/coc-json',
+      \ 'neoclide/coc-css',
+      \ 'neoclide/coc-snippets',
+      \ 'neoclide/coc-eslint',
+      \ 'neoclide/coc-prettier',
+      \ 'neoclide/coc-python',
+      \ 'neoclide/coc-neco',
+      \ 'marlonfan/coc-phpls',
+      \ ]
+
+for ext in s:coc_extensions
+  Plug ext, { 'do': 'yarn install --frozen-lockfile --ignore-engines' }
+endfor
+
+if has('nvim')
+  Plug 'SirVer/ultisnips'                " Snippets
 endif
 
 " MacOS specific plugins
@@ -458,7 +471,7 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Count matches
-nnoremap <leader>c :%s///gn<CR>
+nnoremap <leader>C :%s///gn<CR>
 
 " }}}
 " Commands {{{
