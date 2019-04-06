@@ -26,10 +26,6 @@ remove_vim_plugins() {
   local -r dest="$1"
 
   local -a PLUGINS=(
-    "neco-vim"
-    "coc-neco"
-    "coc.nvim"
-    "ultisnips"
     "vim-import-cost"
   )
 
@@ -78,7 +74,6 @@ main() {
   local tmp_dir
   tmp_dir="$(mktemp -d)"
 
-
   print_title "Packing dotfiles"
   print_divider
 
@@ -107,12 +102,16 @@ EOF
 
   print_info "Packing all the files"
 
+  # Vim configs
   pack "$DOTFILES/nvim/.vimrc" "$tmp_dir/.vimrc"
   pack "$DOTFILES/nvim/nvim.conf" "$tmp_dir/.config/nvim"
 
+  # Tmux stuff
   pack "$DOTFILES/tmux/.tmux.conf" "$tmp_dir/.tmux.conf"
   pack "$DOTFILES/tmux/right_segments.sh" "$tmp_dir/dotfiles/tmux/right_segments.sh"
+  pack "$HOME/.tmux" "$tmp_dir/.tmux"
 
+  # Zsh stuff
   pack "$DOTFILES/zsh/.zshrc" "$tmp_dir/.zshrc"
   pack "$DOTFILES/zsh/completions" "$tmp_dir/dotfiles/zsh/completions"
   pack "$DOTFILES/zsh/functions" "$tmp_dir/dotfiles/zsh/functions"
@@ -122,11 +121,17 @@ EOF
   pack "$DOTFILES/zsh/env.zsh" "$tmp_dir/dotfiles/zsh/env.zsh"
   pack "$DOTFILES/zsh/functions.zsh" "$tmp_dir/dotfiles/zsh/functions.zsh"
 
+  # Submodules
+  pack "$DOTFILES/.submodules/base16-shell" "$tmp_dir/dotfiles/.submodules/base16-shell"
   pack "$DOTFILES/.submodules/blox-zsh-theme" "$tmp_dir/dotfiles/.submodules/blox-zsh-theme"
+  pack "$DOTFILES/.submodules/tpm" "$tmp_dir/dotfiles/.submodules/tpm"
 
+  # Git stuff
   pack "$DOTFILES/git/.gitconfig" "$tmp_dir/.gitconfig"
   pack "$DOTFILES/git/.gitignore_global" "$tmp_dir/.gitignore_global"
-  pack "$HOME/.gitconfig.local" "$tmp_dir/.gitconfig.local"
+
+  # fzf
+  pack "$HOME/fzf" "$tmp_dir/fzf"
 
   print_info "Removing unused vim plugins"
   remove_vim_plugins "$tmp_dir/.config/nvim/plugged"
