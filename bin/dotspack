@@ -123,9 +123,9 @@ EOF
   pack "$DOTFILES/zsh/functions.zsh" "$tmp_dir/dotfiles/zsh/functions.zsh"
 
   # Submodules
-  pack "$DOTFILES/.submodules/base16-shell" "$tmp_dir/dotfiles/.submodules/base16-shell"
-  pack "$DOTFILES/.submodules/blox-zsh-theme" "$tmp_dir/dotfiles/.submodules/blox-zsh-theme"
-  pack "$DOTFILES/.submodules/tpm" "$tmp_dir/dotfiles/.submodules/tpm"
+  pack "$SUBMODULES/base16-shell" "$tmp_dir/dotfiles/.submodules/base16-shell"
+  pack "$SUBMODULES/blox-zsh-theme" "$tmp_dir/dotfiles/.submodules/blox-zsh-theme"
+  pack "$SUBMODULES/tpm" "$tmp_dir/dotfiles/.submodules/tpm"
 
   # Git stuff
   pack "$DOTFILES/git/.gitconfig" "$tmp_dir/.gitconfig"

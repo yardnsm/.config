@@ -16,3 +16,8 @@ function bak() {
 function unbak() {
   mv "$1.bak" "$1"
 }
+
+# Print each PATH entry on a separate line
+function path() {
+  echo -e ${PATH//:/\\n}
+}

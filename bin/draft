@@ -8,13 +8,18 @@
 #
 #   $ draft website planning
 #   Will open the file `2018-09-30_website_planning.md` in $EDITOR
+#
+# Make sure to define $DRAFTS_HOME
 
 # ---------------------------------------------
 
-declare -r DRAFTS_HOME="$HOME/knowledge/drafts/"
-
 main() {
   local file
+
+  if [[ -z "$DRAFTS_HOME" ]]; then
+    echo "ERROR: \$DRAFTS_HOME is not defined"
+    return 1
+  fi
 
   if [[ $# -eq 0 ]]; then
     file="$(find "$DRAFTS_HOME" -name '*.md' -exec basename {} \; | fzf)"
@@ -26,9 +31,10 @@ main() {
   fi
 
   # If there is an exact file, open it
-  [[ -f "$DRAFTS_HOME/$1" ]] \
-    && $EDITOR "$DRAFTS_HOME/$1" \
-    && return 0
+  if [[ -f "$DRAFTS_HOME/$1" ]]; then
+    $EDITOR "$DRAFTS_HOME/$1"
+    return 0
+  fi
 
   local -r date_fmt="$(date +%Y-%m-%d)"
   local -r name_fmt=$(sed 's/ /_/g' <<< "$@")

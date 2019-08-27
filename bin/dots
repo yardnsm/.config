@@ -62,8 +62,8 @@ print_help() {
 
   Options
 
-    -a, --all               Show all topics in 'list'
-    -h, --help              Show help output
+    -a, --all       Show all topics in 'list'
+    -h, --help      Show help output
 
   Options are being passed to the install script
   when running 'install' command.
@@ -76,13 +76,15 @@ main() {
   declare -r CMD=$1
   shift
 
+  # The install script will change the help output depending on this variable
+  export FROM_DOTS=1
+
   case "$CMD" in
     run )
       run_topic "$@"
       exit 0
       ;;
     install )
-      export DOTS=1
       run_install "$@"
       exit 0
       ;;

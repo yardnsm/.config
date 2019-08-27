@@ -27,6 +27,7 @@ print_success() {
   printf "\\e[0;32m\\033[1mSUCCESS\\033[0m\\e[0m %s\\n" "$1"
 }
 
+
 # ---------------------------------------------
 
 list_boilerplates() {

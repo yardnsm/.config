@@ -6,7 +6,7 @@ _draft() {
 }
 
 _get_drafts() {
-  find "$HOME/knowledge/drafts/" \
+  find "$DRAFTS_HOME" \
     -type f \
     -exec basename {} \;
 }

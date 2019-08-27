@@ -7,14 +7,17 @@ main() {
 
   if [[ "$1" == "--remote" ]] || [[ "$1" == "-r" ]]; then
     branches=$(git branch --color --all -vv | grep -v HEAD)
-    branch=$(echo "$branches" | \
-      fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m --ansi)
+    branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m --ansi)
+
     git checkout "$(echo "$branch" | sed "s/\\* //" | awk '{print $1}' | sed "s#remotes/[^/]*/##")"
-  else
-    branches=$(git branch --color -vv)
-    branch=$(echo "$branches" | fzf-tmux +m --ansi)
-    git checkout "$(echo "$branch" | sed "s/\\* //" | awk '{print $1}')"
+
+    return 0
   fi
+
+  branches=$(git branch --color -vv)
+  branch=$(echo "$branches" | fzf-tmux +m --ansi)
+
+  git checkout "$(echo "$branch" | sed "s/\\* //" | awk '{print $1}')"
 
 }
 
