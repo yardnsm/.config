@@ -74,8 +74,8 @@ highlight CocInfoHighlight ctermbg=11 cterm=undercurl
 
 augroup coc_au
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  autocmd InsertEnter * set cmdheight=2
-  autocmd InsertLeave * set cmdheight=1
+  " autocmd InsertEnter * set cmdheight=2
+  " autocmd InsertLeave * set cmdheight=1
 augroup END
 
 " }}}
