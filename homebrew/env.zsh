@@ -1,5 +1,9 @@
-# Homebrew path
-export PATH=/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+# Homebrew env stuff
+if [[ -n $IS_MACOS ]]; then
 
-# Cask installs dir
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+  # Homebrew path
+  export PATH=/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+
+  # Cask installs dir
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+fi

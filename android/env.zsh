@@ -1,2 +1,5 @@
 # Android SDK dir
-export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+
+if [[ -n $IS_MACOS ]]; then
+  export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+fi
