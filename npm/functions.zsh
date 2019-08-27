@@ -1,5 +1,6 @@
 function yolo() {
-  cmd="rm -rf node_modules && npm install --no-package-lock"
+  local cmd="rm -rf node_modules && npm install --no-package-lock"
+
   echo "\n  > ${cmd}\n"
   eval "${cmd}"
 }
