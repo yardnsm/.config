@@ -18,7 +18,7 @@ declare -r packages=(
 
 # ---------------------------------------------
 
-_apt_update() {
+apt_update() {
   print_info "Updating apt"
 
   execute "sudo apt-get update -qqy" \
@@ -27,7 +27,7 @@ _apt_update() {
 
 # ---------------------------------------------
 
-_apt_install_packages() {
+apt_install_packages() {
   print_info "Install APT packages"
 
   for package in "${packages[@]}"; do
@@ -37,7 +37,7 @@ _apt_install_packages() {
 
 # ---------------------------------------------
 
-_apt_cleanup() {
+apt_cleanup() {
   print_info "Cleanup"
 
   execute "sudo apt-get autoremove -qqy" \
@@ -47,9 +47,9 @@ _apt_cleanup() {
 # ---------------------------------------------
 
 main() {
-  _apt_update
-  _apt_install_packages
-  _apt_cleanup
+  apt_update
+  apt_install_packages
+  apt_cleanup
 }
 
 main "$@"

@@ -94,7 +94,7 @@ start_procedure() {
 print_help() {
   local script_name="./install.sh"
 
-  [[ -n "$DOTS" ]] \
+  [[ -n "$FROM_DOTS" ]] \
     && script_name="dots install"
 
   cat <<EOF

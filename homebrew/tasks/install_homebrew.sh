@@ -6,7 +6,9 @@ main() {
 
   # Install Homebrew
   if ! cmd_exists 'brew'; then
-    printf "\\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
+    printf "\\n" \
+      | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \
+      &> /dev/null
   fi
 
   print_result $? 'homebrew'
@@ -18,7 +20,7 @@ main() {
     brew_tap "caskroom/fonts"
     brew_tap "ravenac95/sudolikeaboss"
   else
-    print_error "homebrew is not installed!"
+    print_error "Homebrew is not installed!"
   fi
 }
 
