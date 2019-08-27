@@ -66,8 +66,8 @@ $ dots
 
   Options
 
-    -a, --all               Show all topics in 'list'
-    -h, --help              Show help output
+    -a, --all       Show all topics in 'list'
+    -h, --help      Show help output
 
   Options are being passed to the install script
   when running 'install' command.
