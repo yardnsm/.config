@@ -2,7 +2,8 @@
 if command -v "phpbrew" &> /dev/null; then
   function phpbrew() {
     unset phpbrew
-    source /Users/yardensm/.phpbrew/bashrc
+
+    source $HOME/.phpbrew/bashrc
     phpbrew $@
   }
 fi
