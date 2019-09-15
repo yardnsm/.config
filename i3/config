@@ -1,0 +1,139 @@
+# vim: set foldmethod=marker foldlevel=0:
+#
+# ------------------------------------------------------------------------------
+# i3 config file (v4)
+# ------------------------------------------------------------------------------
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# Variables {{{
+
+# Use `alt` as the $mod key
+set $mod Mod1
+
+# Applications
+set $terminal termite
+
+# Workspaces
+set $workspace-main main
+
+# }}}
+# Theme {{{
+
+# Font for window titles
+font pango:monospace 8
+
+# }}}
+# Keybindings {{{
+
+# Setup floating modifier
+floating_modifier $mod
+
+# General
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen toggle
+
+# Reload and restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'srsly?' -B 'ye' 'nah'"
+
+# Applications
+bindsym $mod+Return exec $terminal
+
+# Rofi
+bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str '*{accent: #0390fc;}'"
+
+# Focus change
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Splits in horizontal and vertical
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# }}}
+# Workspaces {{{
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1 $workspace-main
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1 $workspace-main
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# }}}
+# Resize mode {{{
+
+mode "resize" {
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  # Back to normal
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# }}}
+# Execs {{{
+
+# Start nm-applet
+exec --no-startup-id nm-applet
+
+# Wallpaper
+exec_always feh --bg-scale ~/wallpaper.jpg
+
+# Compton
+# exec_always compton -f
+
+# }}}
+# Status bar {{{
+
+bar {
+  status_command i3status
+}
+
+# }}}

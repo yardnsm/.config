@@ -15,6 +15,8 @@ declare -a SYMLINKS=(
 
   "../gpg/gpg-agent.conf, .gnupg/gpg-agent.conf"
 
+  "../i3, .config/i3"
+
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
 
