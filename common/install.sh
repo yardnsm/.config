@@ -10,6 +10,8 @@ declare -a SYMLINKS=(
 
   "../common/.hushlogin"
 
+  "../compton, .config/compton"
+
   "../git/.gitconfig"
   "../git/.gitignore_global"
 
