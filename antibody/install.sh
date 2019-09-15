@@ -9,7 +9,7 @@ main() {
   print_info "Installing Antibody"
 
   if ! cmd_exists 'antibody'; then
-    execute "curl -s https://raw.githubusercontent.com/getantibody/installer/master/install | bash -s" \
+    execute "curl -s https://raw.githubusercontent.com/getantibody/installer/master/install | bash -s - -b /usr/local/bin" \
       "Installing Antibody"
   else
     print_success 'Antibody is already installed'
