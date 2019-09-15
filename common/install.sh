@@ -29,6 +29,9 @@ declare -a SYMLINKS=(
 
   "../tmux/.tmux.conf"
 
+  "../xorg/.xinitrc"
+  "../xorg/.Xresources"
+
   "../zsh/.zshrc"
 )
 

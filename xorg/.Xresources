@@ -1,0 +1,32 @@
+! vim: set foldmethod=marker foldlevel=0:
+
+! -----------------------------------------------------------------------------
+! ~/.Xresources
+! -----------------------------------------------------------------------------
+
+! Xft settings {{{
+
+Xtf.dpi: 220
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintingstyle: hintfull
+Xft.hinting: 1
+Xft.rgba: rgb
+
+! }}}
+! Xcursor settings {{{
+
+Xcursor.size: 32
+Xcursor.theme: chromeos
+
+! }}}
+! URxvt settings {{{
+
+URxvt.font: xft:Iosevka:size=14:style=Medium:monospace
+
+! }}}
+! Rofi settings {{{
+
+! rofi.fullscreen: true
+
+! }}}
