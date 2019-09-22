@@ -44,7 +44,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'srsly?' -B 'ye' 'nah'"
 bindsym $mod+Return exec $terminal
 
 # Rofi
-bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str '*{accent: #0390fc;}'"
+bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str \"\*{--accent: #0390fc;}\""
 
 # Focus change
 bindsym $mod+h focus left

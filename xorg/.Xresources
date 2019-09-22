@@ -27,6 +27,6 @@ URxvt.font: xft:Iosevka:size=14:style=Medium:monospace
 ! }}}
 ! Rofi settings {{{
 
-! rofi.fullscreen: true
+rofi.dpi: 162
 
 ! }}}

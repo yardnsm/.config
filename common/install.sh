@@ -22,6 +22,8 @@ declare -a SYMLINKS=(
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
 
+  "../rofi, .config/rofi"
+
   "../stylelint/.stylelint"
 
   "../terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color"
