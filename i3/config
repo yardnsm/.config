@@ -8,11 +8,12 @@
 
 # Variables {{{
 
-# Use `alt` as the $mod key
-set $mod Mod1
+# Use `super` as the $mod key
+set $mod Mod4
 
 # Applications
 set $terminal termite
+set $browser google-chrome-stable
 
 # Workspaces
 set $workspace-main main
@@ -27,6 +28,7 @@ font pango:monospace 8
 # Keybindings {{{
 
 # Setup floating modifier
+# Use Mpuse+$mod to drag floating windows
 floating_modifier $mod
 
 # General
@@ -37,14 +39,18 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# Exit i3
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'srsly?' -B 'ye' 'nah'"
-
 # Applications
 bindsym $mod+Return exec $terminal
+bindsym $mod+Shift+Return exec $browser
 
-# Rofi
-bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str \"\*{--accent: #0390fc;}\""
+# Rofi {{{
+
+  # Rename current workspace
+  bindsym $mod+period exec --no-startup-id "~/.config/i3/actions/rename-workspace.sh"
+
+  bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str \"\*{--accent: #0390fc;}\""
+
+#}}}
 
 # Focus change
 bindsym $mod+h focus left
@@ -63,9 +69,10 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 
 # Change container layout
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 # Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -73,8 +80,33 @@ bindsym $mod+Shift+space floating toggle
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# Scratchpad
+bindsym $mod+grave scratchpad show
+
+# Alt-Tab
+bindsym $mod+Tab workspace back_and_forth
+
+# macOS screenshot mimic
+bindsym $mod+Ctrl+3 exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t img/png< $f'"
+bindsym $mod+Ctrl+4 exec --no-startup-id "flameshot gui"
+bindsym $mod+Ctrl+5 exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t img/png < $f'"
+
+# Adjust gaps
+bindsym $mod+slash gaps inner current plus 8
+bindsym $mod+equal gaps inner current minus 8
+bindsym $mod+Shift+slash gaps outer current plus 8
+bindsym $mod+Shift+equal gaps outer current minus 8
+
 # }}}
 # Workspaces {{{
+
+# Move window to next / prev workspace
+bindsym $mod+Shift+Right move container to workspace next, workspace next
+bindsym $mod+Shift+Left move container to workspace prev, workspace prev
+
+# Move window to next RandR outputs
+bindsym $mod+Ctrl+Right move container to output right
+bindsym $mod+Ctrl+Left move container output left
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1 $workspace-main
