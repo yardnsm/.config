@@ -5,12 +5,14 @@
 pushd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null \
   || exit 1
 
+declare __initialized=${__initialized:-}
+
 # ---------------------------------------------
 
 # Check if sourced before
-if [[ -z ${sourced+x} ]]; then
+if [[ -z "$__initialized" ]]; then
 
-  sourced=true
+  __initialized=1
 
   source "./utils/functions/apt.sh"
   source "./utils/functions/brew.sh"

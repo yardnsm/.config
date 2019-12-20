@@ -10,10 +10,15 @@ from scratch, while focus on organization.
 The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for
 ubuntu and debian).
 
-Simply run the following command in your terminal:
+Simply run the following commands in your terminal:
 
 ```console
-$ bash <(curl -LsS https://raw.github.com/yardnsm/dotfiles/master/bootstrap.sh)
+# Clone the repository
+$ git clone https://github.com/yardnsm/dotfiles ~/dotfiles
+
+# Run the installation script
+$ cd dotfiles
+$ ./install.sh
 ```
 
 ### Installation executable
