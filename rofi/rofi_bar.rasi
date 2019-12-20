@@ -1,0 +1,137 @@
+/* vim:ft=css:fdm=marker:fdl=0:
+ *
+ * Rofi floating bar theme
+ * User: yardnsm
+ */
+
+* {
+
+  /* Variables */
+  --accent: #FFFFFF;
+
+  --background: #121212;
+  --foreground: #ebebeb;
+
+  --background-selected: #161A1B;
+  --foreground-selected: @--accent;
+
+  --foreground-urgent: #e53714;
+
+  /* Globals */
+  font: "Iosevka 14";
+  border-color: @--background;
+  background-color: @--background;
+}
+
+#window {
+  background-color: @--background;
+
+  /* Make it on top */
+  anchor: north;
+  location: north;
+  y-offset: 30%;
+}
+
+#mainbox {
+  background-color: @--background;
+  children: [inputbar, message, listview];
+}
+
+/* Message Box {{{ */
+
+#message {
+  background-color: @--background;
+  margin: 20px;
+}
+
+#textbox {
+  padding: 20px;
+  text-color: @--background-selected;
+  background-color: @--foreground-selected;
+}
+
+/* }}} */
+/* Items list {{{ */
+
+#listview {
+  fixed-height: false;
+  scrollbar: true;
+  padding: 10px;
+}
+
+#scrollbar {
+  handle-color: @--background-selected;
+}
+
+#element {
+  border: 0;
+  padding: 10px;
+  margin: 0 20px 0 0;
+}
+
+#element normal.normal,
+element alternate.normal {
+  text-color: @--foreground;
+  background-color: @--background;
+}
+
+#element normal.urgent,
+element alternate.urgent {
+  text-color: @--foreground-urgent;
+}
+
+#element normal.active,
+element alternate.active {
+  text-color: @--foreground;
+  highlight: bold;
+}
+
+#element selected.normal {
+  text-color:  @--foreground-selected;
+  background-color: @--background-selected;
+}
+
+#element selected.urgent {
+  text-color:  @--background;
+  background-color: @--foreground-urgent;
+}
+
+#element selected.active {
+  background-color: @--foreground;
+  text-color: @--background-selected;
+}
+
+/* }}} */
+/* Sidebar {{{ */
+
+#button {
+  background-color: @--background;
+  text-color: @--background;
+}
+
+#button selected {
+  text-color:  @--foreground;
+}
+
+/* }}} */
+/* Input {{{ */
+
+#inputbar {
+  spacing: 0;
+  children: [prompt, entry];
+}
+
+#prompt {
+  background-color: @--foreground-selected;
+  text-color: @--background-selected;
+  padding: 10px 3%;
+}
+
+#entry {
+  padding: 6px 10px;
+  background-color: @--background-selected;
+  text-color: @--foreground;
+  padding: 10px;
+}
+
+/* }}} */

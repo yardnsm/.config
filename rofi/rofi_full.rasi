@@ -1,0 +1,141 @@
+/* vim:ft=css:fdm=marker:fdl=0:
+ *
+ * Rofi fullscreen theme
+ * User: yardnsm
+ */
+
+* {
+
+  /* Variables */
+  --accent: #FFFFFF;
+  --overlay: rgba(0, 0, 0, 0.70);
+  --transparent: rgba(0, 0, 0, 0);
+
+  --background: @--transparent;
+  --foreground: @--accent;
+
+  --background-selected: @--accent;
+  --foreground-selected: @--overlay;
+
+  --foreground-urgent: #e53714;
+
+  /* Globals */
+  font: "Iosevka 14";
+  border-color: @--background;
+  background-color: @--transparent;
+  spacing: 10px;
+}
+
+#window {
+  background-color: @--overlay;
+
+  border: 0;
+  padding: 0;
+}
+
+#mainbox {
+  background-color: @--background;
+  padding: 30%;
+
+  children: [inputbar, message, listview];
+}
+
+/* Message Box {{{ */
+
+#message {
+  padding: 20px 10px 10px;
+  border: 2px 0px 0px;
+  border-color: @--foreground;
+}
+
+#textbox {
+  text-color: @--foreground;
+}
+
+/* }}} */
+/* Items list {{{ */
+
+#listview {
+  fixed-height: false;
+  scrollbar: false;
+  padding: 20px 10px;
+
+  border: 2px 0px 0px;
+  border-color: @--foreground;
+}
+
+#element {
+  border: 0;
+  padding: 10px;
+}
+
+#element normal.normal,
+element alternate.normal {
+  text-color: @--foreground;
+  background-color: @--background;
+}
+
+#element normal.urgent,
+element alternate.urgent {
+  text-color: @--foreground-urgent;
+}
+
+#element normal.active,
+element alternate.active {
+  text-color: @--foreground;
+  highlight: bold;
+}
+
+#element selected.normal {
+  text-color:  @--foreground-selected;
+  background-color: @--background-selected;
+}
+
+#element selected.urgent {
+  text-color:  @--foreground-selected;
+  background-color: @--foreground-urgent;
+}
+
+#element selected.active {
+  text-color: @--foreground-selected;
+  background-color: @--background-selected;
+}
+
+/* }}} */
+/* Sidebar {{{ */
+
+#sidebar {
+    border: 2px 0px 0px ;
+    border-color: @--foreground;
+}
+
+#button {
+  text-color: @--foreground;
+}
+
+#button.selected {
+    background-color: @--background-selected;
+    text-color: @--foreground-selected;
+}
+
+/* }}} */
+/* Input {{{ */
+
+#inputbar {
+  spacing :0;
+  padding: 2px;
+
+  children: [prompt, entry];
+}
+
+#prompt {
+  text-color: @--foreground;
+  padding: 0 1%;
+  highlight: bold;
+}
+
+#entry {
+  text-color: @--foreground;
+}
+
+/* }}} */

@@ -10,13 +10,19 @@ declare -a SYMLINKS=(
 
   "../common/.hushlogin"
 
+  "../compton, .config/compton"
+
   "../git/.gitconfig"
   "../git/.gitignore_global"
 
   "../gpg/gpg-agent.conf, .gnupg/gpg-agent.conf"
 
+  "../i3, .config/i3"
+
   "../nvim/.vimrc"
   "../nvim/nvim.conf, .config/nvim"
+
+  "../rofi, .config/rofi"
 
   "../stylelint/.stylelint"
 
@@ -26,6 +32,9 @@ declare -a SYMLINKS=(
   "../ternjs/.tern-config"
 
   "../tmux/.tmux.conf"
+
+  "../xorg/.xinitrc"
+  "../xorg/.Xresources"
 
   "../zsh/.zshrc"
 )
