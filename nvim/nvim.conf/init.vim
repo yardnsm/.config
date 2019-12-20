@@ -78,6 +78,7 @@ Plug 'vimwiki/vimwiki'                    " wiki for vim
 
 Plug 'moll/vim-node'                      " allowg to `gf` properly on `require`
 
+Plug 'kkoomen/vim-doge'                   " documentation generator
 Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
 
 Plug 'reasonml-editor/vim-reason-plus'    " Reason support

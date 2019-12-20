@@ -11,6 +11,8 @@
 
   "list.previewHighlightGroup": "Visual",
 
+  "diagnostic.messageTarget": "echo",
+
   "coc.source.file.trimSameExts": [
     ".ts",
     ".js",
