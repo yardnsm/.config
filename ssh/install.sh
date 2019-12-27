@@ -51,7 +51,7 @@ main() {
     actions::open "https://github.com/settings/keys"
     output::result $? "Opening GitHub settings page"
 
-    verify_connection & show_spinner $! \
+    verify_connection & spinner:show_for_process $! \
       "Verifying SSH connection"
   fi
 }
