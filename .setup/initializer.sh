@@ -20,6 +20,7 @@ if [[ -z "$__initialized" ]]; then
   source "./lib/functions/npm.sh"
   source "./lib/functions/pip.sh"
 
+  source "./lib/actions.sh"
   source "./lib/ask.sh"
   source "./lib/commands.sh"
   source "./lib/topics.sh"

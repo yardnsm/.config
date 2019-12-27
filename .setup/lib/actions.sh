@@ -3,7 +3,7 @@
 # ---------------------------------------------
 
 # Copy smth to clipboard
-copy_to_clipboard() {
+actions::copy_to_clipboard() {
   if commands::exists "pbcopy"; then
     echo "$1" | pbcopy
   elif commands::exists "xclip"; then
@@ -14,7 +14,7 @@ copy_to_clipboard() {
 }
 
 # Open smth in browser
-open_in_browser() {
+actions::open() {
   if commands::exists "xdg-open"; then
     xdg-open "$1"
   elif commands::exists "open"; then

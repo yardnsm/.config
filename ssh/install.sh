@@ -45,10 +45,10 @@ main() {
     commands::execute "ssh-add -K ${SSH_KEY_PATH}" \
       "Adding id_rsa to the ssh-agent"
 
-    copy_to_clipboard "$(cat "${SSH_KEY_PATH}.pub")"
+    actions::copy_to_clipboard "$(cat "${SSH_KEY_PATH}.pub")"
     print_result $? "Copy public SSH key to clipboard"
 
-    open_in_browser "https://github.com/settings/keys"
+    actions::open "https://github.com/settings/keys"
     print_result $? "Opening GitHub settings page"
 
     verify_connection & show_spinner $! \
