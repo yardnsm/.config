@@ -32,7 +32,6 @@ topics::exists() {
 # Install a specific topic
 topics::install_single() {
   local -r TOPIC=$1
-  local -r OS="$(get_os)"
 
   if topics::exists "$TOPIC"; then
 
@@ -41,15 +40,11 @@ topics::install_single() {
       output::title "Current topic is '$TOPIC'"
       source "$DOTFILES/$TOPIC/install.sh"
     fi
-
-    # Check for OS-specific installtion
-    if [[ -f $DOTFILES/$TOPIC/install-$OS.sh ]]; then
-      output::title "Running os-specific installation for '$TOPIC'"
-      source "$DOTFILES/$TOPIC/install-$OS.sh"
-    fi
   else
     output::title "Current topic is '$TOPIC'\\n"
     output::error "Topic $TOPIC does not exist!"
+
+    return 1
   fi
 }
 
@@ -60,24 +55,13 @@ topics::install_multiple() {
   local topics_to_exclude=( $2 )
 
   local topic
-  local is_ignored
 
+  # No supplied topics? Get 'em all!
   [[ ${#topics_to_install} -eq 0 ]] \
     && topics_to_install=( $(topics::get_all) )
 
   for topic in "${topics_to_install[@]}"; do
-
-    is_ignored=""
-
-    # Check if needs to be ignored
-    for ignored in "${topics_to_exclude[@]}"; do
-      if [[ $topic == "$ignored" ]]; then
-        is_ignored="true"
-        break
-      fi
-    done
-
-    if [[ -z $is_ignored ]]; then
+    if [[ ! " ${topics_to_exclude[*]} " == *"${topic}"* ]]; then
       topics::install_single "$topic"
     fi
   done
