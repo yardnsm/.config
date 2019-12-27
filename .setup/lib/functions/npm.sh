@@ -6,7 +6,7 @@
 
 npm_list=""
 
-npm_install() {
+npm::install() {
 
   package="$1"
 

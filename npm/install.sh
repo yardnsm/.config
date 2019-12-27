@@ -43,7 +43,7 @@ main() {
   print_info "Installing NPM global dependencies"
 
   for dep in "${dependencies[@]}"; do
-    npm_install "$dep"
+    npm::install "$dep"
   done
 }
 
