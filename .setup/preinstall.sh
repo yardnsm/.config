@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # Check that we're on a good os
 check_os() {
-  local -r os="$(get_os)"
+  local -r os="$(os::get_name)"
 
   if [[ "$os" == 'dafuk' ]]; then
     output::error "Don't even try."
@@ -19,7 +19,7 @@ check_os() {
 
 # Check if Xcode CLI is installed
 check_xcode_tools() {
-  if [[ "$(get_os)" == 'macos' ]]; then
+  if [[ "$(os::get_name)" == 'macos' ]]; then
     if ! xcode-select --print-path &> /dev/null; then
       output::error "Xcode Command Line tools are not installed!"
 

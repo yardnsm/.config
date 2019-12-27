@@ -3,7 +3,7 @@
 # ---------------------------------------------
 
 # Detect os
-get_os() {
+os::get_name() {
   if [[ "$(uname -s)" == "Linux" ]]; then
     echo "linux"
   elif [[ "$(uname -s)" == "Darwin" ]]; then
