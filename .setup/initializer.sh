@@ -14,19 +14,19 @@ if [[ -z "$__initialized" ]]; then
 
   __initialized=1
 
-  source "./utils/functions/apt.sh"
-  source "./utils/functions/brew.sh"
-  source "./utils/functions/gem.sh"
-  source "./utils/functions/npm.sh"
-  source "./utils/functions/pip.sh"
+  source "./lib/functions/apt.sh"
+  source "./lib/functions/brew.sh"
+  source "./lib/functions/gem.sh"
+  source "./lib/functions/npm.sh"
+  source "./lib/functions/pip.sh"
 
-  source "./utils/ask.sh"
-  source "./utils/commands.sh"
-  source "./utils/topics.sh"
-  source "./utils/messages.sh"
-  source "./utils/os.sh"
-  source "./utils/spinner.sh"
-  source "./utils/symlink.sh"
+  source "./lib/ask.sh"
+  source "./lib/commands.sh"
+  source "./lib/topics.sh"
+  source "./lib/messages.sh"
+  source "./lib/os.sh"
+  source "./lib/spinner.sh"
+  source "./lib/symlink.sh"
 
   source "./variables.sh"
 fi
