@@ -17,7 +17,7 @@ add_topic() {
     topics+=( "$1" )
   else
     echo
-    print_error "Error: topic $1 does not exist!"
+    output::error "Error: topic $1 does not exist!"
     exit 1
   fi
 }
@@ -26,18 +26,18 @@ add_topic() {
 
 install_local_dotfiles() {
 
-  print_title "Running local installation script"
+  output::title "Running local installation script"
   printf '\n'
 
   if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
-    print_status "A dotfiles-local directory was found with
+    output::status "A dotfiles-local directory was found with
         an install.sh script. It'll run in 3 seconds."
 
     sleep 3
 
     source "$DOTFILES_LOCAL/install.sh"
   else
-    print_status "No local installation script was found"
+    output::status "No local installation script was found"
   fi
 }
 
@@ -45,33 +45,33 @@ install_local_dotfiles() {
 
 start_procedure() {
 
-  print_welcome_message
+  output::welcome_message
 
   if [[ ${#topics} -ne 0 ]]; then
     echo
 
     if [[ ${exclude_topics} -eq 1 ]]; then
-      print_status "Topics to exclude: ${topics[*]}"
+      output::status "Topics to exclude: ${topics[*]}"
     else
-      print_status "Topics to install: ${topics[*]}"
+      output::status "Topics to install: ${topics[*]}"
     fi
   fi
 
-  print_title "Getting ready"
+  output::title "Getting ready"
 
   # Run preinstall script
-  print_info "Make sure everything's alright"
+  output::info "Make sure everything's alright"
   source "./.setup/preinstall.sh"
 
   # Ask if it's okay
   if ! [[ $auto_yes -eq 1 ]]; then
-    print_info "Just to make sure"
+    output::info "Just to make sure"
     ask::prompt_confirmation "Continue? "
   fi
 
   # Check if answer is yes
   if ! ask::answer_is_yes || [[ $auto_yes -ne 1 ]]; then
-    print_error "Error: aborted"
+    output::error "Error: aborted"
     check_for_sudo
 
     exit 1
@@ -85,7 +85,7 @@ start_procedure() {
 
   install_local_dotfiles
 
-  print_finish_message
+  output::info " Setup is done! You might need to restart your system to see full changes."
 }
 
 # ---------------------------------------------

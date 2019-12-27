@@ -11,10 +11,10 @@ declare -r FNM_INSTALL_FILE="https://raw.githubusercontent.com/Schniz/fnm/master
 # ---------------------------------------------
 
 main() {
-  print_info "Installing fnm"
+  output::info "Installing fnm"
 
   if [[ -d "$FNM_DIR" ]]; then
-    print_success "fnm is installed"
+    output::success "fnm is installed"
   else
     commands::execute "curl $FNM_INSTALL_FILE | bash -s -- --install-dir $FNM_DIR --skip-shell" \
       "Installing fnm"

@@ -11,7 +11,7 @@ main() {
       &> /dev/null
   fi
 
-  print_result $? 'homebrew'
+  output::result $? 'homebrew'
 
   # Tap stuff
   if commands::exists 'brew'; then
@@ -20,7 +20,7 @@ main() {
     brew::tap "caskroom/fonts"
     brew::tap "ravenac95/sudolikeaboss"
   else
-    print_error "Homebrew is not installed!"
+    output::error "Homebrew is not installed!"
   fi
 }
 

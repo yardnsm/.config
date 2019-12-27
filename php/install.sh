@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 main() {
-  print_info "Installing phpbrew"
+  output::info "Installing phpbrew"
 
   if ! commands::exists 'phpbrew'; then
     commands::execute "curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && chmod +x phpbrew" \
@@ -15,7 +15,7 @@ main() {
     commands::execute "sudo mv phpbrew /usr/local/bin/phpbrew" \
       "Installing to /usr/local/bin/"
   else
-    print_success 'phpbrew is already installed'
+    output::success 'phpbrew is already installed'
   fi
 }
 

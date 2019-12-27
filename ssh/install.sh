@@ -27,17 +27,17 @@ verify_connection() {
 # ---------------------------------------------
 
 main() {
-  print_info "Generating SSH key for GitHub"
+  output::info "Generating SSH key for GitHub"
 
   if is_connection_valid; then
-    print_success "Connection to GitHub is valid"
+    output::success "Connection to GitHub is valid"
   elif [[ -f "${SSH_KEY_PATH}.pub" ]]; then
-    print_success "SSH key exists"
+    output::success "SSH key exists"
   else
 
     ask::prompt "Please enter your email address: " && echo
     ssh-keygen -t rsa -b 4096 -C "$(ask::get_answer)" -f "$SSH_KEY_PATH" && echo
-    print_result $? "Generate SSH keys"
+    output::result $? "Generate SSH keys"
 
     commands::execute "$(ssh-agent -s)" \
       "Starting SSH agent"
@@ -46,10 +46,10 @@ main() {
       "Adding id_rsa to the ssh-agent"
 
     actions::copy_to_clipboard "$(cat "${SSH_KEY_PATH}.pub")"
-    print_result $? "Copy public SSH key to clipboard"
+    output::result $? "Copy public SSH key to clipboard"
 
     actions::open "https://github.com/settings/keys"
-    print_result $? "Opening GitHub settings page"
+    output::result $? "Opening GitHub settings page"
 
     verify_connection & show_spinner $! \
       "Verifying SSH connection"

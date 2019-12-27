@@ -27,7 +27,7 @@ show_spinner() {
   while kill -0 "$PID" &> /dev/null; do
     current_frame="${FRAMES:i++%${#FRAMES}:1}"
 
-    print_in_blue "     $current_frame" && printf "  %s" "$MESSAGE"
+    output::blue "     $current_frame" && printf "  %s" "$MESSAGE"
 
     # Clear it
     printf "\\r"

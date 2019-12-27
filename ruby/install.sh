@@ -16,7 +16,7 @@ declare -r gems=(
 # ---------------------------------------------
 
 main() {
-  print_info "Installing Gems"
+  output::info "Installing Gems"
 
   for gem in "${gems[@]}"; do
     gem::install "$gem"

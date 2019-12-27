@@ -42,7 +42,7 @@ declare -a SYMLINKS=(
 # ---------------------------------------------
 
 main() {
-  print_info "Create symlinks"
+  output::info "Create symlinks"
   create_symlinks "${SYMLINKS[@]}"
 }
 

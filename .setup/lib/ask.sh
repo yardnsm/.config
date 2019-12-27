@@ -11,13 +11,13 @@ ask::answer_is_yes() {
 
 # Ask a question
 ask::prompt() {
-  print_question "$1"
+  output::question "$1"
   read -r
 }
 
 # Ask a question for confirmation
 ask::prompt_confirmation() {
-  print_question "$1 [y/N] "
+  output::question "$1 [y/N] "
   read -r -n 1
   printf "\\n"
 }
@@ -46,7 +46,7 @@ ask::prompt_sudo() {
 
 # Check for sudo permissions. Ask for one if not granted before.
 check_for_sudo() {
-  print_info "Checking for sudo permissions"
+  output::info "Checking for sudo permissions"
   ask::prompt_sudo
-  print_result $? "Permission to destroy this machine was granted"
+  output::result $? "Permission to destroy this machine was granted"
 }

@@ -27,12 +27,12 @@ pip::install() {
   package="$1"
 
   if [[ ${pip_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\\n"
+    output::status "Fetching installed packages. This could take a while...\\n"
     pip_list=$($pip_command list --format=legacy)
   fi
 
   if echo "${pip_list}" | grep -q "${package}"; then
-    print_success "$package (already installed)"
+    output::success "$package (already installed)"
   else
     commands::execute "$pip_command install $package" "$package"
   fi

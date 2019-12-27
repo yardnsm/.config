@@ -12,12 +12,12 @@ brew::install() {
   tap="$2"
 
   if [[ ${brew_list} = "" ]]; then
-    print_status "Fetching installed packages. This could take a while...\\n"
+    output::status "Fetching installed packages. This could take a while...\\n"
     brew_list=$(brew list && brew cask list)
   fi
 
   if echo "${brew_list}" | grep -q "${formula}"; then
-    print_success "$formula (already installed)"
+    output::success "$formula (already installed)"
   else
     commands::execute "brew $tap install $formula" "$formula"
   fi
@@ -38,7 +38,7 @@ brew::tap() {
   fi
 
   if echo "${brew_taps_list}" | grep -q "${tap}"; then
-    print_success "$tap (already installed)"
+    output::success "$tap (already installed)"
   else
     commands::execute "brew tap $tap" "Tapping $tap"
   fi

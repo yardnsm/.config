@@ -38,18 +38,18 @@ install_specific_topic() {
 
     # Check if has an install script
     if [[ -f $DOTFILES/$TOPIC/install.sh ]]; then
-      print_title "Current topic is '$TOPIC'"
+      output::title "Current topic is '$TOPIC'"
       source "$DOTFILES/$TOPIC/install.sh"
     fi
 
     # Check for OS-specific installtion
     if [[ -f $DOTFILES/$TOPIC/install-$OS.sh ]]; then
-      print_title "Running os-specific installation for '$TOPIC'"
+      output::title "Running os-specific installation for '$TOPIC'"
       source "$DOTFILES/$TOPIC/install-$OS.sh"
     fi
   else
-    print_title "Current topic is '$TOPIC'\\n"
-    print_error "Topic $TOPIC does not exist!"
+    output::title "Current topic is '$TOPIC'\\n"
+    output::error "Topic $TOPIC does not exist!"
   fi
 }
 

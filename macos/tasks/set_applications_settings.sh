@@ -2,7 +2,7 @@
 
 # ---------------------------------------------
 
-print_info "Transmission"
+output::info "Transmission"
 
 commands::execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \
   "Delete the original torrent files"
@@ -23,7 +23,7 @@ commands::execute "defaults write org.m0k.transmission WarningLegal -bool false"
 
 # ---------------------------------------------
 
-print_info "Google Chrome"
+output::info "Google Chrome"
 
 commands::execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false" \
   "Disable backswipe"
@@ -36,7 +36,7 @@ commands::execute "defaults write com.google.Chrome DisablePrintPreview -bool tr
 
 # ---------------------------------------------
 
-print_info "iTerm2"
+output::info "iTerm2"
 
 commands::execute "defaults write com.googlecode.iterm2 PromptOnQuit -bool false" \
   "Do not display the annoying prompt when quitting iTerm"

@@ -5,7 +5,7 @@
 
 # ---------------------------------------------
 
-print_info "General UI/UX"
+output::info "General UI/UX"
 
 commands::execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true" \
   "Avoid creating '.DS_Store' files on network volumes"
@@ -45,7 +45,7 @@ commands::execute "defaults write NSGlobalDomain PMPrintingExpandedStateForPrint
 
 # ---------------------------------------------
 
-print_info "Trackpad and keyboard"
+output::info "Trackpad and keyboard"
 
 commands::execute "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3" \
   "Enable full keyboard access for all controls"
@@ -71,7 +71,7 @@ commands::execute "defaults write com.apple.universalaccess closeViewScrollWheel
 
 # ---------------------------------------------
 
-print_info "Language and Region"
+output::info "Language and Region"
 
 commands::execute "defaults write NSGlobalDomain AppleLanguages -array 'en'" \
   "Set language"
@@ -84,7 +84,7 @@ commands::execute "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEn
 
 # ---------------------------------------------
 
-print_info "Finder"
+output::info "Finder"
 
 commands::execute "defaults write com.apple.finder ShowRecentTags -bool false" \
   "Do not show recent tags"
@@ -113,7 +113,7 @@ commands::execute "defaults write com.apple.finder QLEnableTextSelection -bool t
 
 # ---------------------------------------------
 
-print_info "Dock and Dashboard"
+output::info "Dock and Dashboard"
 
 commands::execute "defaults write com.apple.dashboard mcx-disabled -bool true" \
   "Disable Dashboard"
@@ -132,7 +132,7 @@ commands::execute "defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # ---------------------------------------------
 
-print_info "Safari"
+output::info "Safari"
 
 commands::execute "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false" \
   "Disable opening 'safe' files automatically"
@@ -166,7 +166,7 @@ commands::execute "defaults write NSGlobalDomain WebKitDeveloperExtras -bool tru
 
 # ---------------------------------------------
 
-print_info "Mac Applications"
+output::info "Mac Applications"
 
 commands::execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 &&
   defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \
@@ -180,7 +180,7 @@ commands::execute "defaults -currentHost write com.apple.ImageCapture disableHot
 
 # ---------------------------------------------
 
-print_info "Time Machine"
+output::info "Time Machine"
 
 commands::execute "defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true" \
   "Prevent Time Machine from prompting to use new hard drives as backup volume"

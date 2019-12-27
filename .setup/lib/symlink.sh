@@ -38,9 +38,9 @@ create_symlinks() {
       commands::execute "ln -sf $src_realpath $dest_realpath" \
         "$src_realpath -> ~${dest_realpath#$HOME}"
     elif [[ "$(readlink "$dest_realpath")" == "$src_realpath" ]]; then
-      print_success "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
+      output::success "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
     else
-      print_error "~${dest_realpath#$HOME} already exists, Skipping."
+      output::error "~${dest_realpath#$HOME} already exists, Skipping."
     fi
   done
 }

@@ -19,7 +19,7 @@ declare -r packages=(
 # ---------------------------------------------
 
 apt_update() {
-  print_info "Updating apt"
+  output::info "Updating apt"
 
   commands::execute "sudo apt-get update -qqy" \
     "apt-get (update)"
@@ -28,7 +28,7 @@ apt_update() {
 # ---------------------------------------------
 
 apt_install_packages() {
-  print_info "Install APT packages"
+  output::info "Install APT packages"
 
   for package in "${packages[@]}"; do
     apt::install "$package"
@@ -38,7 +38,7 @@ apt_install_packages() {
 # ---------------------------------------------
 
 apt_cleanup() {
-  print_info "Cleanup"
+  output::info "Cleanup"
 
   commands::execute "sudo apt-get autoremove -qqy" \
     "apt-get (autoremove)"

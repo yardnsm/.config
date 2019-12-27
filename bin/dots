@@ -12,7 +12,7 @@ run_install() {
 run_topic() {
   if [[ -z "$1" ]]; then
     echo
-    print_error "No topic provided"
+    output::error "No topic provided"
     return 1
   fi
 
@@ -20,7 +20,7 @@ run_topic() {
 }
 
 list_topics() {
-  print_title "Available topics"
+  output::title "Available topics"
   echo
 
   local list_all=0

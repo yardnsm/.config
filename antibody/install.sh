@@ -6,13 +6,13 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 main() {
-  print_info "Installing Antibody"
+  output::info "Installing Antibody"
 
   if ! commands::exists 'antibody'; then
     commands::execute "curl -s https://raw.githubusercontent.com/getantibody/installer/master/install | bash -s - -b /usr/local/bin" \
       "Installing Antibody"
   else
-    print_success 'Antibody is already installed'
+    output::success 'Antibody is already installed'
   fi
 }
 

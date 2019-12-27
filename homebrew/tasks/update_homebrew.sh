@@ -8,7 +8,7 @@ main() {
   if commands::exists 'brew'; then
     commands::execute "brew update"
   else
-    print_status "Homebrew is not installed, can't update"
+    output::status "Homebrew is not installed, can't update"
   fi
 }
 

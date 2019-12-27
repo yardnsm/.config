@@ -40,7 +40,7 @@ declare -r dependencies=(
 # ---------------------------------------------
 
 main() {
-  print_info "Installing NPM global dependencies"
+  output::info "Installing NPM global dependencies"
 
   for dep in "${dependencies[@]}"; do
     npm::install "$dep"

@@ -24,6 +24,6 @@ commands::execute() {
   wait $pid &> /dev/null
   exit_code=$?
 
-  print_result $exit_code "${MSG:-$CMD}"
+  output::result $exit_code "${MSG:-$CMD}"
   return $exit_code
 }
