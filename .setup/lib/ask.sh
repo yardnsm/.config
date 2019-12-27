@@ -45,7 +45,7 @@ ask::prompt_sudo() {
 }
 
 # Check for sudo permissions. Ask for one if not granted before.
-check_for_sudo() {
+ask::check_sudo() {
   output::info "Checking for sudo permissions"
   ask::prompt_sudo
   output::result $? "Permission to destroy this machine was granted"

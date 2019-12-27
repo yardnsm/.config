@@ -70,12 +70,12 @@ start_procedure() {
   fi
 
   # Check if answer is yes
-  if ! ask::answer_is_yes || [[ $auto_yes -ne 1 ]]; then
+  if ! ( ask::answer_is_yes || [[ $auto_yes -eq 1 ]] ); then
     output::error "Error: aborted"
-    check_for_sudo
-
     exit 1
   fi
+
+  ask::check_sudo
 
   if [[ ${exclude_topics} -eq 1 ]]; then
     topics::install_multiple "" "${topics[*]}"
