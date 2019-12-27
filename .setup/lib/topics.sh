@@ -3,7 +3,7 @@
 # ---------------------------------------------
 
 # Get all topics
-get_all_topics() {
+topics::get_all() {
   find "$DOTFILES" \
     -maxdepth 1 \
     -type d \
@@ -14,7 +14,7 @@ get_all_topics() {
 }
 
 # Get all the runnable topics
-get_runnable_topics() {
+topics::get_runnable() {
   find "$DOTFILES" \
     -mindepth 2 \
     -maxdepth 2 \
@@ -24,17 +24,17 @@ get_runnable_topics() {
 }
 
 # Check if a topic exists
-is_topic_exist() {
+topics::exists() {
   test -d "$DOTFILES/$1"
   return $?
 }
 
 # Install a specific topic
-install_specific_topic() {
+topics::install_single() {
   local -r TOPIC=$1
   local -r OS="$(get_os)"
 
-  if is_topic_exist "$TOPIC"; then
+  if topics::exists "$TOPIC"; then
 
     # Check if has an install script
     if [[ -f $DOTFILES/$TOPIC/install.sh ]]; then
@@ -55,7 +55,7 @@ install_specific_topic() {
 
 # Run the installation script for each topic
 # shellcheck disable=SC2207,SC2206
-install_topics() {
+topics::install_multiple() {
   local topics_to_install=( $1 )
   local topics_to_exclude=( $2 )
 
@@ -63,7 +63,7 @@ install_topics() {
   local is_ignored
 
   [[ ${#topics_to_install} -eq 0 ]] \
-    && topics_to_install=( $(get_all_topics) )
+    && topics_to_install=( $(topics::get_all) )
 
   for topic in "${topics_to_install[@]}"; do
 
@@ -78,7 +78,7 @@ install_topics() {
     done
 
     if [[ -z $is_ignored ]]; then
-      install_specific_topic "$topic"
+      topics::install_single "$topic"
     fi
   done
 }

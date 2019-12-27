@@ -13,7 +13,7 @@ declare exclude_topics=0
 # ---------------------------------------------
 
 add_topic() {
-  if is_topic_exist "$1"; then
+  if topics::exists "$1"; then
     topics+=( "$1" )
   else
     echo
@@ -78,9 +78,9 @@ start_procedure() {
   fi
 
   if [[ ${exclude_topics} -eq 1 ]]; then
-    install_topics "" "${topics[*]}"
+    topics::install_multiple "" "${topics[*]}"
   else
-    install_topics "${topics[*]}"
+    topics::install_multiple "${topics[*]}"
   fi
 
   install_local_dotfiles
