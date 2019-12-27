@@ -34,6 +34,6 @@ pip::install() {
   if echo "${pip_list}" | grep -q "${package}"; then
     print_success "$package (already installed)"
   else
-    execute "$pip_command install $package" "$package"
+    commands::execute "$pip_command install $package" "$package"
   fi
 }

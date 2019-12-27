@@ -3,9 +3,9 @@
 # ---------------------------------------------
 
 main() {
-  if cmd_exists 'brew'; then
-    execute 'brew cleanup' 'brew (cleanup)'
-    execute 'brew cask cleanup' 'brew cask (cleanup)'
+  if commands::exists 'brew'; then
+    commands::execute 'brew cleanup' 'brew (cleanup)'
+    commands::execute 'brew cask cleanup' 'brew cask (cleanup)'
   fi
 }
 

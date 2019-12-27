@@ -19,7 +19,7 @@ brew::install() {
   if echo "${brew_list}" | grep -q "${formula}"; then
     print_success "$formula (already installed)"
   else
-    execute "brew $tap install $formula" "$formula"
+    commands::execute "brew $tap install $formula" "$formula"
   fi
 }
 
@@ -40,6 +40,6 @@ brew::tap() {
   if echo "${brew_taps_list}" | grep -q "${tap}"; then
     print_success "$tap (already installed)"
   else
-    execute "brew tap $tap" "Tapping $tap"
+    commands::execute "brew tap $tap" "Tapping $tap"
   fi
 }

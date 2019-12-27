@@ -11,6 +11,6 @@ apt::install() {
   if (dpkg -s "$package" &> /dev/null) ; then
     print_success "$package (already installed)"
   else
-    execute "sudo apt-get install --allow-unauthenticated -qqy $package" "$package"
+    commands::execute "sudo apt-get install --allow-unauthenticated -qqy $package" "$package"
   fi
 }

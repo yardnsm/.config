@@ -18,6 +18,6 @@ npm::install() {
   if echo "${npm_list}" | grep -q "${package}@"; then
     print_success "$package (already installed)"
   else
-    execute "sudo npm install $package -g" "$package"
+    commands::execute "sudo npm install $package -g" "$package"
   fi
 }

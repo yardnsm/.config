@@ -29,13 +29,13 @@ main() {
   if [[ -e "$VIM_PLUG_PATH" ]]; then
     print_success "vim-plug is installed"
   else
-    execute "curl -fLo $VIM_PLUG_PATH --create-dirs $VIM_PLUG_FILE" \
+    commands::execute "curl -fLo $VIM_PLUG_PATH --create-dirs $VIM_PLUG_FILE" \
       "Installing vim-plug"
   fi
 
   print_info "Installing plugins"
 
-  execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
+  commands::execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
     "Installing plugins"
 
   print_info "Installing coc.nvim extensions"
@@ -50,7 +50,7 @@ main() {
 
   for ext in "${COC_EXTENSIONS[@]}"; do
     # coc.nvim uses yarn for some reason, so we'll also use it here
-    execute "yarn add $ext --frozen-lockfile --ignore-engines" \
+    commands::execute "yarn add $ext --frozen-lockfile --ignore-engines" \
       "Installing $ext"
   done
 

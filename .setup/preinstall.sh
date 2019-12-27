@@ -41,7 +41,7 @@ check_git_submodules() {
   pushd "$DOTFILES" &> /dev/null \
     || return 1
 
-  execute "git submodule update --init --recursive --remote -q" \
+  commands::execute "git submodule update --init --recursive --remote -q" \
     "Initializing git modules"
 
   popd &> /dev/null \

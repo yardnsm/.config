@@ -21,7 +21,7 @@ declare -r packages=(
 apt_update() {
   print_info "Updating apt"
 
-  execute "sudo apt-get update -qqy" \
+  commands::execute "sudo apt-get update -qqy" \
     "apt-get (update)"
 }
 
@@ -40,7 +40,7 @@ apt_install_packages() {
 apt_cleanup() {
   print_info "Cleanup"
 
-  execute "sudo apt-get autoremove -qqy" \
+  commands::execute "sudo apt-get autoremove -qqy" \
     "apt-get (autoremove)"
 }
 

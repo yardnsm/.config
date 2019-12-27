@@ -35,7 +35,7 @@ create_symlinks() {
       || dest_realpath="$HOME/$item_dest"
 
     if ! [[ -e "$dest_realpath" ]]; then
-      execute "ln -sf $src_realpath $dest_realpath" \
+      commands::execute "ln -sf $src_realpath $dest_realpath" \
         "$src_realpath -> ~${dest_realpath#$HOME}"
     elif [[ "$(readlink "$dest_realpath")" == "$src_realpath" ]]; then
       print_success "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"

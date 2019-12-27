@@ -4,9 +4,9 @@
 
 # Copy smth to clipboard
 copy_to_clipboard() {
-  if cmd_exists "pbcopy"; then
+  if commands::exists "pbcopy"; then
     echo "$1" | pbcopy
-  elif cmd_exists "xclip"; then
+  elif commands::exists "xclip"; then
     echo "$1" | xclip -selection clip
   else
     return 1
@@ -15,9 +15,9 @@ copy_to_clipboard() {
 
 # Open smth in browser
 open_in_browser() {
-  if cmd_exists "xdg-open"; then
+  if commands::exists "xdg-open"; then
     xdg-open "$1"
-  elif cmd_exists "open"; then
+  elif commands::exists "open"; then
     open "$1"
   else
     return 1

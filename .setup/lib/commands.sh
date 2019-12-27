@@ -3,13 +3,13 @@
 # ---------------------------------------------
 
 # Check if a command exists
-cmd_exists() {
+commands::exists() {
   command -v "$1" &> /dev/null
   return $?
 }
 
 # Execute a command and print a message (and show a spinner!)
-execute() {
+commands::execute() {
   local -r CMD="$1"
   local -r MSG="$2"
 

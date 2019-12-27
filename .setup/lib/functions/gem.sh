@@ -18,6 +18,6 @@ gem::install() {
   if echo "${gem_list}" | grep -q "${package}"; then
     print_success "$package (already installed)"
   else
-    execute "gem install $package" "$package"
+    commands::execute "gem install $package" "$package"
   fi
 }

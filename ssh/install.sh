@@ -39,10 +39,10 @@ main() {
     ssh-keygen -t rsa -b 4096 -C "$(ask::get_answer)" -f "$SSH_KEY_PATH" && echo
     print_result $? "Generate SSH keys"
 
-    execute "$(ssh-agent -s)" \
+    commands::execute "$(ssh-agent -s)" \
       "Starting SSH agent"
 
-    execute "ssh-add -K ${SSH_KEY_PATH}" \
+    commands::execute "ssh-add -K ${SSH_KEY_PATH}" \
       "Adding id_rsa to the ssh-agent"
 
     copy_to_clipboard "$(cat "${SSH_KEY_PATH}.pub")"

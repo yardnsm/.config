@@ -16,7 +16,7 @@ main() {
   if [[ -d "$FNM_DIR" ]]; then
     print_success "fnm is installed"
   else
-    execute "curl $FNM_INSTALL_FILE | bash -s -- --install-dir $FNM_DIR --skip-shell" \
+    commands::execute "curl $FNM_INSTALL_FILE | bash -s -- --install-dir $FNM_DIR --skip-shell" \
       "Installing fnm"
   fi
 }
