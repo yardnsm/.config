@@ -6,7 +6,7 @@
 
 brew_list=""
 
-brew_install() {
+brew::install() {
 
   formula="$1"
   tap="$2"
@@ -29,7 +29,7 @@ brew_install() {
 
 brew_taps_list=""
 
-brew_tap() {
+brew::tap() {
 
   tap="$1"
 

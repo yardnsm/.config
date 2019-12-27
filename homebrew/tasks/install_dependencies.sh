@@ -60,7 +60,7 @@ declare -r formulae=(
 
 main () {
   for formula in "${formulae[@]}"; do
-    brew_install "$formula"
+    brew::install "$formula"
   done
 }
 

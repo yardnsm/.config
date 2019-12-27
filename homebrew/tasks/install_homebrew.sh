@@ -15,10 +15,10 @@ main() {
 
   # Tap stuff
   if cmd_exists 'brew'; then
-    brew_tap "caskroom/cask"
-    brew_tap "caskroom/versions"
-    brew_tap "caskroom/fonts"
-    brew_tap "ravenac95/sudolikeaboss"
+    brew::tap "caskroom/cask"
+    brew::tap "caskroom/versions"
+    brew::tap "caskroom/fonts"
+    brew::tap "ravenac95/sudolikeaboss"
   else
     print_error "Homebrew is not installed!"
   fi
