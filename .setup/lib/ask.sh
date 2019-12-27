@@ -3,32 +3,32 @@
 # ---------------------------------------------
 
 # Check if the last reply was yes
-answer_is_yes() {
+ask::answer_is_yes() {
   [[ "$REPLY" =~ ^[Yy]$ ]] \
     && return 0 \
     || return 1
 }
 
 # Ask a question
-ask() {
+ask::prompt() {
   print_question "$1"
   read -r
 }
 
 # Ask a question for confirmation
-ask_for_confirmation() {
+ask::prompt_confirmation() {
   print_question "$1 [y/N] "
   read -r -n 1
   printf "\\n"
 }
 
 # Get the last answer
-get_answer() {
+ask::get_answer() {
   printf "%s" "$REPLY"
 }
 
 # Ask for sudo permission
-ask_for_sudo() {
+ask::prompt_sudo() {
 
   # Travis has an issue with `sudo` on mac, so we'll just wont use it for now.
   [[ -n "$CI" ]] && \
@@ -47,6 +47,6 @@ ask_for_sudo() {
 # Check for sudo permissions. Ask for one if not granted before.
 check_for_sudo() {
   print_info "Checking for sudo permissions"
-  ask_for_sudo
+  ask::prompt_sudo
   print_result $? "Permission to destroy this machine was granted"
 }

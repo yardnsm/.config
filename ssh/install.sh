@@ -35,8 +35,8 @@ main() {
     print_success "SSH key exists"
   else
 
-    ask "Please enter your email address: " && echo
-    ssh-keygen -t rsa -b 4096 -C "$(get_answer)" -f "$SSH_KEY_PATH" && echo
+    ask::prompt "Please enter your email address: " && echo
+    ssh-keygen -t rsa -b 4096 -C "$(ask::get_answer)" -f "$SSH_KEY_PATH" && echo
     print_result $? "Generate SSH keys"
 
     execute "$(ssh-agent -s)" \

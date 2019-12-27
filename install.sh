@@ -66,11 +66,11 @@ start_procedure() {
   # Ask if it's okay
   if ! [[ $auto_yes -eq 1 ]]; then
     print_info "Just to make sure"
-    ask_for_confirmation "Continue? "
+    ask::prompt_confirmation "Continue? "
   fi
 
   # Check if answer is yes
-  if ! answer_is_yes || [[ $auto_yes -ne 1 ]]; then
+  if ! ask::answer_is_yes || [[ $auto_yes -ne 1 ]]; then
     print_error "Error: aborted"
     check_for_sudo
 
