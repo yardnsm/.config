@@ -31,7 +31,7 @@ apt_install_packages() {
   print_info "Install APT packages"
 
   for package in "${packages[@]}"; do
-    apt_install "$package"
+    apt::install "$package"
   done
 }
 

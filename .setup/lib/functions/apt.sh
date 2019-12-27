@@ -4,7 +4,7 @@
 
 # Install a package from apt-get
 
-apt_install() {
+apt::install() {
 
   package="$1"
 
