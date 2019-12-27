@@ -24,8 +24,8 @@ if [[ -z "$__initialized" ]]; then
   source "./lib/ask.sh"
   source "./lib/commands.sh"
   source "./lib/topics.sh"
-  source "./lib/messages.sh"
   source "./lib/os.sh"
+  source "./lib/output.sh"
   source "./lib/spinner.sh"
   source "./lib/symlink.sh"
 
