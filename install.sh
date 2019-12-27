@@ -70,21 +70,20 @@ start_procedure() {
   fi
 
   # Check if answer is yes
-  if answer_is_yes || [[ $auto_yes -eq 1 ]]; then
+  if ! answer_is_yes || [[ $auto_yes -ne 1 ]]; then
+    print_error "Error: aborted"
     check_for_sudo
 
-    if [[ ${exclude_topics} -eq 1 ]]; then
-      install_topics "" "${topics[*]}"
-    else
-      install_topics "${topics[*]}"
-    fi
-
-    install_local_dotfiles
-
-  else
-    print_error "Error: aborted"
     exit 1
   fi
+
+  if [[ ${exclude_topics} -eq 1 ]]; then
+    install_topics "" "${topics[*]}"
+  else
+    install_topics "${topics[*]}"
+  fi
+
+  install_local_dotfiles
 
   print_finish_message
 }

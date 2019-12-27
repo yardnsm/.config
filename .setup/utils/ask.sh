@@ -36,11 +36,6 @@ ask_for_sudo() {
     [[ "$(get_os)" == "macos" ]] && \
     return 1
 
-  tput sc              # Save the cursor position
-  sudo -v &> /dev/null # Ask for sudo
-  tput rc              # Return the saved cursor position
-  tput ed              # Clear the screen from the cursor to the bottom
-
   # Update the sudo timestamp till the script will finish
   while true; do
     sudo -n true
