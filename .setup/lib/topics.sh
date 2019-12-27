@@ -61,7 +61,7 @@ topics::install_multiple() {
     && topics_to_install=( $(topics::get_all) )
 
   for topic in "${topics_to_install[@]}"; do
-    if [[ ! " ${topics_to_exclude[*]} " == *"${topic}"* ]]; then
+    if [[ ! " ${topics_to_exclude[*]} " == *" ${topic} "* ]]; then
       topics::install_single "$topic"
     fi
   done

@@ -5,6 +5,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
+os::verify "macos" \
+  || return 1
+
+# ---------------------------------------------
+
 main() {
   output::info "Install Homebrew and its taps"
   source "./tasks/install_homebrew.sh"
