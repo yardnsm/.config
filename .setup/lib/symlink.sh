@@ -12,7 +12,7 @@
 # $SOURCE_PATH may be a relative (to the CWD) or an absolute path, and $DEST_PATH must be a relative
 # path to $HOME. You can omit $DEST_PATH, and the symlink will be created directly at $HOME.
 #
-create_symlinks() {
+symlink::perform() {
   local -r SYMLINKS=( "$@" )
 
   local symlink_item
