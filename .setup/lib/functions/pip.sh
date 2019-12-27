@@ -19,7 +19,7 @@ _get_pip_command() {
 pip_list=""
 pip_command=""
 
-pip_install() {
+pip::install() {
 
   [[ -z "$pip_command" ]] \
     && pip_command="$(_get_pip_command)"
