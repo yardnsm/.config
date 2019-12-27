@@ -6,7 +6,7 @@
 
 gem_list=""
 
-gem_install() {
+gem::install() {
 
   package="$1"
 
