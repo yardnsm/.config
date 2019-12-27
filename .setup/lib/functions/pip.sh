@@ -2,9 +2,14 @@
 
 # ---------------------------------------------
 
+declare PIP_PACKAGES_LIST
+declare PIP_COMMAND
+
+# ---------------------------------------------
+
 # `pyenv` can cause trouble with its shims, so we're need to
 # figure out which `pip` executable to use
-_get_pip_command() {
+__get_pip_command() {
   local -a commands=( pip pip2 pip3 )
 
   for cmd in "${commands[@]}"; do
@@ -15,25 +20,21 @@ _get_pip_command() {
 }
 
 # Install a Pip
-
-pip_list=""
-pip_command=""
-
 pip::install() {
 
-  [[ -z "$pip_command" ]] \
-    && pip_command="$(_get_pip_command)"
+  [[ -z "$PIP_COMMAND" ]] \
+    && PIP_COMMAND="$(__get_pip_command)"
 
-  package="$1"
+  local package="$1"
 
-  if [[ ${pip_list} = "" ]]; then
+  if [[ -z "${PIP_PACKAGES_LIST}" ]]; then
     output::status "Fetching installed packages. This could take a while...\\n"
-    pip_list=$($pip_command list --format=legacy)
+    PIP_PACKAGES_LIST="$($PIP_COMMAND list --format=columns)"
   fi
 
-  if echo "${pip_list}" | grep -q "${package}"; then
+  if echo "${PIP_PACKAGES_LIST}" | grep -q "${package}"; then
     output::success "$package (already installed)"
   else
-    commands::execute "$pip_command install $package" "$package"
+    commands::execute "$PIP_COMMAND install $package" "$package"
   fi
 }

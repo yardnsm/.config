@@ -6,7 +6,7 @@
 
 apt::install() {
 
-  package="$1"
+  local package="$1"
 
   if (dpkg -s "$package" &> /dev/null) ; then
     output::success "$package (already installed)"

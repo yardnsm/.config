@@ -2,43 +2,42 @@
 
 # ---------------------------------------------
 
+declare HOMEBREW_PACKAGES_LIST
+declare HOMEBREW_TAPS_LIST
+
+# ---------------------------------------------
+
 # Install a hombrew / Cask package
-
-brew_list=""
-
 brew::install() {
 
-  formula="$1"
-  tap="$2"
+  local package="$1"
+  local tap="$2"
 
-  if [[ ${brew_list} = "" ]]; then
+  if [[ -z "${HOMEBREW_PACKAGES_LIST}" ]]; then
     output::status "Fetching installed packages. This could take a while...\\n"
-    brew_list=$(brew list && brew cask list)
+    HOMEBREW_PACKAGES_LIST="$(brew list && brew cask list)"
   fi
 
-  if echo "${brew_list}" | grep -q "${formula}"; then
-    output::success "$formula (already installed)"
+  if echo "${HOMEBREW_PACKAGES_LIST}" | grep -q "${package}"; then
+    output::success "$package (already installed)"
   else
-    commands::execute "brew $tap install $formula" "$formula"
+    commands::execute "brew $tap install $package" "$package"
   fi
 }
 
 # ---------------------------------------------
 
 # Install a hombrew tap
-
-brew_taps_list=""
-
 brew::tap() {
 
-  tap="$1"
+  local tap="$1"
 
-  if [[ ${brew_taps_list} = "" ]]; then
-    brew_taps_list=$(brew tap)
+  if [[ -z "${HOMEBREW_TAPS_LIST}" ]]; then
+    HOMEBREW_PACKAGES_LIST="$(brew tap)"
   fi
 
-  if echo "${brew_taps_list}" | grep -q "${tap}"; then
-    output::success "$tap (already installed)"
+  if echo "${HOMEBREW_TAPS_LIST}" | grep -q "${tap}"; then
+    output::success "Tapping $tap (already installed)"
   else
     commands::execute "brew tap $tap" "Tapping $tap"
   fi
