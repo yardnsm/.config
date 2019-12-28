@@ -19,7 +19,7 @@ commands::execute() {
   eval "$CMD" &> /dev/null &
   pid="$!"
 
-  spinner:show_for_process $pid "${MSG}"
+  spinner:show_for_process $pid "${MSG:-$CMD}"
 
   wait $pid &> /dev/null
   exit_code=$?

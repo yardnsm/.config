@@ -11,8 +11,11 @@ os::verify "macos" \
 # ---------------------------------------------
 
 main() {
-  output::info "Install Homebrew and its taps"
+  output::info "Install Homebrew"
   source "./tasks/install_homebrew.sh"
+
+  output::info "Install Taps"
+  source "./tasks/install_taps.sh"
 
   output::info "Updating Homebrew"
   source "./tasks/update_homebrew.sh"

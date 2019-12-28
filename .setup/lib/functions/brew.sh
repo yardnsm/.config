@@ -15,7 +15,7 @@ brew::install() {
 
   if [[ -z "${HOMEBREW_PACKAGES_LIST}" ]]; then
     output::status "Fetching installed packages. This could take a while...\\n"
-    HOMEBREW_PACKAGES_LIST="$(brew list && brew cask list)"
+    HOMEBREW_PACKAGES_LIST="$(brew list && brew cask list 2> /dev/null)"
   fi
 
   if echo "${HOMEBREW_PACKAGES_LIST}" | grep -q "${package}"; then
@@ -33,7 +33,7 @@ brew::tap() {
   local tap="$1"
 
   if [[ -z "${HOMEBREW_TAPS_LIST}" ]]; then
-    HOMEBREW_PACKAGES_LIST="$(brew tap)"
+    HOMEBREW_TAPS_LIST="$(brew tap 2> /dev/null)"
   fi
 
   if echo "${HOMEBREW_TAPS_LIST}" | grep -q "${tap}"; then
