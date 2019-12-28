@@ -39,7 +39,7 @@ commands::execute() {
   [[ -n "$__COMMANDS_OUTPUT_FILE" ]] \
     && printf '=%.0s' {1..80} >> "$__COMMANDS_OUTPUT_FILE" \
     && echo -e "\nIn ${BASH_SOURCE[1]}:${BASH_LINENO[0]} ${FUNCNAME[1]}" >> "$__COMMANDS_OUTPUT_FILE"  \
-    && echo -e "   > $CMD" >> "$__COMMANDS_OUTPUT_FILE\n"
+    && echo -e "   > $CMD\n" >> "$__COMMANDS_OUTPUT_FILE"
 
   # Run command and append output to output file
   eval "$CMD" >> "${__COMMANDS_OUTPUT_FILE:-/dev/null}" 2>&1 &
