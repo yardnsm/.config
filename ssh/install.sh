@@ -31,7 +31,7 @@ main() {
 
   if os::is_ci; then
     output::status "Skipping inside a CI"
-    return 0
+    return 1
   fi
 
   if is_connection_valid; then
