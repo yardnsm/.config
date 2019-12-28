@@ -22,7 +22,7 @@ matrix:
         - brew install shellcheck
 
     - os: linux
-      dist: trusty
+      dist: xenial
       before_script:
         - sudo apt-get update -qqy
         - sudo apt-get install -qqy shellcheck
