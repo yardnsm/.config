@@ -30,10 +30,8 @@ install_local_dotfiles() {
   printf '\n'
 
   if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
-    output::status "A dotfiles-local directory was found with
-        an install.sh script. It'll run in 3 seconds."
-
-    sleep 3
+    output::status "A dotfiles-local directory was found with an installation script."
+    sleep 1
 
     source "$DOTFILES_LOCAL/install.sh"
   else
