@@ -1,0 +1,33 @@
+name: main
+
+on: [push]
+
+env:
+  DEBUG_LOG_PATH: /tmp/dotfiles.debug.log
+
+jobs:
+  main:
+    name: Install and test the dotfiles
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+
+      - name: Checking-out repository
+        uses: actions/checkout@v2
+        with:
+          path: dotfiles
+
+      - name: Setting repository in $HOME
+        run: |
+          mv -f $GITHUB_WORKSPACE/dotfiles $HOME/dotfiles
+          cd $HOME/dotfiles
+        
+      - name: Running installation script
+        run: ./install.sh --yes --debug-log
+      
+      - name: Running tests
+        run: ./.test/shellcheck.sh
