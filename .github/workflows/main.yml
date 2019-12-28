@@ -9,7 +9,7 @@ jobs:
   main:
     name: Install and test the dotfiles
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
@@ -24,10 +24,13 @@ jobs:
       - name: Setting repository in $HOME
         run: |
           mv -f $GITHUB_WORKSPACE/dotfiles $HOME/dotfiles
-          cd $HOME/dotfiles
-        
+
       - name: Running installation script
-        run: ./install.sh --yes --debug-log
-      
+        run: |
+          cd $HOME/dotfiles
+          ./install.sh --yes --debug-log
+
       - name: Running tests
-        run: ./.test/shellcheck.sh
+        run: |
+          cd $HOME/dotfiles
+          ./.test/shellcheck.sh
