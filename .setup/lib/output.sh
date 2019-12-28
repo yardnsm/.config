@@ -2,91 +2,91 @@
 
 # ---------------------------------------------
 
-print_in_green() {
+output::green() {
   printf "\\e[0;32m%b\\e[0m" "$1"
 }
 
-print_in_blue() {
+output::blue() {
   printf "\\e[0;34m%b\\e[0m" "$1"
 }
 
-print_in_purple() {
+output::purple() {
   printf "\\e[0;35m%b\\e[0m" "$1"
 }
 
-print_in_cyan() {
+output::cyan() {
   printf "\\e[36m%b\\e[0m" "$1"
 }
 
-print_in_red() {
+output::red() {
   printf "\\e[0;31m%b\\e[0m" "$1"
 }
 
-print_in_yellow() {
+output::yellow() {
   printf "\\e[0;33m%b\\e[0m" "$1"
 }
 
-print_in_darkgrey() {
+output::darkgrey() {
   printf "\\e[0;90m%b\\e[0m" "$1"
 }
 
-print_in_white() {
+output::white() {
   printf "\\e[1;37m%b\\e[0m" "$1"
 }
 
 # ---------------------------------------------
 
-print_title() {
-  print_in_white "\\n$(tput bold)  -  $1$(tput sgr0)\\n"
+output::title() {
+  output::white "\\n$(tput bold)  -  $1$(tput sgr0)\\n"
 }
 
-print_info() {
-  print_in_cyan "\\n     $1\\n\\n"
+output::info() {
+  output::cyan "\\n     $1\\n\\n"
 }
 
-print_error() {
+output::error() {
   # shellcheck disable=SC2059
-  print_in_red "     ✘" && printf "  $1\\n"
+  output::red "     ✘" && printf "  $1\\n"
 }
 
-print_question() {
+output::question() {
   # shellcheck disable=SC2059
-  print_in_yellow "     ?" && printf "  $1"
+  output::yellow "     ?" && printf "  $1"
 }
 
-print_status() {
+output::status() {
   # shellcheck disable=SC2059
-  print_in_yellow "     ℹ" && printf "  $1\\n"
+  output::yellow "     ℹ" && printf "  $1\\n"
 }
 
-print_success() {
+output::success() {
   # shellcheck disable=SC2059
-  print_in_green "     ●" && printf "  $1\\n"
+  output::green "     ●" && printf "  $1\\n"
 }
 
 # ---------------------------------------------
 
 # Print the message based the last exit
-print_result() {
+output::result() {
   [[ "$1" -eq 0 ]] \
-    && print_success "$2" \
-    || print_error "$2"
+    && output::success "$2" \
+    || output::error "$2"
 
   return "$1"
 }
 
 # Print a divider (newline)
-function print_divider() {
+output::divider() {
   printf "\\n"
 }
 
 # Print welcome message
-print_welcome_message() {
+output::welcome_message() {
 
   tput cl
 
   # shellcheck disable=SC1117
-  print_in_blue "
+  output::blue "
           __        __   ____ __ __
      ____/ /____   / /_ / __//_// /___   _____
     / __  // __ \ / __// /_ / // // _ \ / ___/
@@ -97,13 +97,8 @@ print_welcome_message() {
 
 "
 
-  print_in_cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
+  output::cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
 
   [[ -d "$DOTFILES_LOCAL" ]] \
-    && print_in_cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
-}
-
-# Print finish message
-print_finish_message() {
-  print_info " Setup is done! You might need to restart your system to see full changes."
+    && output::cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
 }

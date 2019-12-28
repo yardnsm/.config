@@ -42,8 +42,8 @@ declare -a SYMLINKS=(
 # ---------------------------------------------
 
 main() {
-  print_info "Create symlinks"
-  create_symlinks "${SYMLINKS[@]}"
+  output::info "Create symlinks"
+  symlink::perform "${SYMLINKS[@]}"
 }
 
 main "$@"

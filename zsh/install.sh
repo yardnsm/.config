@@ -6,17 +6,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 main() {
-  print_info "Setting ZSH"
+  output::info "Setting ZSH"
 
   if [[ -n "$ZSH_VERSION" ]]; then
-    print_success "ZSH is already your shell"
+    output::success "ZSH is already your shell"
   elif command -v zsh &> /dev/null; then
-    print_status "Change shell to ZSH (re-login is required)\\n"
+    output::status "Change shell to ZSH (re-login is required)\\n"
 
     chsh -s "$(command -v zsh)" && echo
-    print_result $? "ZSH is now your shell"
+    output::result $? "ZSH is now your shell"
   else
-    print_status "zsh is not installed"
+    output::status "zsh is not installed"
   fi
 }
 

@@ -13,11 +13,11 @@ declare exclude_topics=0
 # ---------------------------------------------
 
 add_topic() {
-  if is_topic_exist "$1"; then
+  if topics::exists "$1"; then
     topics+=( "$1" )
   else
     echo
-    print_error "Error: topic $1 does not exist!"
+    output::error "Error: topic $1 does not exist!"
     exit 1
   fi
 }
@@ -26,18 +26,16 @@ add_topic() {
 
 install_local_dotfiles() {
 
-  print_title "Running local installation script"
+  output::title "Running local installation script"
   printf '\n'
 
   if [[ -f "$DOTFILES_LOCAL/install.sh" ]]; then
-    print_status "A dotfiles-local directory was found with
-        an install.sh script. It'll run in 3 seconds."
-
-    sleep 3
+    output::status "A dotfiles-local directory was found with an installation script."
+    sleep 1
 
     source "$DOTFILES_LOCAL/install.sh"
   else
-    print_status "No local installation script was found"
+    output::status "No local installation script was found"
   fi
 }
 
@@ -45,48 +43,47 @@ install_local_dotfiles() {
 
 start_procedure() {
 
-  print_welcome_message
+  output::welcome_message
 
   if [[ ${#topics} -ne 0 ]]; then
     echo
 
     if [[ ${exclude_topics} -eq 1 ]]; then
-      print_status "Topics to exclude: ${topics[*]}"
+      output::status "Topics to exclude: ${topics[*]}"
     else
-      print_status "Topics to install: ${topics[*]}"
+      output::status "Topics to install: ${topics[*]}"
     fi
   fi
 
-  print_title "Getting ready"
+  output::title "Getting ready"
 
   # Run preinstall script
-  print_info "Make sure everything's alright"
+  output::info "Make sure everything's alright"
   source "./.setup/preinstall.sh"
 
   # Ask if it's okay
   if ! [[ $auto_yes -eq 1 ]]; then
-    print_info "Just to make sure"
-    ask_for_confirmation "Continue? "
+    output::info "Just to make sure"
+    ask::prompt_confirmation "Continue? "
   fi
 
   # Check if answer is yes
-  if answer_is_yes || [[ $auto_yes -eq 1 ]]; then
-    check_for_sudo
-
-    if [[ ${exclude_topics} -eq 1 ]]; then
-      install_topics "" "${topics[*]}"
-    else
-      install_topics "${topics[*]}"
-    fi
-
-    install_local_dotfiles
-
-  else
-    print_error "Error: aborted"
+  if ! ( ask::answer_is_yes || [[ $auto_yes -eq 1 ]] ); then
+    output::error "Error: aborted"
     exit 1
   fi
 
-  print_finish_message
+  ask::check_sudo
+
+  if [[ ${exclude_topics} -eq 1 ]]; then
+    topics::install_multiple "" "${topics[*]}"
+  else
+    topics::install_multiple "${topics[*]}"
+  fi
+
+  install_local_dotfiles
+
+  output::info " Setup is done! You might need to restart your system to see full changes."
 }
 
 # ---------------------------------------------

@@ -12,15 +12,15 @@ run_install() {
 run_topic() {
   if [[ -z "$1" ]]; then
     echo
-    print_error "No topic provided"
+    output::error "No topic provided"
     return 1
   fi
 
-  install_specific_topic "$1"
+  topics::install_single "$1"
 }
 
 list_topics() {
-  print_title "Available topics"
+  output::title "Available topics"
   echo
 
   local list_all=0
@@ -33,9 +33,9 @@ list_topics() {
   local topics
 
   if [[ $list_all -eq 0 ]]; then
-    topics=( $(get_runnable_topics) )
+    topics=( $(topics::get_runnable) )
   else
-    topics=( $(get_all_topics) )
+    topics=( $(topics::get_all) )
   fi
 
   for topic in "${topics[@]}"; do

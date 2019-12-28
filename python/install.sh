@@ -24,10 +24,10 @@ declare -r pips=(
 # ---------------------------------------------
 
 main() {
-  print_info "Installing pips"
+  output::info "Installing pips"
 
   for pip in "${pips[@]}"; do
-    pip_install "$pip"
+    pip::install "$pip"
   done
 }
 

@@ -12,7 +12,7 @@
 # $SOURCE_PATH may be a relative (to the CWD) or an absolute path, and $DEST_PATH must be a relative
 # path to $HOME. You can omit $DEST_PATH, and the symlink will be created directly at $HOME.
 #
-create_symlinks() {
+symlink::perform() {
   local -r SYMLINKS=( "$@" )
 
   local symlink_item
@@ -35,12 +35,12 @@ create_symlinks() {
       || dest_realpath="$HOME/$item_dest"
 
     if ! [[ -e "$dest_realpath" ]]; then
-      execute "ln -sf $src_realpath $dest_realpath" \
+      commands::execute "ln -sf $src_realpath $dest_realpath" \
         "$src_realpath -> ~${dest_realpath#$HOME}"
     elif [[ "$(readlink "$dest_realpath")" == "$src_realpath" ]]; then
-      print_success "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
+      output::success "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
     else
-      print_error "~${dest_realpath#$HOME} already exists, Skipping."
+      output::error "~${dest_realpath#$HOME} already exists, Skipping."
     fi
   done
 }

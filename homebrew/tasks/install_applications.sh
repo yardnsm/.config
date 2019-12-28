@@ -66,16 +66,16 @@ declare -r fonts=(
 # ---------------------------------------------
 
 main() {
-  print_info "Install applications"
+  output::info "Install applications"
 
   for app in "${applications[@]}"; do
-    brew_install "$app" 'cask'
+    brew::install "$app" 'cask'
   done
 
-  print_info "Install fonts"
+  output::info "Install fonts"
 
   for font in "${fonts[@]}"; do
-    brew_install "$font" 'cask'
+    brew::install "$font" 'cask'
   done
 }
 

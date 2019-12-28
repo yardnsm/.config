@@ -3,7 +3,7 @@
 # ---------------------------------------------
 
 # Get all topics
-get_all_topics() {
+topics::get_all() {
   find "$DOTFILES" \
     -maxdepth 1 \
     -type d \
@@ -14,7 +14,7 @@ get_all_topics() {
 }
 
 # Get all the runnable topics
-get_runnable_topics() {
+topics::get_runnable() {
   find "$DOTFILES" \
     -mindepth 2 \
     -maxdepth 2 \
@@ -24,61 +24,45 @@ get_runnable_topics() {
 }
 
 # Check if a topic exists
-is_topic_exist() {
+topics::exists() {
   test -d "$DOTFILES/$1"
   return $?
 }
 
 # Install a specific topic
-install_specific_topic() {
+topics::install_single() {
   local -r TOPIC=$1
-  local -r OS="$(get_os)"
 
-  if is_topic_exist "$TOPIC"; then
+  if topics::exists "$TOPIC"; then
 
     # Check if has an install script
     if [[ -f $DOTFILES/$TOPIC/install.sh ]]; then
-      print_title "Current topic is '$TOPIC'"
+      output::title "Current topic is '$TOPIC'"
       source "$DOTFILES/$TOPIC/install.sh"
     fi
-
-    # Check for OS-specific installtion
-    if [[ -f $DOTFILES/$TOPIC/install-$OS.sh ]]; then
-      print_title "Running os-specific installation for '$TOPIC'"
-      source "$DOTFILES/$TOPIC/install-$OS.sh"
-    fi
   else
-    print_title "Current topic is '$TOPIC'\\n"
-    print_error "Topic $TOPIC does not exist!"
+    output::title "Current topic is '$TOPIC'\\n"
+    output::error "Topic $TOPIC does not exist!"
+
+    return 1
   fi
 }
 
 # Run the installation script for each topic
 # shellcheck disable=SC2207,SC2206
-install_topics() {
+topics::install_multiple() {
   local topics_to_install=( $1 )
   local topics_to_exclude=( $2 )
 
   local topic
-  local is_ignored
 
+  # No supplied topics? Get 'em all!
   [[ ${#topics_to_install} -eq 0 ]] \
-    && topics_to_install=( $(get_all_topics) )
+    && topics_to_install=( $(topics::get_all) )
 
   for topic in "${topics_to_install[@]}"; do
-
-    is_ignored=""
-
-    # Check if needs to be ignored
-    for ignored in "${topics_to_exclude[@]}"; do
-      if [[ $topic == "$ignored" ]]; then
-        is_ignored="true"
-        break
-      fi
-    done
-
-    if [[ -z $is_ignored ]]; then
-      install_specific_topic "$topic"
+    if [[ ! " ${topics_to_exclude[*]} " == *" ${topic} "* ]]; then
+      topics::install_single "$topic"
     fi
   done
 }

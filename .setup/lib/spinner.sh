@@ -7,10 +7,10 @@
 # USAGE:
 #
 #    some_long_task & \
-#      show_spinner $! "doing some long task"
+#      spinner:show_for_process $! "doing some long task"
 #
 
-show_spinner() {
+spinner:show_for_process() {
 
   local -r PID="$1"                # The process
   local -r MESSAGE="$2"            # The message
@@ -27,7 +27,7 @@ show_spinner() {
   while kill -0 "$PID" &> /dev/null; do
     current_frame="${FRAMES:i++%${#FRAMES}:1}"
 
-    print_in_blue "     $current_frame" && printf "  %s" "$MESSAGE"
+    output::blue "     $current_frame" && printf "  %s" "$MESSAGE"
 
     # Clear it
     printf "\\r"

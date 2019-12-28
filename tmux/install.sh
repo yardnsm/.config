@@ -6,9 +6,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 main() {
-  print_info "Installing plugins"
+  output::info "Installing plugins"
 
-  execute "$SUBMODULES/tpm/scripts/install_plugins.sh" \
+  commands::execute "$SUBMODULES/tpm/scripts/install_plugins.sh" \
     "Installing tmux plugins (using tpm)"
 }
 

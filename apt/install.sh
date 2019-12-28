@@ -5,6 +5,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
+os::verify "linux" \
+  || return 1
+
+# ---------------------------------------------
+
 declare -r packages=(
   'sudo'
   'git'
@@ -19,28 +24,28 @@ declare -r packages=(
 # ---------------------------------------------
 
 apt_update() {
-  print_info "Updating apt"
+  output::info "Updating apt"
 
-  execute "sudo apt-get update -qqy" \
+  commands::execute "sudo apt-get update -qqy" \
     "apt-get (update)"
 }
 
 # ---------------------------------------------
 
 apt_install_packages() {
-  print_info "Install APT packages"
+  output::info "Install APT packages"
 
   for package in "${packages[@]}"; do
-    apt_install "$package"
+    apt::install "$package"
   done
 }
 
 # ---------------------------------------------
 
 apt_cleanup() {
-  print_info "Cleanup"
+  output::info "Cleanup"
 
-  execute "sudo apt-get autoremove -qqy" \
+  commands::execute "sudo apt-get autoremove -qqy" \
     "apt-get (autoremove)"
 }
 
