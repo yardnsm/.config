@@ -10,7 +10,7 @@ declare PIP_COMMAND
 # `pyenv` can cause trouble with its shims, so we're need to
 # figure out which `pip` executable to use
 __get_pip_command() {
-  local -a commands=( pip pip2 pip3 )
+  local -a commands=( pip3 pip2 pip )
 
   for cmd in "${commands[@]}"; do
     eval "$cmd --version" &> /dev/null \
