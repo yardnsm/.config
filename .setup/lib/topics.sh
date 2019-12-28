@@ -10,7 +10,9 @@ topics::get_all() {
     ! -name '_*' \
     ! -name '.*' \
     ! -name 'dotfiles' \
-     -exec basename {} \;
+    -exec basename {} \; \
+    | sort
+
 }
 
 # Get all the runnable topics
@@ -20,7 +22,8 @@ topics::get_runnable() {
     -maxdepth 2 \
     -type f \
     -regex '.*/install\(.*\).sh' \
-    -exec sh -c 'echo $(basename $(dirname "$1"))' _ {} \;
+    -exec sh -c 'echo $(basename $(dirname "$1"))' _ {} \; \
+    | sort
 }
 
 # Check if a topic exists
