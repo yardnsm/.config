@@ -22,8 +22,10 @@ __get_pip_command() {
 # Install a Pip
 pip::install() {
 
-  [[ -z "$PIP_COMMAND" ]] \
-    && PIP_COMMAND="$(__get_pip_command)"
+  if [[ -z "$PIP_COMMAND" ]]; then
+    PIP_COMMAND="$(__get_pip_command)"
+    output::status "Using $PIP_COMMAND"
+  fi
 
   local package="$1"
 
