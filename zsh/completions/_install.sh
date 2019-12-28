@@ -9,6 +9,7 @@ _install.sh() {
     '(-y --yes)'{-y,--yes}'[Skip confirmation questions]' \
     '(-e --exclude)'{-e,--exclude}'[Exclude topics from installation]' \
     '(-l --install-local)'{-l,--install-local}'[Run the local installation script]' \
+    '(-d --debug-log)'{-d,--debug-log}'[Write commands output to debug log]' \
     '(-h --help)'{-h,--help}'[Show help output]' \
     '*: :($(_get_runnable_topics))'
 }

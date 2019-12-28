@@ -9,6 +9,7 @@ declare topics=()
 
 declare auto_yes=0
 declare exclude_topics=0
+declare use_debug_log=0
 
 # ---------------------------------------------
 
@@ -44,6 +45,10 @@ install_local_dotfiles() {
 start_procedure() {
 
   output::welcome_message
+
+  if [[ ${use_debug_log} -eq 1 ]]; then
+    commands::init_output_file
+  fi
 
   if [[ ${#topics} -ne 0 ]]; then
     echo
@@ -107,6 +112,7 @@ print_help() {
     -y, --yes               Skip confirmation questions
     -e, --exclude           Exclude [...topics] from installation
     -l, --install-local     Run the local installation script
+    -d, --debug-log             Write commands output to debug log
     -h, --help              Show help output
 
   Examples
@@ -132,6 +138,10 @@ main() {
       -l | --install-local )
         install_local_dotfiles
         exit 0
+        ;;
+      -d | --debug-log )
+        use_debug_log=1
+        shift
         ;;
       -h | --help )
         print_help

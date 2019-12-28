@@ -1,12 +1,16 @@
 language: generic
 
+env:
+  - DEBUG_LOG_PATH=/tmp/dotfiles.debug.log
+
 # The dotfiles directory should be in a specific place
 before_install:
   - mv -f $TRAVIS_BUILD_DIR $HOME/dotfiles
   - cd $HOME/dotfiles
 
 install:
-  - ./install.sh -y
+  - ./install.sh -y --debug-log
+  - cat $DEBUG_LOG_PATH
 
 matrix:
   include:
