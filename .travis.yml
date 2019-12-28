@@ -25,6 +25,7 @@ matrix:
       dist: trusty
       before_script:
         - sudo apt-get update -qqy
-        - sudo apt-get install -qqy shellcheck coreutils
+        - sudo apt-get install -qqy shellcheck
+        - sudo apt-get install -qqy coreutils
 
 sudo: required
