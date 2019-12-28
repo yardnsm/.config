@@ -22,6 +22,8 @@ declare -r packages=(
   'python3.6'
   'neovim'
   'python3-neovim'
+  'nodejs'
+  'npm'
 )
 
 # ---------------------------------------------
