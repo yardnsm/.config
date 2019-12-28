@@ -14,6 +14,7 @@ os::get_name() {
 }
 
 # Verify the running os
+# shellcheck disable=SC2155 disable=SC2124
 os::verify() {
   local names="$@"
   local current="$(os::get_name)"

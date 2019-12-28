@@ -9,10 +9,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # so this script assume you got it installed on your machine.
 
 main() {
-  print_info "Running shellcheck"
+  output::info "Running shellcheck"
 
-  if ! cmd_exists "shellcheck"; then
-    print_error "shellcheck is not installed!"
+  if ! commands::exists "shellcheck"; then
+    output::error "shellcheck is not installed!"
     return 1
   fi
 
@@ -30,7 +30,7 @@ main() {
       -e SC2015 \
     {} +
 
-  print_result $? "Shellcheck"
+  output::result $? "Shellcheck"
 }
 
 main "$@"
