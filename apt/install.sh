@@ -19,6 +19,11 @@ declare -r packages=(
   'zsh'
   'ruby-full'
   'rbenv'
+  'python3.6'
+  'neovim'
+  'python3-neovim'
+  'nodejs'
+  'npm'
 )
 
 # ---------------------------------------------

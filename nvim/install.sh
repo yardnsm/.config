@@ -35,8 +35,12 @@ main() {
 
   output::info "Installing plugins"
 
-  commands::execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
-    "Installing plugins"
+  if os::is_ci; then
+    output::status "Skipping inside a CI"
+  else
+    commands::execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
+      "Installing plugins"
+  fi
 
   output::info "Installing coc.nvim extensions"
 

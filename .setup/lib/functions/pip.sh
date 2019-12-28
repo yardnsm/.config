@@ -10,7 +10,7 @@ declare PIP_COMMAND
 # `pyenv` can cause trouble with its shims, so we're need to
 # figure out which `pip` executable to use
 __get_pip_command() {
-  local -a commands=( pip pip2 pip3 )
+  local -a commands=( pip3 pip2 pip )
 
   for cmd in "${commands[@]}"; do
     eval "$cmd --version" &> /dev/null \
@@ -22,8 +22,10 @@ __get_pip_command() {
 # Install a Pip
 pip::install() {
 
-  [[ -z "$PIP_COMMAND" ]] \
-    && PIP_COMMAND="$(__get_pip_command)"
+  if [[ -z "$PIP_COMMAND" ]]; then
+    PIP_COMMAND="$(__get_pip_command)"
+    output::status "Using $PIP_COMMAND"
+  fi
 
   local package="$1"
 

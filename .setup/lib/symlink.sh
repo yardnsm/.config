@@ -28,7 +28,7 @@ symlink::perform() {
     item_src="$(echo "$symlink_item" | awk -F', ' '{print $1}')"
     item_dest="$(echo "$symlink_item" | awk -F', ' '{print $2}')"
 
-    src_realpath="$(realpath "$item_src")"
+    src_realpath="$(readlink -f "$item_src")"
 
     [[ -z "$item_dest" ]] \
       && dest_realpath="$HOME/$(basename "$item_src")" \

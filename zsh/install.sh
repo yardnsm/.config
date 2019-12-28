@@ -8,6 +8,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 main() {
   output::info "Setting ZSH"
 
+  if os::is_ci; then
+    output::status "Skipping inside a CI"
+    return 1
+  fi
+
   if [[ -n "$ZSH_VERSION" ]]; then
     output::success "ZSH is already your shell"
   elif command -v zsh &> /dev/null; then
