@@ -24,10 +24,7 @@ spinner:show_for_process() {
   i=0
 
   # We're inside CI? Don't bloat the output!
-  if os::is_ci; then
-    output::blue "     -" && printf "  %s" "$MESSAGE (running)"
-    printf "\\r"
-  else
+  if ! os::is_ci; then
 
     # As long as the process is running
     while kill -0 "$PID" &> /dev/null; do
