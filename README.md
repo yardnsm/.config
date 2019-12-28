@@ -1,6 +1,6 @@
 # dotfiles
 
-[![Build Status](https://travis-ci.org/yardnsm/dotfiles.svg?branch=master)](https://travis-ci.org/yardnsm/dotfiles)
+[![Build Status](https://github.com/yardnsm/dotfiles/workflows/main/badge.svg)](https://github.com/yardnsm/dotfiles/actions)
 
 These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this repo
 from scratch, while focus on organization.
