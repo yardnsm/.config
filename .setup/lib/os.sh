@@ -29,5 +29,6 @@ os::verify() {
 # Are we inside... a CI?
 os::is_ci() {
   [[ -n "$CI" ]] \
-    && [[ -n "$TRAVIS" ]]
+    || [[ -n "$TRAVIS" ]] \
+    || [[ -n "$GITHUB_WORKFLOW" ]]
 }

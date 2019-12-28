@@ -23,18 +23,22 @@ spinner:show_for_process() {
 
   i=0
 
-  # As long as the process is running
-  while kill -0 "$PID" &> /dev/null; do
-    current_frame="${FRAMES:i++%${#FRAMES}:1}"
+  # We're inside CI? Don't bloat the output!
+  if ! os::is_ci; then
 
-    output::blue "     $current_frame" && printf "  %s" "$MESSAGE"
+    # As long as the process is running
+    while kill -0 "$PID" &> /dev/null; do
+      current_frame="${FRAMES:i++%${#FRAMES}:1}"
 
-    # Clear it
-    printf "\\r"
+      output::blue "     $current_frame" && printf "  %s" "$MESSAGE"
 
-    # Wait till next frame
-    sleep $DELAY
-  done
+      # Clear it
+      printf "\\r"
+
+      # Wait till next frame
+      sleep $DELAY
+    done
+  fi
 
   # Return the status code
   wait "$PID"
