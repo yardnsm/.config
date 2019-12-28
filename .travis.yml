@@ -8,25 +8,23 @@ before_install:
   - mv -f $TRAVIS_BUILD_DIR $HOME/dotfiles
   - cd $HOME/dotfiles
 
-install:
+script:
   - ./install.sh -y --debug-log
   - cat $DEBUG_LOG_PATH
+  - ./.test/shellcheck.sh
 
 matrix:
   include:
 
     - os: osx
       sudo: false
-      before_install:
+      before_script:
         - brew install shellcheck
 
     - os: linux
       dist: trusty
-      before_install:
+      before_script:
         - sudo apt-get update -qqy
         - sudo apt-get install -qqy shellcheck coreutils
-
-script:
-  - ./.test/shellcheck.sh
 
 sudo: required
