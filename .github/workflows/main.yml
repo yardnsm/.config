@@ -30,6 +30,10 @@ jobs:
           cd $HOME/dotfiles
           ./install.sh --yes --debug-log
 
+      - name: Printing out debug log
+        run: |
+          cat $DEBUG_LOG_PATH
+
       - name: Running tests
         run: |
           cd $HOME/dotfiles
