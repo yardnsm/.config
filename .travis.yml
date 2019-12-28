@@ -26,5 +26,3 @@ matrix:
       before_script:
         - sudo apt-get update -qqy
         - sudo apt-get install -qqy shellcheck
-
-sudo: required
