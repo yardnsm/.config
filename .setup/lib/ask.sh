@@ -35,6 +35,8 @@ ask::prompt_sudo() {
     return 1
   fi
 
+  sudo -v &> /dev/null
+
   # Update the sudo timestamp till the script will finish
   while true; do
     sudo -n true

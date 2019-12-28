@@ -98,7 +98,7 @@ main() {
       ;;
     * )
       echo
-      print_error "Unknown option $CMD";
+      output::error "Unknown option $CMD";
       exit 1;
       ;;
   esac
