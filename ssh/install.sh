@@ -29,6 +29,11 @@ verify_connection() {
 main() {
   output::info "Generating SSH key for GitHub"
 
+  if os::is_ci; then
+    output::status "Skipping inside a CI"
+    return 0
+  fi
+
   if is_connection_valid; then
     output::success "Connection to GitHub is valid"
   elif [[ -f "${SSH_KEY_PATH}.pub" ]]; then

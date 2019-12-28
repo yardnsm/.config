@@ -31,10 +31,9 @@ ask::get_answer() {
 ask::prompt_sudo() {
 
   # Travis has an issue with `sudo` on mac, so we'll just wont use it for now.
-  [[ -n "$CI" ]] && \
-    [[ -n "$TRAVIS" ]] && \
-    [[ "$(os::get_name)" == "macos" ]] && \
-    return 1
+  os::is_ci \
+    && [[ "$(os::get_name)" == "macos" ]] \
+    && return 1
 
   # Update the sudo timestamp till the script will finish
   while true; do

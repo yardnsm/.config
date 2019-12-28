@@ -24,3 +24,9 @@ os::verify() {
     return 1
   fi
 }
+
+# Are we inside... a CI?
+os::is_ci() {
+  [[ -n "$CI" ]] \
+    && [[ -n "$TRAVIS" ]]
+}
