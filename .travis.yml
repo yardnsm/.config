@@ -17,12 +17,12 @@ matrix:
 
     - os: osx
       sudo: false
-      before_script:
+      before_install:
         - brew install shellcheck
 
     - os: linux
       dist: trusty
-      before_script:
+      before_install:
         - sudo apt-get update -qqy
         - sudo apt-get install -qqy shellcheck coreutils
 
