@@ -3,6 +3,7 @@ name: main
 on: [push]
 
 env:
+  TERM: xterm-256color
   DEBUG_LOG_PATH: /tmp/dotfiles.debug.log
 
 jobs:
