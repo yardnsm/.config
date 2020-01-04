@@ -37,9 +37,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Colors
 Plug 'chriskempson/base16-vim'
 
-" Linting support
-Plug 'w0rp/ale'
-
 " File tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
@@ -88,10 +85,6 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
-
-if has('nvim')
-  Plug 'SirVer/ultisnips'                " Snippets
-endif
 
 " MacOS specific plugins
 if has('mac')
