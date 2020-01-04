@@ -16,14 +16,23 @@
   // I like manage versions by my own, thanks.
   "coc.preferences.extensionUpdateCheck": "never",
 
-  // Lise settings
-  "list.previewHighlightGroup": "Visual",
+  // I'm not a fan of CocList, so...
+  "coc.preferences.useQuickfixForLocations": true,
+  "list.previewHighlightGroup": "CocListMode",
   "list.autoResize": false,
-  "list.source.lists.defaultOptions": ["--regex", "--strict", "--no-sort"],
+  "list.extendedSearchMode": false,
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
 
   // Prettier settings
   "prettier.requireConfig": true,
   "prettier.onlyUseLocalVersion": true,
+  "prettier.eslintIntegration": true,
+
+  // tsserver settings
+  "typescript.format.enabled": false,
+  "javascript.format.enabled": false,
 
   // File source
   "coc.source.file.trimSameExts": [

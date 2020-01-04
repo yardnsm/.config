@@ -16,32 +16,33 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " }}}
 " Mappings {{{
 
+" Trigger completion
+imap <silent><expr> <C-g> coc#refresh()
+
 " Gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap <silent> <leader>l <Plug>(coc-codeaction)
+nmap <silent> <leader>l :CocList actions<CR>
 vmap <silent> <leader>l <Plug>(coc-codeaction-selected)
 
-nnoremap <silent> <leader>c  :<C-u>CocList commands<CR>
-
-" Formatting
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nmap <silent> <leader>c  :<C-u>CocList commands<CR>
 
 " Expand snippets
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " }}}
 " Commands {{{
 
+" Format the file using LSPs, fallback to eslint
 command! -nargs=0 Format :call CocAction('format')
+      \ || CocCommand eslint.executeAutofix
 
 " }}}
 " Insert a newline after pressing enter {{{
@@ -77,5 +78,33 @@ highlight CocErrorHighlight ctermbg=11 cterm=undercurl
 
 highlight link CocInfoSign Question
 highlight CocInfoHighlight ctermbg=11 cterm=undercurl
+
+" }}}
+" CocList fixes {{{
+
+" I don't like the default behaviour of CocList, so...
+let s:coc_list_cources = [
+      \ 'location',
+      \ 'extensions',
+      \ 'diagnostics',
+      \ 'outline',
+      \ 'symbols',
+      \ 'services',
+      \ 'commands',
+      \ 'links',
+      \ 'output',
+      \ 'sources',
+      \ 'lists',
+      \ 'actions'
+      \ ]
+
+for list_source in s:coc_list_cources
+  call coc#config('list.source.' . list_source . '.defaultOptions', [
+        \ "--regex",
+        \ "--ignore-case",
+        \ "--no-sort",
+        \ "--input"
+        \ ])
+endfor
 
 " }}}
