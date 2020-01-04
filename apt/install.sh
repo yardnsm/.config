@@ -3,12 +3,12 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
   && source "../.setup/initializer.sh"
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 os::verify "linux" \
   || return 1
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 declare -r packages=(
   'sudo'
@@ -26,39 +26,34 @@ declare -r packages=(
   'npm'
 )
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 apt_update() {
-  output::info "Updating apt"
-
   commands::execute "sudo apt-get update -qqy" \
     "apt-get (update)"
 }
 
-# ---------------------------------------------
-
 apt_install_packages() {
-  output::info "Install APT packages"
-
   for package in "${packages[@]}"; do
     apt::install "$package"
   done
 }
 
-# ---------------------------------------------
-
 apt_cleanup() {
-  output::info "Cleanup"
-
   commands::execute "sudo apt-get autoremove -qqy" \
     "apt-get (autoremove)"
 }
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 main() {
+  output::info "Updating apt"
   apt_update
+
+  output::info "Install APT packages"
   apt_install_packages
+
+  output::info "Cleanup"
   apt_cleanup
 }
 
