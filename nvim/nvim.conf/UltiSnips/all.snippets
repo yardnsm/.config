@@ -10,11 +10,8 @@ def get_comment_format():
     if commentstring.endswith("%s"):
         c = commentstring[:-2]
         return (c, c, c, "")
-    comments = _parse_comments(vim.eval("&comments"))
-    for c in comments:
-        if c[0] == "SINGLE_CHAR":
-            return c[1:]
-            return comments[0][1:]
+
+    # Default
     return ("#", "#", "#", "")
 
 
@@ -68,11 +65,11 @@ endsnippet
 # Dates
 
 snippet date
-`strftime("%Y-%m-%d")`
+`!v strftime("%Y-%m-%d")`
 endsnippet
 
 snippet ddate
-`strftime("%B %d, %Y")`
+`!v strftime("%B %d, %Y")`
 endsnippet
 
 # ------------------------------------------------------------------------------

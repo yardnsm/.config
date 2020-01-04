@@ -3,6 +3,8 @@
 let g:ale_linters = {
       \ 'javascript': [],
       \ 'typescript': [],
+      \ 'javascriptreact': [],
+      \ 'typescriptreact': [],
       \ 'python': ['flake8'],
       \ 'scss': [],
       \ }
@@ -10,6 +12,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
       \ 'typescript': ['tslint'],
+      \ 'javascriptreact': ['eslint'],
+      \ 'typescriptreact': ['tslint'],
       \ }
 
 let g:ale_sign_error = 'E'

@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
   && source "../.setup/initializer.sh"
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 declare -r VIM_PLUG_PATH="$DOTFILES/nvim/nvim.conf/autoload/plug.vim"
 declare -r VIM_PLUG_FILE="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -19,47 +19,63 @@ declare -a COC_EXTENSIONS=(
   'coc-prettier'
   'coc-python'
   'coc-phpls'
+  'coc-svg'
+  'coc-vimlsp'
+  'coc-xml'
+  'coc-reason'
 )
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
-main() {
-  output::info "Installing vim-plug"
-
+install_vim_plug() {
   if [[ -e "$VIM_PLUG_PATH" ]]; then
     output::success "vim-plug is installed"
   else
     commands::execute "curl -fLo $VIM_PLUG_PATH --create-dirs $VIM_PLUG_FILE" \
       "Installing vim-plug"
   fi
+}
 
-  output::info "Installing plugins"
-
+install_plugins() {
   if os::is_ci; then
     output::status "Skipping inside a CI"
   else
     commands::execute "nvim -c 'PlugInstall' -c 'UpdateRemotePlugins' -c 'qall'" \
       "Installing plugins"
   fi
+}
 
-  output::info "Installing coc.nvim extensions"
-
+install_coc_extensions() {
   mkdir -p "$COC_DIR"
   pushd "$COC_DIR" &> /dev/null \
     || return 1
 
+  # Create an emmpty package.json
   if [[ ! -f package.json ]]; then
     echo '{ "dependencies": {} }' > package.json
   fi
 
   for ext in "${COC_EXTENSIONS[@]}"; do
-    # coc.nvim uses yarn for some reason, so we'll also use it here
-    commands::execute "yarn add $ext --frozen-lockfile --ignore-engines" \
+    commands::execute \
+      "npm install $ext --global-style --no-bin-links  --no-package-lock --only=prod" \
       "Installing $ext"
   done
 
   popd &> /dev/null \
     || return 1
+}
+
+# ---------------------------------------------
+
+main() {
+  output::info "Installing vim-plug"
+  install_vim_plug
+
+  output::info "Installing plugins"
+  install_plugins
+
+  output::info "Installing coc.nvim extensions"
+  install_coc_extensions
 }
 
 main "$@"

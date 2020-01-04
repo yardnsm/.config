@@ -1,18 +1,31 @@
 {
-  "diagnostic.enable": true,
 
+  // Diagnostics settings
+  "diagnostic.enable": true,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "E",
   "diagnostic.warningSign": "W",
   "diagnostic.hintSign": "!",
   "diagnostic.infoSign": "I",
 
+  // Suggestion settings
   "suggest.timeout": 500,
+  "suggest.maxCompleteItemCount": 20,
+
+  // I like manage versions by my own, thanks.
   "coc.preferences.extensionUpdateCheck": "never",
 
+  // Lise settings
   "list.previewHighlightGroup": "Visual",
+  "list.autoResize": false,
+  "list.source.lists.defaultOptions": ["--regex", "--strict", "--no-sort"],
 
-  "diagnostic.messageTarget": "echo",
+  // Prettier settings
+  "prettier.requireConfig": true,
+  "prettier.onlyUseLocalVersion": true,
 
+  // File source
   "coc.source.file.trimSameExts": [
     ".ts",
     ".js",
@@ -20,6 +33,7 @@
     ".jsx"
   ],
 
+  // Custom LSPs
   "languageserver": {
     "stylable": {
       "module": "/usr/local/lib/node_modules/stylable-intelligence/dist/src/lib/server.js",

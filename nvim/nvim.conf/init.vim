@@ -87,8 +87,6 @@ Plug 'reasonml-editor/vim-reason-plus'    " Reason support
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " Autocompletion
-Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 
 if has('nvim')
@@ -207,97 +205,17 @@ match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " }}}
 " Statusline {{{
 
-" Highlights Info: {{{
-"
-" User1 - Primary
-" User2 - Secondary
-" User3 - Neutral (bg)
-"
-" User5 - Blue   (neutral) lint indicator
-" User6 - Red    (error)   lint indicator
-" User7 - Yellow (warning) lint indicator
-" User8 - Green  (success) lint indicator
-"
-" }}}
-
 " Always show the status line
 set laststatus=2
-
-let g:statusline_ft_titles = {
-      \ 'nerdtree': 'NERD',
-      \ 'qf': '%q',
-      \ }
-
-function! BuildStatusLine(mode) abort
-  let l:result = ''
-
-  if a:mode ==# 'active'
-    let l:result .= '%1* %f '                        " filename
-
-    " Buffer number if in diff node
-    if &diff
-      let l:result .= '[%n] '
-    endif
-
-    let l:result .= '%3* %r'                         " readonly
-    let l:result .= '%3*%m'                          " modified
-    let l:result .= '%3*%{statusline#Paste()}'       " paste
-    let l:result .= '%3*%{statusline#Spell()} '      " spell
-
-    let l:result .= '%3*%='                          " going to the right side
-
-    let l:result .= '%3*%{statusline#Filetype()} '   " filetype
-    let l:result .= '%3*%3p%% '                      " line percentage
-    let l:result .= '%2* %3l:%-2c '                  " line info
-
-    " ALE errors and warning
-    let l:ale_errors = statusline#Errors()
-    let l:ale_warnings = statusline#Warnings()
-
-    if l:ale_warnings
-      if l:ale_errors
-        let l:result .= printf('%%6* ‹%d›', l:ale_warnings)
-      else
-        let l:result .= printf('%%6* ‹%d› ● %%3* ', l:ale_warnings)
-      endif
-    endif
-
-    if l:ale_errors
-      let l:result .= printf('%%7* ‹%d› ● %%3* ', l:ale_errors)
-    endif
-
-    if !l:ale_errors && !l:ale_warnings
-      let l:result .= '%8* ● %3* '
-    endif
-
-  elseif a:mode ==# 'inactive'
-    let l:result .= ' %f '               " filename
-
-    " Buffer number if in diff node
-    if &diff
-      let l:result .= '[%n] '
-    endif
-
-    let l:result .= ' %m%= ●  '           " modified and blank indicator
-
-  else
-    let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
-  endif
-
-  return l:result
-endfunction
 
 augroup statusline_au
   autocmd!
 
-  autocmd WinEnter,FocusGained,FileType *
-        \ if has_key(g:statusline_ft_titles, &ft) |
-        \   setlocal statusline=%!BuildStatusLine(g:statusline_ft_titles[&ft]) |
-        \ else |
-        \   setlocal statusline=%!BuildStatusLine('active') |
-        \ endif
+  autocmd WinEnter,FocusGained,FileType * setlocal
+        \ statusline=%!statusline#BuildStatusLine(statusline#GetModeName(&ft)) |
 
-  autocmd WinLeave,FocusLost * setlocal statusline=%!BuildStatusLine('inactive')
+  autocmd WinLeave,FocusLost * setlocal
+        \ statusline=%!statusline#BuildStatusLine('inactive')
 augroup END
 
 

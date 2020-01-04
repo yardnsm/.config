@@ -16,6 +16,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " }}}
 " Mappings {{{
 
+" Gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -26,8 +27,16 @@ vmap <silent> <leader>l <Plug>(coc-codeaction-selected)
 
 nnoremap <silent> <leader>c  :<C-u>CocList commands<CR>
 
+" Formatting
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " Expand snippets
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " }}}
 " Commands {{{
@@ -68,14 +77,5 @@ highlight CocErrorHighlight ctermbg=11 cterm=undercurl
 
 highlight link CocInfoSign Question
 highlight CocInfoHighlight ctermbg=11 cterm=undercurl
-
-" }}}
-" Autocommands {{{
-
-augroup coc_au
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  " autocmd InsertEnter * set cmdheight=2
-  " autocmd InsertLeave * set cmdheight=1
-augroup END
 
 " }}}
