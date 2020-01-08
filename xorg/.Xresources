@@ -6,7 +6,7 @@
 
 ! Xft settings {{{
 
-Xtf.dpi: 220
+Xtf.dpi: 96
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintingstyle: hintfull
@@ -16,17 +16,12 @@ Xft.rgba: rgb
 ! }}}
 ! Xcursor settings {{{
 
-Xcursor.size: 32
+Xcursor.size: 16
 Xcursor.theme: chromeos
 
 ! }}}
 ! URxvt settings {{{
 
 URxvt.font: xft:Iosevka:size=14:style=Medium:monospace
-
-! }}}
-! Rofi settings {{{
-
-rofi.dpi: 162
 
 ! }}}

@@ -6,12 +6,13 @@
 
 main() {
 
-  # Set xrandr
-  # TODO: remove from here, this is very specific to the VirtualBox VM
-  xrandr --output Virtual1 --mode 2560x1600 --dpi 220
-
   # Merge existing .Xresources
   xrdb -merge ~/.Xresources
+
+  # Merge from the local dotfiles
+  if [[ -d "$DOTFILES_LOCAL" ]]; then
+    source "$DOTFILES_LOCAL/xorg/.xinitrc"
+  fi
 
   # Start i3!
   exec i3
