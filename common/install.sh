@@ -36,6 +36,7 @@ declare -a SYMLINKS=(
   "../xorg/.xinitrc"
   "../xorg/.Xresources"
 
+  "../zsh/.zprofile"
   "../zsh/.zshrc"
 )
 

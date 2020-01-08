@@ -1,30 +1,12 @@
 # vim: set foldmethod=marker foldlevel=0:
 
-# Core variables {{{
-
-export DOTFILES=$HOME/dotfiles
-export DOTFILES_LOCAL=$HOME/dotfiles-local
-export ZSH=$DOTFILES/zsh
-export SUBMODULES=$DOTFILES/.submodules
-
-export KNOWLEDGE=$HOME/knowledge
-export DRAFTS_HOME=$KNOWLEDGE/drafts
+# Setting fpath {{{
 
 fpath=(
   $ZSH/completions
   $ZSH/functions
   $fpath
 )
-
-# OS Variables
-case "$(uname -s)" in
-  "Linux")
-    export IS_LINUX=true
-    ;;
-  "Darwin")
-    export IS_MACOS=true
-    ;;
-esac
 
 # }}}
 # Sourcing {{{
