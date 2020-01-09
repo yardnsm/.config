@@ -22,11 +22,18 @@ set $workspace-main main
 # Theme {{{
 
 # Font for window titles
-font pango:monospace 8
+font pango:Iosevka 11
 
 # Default gaps
 gaps inner 15
 gaps outer 15
+
+# Deault border
+default_border pixel 2
+default_floating_border pixel 3
+
+# Allow border for certain apps
+for_window [class="Google-chrome"] border normal
 
 # }}}
 # Keybindings {{{
@@ -36,7 +43,7 @@ gaps outer 15
 floating_modifier $mod
 
 # Quit current application
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 # Make current application in fullschreen
 bindsym $mod+f fullscreen toggle
@@ -69,6 +76,12 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# Resize using Y/U/I/O
+bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+u resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+o resize grow width 10 px or 10 ppt
 
 # Splits in horizontal and vertical
 bindsym $mod+b split h
@@ -137,23 +150,6 @@ bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10; workspace number 0
-
-# }}}
-# Resize mode {{{
-
-mode "resize" {
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
-
-  # Back to normal
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
 
 # }}}
 # Execs {{{
