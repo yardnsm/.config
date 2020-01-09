@@ -23,9 +23,6 @@
 [pull]
   rebase = true
 
-[credential]
-  helper = osxkeychain
-
 # }}}
 # Merges and diffs {{{
 
