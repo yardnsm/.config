@@ -12,6 +12,8 @@ declare -a SYMLINKS=(
 
   "../compton, .config/compton"
 
+  "../dunst, .config/dunst"
+
   "../git/.gitconfig"
   "../git/.gitignore_global"
 

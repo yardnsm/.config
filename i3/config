@@ -155,6 +155,9 @@ bindsym $mod+Shift+0 move container to workspace number 10; workspace number 0
 # Set wallpaper
 exec_always setwal
 
+# Dunst for notifications
+exec_always dunst
+
 # Compton
 # exec_always compton -f
 
