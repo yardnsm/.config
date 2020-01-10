@@ -31,6 +31,7 @@ gaps outer 15
 # Deault border
 default_border pixel 2
 default_floating_border pixel 3
+hide_edge_borders both
 
 # Allow border for certain apps
 for_window [class="Google-chrome"] border normal
@@ -55,15 +56,6 @@ bindsym $mod+Shift+r restart
 # Applications
 bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+Return exec $browser
-
-# Rofi {{{
-
-  # Rename current workspace
-  bindsym $mod+period exec --no-startup-id "~/.config/i3/actions/rename-workspace.sh"
-
-  bindsym $mod+d exec "rofi -show run -theme rofi_bar -theme-str \"\*{--accent: #0390fc;}\""
-
-#}}}
 
 # Focus change
 bindsym $mod+h focus left
@@ -115,6 +107,12 @@ bindsym $mod+slash gaps inner current plus 8
 bindsym $mod+equal gaps inner current minus 8
 bindsym $mod+Shift+slash gaps outer current plus 8
 bindsym $mod+Shift+equal gaps outer current minus 8
+
+# }}}
+# Rofi actions {{{
+
+bindsym $mod+d      exec --no-startup-id "~/.config/i3/actions/run.sh"
+bindsym $mod+period exec --no-startup-id "~/.config/i3/actions/rename-workspace.sh"
 
 # }}}
 # Workspaces {{{
