@@ -32,3 +32,10 @@ autoload -U compinit && compinit
 autoload -U edit-command-line
 
 # }}}
+# pywal setup {{{
+
+if [[ -d "$PYWAL_HOME" ]]; then
+  (cat "$PYWAL_HOME/sequences" &)
+fi
+
+# }}}

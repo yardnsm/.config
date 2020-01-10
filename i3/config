@@ -152,11 +152,8 @@ bindsym $mod+Shift+0 move container to workspace number 10; workspace number 0
 # }}}
 # Execs {{{
 
-# Start nm-applet
-exec --no-startup-id nm-applet
-
-# Wallpaper
-exec_always feh --bg-scale ~/wallpaper.jpg
+# Set wallpaper
+exec_always setwal
 
 # Compton
 # exec_always compton -f

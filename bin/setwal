@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# If an argument is given, it'll replace the current wallpaper. Anyways, it'll set the
+# current wallpaper using pywal.
+
+# ------------------------------------------------------------------------------
+
+main() {
+  local wallpaper="$1"
+
+  if [[ -n "$wallpaper" ]]; then
+    cp "$wallpaper" "$DEFAULT_WALLPAPER"
+    notify-send "Wallpaper changed"
+  fi
+
+  wal -c -i "$DEFAULT_WALLPAPER"
+
+}
+
+main "$@"

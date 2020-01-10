@@ -10,6 +10,8 @@ export SUBMODULES=$DOTFILES/.submodules
 # Common paths
 export KNOWLEDGE=$HOME/knowledge
 export DRAFTS_HOME=$KNOWLEDGE/drafts
+export PYWAL_HOME=$HOME/.cache/wal
+export DEFAULT_WALLPAPER=$HOME/wallpaper.jpg
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
