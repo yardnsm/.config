@@ -26,6 +26,7 @@ export FILE="ranger"
 
 # }}}
 # OS Variables {{{
+
 case "$(uname -s)" in
   "Linux")
     export IS_LINUX=true
