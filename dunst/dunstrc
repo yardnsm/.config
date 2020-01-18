@@ -413,5 +413,5 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
+
 # vim: set ft=cfg foldmethod=marker foldlevel=0:
-    ### }}}
