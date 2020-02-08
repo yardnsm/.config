@@ -17,6 +17,9 @@ commands::init_output_file() {
     __COMMANDS_OUTPUT_FILE="$(mktemp)-$(date --iso-8601=seconds).dotfiles.log"
   fi
 
+  # Add a modeline for enabling Vim folds
+  echo -e "vim: set foldmethod=marker foldlevel=0:\n" >> $__COMMANDS_OUTPUT_FILE
+
   echo
   output::status "Output file is set to $__COMMANDS_OUTPUT_FILE"
 }
@@ -36,10 +39,12 @@ commands::execute() {
   local pid=""
 
   # Fill up output file
-  [[ -n "$__COMMANDS_OUTPUT_FILE" ]] \
-    && printf '=%.0s' {1..80} >> "$__COMMANDS_OUTPUT_FILE" \
-    && echo -e "\nIn ${BASH_SOURCE[1]}:${BASH_LINENO[0]} ${FUNCNAME[1]}" >> "$__COMMANDS_OUTPUT_FILE"  \
-    && echo -e "   > $CMD\n" >> "$__COMMANDS_OUTPUT_FILE"
+  if [[ -n "$__COMMANDS_OUTPUT_FILE" ]]; then
+    cat >> "$__COMMANDS_OUTPUT_FILE" <<EOF
+'$CMD' in ${BASH_SOURCE[1]}:${BASH_LINENO[0]} ${FUNCNAME[1]} {{{
+
+EOF
+  fi
 
   # Run command and append output to output file
   eval "$CMD" >> "${__COMMANDS_OUTPUT_FILE:-/dev/null}" 2>&1 &
@@ -51,8 +56,14 @@ commands::execute() {
   exit_code=$?
 
   # Write exit code to output file
-  [[ -n "$__COMMANDS_OUTPUT_FILE" ]] \
-    && echo -e "\n\nFinished with exit code $exit_code" >> "$__COMMANDS_OUTPUT_FILE"
+  if [[ -n "$__COMMANDS_OUTPUT_FILE" ]]; then
+    cat >> "$__COMMANDS_OUTPUT_FILE" <<EOF
+
+Finished with exit code $exit_code
+
+}}}
+EOF
+  fi
 
   output::result $exit_code "${MSG:-$CMD}"
   return $exit_code

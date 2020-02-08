@@ -4,7 +4,6 @@
 # ------------------------------------------------------------------------------
 
 _commands=(
-  'run:Run the installation file of a topic'
   'install:run the installation script'
   'list:List all topics'
 )
@@ -25,9 +24,6 @@ _dots() {
   case $state in
     command_args)
       case $words[1] in
-        run)
-          _dots_run
-        ;;
         list)
           _dots_list
         ;;
@@ -37,11 +33,6 @@ _dots() {
       esac
     ;;
   esac
-}
-
-_dots_run() {
-  _description=( $(_get_runnable_topics) )
-  _describe 'topics' _description
 }
 
 _dots_list() {

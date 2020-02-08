@@ -112,7 +112,7 @@ print_help() {
     -y, --yes               Skip confirmation questions
     -e, --exclude           Exclude [...topics] from installation
     -l, --install-local     Run the local installation script
-    -d, --debug-log             Write commands output to debug log
+    -d, --debug-log         Write commands output to debug log
     -h, --help              Show help output
 
   Examples
