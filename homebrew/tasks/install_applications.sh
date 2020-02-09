@@ -34,6 +34,7 @@ declare -r applications=(
   'spotify'
   'vlc'
   'zeplin'
+  'syncthing'
 
   # 'adobe-photoshop-cc'
   # 'android-studio'

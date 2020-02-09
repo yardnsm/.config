@@ -41,6 +41,7 @@ declare -r formulae=(
   'ripgrep'
   'watchman'
   'readline'
+  'syncthing'
 
   'asciinema'
   'm-cli'
