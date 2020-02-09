@@ -5,6 +5,16 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ---------------------------------------------
 
+run_topic() {
+  if [[ -z "$1" ]]; then
+    echo
+    output::error "No topic provided"
+    return 1
+  fi
+
+  topics::install_single "$1"
+}
+
 run_install() {
   source "../install.sh" "$@"
 }
@@ -46,6 +56,7 @@ print_help() {
 
   Commands
 
+    run [topic]     Run the installation file of [topic]
     install         Run the installation script
     list            List all topics
 
@@ -69,6 +80,10 @@ main() {
   export FROM_DOTS=1
 
   case "$CMD" in
+    run )
+      run_topic "$@"
+      exit 0
+      ;;
     install )
       run_install "$@"
       exit 0

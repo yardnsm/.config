@@ -16,9 +16,9 @@ pack() {
   mkdir -p "$(dirname "$dest")"
 
   cp -r "$src" "$dest" & \
-    show_spinner $! "Packing $src"
+    spinner:show_for_process $! "Packing $src"
 
-  print_result $? "Packing $src"
+  output::result $? "Packing $src"
 
 }
 
@@ -31,25 +31,25 @@ remove_vim_plugins() {
 
   for plugin in "${PLUGINS[@]}"; do
     rm -rf "${dest:?}/$plugin" & \
-      show_spinner $! "Removing $plugin"
+      spinner:show_for_process $! "Removing $plugin"
 
-    print_result $? "Removing $plugin"
+    output::result $? "Removing $plugin"
   done
 
 }
 
 prune_git() {
   (find "$1" | grep "\\.git/" | xargs rm -rf) & \
-    show_spinner $! "Pruning $1"
+    spinner:show_for_process $! "Pruning $1"
 
-  print_result $? "Pruning $1"
+  output::result $? "Pruning $1"
 }
 
 create_zip() {
   local -r zip_path="$HOME/packs/dotfiles_pack_$(date +%s).zip"
 
-  print_status "Creating a zip file from $1"
-  print_divider
+  output::status "Creating a zip file from $1"
+  output::divider
 
   mkdir -p "$(dirname "$zip_path")"
 
@@ -57,15 +57,15 @@ create_zip() {
     || return 1
 
   zip -r "$zip_path" . &> /dev/null & \
-    show_spinner $! "Zipping $1"
+    spinner:show_for_process $! "Zipping $1"
 
   popd &> /dev/null \
     || return 1
 
-  print_divider
-  print_divider
+  output::divider
+  output::divider
 
-  print_success "Zip created at $zip_path"
+  output::success "Zip created at $zip_path"
 }
 
 # ---------------------------------------------
@@ -74,11 +74,11 @@ main() {
   local tmp_dir
   tmp_dir="$(mktemp -d)"
 
-  print_title "Packing dotfiles"
-  print_divider
+  output::title "Packing dotfiles"
+  output::divider
 
-  print_status "Packing into $tmp_dir"
-  print_divider
+  output::status "Packing into $tmp_dir"
+  output::divider
 
   cat <<EOF
         This script will pack (most of) the necessary dotfiles you'll need when moving a machine
@@ -90,17 +90,17 @@ main() {
 
 EOF
 
-  ask_for_confirmation "Continue? "
+  ask::prompt_confirmation "Continue? "
 
-  if ! answer_is_yes; then
-    print_error "Error: aborted"
+  if ! ask::answer_is_yes; then
+    output::error "Error: aborted"
     exit 1
   fi
 
   # Yeah, the files list is hard-coded like this and it's ugly and not scalable, but I needed
   # to have a small solution that works for very specific files that I need to take with me.
 
-  print_info "Packing all the files"
+  output::info "Packing all the files"
 
   # Vim configs
   pack "$DOTFILES/nvim/.vimrc" "$tmp_dir/.vimrc"
