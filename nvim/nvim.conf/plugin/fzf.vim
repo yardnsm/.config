@@ -17,6 +17,11 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment']
   \ }
 
+let g:fzf_layout = {
+      \ 'window': { 'width': 0.9, 'height': 0.6 }
+      \ }
+
+
 " Status line {{{
 
 function! s:fzf_statusline()
