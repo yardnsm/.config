@@ -153,7 +153,7 @@ bindsym $mod+Shift+0 move container to workspace number 10; workspace number 0
 # Execs {{{
 
 # Set wallpaper
-exec_always setwal
+exec_always "~/config/i3/bin/setwal"
 
 # Dunst for notifications
 exec_always dunst

@@ -39,7 +39,9 @@ esac
 # }}}
 # Path setup {{{
 
+export PATH=$DOTFILES/i3/bin:$PATH
 export PATH=$DOTFILES/bin:$PATH
+
 export PATH=/usr/sbin:$PATH
 
 # }}}
