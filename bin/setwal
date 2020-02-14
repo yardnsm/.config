@@ -13,7 +13,8 @@ main() {
     notify-send "Wallpaper changed"
   fi
 
-  wal -c -i "$DEFAULT_WALLPAPER"
+  wal -n -c -i "$DEFAULT_WALLPAPER"
+  feh --bg-scale "$DEFAULT_WALLPAPER"
 
 }
 
