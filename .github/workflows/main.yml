@@ -27,6 +27,7 @@ jobs:
           mv -f $GITHUB_WORKSPACE/dotfiles $HOME/dotfiles
 
       - name: Running installation script
+        continue-on-error: true
         run: |
           cd $HOME/dotfiles
           ./.setup/dots install --yes --debug-log
