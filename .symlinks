@@ -7,6 +7,7 @@
 ./dunst
 ./fontconfig
 ./rofi
+./git
 
 # You can also specify the specific path to symlink it to, under $HOME
 ./tmux/.tmux.conf .tmux.conf
