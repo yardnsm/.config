@@ -1,6 +1,3 @@
-# Local gitconfig
-git/gitconfig.local.symlink
-
 # Vim shit
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
@@ -12,3 +9,10 @@ Session.vim
 # Vim plugins
 nvim/plugged
 nvim/autoload/plug.vim
+
+# Ignore everything in coc
+coc/*
+!coc/install.sh
+!coc/extensions
+coc/extensions/*
+!coc/extensions/package.json

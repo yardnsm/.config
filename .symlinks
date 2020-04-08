@@ -2,6 +2,7 @@
 # Specify a path, and it will be symlinked to ~/.config
 ./i3
 ./alacritty
+./coc
 ./compton
 ./nvim
 ./dunst

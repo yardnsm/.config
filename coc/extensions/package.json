@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "coc-css": "^1.2.2",
+    "coc-eslint": "^1.2.3",
+    "coc-html": "^1.2.1",
+    "coc-json": "^1.2.4",
+    "coc-phpls": "^2.1.7",
+    "coc-prettier": "^1.1.11",
+    "coc-python": "^1.2.6",
+    "coc-reason": "^0.1.0",
+    "coc-snippets": ">=2.1.17",
+    "coc-svg": "0.0.13",
+    "coc-tsserver": "^1.4.9",
+    "coc-vimlsp": "^0.4.4",
+    "coc-xml": "^1.9.5"
+  }
+}
