@@ -4,8 +4,8 @@
 # ------------------------------------------------------------------------------
 
 _commands=(
-  'run:Run the installation file of a topic'
-  'install:run the installation script'
+  'install:Run the installation script for every topic'
+  'symlink:Run the symlinking process'
   'list:List all topics'
 )
 
@@ -25,33 +25,42 @@ _dots() {
   case $state in
     command_args)
       case $words[1] in
-        run)
-          _dots_run
+        install)
+          _dots_install
+        ;;
+        symlink)
+          _dots_symlink
         ;;
         list)
           _dots_list
-        ;;
-        install)
-          _dots_install
         ;;
       esac
     ;;
   esac
 }
 
-_dots_run() {
-  _description=( $(_get_runnable_topics) )
-  _describe 'topics' _description
+# ------------------------------------------------------------------------------
+
+_dots_install() {
+  _arguments -C \
+    '(-y --yes)'{-y,--yes}'[Skip confirmation questions]' \
+    '(-e --exclude)'{-e,--exclude}'[Exclude topics from installation]' \
+    '(-d --debug-log)'{-d,--debug-log}'[Write commands output to debug log]' \
+    '(-b --base-dir)'{-b,--base-dir}'[Set the dotfiles directory to run from]' \
+    '*: :($(_get_runnable_topics))'
+}
+
+_dots_symlink() {
+  _arguments -C \
+    '(-D --dry-run)'{-D,--dry-run}'[Check the symlinking operations]'
 }
 
 _dots_list() {
   _arguments -C \
-    '(-a --all)'{-a,--all}'[Show all topics]' \
+    '(-a --all)'{-a,--all}'[Show all topics]'
 }
 
-_dots_install() {
-  _install.sh 1
-}
+# ------------------------------------------------------------------------------
 
 _get_runnable_topics() {
   find "$DOTFILES" \
