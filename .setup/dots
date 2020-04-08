@@ -18,6 +18,7 @@ declare OPT_ALL=0
 declare OPT_YES=0
 declare OPT_EXCLUDE=0
 declare OPT_DEBUG_LOG=0
+declare OPT_DRY_RUN=0
 
 # This comes from ./variables.sh
 declare OPT_BASE_DIR="$DOTFILES"
@@ -26,6 +27,7 @@ declare OPT_BASE_DIR="$DOTFILES"
 
 main() {
   declare -r SUBCOMMAND=$1
+  shift
 
   while [[ -n "$1" ]]; do
     case $1 in
@@ -51,6 +53,10 @@ main() {
 
         shift
         ;;
+      -D | --dry-run )
+        OPT_DRY_RUN=1
+        shift
+        ;;
       -h | --help )
         command::help "$@"
         exit 0
@@ -60,6 +66,8 @@ main() {
         ;;
     esac
   done
+
+  shift
 
   case "$SUBCOMMAND" in
     install )

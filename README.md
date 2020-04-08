@@ -15,7 +15,7 @@ $ git clone https://github.com/yardnsm/dotfiles ~/dotfiles
 
 # Run the installation script
 $ cd dotfiles
-$ ./.setup/dots install
+$ ./.setup/dots
 ```
 
 ## Order and hierarchy
@@ -42,7 +42,7 @@ $ dots
 
   Commands
 
-    install [...topics]  Run the symlinking process and the installation script for every topic
+    install [...topics]  Run the installation script for every topic
     symlink              Run the symlinking process
     list                 List all topics
 
@@ -52,7 +52,8 @@ $ dots
     -y, --yes            Skip confirmation questions
     -e, --exclude        Exclude [...topics] from installation
     -d, --debug-log      Puke debug output to a log file
-    -b, --base-dir       Run the local installation script
+    -b, --base-dir       Set the dotfiles directory to run from
+    -D, --dry-run        Check the symlinking operations
     -h, --help           Show help output
 
   Examples

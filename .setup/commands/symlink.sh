@@ -12,6 +12,11 @@ command::symlink() {
   local src_realpath
   local dest_realpath
 
+  if [[ $OPT_DRY_RUN -eq 1 ]]; then
+    echo
+    output::status "Executing a dry-run\n"
+  fi
+
   # Everything should be relative to the location of the symlinks file
   pushd "$(dirname "$__SYMLINKS")" &> /dev/null \
     || exit 1
@@ -38,8 +43,17 @@ command::symlink() {
     fi
 
     if ! [[ -e "$dest_realpath" ]]; then
-      commands::execute "ln -sf $src_realpath $dest_realpath" \
-        "$src_realpath -> ~${dest_realpath#$HOME}"
+
+      if [[ $OPT_DRY_RUN -eq 1 ]]; then
+
+        # Dry run, only output
+        output::success "$src_realpath -> ~${dest_realpath#$HOME}"
+      else
+
+        commands::execute "ln -sf $src_realpath $dest_realpath" \
+          "$src_realpath -> ~${dest_realpath#$HOME}"
+      fi
+
     elif [[ "$(readlink "$dest_realpath")" == "$src_realpath" ]]; then
       output::status "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
     else

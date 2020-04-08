@@ -13,7 +13,7 @@ command::help() {
 
   Commands
 
-    install [...topics]  Run the symlinking process and the installation script for every topic
+    install [...topics]  Run the installation script for every topic
     symlink              Run the symlinking process
     list                 List all topics
 
@@ -22,8 +22,9 @@ command::help() {
     -a, --all            Show all topics in 'list'
     -y, --yes            Skip confirmation questions
     -e, --exclude        Exclude [...topics] from installation
-    -d, --debug-log      Puke debug output to a log file
-    -b, --base-dir       Run the local installation script
+    -d, --debug-log      Write commands output to debug log
+    -b, --base-dir       Set the dotfiles directory to run from
+    -D, --dry-run        Check the symlinking operations
     -h, --help           Show help output
 
   Examples

@@ -4,7 +4,10 @@
 
 command::default() {
   # `dots` is available? The dotfiles probably have been installed.
-  commands::exists "dots" \
-    && command::help "$@" \
-    || command::install "$@"
+  if commands::exists "dots"; then
+    command::help "$@"
+  else
+    command::symlink "$@"
+    command::install "$@"
+  fi
 }
