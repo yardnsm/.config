@@ -8,13 +8,12 @@
 ./fontconfig
 ./rofi
 ./git
+./nvim
 
 # You can also specify the specific path to symlink it to, under $HOME
 ./tmux/.tmux.conf .tmux.conf
 ./common/.hushlogin .hushlogin
 ./nvim/.vimrc .vimrc
-./git/.gitconfig .gitconfig
-./git/.gitignore_global .gitignore_global
 ./stylelint/.stylelint .stylelint
 ./gpg/gpg-agent.conf .gnupg/gpg-agent.conf
 ./terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color

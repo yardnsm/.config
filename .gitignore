@@ -10,5 +10,5 @@ Session.vim
 *~
 
 # Vim plugins
-nvim/nvim.conf/plugged
-nvim/nvim.conf/autoload/plug.vim
+nvim/plugged
+nvim/autoload/plug.vim
