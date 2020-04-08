@@ -4,6 +4,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # --------------------------------------------------------------------------------------------------
 
+source "./commands/default.sh"
 source "./commands/install.sh"
 source "./commands/symlink.sh"
 source "./commands/list.sh"
@@ -25,7 +26,6 @@ declare OPT_BASE_DIR="$DOTFILES"
 
 main() {
   declare -r SUBCOMMAND=$1
-  shift
 
   while [[ -n "$1" ]]; do
     case $1 in
@@ -52,7 +52,7 @@ main() {
         shift
         ;;
       -h | --help )
-        command::help
+        command::help "$@"
         exit 0
         ;;
       * )
@@ -74,8 +74,8 @@ main() {
       command::list "$@"
       exit 0
       ;;
-    "" | -h | --help )
-      command::help
+    "" )
+      command::default "$@"
       exit 0
       ;;
     * )
