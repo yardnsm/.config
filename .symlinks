@@ -1,0 +1,29 @@
+# Lines that start with a `#` are comments
+# Specify a path, and it will be symlinked to ~/.config
+./i3
+./alacritty
+./compton
+./nvim
+./dunst
+./fontconfig
+./rofi
+
+# You can also specify the specific path to symlink it to, under $HOME
+./tmux/.tmux.conf .tmux.conf
+./common/.hushlogin .hushlogin
+./nvim/.vimrc .vimrc
+./git/.gitconfig .gitconfig
+./git/.gitignore_global .gitignore_global
+./stylelint/.stylelint .stylelint
+./gpg/gpg-agent.conf .gnupg/gpg-agent.conf
+./terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color
+./terminfo/xterm-256color-italic.terminfo, .terminfo/78/xterm-256color-italic
+./ternjs/.tern-config .tern-config
+
+./xorg/.Xresources .Xresources
+./xorg/.xinitrc .xinitrc
+
+./zsh/.zshenv .zshenv
+./zsh/.zshrc .zshrc
+
+# vim:ft=conf:

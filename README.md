@@ -7,57 +7,34 @@ from scratch, while focus on organization.
 
 ## Installation
 
-The installation currently supports macOS and linux distros that ships with `apt-get` (targeted for
-ubuntu and debian).
-
 Simply run the following commands in your terminal:
 
-```console
+```bash
 # Clone the repository
 $ git clone https://github.com/yardnsm/dotfiles ~/dotfiles
 
 # Run the installation script
 $ cd dotfiles
-$ ./install.sh
+$ ./.setup/dots install
 ```
 
-### Installation executable
+## Order and hierarchy
 
-The installation script ([`./install.sh`](install.sh)) will manage every topic's installation. You
-can pass some options to exclude certain topics from installation, or set specific topics to
-install.
+- Every non-hidden directory is considered as a "topic". A topic can have an `install.sh` file that
+  will run when installing the dotfiles.
+- [`.symlinks`](./.symlinks) contains a list of the directories / files to symlink.
+- `init.zsh` files inside each topic will be sourced when the shell loads.
 
-```console
-$ ./install.sh --help
+## `dots`
 
-  Installs the dotfiles
+[`dots`](./.setup/dots) is an executable for managing the dotfiles. It will manage every topic's
+installation. You can pass some options to exclude certain topics from installation, or set specific
+topics to install.
 
-  Usage
-
-    ./install.sh [options] [...topics]
-
-  Options
-
-    -y, --yes               Skip confirmation questions
-    -e, --exclude           Exclude [...topics] from installation
-    -l, --install-local     Run the local installation script
-    -h, --help              Show help output
-
-  Examples
-
-    ./install.sh common git
-    ./install.sh --exclude npm homebrew
 ```
-
-### `dots`
-
-[`dots`](bin/dots) is an executable for managing the dotfiles. It can be used to run the
-installation script, list available topics, run a specific topic and update the dotfiles repository.
-
-```console
 $ dots
 
-  Dotfiles maintenance
+  yardnsm's dotfiles maintenance
 
   Usage
 
@@ -65,35 +42,29 @@ $ dots
 
   Commands
 
-    run [topic]     Run the installation file of [topic]
-    install         Run the installation script
-    list            List all topics
+    install [...topics]  Run the symlinking process and the installation script for every topic
+    symlink              Run the symlinking process
+    list                 List all topics
 
   Options
 
-    -a, --all       Show all topics in 'list'
-    -h, --help      Show help output
+    -a, --all            Show all topics in 'list'
+    -y, --yes            Skip confirmation questions
+    -e, --exclude        Exclude [...topics] from installation
+    -d, --debug-log      Puke debug output to a log file
+    -b, --base-dir       Run the local installation script
+    -h, --help           Show help output
 
-  Options are being passed to the install script
-  when running 'install' command.
+  Examples
+
+    $ dots install common git
+    $ dots install --exclude npm homebrew
+
+    # Install another dotfiles repo that follows the same structure
+    $ dots install -b ~/dotfiles-local
 ```
 
-## Order and hierarchy
-
-- Directories starting with `_` are related to the repo itself (install files, utils,
-  submodules...).
-- Every other directory is a topic directory, which may contain symlinks/shell scripts relevant to
-  the topic.
-- Symbolic links created at `$HOME` ([`./common/install.sh`](./common/install.sh)).
-- `.zsh` files will be sourced when the shell loads.
-
-## Local dotfiles
-
-The installation script will look for a directory located at `~/dotfiles-local`. It'll run the local
-installation file if available (`~/dotfiles-local/install.sh`).
-
-In addition, available `.zsh` files in the local dotfiles directory will be sourced when the shell
-loads. Additional git configuration can be can be placed in `~/.gitconfig.local`
+----------------------------------------------------------------------------------------------------
 
 ## License
 

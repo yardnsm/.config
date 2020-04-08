@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+# --------------------------------------------------------------------------------------------------
+
+source "./commands/install.sh"
+source "./commands/symlink.sh"
+source "./commands/list.sh"
+source "./commands/help.sh"
+
+source "./initializer.sh"
+
+# --------------------------------------------------------------------------------------------------
+
+declare OPT_ALL=0
+declare OPT_YES=0
+declare OPT_EXCLUDE=0
+declare OPT_DEBUG_LOG=0
+
+# This comes from ./variables.sh
+declare OPT_BASE_DIR="$DOTFILES"
+
+# --------------------------------------------------------------------------------------------------
+
+main() {
+  declare -r SUBCOMMAND=$1
+  shift
+
+  while [[ -n "$1" ]]; do
+    case $1 in
+      -a | --all )
+        OPT_ALL=1
+        shift
+        ;;
+      -y | --yes )
+        OPT_YES=1
+        shift
+        ;;
+      -e | --exclude )
+        OPT_EXCLUDE=1
+        shift
+        ;;
+      -d | --debug-log )
+        OPT_DEBUG_LOG=1
+        shift
+        ;;
+      -b | --base-dir )
+        OPT_BASE_DIR=$1
+        export DOTFILES="$1"
+
+        shift
+        ;;
+      -h | --help )
+        command::help
+        exit 0
+        ;;
+      * )
+        break
+        ;;
+    esac
+  done
+
+  case "$SUBCOMMAND" in
+    install )
+      command::install "$@"
+      exit 0
+      ;;
+    symlink )
+      command::symlink "$@"
+      exit 0
+      ;;
+    list )
+      command::list "$@"
+      exit 0
+      ;;
+    "" | -h | --help )
+      command::help
+      exit 0
+      ;;
+    * )
+      echo
+      output::error "Unknown command $SUBCOMMAND";
+      exit 1;
+      ;;
+  esac
+}
+
+main "$@"
+

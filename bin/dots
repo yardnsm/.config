@@ -1,107 +1,11 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
-  && source "../.setup/initializer.sh"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
-# ---------------------------------------------
-
-run_topic() {
-  if [[ -z "$1" ]]; then
-    echo
-    output::error "No topic provided"
-    return 1
-  fi
-
-  topics::install_single "$1"
-}
-
-run_install() {
-  source "../install.sh" "$@"
-}
-
-list_topics() {
-  output::title "Available topics"
-  echo
-
-  local list_all=0
-
-  if [[ "$1" == "-a" ]] || [[ "$1" == "--all" ]]; then
-    list_all=1
-  fi
-
-  # shellcheck disable=SC2207
-  local topics
-
-  if [[ $list_all -eq 0 ]]; then
-    topics=( $(topics::get_runnable) )
-  else
-    topics=( $(topics::get_all) )
-  fi
-
-  for topic in "${topics[@]}"; do
-    printf "     %-8s\\n" "${topic}"
-  done | column
-}
-
-# ---------------------------------------------
-
-print_help() {
-  cat <<EOF
-
-  Dotfiles maintenance
-
-  Usage
-
-    dots <command> [options]
-
-  Commands
-
-    run [topic]     Run the installation file of [topic]
-    install         Run the installation script
-    list            List all topics
-
-  Options
-
-    -a, --all       Show all topics in 'list'
-    -h, --help      Show help output
-
-  Options are being passed to the install script
-  when running 'install' command.
-EOF
-}
-
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 main() {
-  declare -r CMD=$1
-  shift
-
-  # The install script will change the help output depending on this variable
-  export FROM_DOTS=1
-
-  case "$CMD" in
-    run )
-      run_topic "$@"
-      exit 0
-      ;;
-    install )
-      run_install "$@"
-      exit 0
-      ;;
-    list )
-      list_topics "$@"
-      exit 0
-      ;;
-    "" | -h | --help)
-      print_help
-      exit 0
-      ;;
-    * )
-      echo
-      output::error "Unknown option $CMD";
-      exit 1;
-      ;;
-  esac
+  source "../.setup/dots"
 }
 
 main "$@"
