@@ -7,3 +7,7 @@ function vim-plugins() {
   echo "---------------"
   echo "Total: $(wc -l <<< $plugins)"
 }
+
+if [[ $(command -v nvim) ]]; then
+  alias vim="nvim"
+fi
