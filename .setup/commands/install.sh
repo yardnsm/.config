@@ -67,14 +67,14 @@ command::install() {
 
   output::welcome_message
 
-  if [[ ${OPT_DEBUG_LOG} -eq 1 ]]; then
+  if [[ "$OPT_DEBUG_LOG" -eq 1 ]]; then
     commands::init_output_file
   fi
 
   if [[ ${#__TOPICS} -ne 0 ]]; then
     echo
 
-    if [[ ${OPT_EXCLUDE} -eq 1 ]]; then
+    if [[ "$OPT_EXCLUDE" -eq 1 ]]; then
       output::status "Topics to exclude: ${__TOPICS[*]}"
     else
       output::status "Topics to install: ${__TOPICS[*]}"
@@ -89,7 +89,7 @@ command::install() {
   __check_submodules
 
   # Ask if it's okay
-  if ! [[ $OPT_YES -eq 1 ]]; then
+  if ! [[ "$OPT_YES" -eq 1 ]]; then
     output::info "Just to make sure"
     ask::prompt_confirmation "Continue? "
   fi
@@ -102,10 +102,10 @@ command::install() {
 
   ask::check_sudo
 
-  if [[ ${exclude_topics} -eq 1 ]]; then
-    topics::install_multiple "" "${topics[*]}"
+  if [[ "$OPT_EXCLUDE" -eq 1 ]]; then
+    topics::install_multiple "" "${__TOPICS[*]}"
   else
-    topics::install_multiple "${topics[*]}"
+    topics::install_multiple "${__TOPICS[*]}"
   fi
 
   output::info " Setup is done! You might need to restart your system to see full changes."

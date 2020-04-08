@@ -21,7 +21,7 @@ command::symlink() {
   pushd "$(dirname "$__SYMLINKS")" &> /dev/null \
     || exit 1
 
-  while read symlink; do
+  while read -r symlink; do
 
     # Start with a '#'? Ignore!
     [[ "$symlink" =~ ^\# ]] || [[ -z "$symlink" ]] \

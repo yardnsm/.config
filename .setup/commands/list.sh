@@ -2,6 +2,7 @@
 
 # --------------------------------------------------------------------------------------------------
 
+# shellcheck disable=SC2207
 command::list() {
 
   output::title "Available topics"

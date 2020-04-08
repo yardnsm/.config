@@ -18,7 +18,7 @@ commands::init_output_file() {
   fi
 
   # Add a modeline for enabling Vim folds
-  echo -e "vim: set foldmethod=marker foldlevel=0:\n" >> $__COMMANDS_OUTPUT_FILE
+  echo -e "vim: set foldmethod=marker foldlevel=0:\n" >> "$__COMMANDS_OUTPUT_FILE"
 
   echo
   output::status "Output file is set to $__COMMANDS_OUTPUT_FILE"
