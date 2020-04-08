@@ -20,7 +20,8 @@ main() {
     -type f \
     ! -path '../.submodules/*' \
     ! -path '../.misc/*' \
-    ! -path '../nvim/nvim.conf/plugged/*' \
+    ! -path '../nvim/plugged/*' \
+    ! -path '../coc/extensions/node_modules/*' \
     ! -path '../alacritty/alacritty/*' \
     ! -path '../zsh/completions/*' \
     -name '*.sh' \

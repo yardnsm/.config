@@ -6,8 +6,11 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # ---------------------------------------------
 
 main() {
+  cd extensions \
+    || return 1
+
   commands::execute \
-    "npm install $ext --global-style --no-bin-links  --no-package-lock --only=prod" \
+    "npm install --global-style --no-bin-links  --no-package-lock --only=prod" \
     "Installing all coc extensions"
 }
 
