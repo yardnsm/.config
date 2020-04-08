@@ -1,3 +1,10 @@
+function yolo() {
+  local cmd="rm -rf node_modules && npm install --no-package-lock"
+
+  echo "\n  > ${cmd}\n"
+  eval "${cmd}"
+}
+
 # Make npm fast (use the cache)
 alias npmo="npm --cache-min 9999999"
 
