@@ -1,15 +1,15 @@
 # Lines that start with a `#` are comments
 # Specify a path, and it will be symlinked to ~/.config
-./i3
 ./alacritty
 ./coc
 ./compton
-./nvim
 ./dunst
 ./fontconfig
-./rofi
 ./git
+./i3
 ./nvim
+./nvim
+./rofi
 
 # You can also specify the specific path to symlink it to, under $HOME
 ./tmux/.tmux.conf .tmux.conf
@@ -17,9 +17,6 @@
 ./nvim/.vimrc .vimrc
 ./stylelint/.stylelint .stylelint
 ./gpg/gpg-agent.conf .gnupg/gpg-agent.conf
-./terminfo/tmux-256color.terminfo, .terminfo/74/tmux-256color
-./terminfo/xterm-256color-italic.terminfo, .terminfo/78/xterm-256color-italic
-./ternjs/.tern-config .tern-config
 
 ./xorg/.Xresources .Xresources
 ./xorg/.xinitrc .xinitrc
