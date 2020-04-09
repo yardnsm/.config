@@ -67,8 +67,6 @@ main() {
     esac
   done
 
-  shift
-
   case "$SUBCOMMAND" in
     install )
       command::install "$@"
