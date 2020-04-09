@@ -1,1 +1,0 @@
-alias cask='brew cask'

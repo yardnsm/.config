@@ -3,50 +3,62 @@
 # ---------------------------------------------
 
 declare -r applications=(
-  'java'
-  'github-desktop'
-  'postman'
   'iterm2'
-  'gitup'
   'sequel-pro'
-  'vimr'
-  'visual-studio-code'
   'wireshark'
   'hex-fiend'
-  'android-platform-tools'
+
+  'android-studio'
+  'visual-studio-code'
+
 
   '1password'
   '1password-cli'
 
-  'keybase'
+  'java'
+  'virtualbox'
+  'android-platform-tools'
 
   'google-chrome'
   'google-chrome-canary'
+  'firefox-developeredition'
 
+  'kap'
+  'keybase'
+  'caption'
   'puush'
+  'gifski'
   'keepingyouawake'
   'scroll-reverser'
   'spectacle'
-
   'beardedspice'
   'transmission'
   'slack'
   'spotify'
   'vlc'
-  'zeplin'
+
   'syncthing'
+  'google-backup-and-sync'
+
+  # ------------------------------------------------------------------------------------------------
+  # Retired
+  # ------------------------------------------------------------------------------------------------
 
   # 'adobe-photoshop-cc'
-  # 'android-studio'
   # 'intellij-idea'
   # 'firefox-nightly'
-  # 'firefox-developeredition'
   # 'opera'
   # 'android-file-transfer'
   # 'keycastr'
   # 'skype'
   # 'firefox'
-  # 'google-drive'
+  # 'vimr'
+  # 'gitup'
+  # 'github-desktop'
+  # 'postman'
+  # 'atom'
+  # 'meld'
+  # 'zeplin'
 )
 
 declare -r fonts=(
@@ -64,7 +76,7 @@ declare -r fonts=(
   'font-open-sans-hebrew-condensed'
 )
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 main() {
   output::info "Install applications"
