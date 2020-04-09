@@ -10,6 +10,9 @@ Session.vim
 nvim/plugged
 nvim/autoload/plug.vim
 
+# Git local configs
+git/local
+
 # Ignore everything in coc
 coc/*
 !coc/install.sh

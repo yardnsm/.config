@@ -1,7 +1,7 @@
 # vim: set foldmethod=marker foldlevel=0:
 
 [include]
-  path = ~/.gitconfig.local
+  path = ~/.config/git/local
 
 # Core {{{
 
