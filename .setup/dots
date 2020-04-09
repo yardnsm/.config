@@ -48,18 +48,22 @@ main() {
         shift
         ;;
       -b | --base-dir )
-        OPT_BASE_DIR=$1
-        export DOTFILES="$1"
+        shift # Take next arg
+
+        if [[ -z "$1" ]]; then
+          echo
+          output::error "Missing argument for --base-dir";
+          exit 1;
+        fi
+
+        OPT_BASE_DIR="$(readlink -f $1)"
+        DOTFILES="$OPT_BASE_DIR"
 
         shift
         ;;
       -D | --dry-run )
         OPT_DRY_RUN=1
         shift
-        ;;
-      -h | --help )
-        command::help "$@"
-        exit 0
         ;;
       * )
         break
@@ -78,6 +82,10 @@ main() {
       ;;
     list )
       command::list "$@"
+      exit 0
+      ;;
+    -h | --help )
+      command::help "$@"
       exit 0
       ;;
     "" )
