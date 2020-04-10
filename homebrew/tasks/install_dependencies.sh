@@ -15,6 +15,7 @@ declare -r formulae=(
   'ansible'
   'maven'
 
+  'Schniz/tap/fnm'
   'node'
   'yarn'
 
