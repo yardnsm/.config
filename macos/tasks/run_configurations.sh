@@ -130,6 +130,12 @@ commands::execute "defaults write com.apple.dock tilesize -int 55" \
 commands::execute "defaults write com.apple.dock dashboard-in-overlay -bool true" \
   "Do not show Dashboard as space"
 
+commands::execute "defaults write com.apple.dock show-recents -bool false" \
+  "Do not show recent applications in Dock"
+
+commands::execute "defaults write com.apple.dock autohide-time-modifier -float 0.5" \
+  "Speed-up the animation when hiding/showing the Dock"
+
 # ---------------------------------------------
 
 output::info "Safari"
