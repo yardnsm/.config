@@ -50,7 +50,7 @@ EOF
 }
 
 __check_submodules() {
-  pushd "$OPT_BASE_DIR" &> /dev/null \
+  pushd "$DOTFILES" &> /dev/null \
     || return 1
 
   commands::execute "git submodule update --init --recursive --remote -q" \
@@ -108,5 +108,5 @@ command::install() {
     topics::install_multiple "${__TOPICS[*]}"
   fi
 
-  output::info " Setup is done! You might need to restart your system to see full changes."
+  output::info "Setup is done! You might need to restart your system to see full changes."
 }

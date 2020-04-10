@@ -10,7 +10,7 @@ _commands=(
 )
 
 _arg_all=( '(-a --all)'{-a,--all}'[Show all topics]' )
-_arg_base_dir=( '(-b --base-dir)'{-b,--base-dir}'[Set the dotfiles directory to run from]' )
+_arg_base_dir=( '(-b --base-dir)'{-b,--base-dir}'[Set the dotfiles directory to run from]:filename:_files' )
 _arg_debug_log=( '(-d --debug-log)'{-d,--debug-log}'[Write commands output to debug log]' )
 _arg_dry_run=( '(-D --dry-run)'{-D,--dry-run}'[Check the symlinking operations]' )
 _arg_exclude=( '(-e --exclude)'{-e,--exclude}'[Exclude topics from installation]' )
@@ -67,7 +67,8 @@ _dots_symlink() {
 
 _dots_list() {
   _arguments -C \
-    $_arg_all
+    $_arg_all \
+    $_arg_base_dir
 }
 
 # ------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ topics::get_all() {
     -type d \
     ! -name '_*' \
     ! -name '.*' \
-    ! -name 'dotfiles' \
+    ! -name 'dotfiles*' \
     -exec basename {} \; \
     | sort
 

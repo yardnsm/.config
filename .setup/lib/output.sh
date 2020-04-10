@@ -98,7 +98,4 @@ output::welcome_message() {
 "
 
   output::cyan "     $(tput bold)Base dir:$(tput sgr0) \\t ~${DOTFILES#$HOME} \\n"
-
-  [[ -d "$DOTFILES_LOCAL" ]] \
-    && output::cyan "     $(tput bold)Local:$(tput sgr0) \\t ~${DOTFILES_LOCAL#$HOME} \\n"
 }

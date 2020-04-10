@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Used for the --base-dir flag
+declare -r CURRENT_WORKING_DIRECTORY="$(pwd)"
+
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # --------------------------------------------------------------------------------------------------
@@ -19,9 +22,6 @@ declare OPT_YES=0
 declare OPT_EXCLUDE=0
 declare OPT_DEBUG_LOG=0
 declare OPT_DRY_RUN=0
-
-# This comes from ./variables.sh
-declare OPT_BASE_DIR="$DOTFILES"
 
 # --------------------------------------------------------------------------------------------------
 
@@ -50,14 +50,22 @@ main() {
       -b | --base-dir )
         shift # Take next arg
 
-        if [[ -z "$1" ]]; then
+        DOTFILES="$(
+          cd "$CURRENT_WORKING_DIRECTORY" \
+            && readlink -f $1
+        )"
+
+        if [[ -z "$DOTFILES" ]]; then
           echo
-          output::error "Missing argument for --base-dir";
-          exit 1;
+          output::error "Missing argument for --base-dir; Aborting.";
+          exit 1
         fi
 
-        OPT_BASE_DIR="$(readlink -f $1)"
-        DOTFILES="$OPT_BASE_DIR"
+        if ! [[ -d "$DOTFILES" ]]; then
+          echo
+          output::error "$DOTFILES is not a directory; Aborting.";
+          exit 1
+        fi
 
         shift
         ;;
@@ -94,7 +102,7 @@ main() {
       ;;
     * )
       echo
-      output::error "Unknown command $SUBCOMMAND";
+      output::error "Unknown command $SUBCOMMAND; Aborting";
       exit 1;
       ;;
   esac

@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
-
 # --------------------------------------------------------------------------------------------------
 
 main() {
-  source "../.setup/dots"
+  source "$(dirname "${BASH_SOURCE[0]}")/../.setup/dots"
 }
 
 main "$@"

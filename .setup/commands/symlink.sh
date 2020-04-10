@@ -4,7 +4,9 @@
 
 command::symlink() {
 
-  declare -r __SYMLINKS="$OPT_BASE_DIR/.symlinks"
+  # Declare it in the fucntion scope since the $DOTFILES variable may be changed before this script
+  # is sourced
+  declare -r __SYMLINKS="$DOTFILES/.symlinks"
 
   local item_src
   local item_dest

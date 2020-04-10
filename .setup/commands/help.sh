@@ -9,7 +9,7 @@ command::help() {
 
   Usage
 
-    dots <command> [options]
+    dots <command> [options] [...topics]
 
   Commands
 
