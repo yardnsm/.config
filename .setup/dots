@@ -17,6 +17,7 @@ source "./initializer.sh"
 
 # --------------------------------------------------------------------------------------------------
 
+declare OPT_INIT=0
 declare OPT_ALL=0
 declare OPT_YES=0
 declare OPT_EXCLUDE=0
@@ -31,6 +32,10 @@ main() {
 
   while [[ -n "$1" ]]; do
     case $1 in
+      --init )
+        OPT_INIT=1
+        shift
+        ;;
       -a | --all )
         OPT_ALL=1
         shift

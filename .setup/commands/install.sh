@@ -49,7 +49,7 @@ EOF
   fi
 }
 
-__check_submodules() {
+__init_submodules() {
   pushd "$DOTFILES" &> /dev/null \
     || return 1
 
@@ -86,7 +86,10 @@ command::install() {
   # Run checks
   __check_os
   __check_xcode_tools
-  __check_submodules
+
+  if [[ "$OPT_INIT" -eq 1 ]]; then
+    __init_submodules
+  fi
 
   # Ask if it's okay
   if ! [[ "$OPT_YES" -eq 1 ]]; then

@@ -15,7 +15,7 @@ $ git clone https://github.com/yardnsm/dotfiles ~/dotfiles
 
 # Run the installation script
 $ cd dotfiles
-$ ./.setup/dots
+$ ./.setup/dots --init
 ```
 
 ## Order and hierarchy
@@ -48,6 +48,7 @@ $ dots
 
   Options
 
+    --init               Initialize git submodules
     -a, --all            Show all topics in 'list'
     -y, --yes            Skip confirmation questions
     -e, --exclude        Exclude [...topics] from installation

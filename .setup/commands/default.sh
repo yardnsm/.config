@@ -7,6 +7,8 @@ command::default() {
   if commands::exists "dots"; then
     command::help "$@"
   else
+    OPT_INIT=1
+
     command::symlink "$@"
     command::install "$@"
   fi

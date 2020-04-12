@@ -19,6 +19,7 @@ command::help() {
 
   Options
 
+    --init               Initialize git submodules
     -a, --all            Show all topics in 'list'
     -y, --yes            Skip confirmation questions
     -e, --exclude        Exclude [...topics] from installation
