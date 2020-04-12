@@ -114,22 +114,22 @@ function! statusline#BuildStatusLine(mode) abort
     let l:result .= '%2* %3l:%-2c '                  " line info
 
     " ALE errors and warning
-    let l:ale_errors = statusline#Errors()
-    let l:ale_warnings = statusline#Warnings()
+    let l:errors = statusline#Errors()
+    let l:warnings = statusline#Warnings()
 
-    if l:ale_warnings
-      if l:ale_errors
-        let l:result .= printf('%%6* ‹%d›', l:ale_warnings)
+    if l:warnings
+      if l:errors
+        let l:result .= printf('%%6* ‹%d›', l:warnings)
       else
-        let l:result .= printf('%%6* ‹%d› ● %%3* ', l:ale_warnings)
+        let l:result .= printf('%%6* ‹%d› ● %%3* ', l:warnings)
       endif
     endif
 
-    if l:ale_errors
-      let l:result .= printf('%%7* ‹%d› ● %%3* ', l:ale_errors)
+    if l:errors
+      let l:result .= printf('%%7* ‹%d› ● %%3* ', l:errors)
     endif
 
-    if !l:ale_errors && !l:ale_warnings
+    if !l:errors && !l:warnings
       let l:result .= '%8* ● %3* '
     endif
 

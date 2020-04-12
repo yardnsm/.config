@@ -1,12 +1,3 @@
-# Counts how many plugins you have.
-function vim-plugins() {
-  local -r plugins="$(cat ~/dotfiles/nvim/nvim.conf/init.vim | grep "Plug '")"
-
-  echo $plugins
-  echo "---------------"
-  echo "Total: $(wc -l <<< $plugins)"
-}
-
 if [[ $(command -v nvim) ]]; then
   alias vim="nvim"
 fi

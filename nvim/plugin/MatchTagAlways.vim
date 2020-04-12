@@ -6,6 +6,8 @@ let g:mta_filetypes = {
   \ 'xml' : 1,
   \ 'javascript.jsx' : 1,
   \ 'typescript.jsx' : 1,
+  \ 'javascriptreact' : 1,
+  \ 'typescriptreact' : 1,
   \ }
 
 let g:mta_use_matchparen_group = 0

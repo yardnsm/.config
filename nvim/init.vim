@@ -19,12 +19,6 @@ set encoding=utf-8
 
 set modelines=1                       " enable modelines
 
-" let g:python_host_skip_check = 1
-" let g:python3_host_skip_check = 1
-
-" let g:python_host_prog = '/usr/local/bin/python2'
-" let g:python3_host_prog = '/usr/local/bin/python3'
-
 " See ~/dotfiles/nvim/setup-python-env.sh
 let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
 let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
