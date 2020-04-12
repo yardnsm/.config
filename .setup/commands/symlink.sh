@@ -15,7 +15,6 @@ command::symlink() {
     readlink_cmd="greadlink"
   fi
 
-
   local item_src
   local item_dest
 
