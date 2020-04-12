@@ -31,13 +31,6 @@ export PYWAL_HOME="$XDG_CACHE_HOME/wal"
 
 # }}}
 
-# $PATH setup {{{
-
-export PATH=$DOTFILES/i3/bin:$PATH
-export PATH=$DOTFILES/bin:$PATH
-export PATH=/usr/sbin:$PATH
-
-# }}}
 # Common locations {{{
 
 export DOTFILES=$HOME/dotfiles
