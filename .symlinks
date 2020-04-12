@@ -1,5 +1,5 @@
 # Lines that start with a `#` are comments
-# Specify a path, and it will be symlinked to ~/.config
+# Specify a path, and it will be symlinked to $XDG_CONFIG_HOME
 ./alacritty
 ./coc
 ./compton
@@ -10,18 +10,12 @@
 ./nvim
 ./nvim
 ./rofi
+./zsh
+./tmux
+./xorg
 
 # You can also specify the specific path to symlink it to, under $HOME
-./tmux/.tmux.conf .tmux.conf
-./common/.hushlogin .hushlogin
-./nvim/.vimrc .vimrc
-./stylelint/.stylelint .stylelint
-./gpg/gpg-agent.conf .gnupg/gpg-agent.conf
-
-./xorg/.Xresources .Xresources
 ./xorg/.xinitrc .xinitrc
-
 ./zsh/.zshenv .zshenv
-./zsh/.zshrc .zshrc
 
 # vim:ft=conf:

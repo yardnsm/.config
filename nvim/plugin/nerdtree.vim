@@ -10,5 +10,7 @@ let g:NERDTreeIgnore = [
   \ '\.pyc$',
   \ ]
 
+let g:NERDTreeBookmarksFile = $XDG_DATA_HOME . '/.NERDTreeBookmarks'
+
 nnoremap <leader>/ :NERDTreeToggle<CR>
 nnoremap <leader>0 :NERDTreeFocus<CR>

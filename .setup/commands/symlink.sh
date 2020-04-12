@@ -8,6 +8,14 @@ command::symlink() {
   # is sourced
   declare -r __SYMLINKS="$DOTFILES/.symlinks"
 
+  local readlink_cmd="readlink"
+  if [[ "$(os::get_name)" == "macos" ]]; then
+
+    # Use greadlink on the mac
+    readlink_cmd="greadlink"
+  fi
+
+
   local item_src
   local item_dest
 
@@ -32,7 +40,7 @@ command::symlink() {
     item_src="$(echo "$symlink" | awk '{print $1}')"
     item_dest="$(echo "$symlink" | awk '{print $2}')"
 
-    src_realpath="$(readlink -f "$item_src")"
+    src_realpath="$("${readlink_cmd}" -f "$item_src")"
 
     if [[ -z "$item_dest" ]]; then
 
@@ -56,7 +64,7 @@ command::symlink() {
           "$src_realpath -> ~${dest_realpath#$HOME}"
       fi
 
-    elif [[ "$(readlink "$dest_realpath")" == "$src_realpath" ]]; then
+    elif [[ "$("${readlink_cmd}" "$dest_realpath")" == "$src_realpath" ]]; then
       output::status "$src_realpath -> ~${dest_realpath#$HOME} (alreay linked)"
     else
       output::error "~${dest_realpath#$HOME} already exists, Skipping."

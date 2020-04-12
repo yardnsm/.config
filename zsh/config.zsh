@@ -3,7 +3,6 @@ setopt PROMPT_SUBST
 
 # History
 HISTSIZE=10000
-HISTFILE="$HOME/.zsh_history"
 SAVEHIST=$HISTSIZE
 
 # Display info for tasks long than 8sec

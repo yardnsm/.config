@@ -3,8 +3,8 @@
 # Setting fpath {{{
 
 fpath=(
-  $ZSH/completions
-  $ZSH/functions
+  $ZDOTDIR/completions
+  $ZDOTDIR/functions
   $fpath
 )
 
@@ -29,7 +29,8 @@ autoload -U colors && colors
 autoload -U promptinit && promptinit
 
 # Initialize completion
-autoload -U compinit && compinit
+autoload -U compinit \
+  && compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 
 autoload -U edit-command-line
 

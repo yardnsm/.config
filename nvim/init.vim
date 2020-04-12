@@ -26,8 +26,8 @@ set modelines=1                       " enable modelines
 " let g:python3_host_prog = '/usr/local/bin/python3'
 
 " See ~/dotfiles/nvim/setup-python-env.sh
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
+let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
 
 " }}}
 " Plugins {{{
@@ -41,7 +41,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'wikitopian/hardmode'                " stepping up the game...
@@ -259,12 +259,23 @@ set tabstop=2                         " number of *visual* spaces per <tab>
 set autoread                          " detect when a file is changed
 
 set noundofile                        " disable undofiles
-
 " set nobackup                          " disable backups
-set backupdir=~/.vim-backup/,/tmp//
-
 " set noswapfile                        " disable swaps
-set directory=~/.vim-swp/,/tmp//
+
+" Neevim defaults are great, but vim's not...
+if !has('nvim')
+  set undodir=$XDG_DATA_HOME/vim/undo
+  set directory=$XDG_DATA_HOME/vim/swap
+  set backupdir=$XDG_DATA_HOME/vim/backup
+  set viewdir=$XDG_DATA_HOME/vim/view
+  set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
+
+  " Bootstrap directories
+  call bootstrap#Directory(&undodir)
+  call bootstrap#Directory(&directory)
+  call bootstrap#Directory(&backupdir)
+  call bootstrap#Directory(&viewdir)
+endif
 
 " }}}
 " Misc {{{

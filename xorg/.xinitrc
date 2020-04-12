@@ -7,7 +7,7 @@
 main() {
 
   # Merge existing .Xresources
-  xrdb -merge ~/.Xresources
+  xrdb -merge "$XDG_CONFIG_HOME/xorg/Xresources"
 
   # Merge from the local dotfiles
   if [[ -d "$DOTFILES_LOCAL" ]]; then

@@ -11,7 +11,7 @@
     "coc-snippets": ">=2.1.17",
     "coc-svg": "0.0.13",
     "coc-tsserver": "^1.4.9",
-    "coc-vimlsp": "^0.4.4",
+    "coc-vimlsp": ">=0.5.1",
     "coc-xml": "^1.9.5"
   }
 }

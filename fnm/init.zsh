@@ -1,10 +1,8 @@
 # vim: set foldmethod=marker foldlevel=0:
 
-export PATH=$HOME/.fnm:$PATH
-
 # Sourcing {{{
 
-eval "$(fnm env --multi)"
+eval "$(fnm env --multi --fnm-dir "$FNM_DIR")"
 
 # }}}
 # Autoload hooks {{{
