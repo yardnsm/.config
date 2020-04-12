@@ -42,6 +42,11 @@
     ".jsx"
   ],
 
+  // diagnostic-languageserver settings
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+
   // Custom LSPs
   "languageserver": {
     "stylable": {
