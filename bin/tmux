@@ -2,4 +2,4 @@
 
 # --------------------------------------------------------------------------------------------------
 
-exec /usr/local/bin/tmux -f "$XDG_CONFIG_HOME/tmux/.tmux.conf" "$@"
+exec /usr/local/bin/tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf" "$@"
