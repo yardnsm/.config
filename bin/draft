@@ -22,7 +22,11 @@ main() {
   fi
 
   if [[ $# -eq 0 ]]; then
-    file="$(find "$DRAFTS_HOME" -name '*.md' -exec basename {} \; | fzf)"
+    file="$(\
+      find "$DRAFTS_HOME" -name '*.md' -exec basename {} \; \
+        | sort -r \
+        | fzf --preview "head -20 $DRAFTS_HOME/{}" \
+      )"
 
     [[ -n "$file" ]] \
       && $EDITOR "$DRAFTS_HOME/$file"

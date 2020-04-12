@@ -9,6 +9,7 @@
 ./i3
 ./nvim
 ./nvim
+./npm
 ./rofi
 ./zsh
 ./tmux
