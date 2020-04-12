@@ -26,9 +26,6 @@ main() {
     ! -path '../zsh/completions/*' \
     -name '*.sh' \
     -exec shellcheck \
-      -e SC1091 \
-      -e SC1090 \
-      -e SC2015 \
     {} +
 
   output::result $? "Shellcheck"
