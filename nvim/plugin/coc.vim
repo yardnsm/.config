@@ -44,6 +44,9 @@ nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 command! -nargs=0 Format :call CocAction('format')
       \ || CocCommand eslint.executeAutofix
 
+" Reset floating windows
+command! -nargs=0 ResetFloating :execute "norm \<Plug>(coc-float-hide)"
+
 " }}}
 " Insert a newline after pressing enter {{{
 

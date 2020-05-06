@@ -141,9 +141,16 @@ function! statusline#BuildStatusLine(mode) abort
       let l:result .= '[%n] '
     endif
 
-    let l:result .= ' %m%= ●  '           " modified and blank indicator
+    let l:result .= '%m'                            " modified
+    let l:result .= '%='                            " going to the right side
+
+    let l:result .= '[%{statusline#Filetype()}] '   " filetype
+    let l:result .= ' ●  '                          " blank indicator, for consistency
 
   else
+
+    " This mode is for special buffers. It'll show a blank indicator, and the custom name for that
+    " buffer. Those buffers are defined in s:statusline_ft_titles.
     let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
   endif
 

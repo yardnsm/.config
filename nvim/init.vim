@@ -198,7 +198,7 @@ set laststatus=2
 augroup statusline_au
   autocmd!
 
-  autocmd WinEnter,FocusGained,FileType * setlocal
+  autocmd BufWinEnter,WinEnter,FocusGained,FileType * setlocal
         \ statusline=%!statusline#BuildStatusLine(statusline#GetModeName(&ft)) |
 
   autocmd WinLeave,FocusLost * setlocal
