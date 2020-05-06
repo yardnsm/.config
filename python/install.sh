@@ -14,7 +14,6 @@ declare -r pips=(
   'python-language-server[all]'
 
   'virtualenv'
-  'pew'
   'pipenv'
 
   'scapy'
