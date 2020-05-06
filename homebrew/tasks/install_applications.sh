@@ -36,6 +36,8 @@ declare -r applications=(
   'slack'
   'spotify'
   'vlc'
+  'discord'
+  'tunnelblick'
 
   'syncthing'
   'google-backup-and-sync'

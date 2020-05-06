@@ -24,9 +24,13 @@ declare -r formulae=(
   'pyenv'
   'pyenv-pip-migrate'
   'pyenv-virtualenv'
+  'poetry'
 
   'mongo'
   'mysql'
+
+  'docker'
+  'docker-machine'
 
   'wget'
   'tig'
@@ -49,6 +53,7 @@ declare -r formulae=(
   'figlet'
   'tree'
   'youtube-dl'
+  'binwalk'
 
   'coreutils'
   'openssl'
