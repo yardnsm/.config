@@ -12,6 +12,8 @@
 
 [user]
   useConfigOnly = true
+	name = Yarden Sod-Moriah
+	email = yardnsm@gmail.com
 
 [commit]
   verbose = true
