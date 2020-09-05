@@ -18,10 +18,37 @@ const s:MODE_INACTIVE = 'inactive'
 
 let s:statusline_ft_titles = {
       \ 'nerdtree': 'NERD',
-      \ 'qf': '%q',
+      \ 'qf': '',
+      \ }
+
+let s:statusline_visual_percentages = {
+      \ '0': '██',
+      \ '12.5': '▆▆',
+      \ '25': '▅▅',
+      \ '37.5': '▄▄',
+      \ '50': '▃▃',
+      \ '62.5': '▂▂',
+      \ '75': '▁▁',
+      \ '100': '  ',
       \ }
 
 " Blocks {{{
+
+function! statusline#VisualPercentage()
+  let l:line_percentage = line('.') * 100 / line('$')
+  let l:last_percentage = 0
+
+  for percentage in sort(keys(s:statusline_visual_percentages), 'N')
+    if l:line_percentage <= percentage && l:line_percentage >= l:last_percentage
+      return s:statusline_visual_percentages[percentage]
+    endif
+
+    let l:last_percentage = percentage
+  endfor
+
+  return ' '
+endfunction
+
 function! statusline#Paste()
     return &paste ? '[PASTE]' : ''
 endfunction
@@ -70,9 +97,11 @@ function! statusline#Errors() abort
 
   return l:all_errors
 endfunction
+
 " }}}
 " Helper functions {{{
-function! statusline#GetModeName(ft) abort
+
+function! statusline#GetMinimalName(ft) abort
   if has_key(s:statusline_ft_titles, a:ft)
     return s:statusline_ft_titles[a:ft]
   endif
@@ -86,16 +115,26 @@ function! statusline#GetModeName(ft) abort
     endif
   endif
 
-  " Default to 'active'
-  return s:MODE_ACTIVE
+  return 0
 endfunction
+
 " }}}
+
+" This mode is for special buffers. It'll show a blank indicator, and the custom name for that
+" buffer. Those buffers are defined in s:statusline_ft_titles.
+function! statusline#BuildMinimalStatusLine(mode) abort
+  if a:mode ==# s:MODE_ACTIVE
+    return '%1* %{statusline#GetMinimalName(&ft)}%q %3*%=%5* ● %3* '
+  elseif a:mode ==# s:MODE_INACTIVE
+    return ' %{statusline#GetMinimalName(&ft)}%q %= ●  '
+  endif
+endfunction
 
 function! statusline#BuildStatusLine(mode) abort
   let l:result = ''
 
   if a:mode ==# s:MODE_ACTIVE
-    let l:result .= '%1* %f '                        " filename
+    let l:result .= '%3*%1* %f '                     " filename
 
     " Buffer number if in diff node
     if &diff
@@ -112,6 +151,8 @@ function! statusline#BuildStatusLine(mode) abort
     let l:result .= '%3*%{statusline#Filetype()} '   " filetype
     let l:result .= '%3*%3p%% '                      " line percentage
     let l:result .= '%2* %3l:%-2c '                  " line info
+
+    let l:result .= '%9*%{statusline#VisualPercentage()}'                  " line info
 
     " ALE errors and warning
     let l:errors = statusline#Errors()
@@ -134,7 +175,7 @@ function! statusline#BuildStatusLine(mode) abort
     endif
 
   elseif a:mode ==# s:MODE_INACTIVE
-    let l:result .= ' %f '               " filename
+    let l:result .= ' %f '                          " filename
 
     " Buffer number if in diff node
     if &diff
@@ -146,12 +187,6 @@ function! statusline#BuildStatusLine(mode) abort
 
     let l:result .= '[%{statusline#Filetype()}] '   " filetype
     let l:result .= ' ●  '                          " blank indicator, for consistency
-
-  else
-
-    " This mode is for special buffers. It'll show a blank indicator, and the custom name for that
-    " buffer. Those buffers are defined in s:statusline_ft_titles.
-    let l:result .= '%1* ' . a:mode . ' %3*%=%5* ● %3* '
   endif
 
   return l:result

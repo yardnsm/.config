@@ -126,6 +126,10 @@ augroup vimrc_au
 
   " Unset paste on InsertLeave
   autocmd InsertLeave * silent! set nopaste
+
+  " Unset cursorline on leave
+  " autocmd WinLeave * set nocursorline
+  " autocmd WinEnter * set cursorline
 augroup END
 
 " }}}
@@ -160,7 +164,7 @@ if !has('gui_vimr')
           \ | highlight SpellLocal cterm=undercurl ctermbg=8
           \ | highlight MatchTag ctermbg=11 ctermfg=1
           \ | highlight Statement cterm=bold
-          \ | highlight StatusLine ctermbg=10 cterm=bold
+          \ | highlight StatusLine ctermbg=11 cterm=bold
           \
           \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
           \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
@@ -169,6 +173,7 @@ if !has('gui_vimr')
           \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
           \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
           \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
+          \ | highlight User9 ctermfg=0  ctermbg=10            guifg=#151515 guibg=#202020
 
   augroup END
 endif
@@ -198,11 +203,19 @@ set laststatus=2
 augroup statusline_au
   autocmd!
 
-  autocmd BufWinEnter,WinEnter,FocusGained,FileType * setlocal
-        \ statusline=%!statusline#BuildStatusLine(statusline#GetModeName(&ft)) |
+  autocmd BufWinEnter,WinEnter,FocusGained,FileType *
+        \ if type(statusline#GetMinimalName(&ft)) ==# v:t_string |
+        \   setlocal statusline=%!statusline#BuildMinimalStatusLine('active') |
+        \ else |
+        \   setlocal statusline=%!statusline#BuildStatusLine('active') |
+        \ endif
 
-  autocmd WinLeave,FocusLost * setlocal
-        \ statusline=%!statusline#BuildStatusLine('inactive')
+  autocmd WinLeave,FocusLost *
+        \ if type(statusline#GetMinimalName(&ft)) ==# v:t_string |
+        \   setlocal statusline=%!statusline#BuildMinimalStatusLine('inactive') |
+        \ else |
+        \   setlocal statusline=%!statusline#BuildStatusLine('inactive') |
+        \ endif
 augroup END
 
 
