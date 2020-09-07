@@ -1,3 +1,5 @@
+# vim: set foldmethod=marker foldlevel=0:
+
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
 
@@ -46,3 +48,70 @@ alias deft='base16_classic-dark'
 
 # 🤔
 alias mp3='youtube-dl --extract-audio --audio-format mp3 --no-playlist -o "~/Downloads/%(title)s-%(id)s.%(ext)s"'
+
+# Homebrew
+alias cask='brew cask'
+
+if [[ $(command -v nvim) ]]; then
+  alias vim="nvim"
+fi
+
+# Git {{{
+
+alias g='git'
+alias gs='git status -sb'
+alias ga='git add'
+alias gap='git add --patch'
+alias gaa='git add .'
+alias gc='git commit'
+alias gac='git add . && git commit'
+alias gcl='git clone'
+alias gco='git checkout'
+alias gb='git branch'
+alias gl='git pull'
+alias gp='git push'
+alias gpyolo='git push --no-verify'
+alias gd='git diff'
+alias gdc='git diff --cached'
+
+# Go back to the root of the git repo
+alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
+
+# }}}
+# macOS specifics {{{
+
+if [[ -n $IS_MACOS ]]; then
+
+  # Open stuff
+  alias o="open"
+  alias oo="open ."
+
+  # Start the screen saver
+  alias afk="/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
+
+  # Hide/Show desktop icons
+  alias hdesk="defaults write com.apple.finder CreateDesktop -bool false; killall Finder"
+  alias sdesk="defaults write com.apple.finder CreateDesktop -bool true; killall Finder"
+
+  # Hide/Show hidden files in finder
+  alias hfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+  alias sfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+fi
+
+# }}}
+# npm {{{
+
+# Make npm fast (use the cache)
+alias npmo="npm --cache-min 9999999"
+
+alias npmt="npm test"
+alias npms="npm start"
+alias npmb="npm run build"
+alias npml="npm run lint"
+
+alias npmi="npm install"
+alias npmis="npm install --save"
+alias npmid="npm install --save-dev"
+alias npmig="npm install -g"
+
+# }}}
