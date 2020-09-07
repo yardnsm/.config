@@ -35,7 +35,38 @@ export PYWAL_HOME="$XDG_CACHE_HOME/wal"
 [[ -d "$(dirname $_Z_DATA)" ]] || mkdir -p "$(dirname $_Z_DATA)"
 
 # }}}
+# OS Variables {{{
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+case "$(uname -s)" in
+  "Linux")
+    export IS_LINUX=true
+    ;;
+  "Darwin")
+    export IS_MACOS=true
+    ;;
+esac
+
+# }}}
+
+# $PATH setup {{{
+
+export PATH=$DOTFILES/i3/bin:$PATH
+export PATH=$DOTFILES/bin:$PATH
+export PATH=/usr/sbin:$PATH
+
+if [[ -n $IS_MACOS ]]; then
+
+  # Android SDK dir
+  export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+
+  # Homebrew path
+  export PATH=/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+fi
+
+# }}}
 # Common locations {{{
 
 export DOTFILES=$HOME/dotfiles
@@ -55,18 +86,16 @@ export BROWSER="google-chrome-stable"
 export FILE="ranger"
 
 # }}}
-# OS Variables {{{
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export GPG_TTY=$(tty)
 
-case "$(uname -s)" in
-  "Linux")
-    export IS_LINUX=true
-    ;;
-  "Darwin")
-    export IS_MACOS=true
-    ;;
-esac
+# JAVA home
+if [[ -f "/usr/libexec/java_home" ]]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+fi
 
-# }}}
+# pyenv default version
+export PYENV_VERSION="3.7.7"
+
+# rbenv version
+export RBENV_VERSION="2.2.4"
