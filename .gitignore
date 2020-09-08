@@ -19,3 +19,10 @@ coc/*
 !coc/extensions
 coc/extensions/*
 !coc/extensions/package.json
+
+/.op
+/binwalk
+/configstore
+/phpbrew
+/subversion
+/z
