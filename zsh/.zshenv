@@ -7,7 +7,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 export XDG_RUNTIME_DIR="/tmp/run"
-[[ -d "$XDG_RUNTIME_DIR" ]] || mkdir -m 0700 -p "$XDG_RUNTIME_DIR"
+
+[[ -d "$XDG_RUNTIME_DIR" ]] \
+  || mkdir -m 0700 -p "$XDG_RUNTIME_DIR"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
