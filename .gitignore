@@ -7,19 +7,20 @@ Session.vim
 *~
 
 # Vim plugins
-nvim/plugged
-nvim/autoload/plug.vim
+/nvim/plugged
+/nvim/autoload/plug.vim
+
+# Tmux plugins
+/tmux/plugins
 
 # Git local configs
-git/local
+/git/local
 
 # Ignore everything in coc
-coc/*
-!coc/install.sh
-!coc/extensions
-coc/extensions/*
-!coc/extensions/package.json
+/coc/*
+!/coc/extensions/package.json
 
+# Unrelated directories
 /.op
 /binwalk
 /configstore
