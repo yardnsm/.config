@@ -9,6 +9,28 @@ fpath=(
 )
 
 # }}}
+# Zinit setup {{{
+
+# Configuration
+declare -A ZINIT
+
+ZINIT[BIN_DIR]=$ZDOTDIR/.zinit/bin
+ZINIT[HOME_DIR]=$ZDOTDIR/.zinit
+
+# Sourcing
+source ${ZINIT[BIN_DIR]}/zinit.zsh
+
+# Pluginz
+zinit light rupa/z
+zinit light zsh-users/zsh-completions
+
+# Plugins to use when *not* inside an ssh session
+if [[ -z $SSH_CONNECTION ]]; then
+  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zsh-users/zsh-autosuggestions
+fi
+
+# }}}
 # Autoloading {{{
 
 # Load colors and setup promptinit
@@ -27,26 +49,6 @@ autoload -U edit-command-line
 
 if [[ -d "$PYWAL_HOME" ]]; then
   (cat "$PYWAL_HOME/sequences" &)
-fi
-
-# }}}
-# Antibody setup {{{
-
-# Init antibody
-source <(antibody init)
-
-antibody bundle <<EOBUNDLES
-  rupa/z
-  zsh-users/zsh-completions
-  supercrabtree/k
-EOBUNDLES
-
-# Plugins to use when *not* inside an ssh session
-if [[ -z $SSH_CONNECTION ]]; then
-  antibody bundle <<EOBUNDLES
-    zsh-users/zsh-syntax-highlighting
-    zsh-users/zsh-autosuggestions
-EOBUNDLES
 fi
 
 # }}}

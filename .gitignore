@@ -11,7 +11,12 @@ Session.vim
 /nvim/autoload/plug.vim
 
 # Tmux plugins
-/tmux/plugins
+/tmux/plugged
+
+# Zsh plugins
+/zsh/.zinit/*
+!/zsh/.zinit/bin
+/zsh/.zcompdump
 
 # Git local configs
 /git/local
