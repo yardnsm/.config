@@ -131,7 +131,12 @@ fi
 # }}}
 # Sourcing {{{
 
-# Source all init.zsh files within the dotfiles repo
-for config ($ZDOTDIR/**/*.zsh) source $config
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/config.zsh
+source $ZDOTDIR/functions.zsh
+source $ZDOTDIR/syntax.zsh
+source $ZDOTDIR/prompt/vi_mode.zsh
+source $ZDOTDIR/prompt/async.zsh
+source $ZDOTDIR/prompt/init.zsh
 
 # }}}
