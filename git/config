@@ -1,7 +1,7 @@
 # vim: set foldmethod=marker foldlevel=0:
 
 [include]
-  path = ~/.config/git/local
+  path = local
 
 # Core {{{
 
@@ -12,8 +12,6 @@
 
 [user]
   useConfigOnly = true
-	name = Yarden Sod-Moriah
-	email = yardnsm@gmail.com
 
 [commit]
   verbose = true

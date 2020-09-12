@@ -6,6 +6,9 @@ Session.vim
 .netrwhist
 *~
 
+# Secretz
+/smudge.sed
+
 # Vim plugins
 /nvim/plugged
 /nvim/autoload/plug.vim
@@ -17,9 +20,6 @@ Session.vim
 /zsh/.zinit/*
 !/zsh/.zinit/bin
 /zsh/.zcompdump
-
-# Git local configs
-/git/local
 
 # Ignore everything in coc
 /coc/*
