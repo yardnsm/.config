@@ -1,0 +1,2 @@
+zsh/.zshenv filter=vault
+git/local filter=vault
