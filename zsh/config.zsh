@@ -1,9 +1,14 @@
+# vim: set foldmethod=marker foldlevel=0:
+
+# ---[ ZSH Configz ]--------------------------------------------------------------------------------
+
 # Expand parameters within prompts
 setopt PROMPT_SUBST
 
 # History
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
+HISTORY_IGNORE="(ls|pwd|exit|history|clear)"
 
 # Display info for tasks long than 8sec
 REPORTTIME=8
@@ -38,7 +43,7 @@ setopt INTERACTIVE_COMMENTS
 # Disable th
 setopt NO_WARN_CREATE_GLOBAL
 
-# ---------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
 # Make tab completion behave like vim's smartcase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

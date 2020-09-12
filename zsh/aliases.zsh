@@ -1,5 +1,7 @@
 # vim: set foldmethod=marker foldlevel=0:
 
+# ---[ Base ]---------------------------------------------------------------------------------------
+
 # Enable aliases to be sudo’ed
 alias sudo="sudo "
 
@@ -8,7 +10,7 @@ alias sudo="sudo "
 alias ssh='TERM=xterm-256color ssh'
 
 # Reload zsh config
-alias reload='source ~/.zshrc'
+alias reload='source $ZDOTDIR/.zshrc'
 
 # Quick navigation
 alias dt="cd ~/Desktop"
@@ -20,14 +22,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-
-# ls
-alias ls="ls --color"
-alias l="ls -lah"
-alias la="ls -AF"
-alias ll="ls -lFh"
-alias lla="ls -lAFh"
-alias lld="ls -l | grep ^d"
 
 # Clear!
 alias cl="clear"
@@ -43,20 +37,39 @@ alias x+="chmod +x"
 # Exit quick
 alias qq="exit"
 
-# Revert back to defauly base16 theme
-alias deft='base16_classic-dark'
-
 # 🤔
 alias mp3='youtube-dl --extract-audio --audio-format mp3 --no-playlist -o "~/Downloads/%(title)s-%(id)s.%(ext)s"'
 
-# Homebrew
-alias cask='brew cask'
-
-if [[ $(command -v nvim) ]]; then
+# Default to neovim
+if hash nvim 2>/dev/null; then
   alias vim="nvim"
 fi
 
-# Git {{{
+# ---[ ls ]-----------------------------------------------------------------------------------------
+
+LSCMD='ls'
+
+if [[ -n $IS_MACOS ]]; then
+
+  # Use GNU tools on OSX instead of BSD
+  hash gdircolors 2>/dev/null && alias dircolors='gdircolors'
+  hash gfind 2>/dev/null && alias find='gfind'
+  hash gsort 2>/dev/null && alias sort='gsort'
+  hash gstat 2>/dev/null && alias stat='gstat'
+  hash gls 2>/dev/null && LSCMD='gls'
+fi
+
+# Listing directory contents
+alias ls="LC_COLLATE=C ${LSCMD} --color=auto --group-directories-first"
+unset LSCMD
+
+alias l="ls -lah"
+alias la="ls -AF"
+alias ll="ls -lFh"
+alias lla="ls -lAFh"
+alias lld="ls -l | grep ^d"
+
+# ---[ git ]----------------------------------------------------------------------------------------
 
 alias g='git'
 alias gs='git status -sb'
@@ -77,14 +90,15 @@ alias gdc='git diff --cached'
 # Go back to the root of the git repo
 alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
 
-# }}}
-# macOS specifics {{{
+# ---[ macOS specifics ]----------------------------------------------------------------------------
 
 if [[ -n $IS_MACOS ]]; then
 
   # Open stuff
   alias o="open"
   alias oo="open ."
+
+  alias cask='brew cask'
 
   # Start the screen saver
   alias afk="/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
@@ -98,8 +112,7 @@ if [[ -n $IS_MACOS ]]; then
   alias sfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 fi
 
-# }}}
-# npm {{{
+# ---[ npm ]----------------------------------------------------------------------------------------
 
 # Make npm fast (use the cache)
 alias npmo="npm --cache-min 9999999"
@@ -113,5 +126,3 @@ alias npmi="npm install"
 alias npmis="npm install --save"
 alias npmid="npm install --save-dev"
 alias npmig="npm install -g"
-
-# }}}

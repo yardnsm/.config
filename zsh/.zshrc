@@ -1,25 +1,26 @@
 # vim: set foldmethod=marker foldlevel=0:
 
+# ---[ Prompt setup ]-------------------------------------------------------------------------------
+
 # Enable Powerlevel10k instant prompt.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Prompt setup
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] \
-  || source ~/.config/zsh/.p10k.zsh
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] \
+  || source $ZDOTDIR/.p10k.zsh
 
-source ~/.config/zsh/.zinit/plugins/romkatv---powerlevel10k/powerlevel10k.zsh-theme
+source $ZDOTDIR/.zinit/plugins/romkatv---powerlevel10k/powerlevel10k.zsh-theme
 
-# Setting fpath {{{
+# ---[ Base ]---------------------------------------------------------------------------------------
 
+# Setting fpath
 fpath=(
   $ZDOTDIR/completions
   $ZDOTDIR/functions
   $fpath
 )
 
-# }}}
 # Zinit setup {{{
 
 # Configuration
@@ -60,14 +61,16 @@ autoload -U edit-command-line
 
 # }}}
 
-# pywal setup {{{
+# ---[ Program-specific setups ]--------------------------------------------------------------------
+
+# pywal {{{
 
 if [[ -d "$PYWAL_HOME" ]]; then
   (cat "$PYWAL_HOME/sequences" &)
 fi
 
 # }}}
-# fnm setup {{{
+# fnm {{{
 
 eval "$(fnm env --multi --fnm-dir "$FNM_DIR")"
 
@@ -82,9 +85,7 @@ add-zsh-hook chpwd _fnm_autoload_hook \
   && _fnm_autoload_hook
 
 # }}}
-# fzf setup {{{
-
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# fzf {{{
 
 # Autocompletion
 [[ $- == *i* ]] \
@@ -95,7 +96,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
   source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 # }}}
-# tmux setup {{{
+# tmux {{{
 
 # Change window name to the current git dir
 _tmux_update_window_name() {
@@ -112,6 +113,8 @@ add-zsh-hook chpwd _tmux_update_window_name \
   && _tmux_update_window_name
 
 # }}}
+
+# ---[ Misc ]---------------------------------------------------------------------------------------
 
 # Lazy load commands {{{
 
@@ -146,11 +149,9 @@ if command -v "rbenv" &> /dev/null; then
 fi
 
 # }}}
-# Sourcing {{{
 
+# Sourcing
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/config.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/syntax.zsh
-
-# }}}

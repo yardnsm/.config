@@ -1,5 +1,19 @@
 # vim: set foldmethod=marker foldlevel=0:
 
+# ---[ Base ]---------------------------------------------------------------------------------------
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+case "$(uname -s)" in
+  "Linux")
+    export IS_LINUX=true
+    ;;
+  "Darwin")
+    export IS_MACOS=true
+    ;;
+esac
+
 # XDG directories {{{
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -37,23 +51,8 @@ export PYWAL_HOME="$XDG_CACHE_HOME/wal"
 [[ -d "$(dirname $_Z_DATA)" ]] || mkdir -p "$(dirname $_Z_DATA)"
 
 # }}}
-# OS Variables {{{
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-case "$(uname -s)" in
-  "Linux")
-    export IS_LINUX=true
-    ;;
-  "Darwin")
-    export IS_MACOS=true
-    ;;
-esac
-
-# }}}
-
-# $PATH setup {{{
+# ---[ $PATH Setup ]--------------------------------------------------------------------------------
 
 export PATH=$DOTFILES/i3/bin:$PATH
 export PATH=$DOTFILES/bin:$PATH
@@ -68,28 +67,34 @@ if [[ -n $IS_MACOS ]]; then
   export PATH=/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
-# }}}
-# Common locations {{{
+# ---[ Common locations ]---------------------------------------------------------------------------
 
-export DOTFILES=$HOME/dotfiles
+# TODO: remove
+export DOTFILES=$XDG_CONFIG_HOME
 export DOTFILES_LOCAL=$HOME/dotfiles-local
-export SUBMODULES=$DOTFILES/.submodules
 
-export KNOWLEDGE=$HOME/knowledge
-export DRAFTS_HOME=$KNOWLEDGE/drafts
+export KNOWLEDGE_HOME=$HOME/knowledge
+export DEV_HOME=$HOME/dev
+export DRAFTS_HOME=$KNOWLEDGE_HOME/drafts
 export DEFAULT_WALLPAPER=$HOME/wallpaper.jpg
 
-# }}}
-# Default programs {{{
+# ---[ Default programs ]---------------------------------------------------------------------------
 
 export EDITOR="nvim"
-export TERMINAL="termite"
-export BROWSER="google-chrome-stable"
 export FILE="ranger"
 
-# }}}
+if [[ -n $IS_LINUX ]]; then
+  export TERMINAL="termite"
+  export BROWSER="google-chrome-stable"
+fi
+
+# ---[ Program-specific settings ]------------------------------------------------------------------
 
 export GPG_TTY=$(tty)
+
+# FZF
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_OPTS="--bind=ctrl-d:page-down,ctrl-u:page-up,ctrl-y:yank"
 
 # JAVA home
 if [[ -f "/usr/libexec/java_home" ]]; then
