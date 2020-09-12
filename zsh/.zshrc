@@ -1,5 +1,16 @@
 # vim: set foldmethod=marker foldlevel=0:
 
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Prompt setup
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] \
+  || source ~/.config/zsh/.p10k.zsh
+
+source ~/.config/zsh/.zinit/plugins/romkatv---powerlevel10k/powerlevel10k.zsh-theme
+
 # Setting fpath {{{
 
 fpath=(
@@ -23,6 +34,10 @@ source ${ZINIT[BIN_DIR]}/zinit.zsh
 # Pluginz
 zinit light rupa/z
 zinit light zsh-users/zsh-completions
+
+# Only clone, do not source
+# Sourcing of the prompt happens on top
+zinit ice depth=1 pick=" "; zinit light romkatv/powerlevel10k
 
 # Plugins to use when *not* inside an ssh session
 if [[ -z $SSH_CONNECTION ]]; then
@@ -137,8 +152,5 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/config.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/syntax.zsh
-source $ZDOTDIR/prompt/vi_mode.zsh
-source $ZDOTDIR/prompt/async.zsh
-source $ZDOTDIR/prompt/init.zsh
 
 # }}}
