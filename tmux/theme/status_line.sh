@@ -48,7 +48,7 @@ segment_music() {
     || return 1
 
   spotify="$(osascript "$XDG_CONFIG_HOME"/tmux/theme/applescripts/spotify.scpt)"
-  is_playing="$(osascript "$DOTFILES"/tmux/theme/applescripts/spotify_is_playing.scpt)"
+  is_playing="$(osascript "$XDG_CONFIG_HOME"/tmux/theme/applescripts/spotify_is_playing.scpt)"
 
   # Animate the music icon cuz i got no life
   # ¯\_(ツ)_/¯
