@@ -1,6 +1,3 @@
-[submodule ".submodules/blox-zsh-theme"]
-	path = zsh/prompt/blox-zsh-theme
-	url = https://github.com/yardnsm/blox-zsh-theme
 [submodule ".submodules/tpm"]
 	path = tmux/tpm
   url = https://github.com/tmux-plugins/tpm
