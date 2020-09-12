@@ -11,7 +11,7 @@
 
 # ---------------------------------------------
 
-declare -r BOILERPLATES_HOME="$HOME/dev/gitlab/boilerplates"
+declare -r BOILERPLATES_HOME="$DEV_HOME/boilerplates"
 
 # ---------------------------------------------
 
