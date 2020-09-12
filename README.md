@@ -1,70 +1,42 @@
-# dotfiles
+# .config
 
-[![Build Status](https://github.com/yardnsm/dotfiles/workflows/main/badge.svg)](https://github.com/yardnsm/dotfiles/actions)
+These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this
+repository completely from scratch, with the main focus of organization in mind.
 
-These are my dotfiles. A collection of zsh, git, vim and macOS configurations. I built this repo
-from scratch, while focus on organization.
+This repository used to have **a lot** of installation and setup-related scripts, but I realized
+this method of organization was probably a bit overkill and not so portable between machines. So,
+currently, this repository contains my entire `~/.config` directory (well, not exactly the *entire*
+directory, but most of it).
 
 ## Installation
 
-Simply run the following commands in your terminal:
+The setup scripts moved to a new repository, located at
+[yardnsm/.scripts](https://github.com/yardnsm/.scripts).
+
+## Protecting Secrets
+
+I'm using a method I've seen in [Rafi's
+dotfiles](https://github.com/rafi/.config#protecting-secrets), which uses `.gitattributes` filters
+to mask out sensitive data.
+
+After cloning this repository, you should setup the custom filters (the installer at .scripts
+already does this automatically):
 
 ```bash
-# Clone the repository
-$ git clone https://github.com/yardnsm/dotfiles ~/dotfiles
-
-# Run the installation script
-$ cd dotfiles
-$ ./.setup/dots --init
+git config --local filter.vault.clean "sed -f ~/.config/clean.sed"
+git config --local filter.vault.smudge "sed -f ~/.config/smudge.sed"
 ```
 
-## Order and hierarchy
+And create the `smudge.sed`, then fill it up. The installer already does this, but you can also
+convert the `clean.sed` file to a valid template:
 
-- Every non-hidden directory is considered as a "topic". A topic can have an `install.sh` file that
-  will run when installing the dotfiles.
-- [`.symlinks`](./.symlinks) contains a list of the directories / files to symlink.
-- `init.zsh` files inside each topic will be sourced when the shell loads.
-
-## `dots`
-
-[`dots`](./.setup/dots) is an executable for managing the dotfiles. It will manage every topic's
-installation. You can pass some options to exclude certain topics from installation, or set specific
-topics to install.
-
+```bash
+sed 's/^.*\({{.*}}\).*$/s\/\1\/value\//' clean.sed > smudge.sed
 ```
-$ dots
 
-  yardnsm's dotfiles maintenance
-
-  Usage
-
-    dots <command> [options] [...topics]
-
-  Commands
-
-    install [...topics]  Run the installation script for every topic
-    symlink              Run the symlinking process
-    list                 List all topics
-
-  Options
-
-    --init               Initialize git submodules
-    -a, --all            Show all topics in 'list'
-    -y, --yes            Skip confirmation questions
-    -e, --exclude        Exclude [...topics] from installation
-    -d, --debug-log      Puke debug output to a log file
-    -b, --base-dir       Set the dotfiles directory to run from
-    -D, --dry-run        Check the symlinking operations
-    -h, --help           Show help output
-
-  Examples
-
-    $ dots install common git
-    $ dots install --exclude npm homebrew
-
-    # Install another dotfiles repo that follows the same structure
-    $ dots install -b ~/dotfiles-local
-```
+Now, whenever you stage files, the `clean.sed` will prevent secrets being committed. And on
+checkout, the `smudge.sed` will inject your secrets into their proper placeholders. **The
+`smudge.sed` file is ignored from being committed.**
 
 ----------------------------------------------------------------------------------------------------
 
