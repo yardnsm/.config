@@ -54,8 +54,8 @@ export PYWAL_HOME="$XDG_CACHE_HOME/wal"
 
 # ---[ $PATH Setup ]--------------------------------------------------------------------------------
 
-export PATH=$DOTFILES/i3/bin:$PATH
-export PATH=$DOTFILES/bin:$PATH
+export PATH=$XDG_CONFIG_HOME/i3/bin:$PATH
+export PATH=$XDG_CONFIG_HOME/bin:$PATH
 export PATH=/usr/sbin:$PATH
 
 if [[ -n $IS_MACOS ]]; then

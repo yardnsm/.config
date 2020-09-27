@@ -11,16 +11,14 @@ directory, but most of it).
 ## Installation
 
 The setup scripts moved to a new repository, located at
-[yardnsm/.scripts](https://github.com/yardnsm/.scripts).
+[yardnsm/.setup](https://github.com/yardnsm/.setup).
 
 ## Protecting Secrets
 
-I'm using a method I've seen in [Rafi's
-dotfiles](https://github.com/rafi/.config#protecting-secrets), which uses `.gitattributes` filters
-to mask out sensitive data.
+I'm using `.gitattributes` filters to mask out sensitive data.
 
-After cloning this repository, you should setup the custom filters (the installer at .scripts
-already does this automatically):
+After cloning this repository, you should setup the custom filters (the installer already does this
+automatically):
 
 ```bash
 git config --local filter.vault.clean "sed -f ~/.config/clean.sed"
