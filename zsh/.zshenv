@@ -1,5 +1,9 @@
 # vim: set foldmethod=marker foldlevel=0:
 
+# Besides `export`s and `test`s, there should be nothing else. This file is also sourced in .setup's
+# scripts, as scripts may relay on the environments variables decalred here. This file should be
+# **bash compliant**.
+
 # ---[ Base ]---------------------------------------------------------------------------------------
 
 export LC_ALL=en_US.UTF-8
