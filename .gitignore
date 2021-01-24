@@ -20,6 +20,8 @@ Session.vim
 /zsh/.zinit/*
 !/zsh/.zinit/bin
 /zsh/.zcompdump
+/zsh/.zcompcache
+/zsh/.zsh_history
 
 # Ignore everything in coc
 /coc/*
@@ -29,6 +31,7 @@ Session.vim
 /.op
 /binwalk
 /configstore
+/jellyfin
 /phpbrew
 /subversion
 /z
