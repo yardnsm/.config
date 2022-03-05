@@ -2933,7 +2933,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>224 583 878 444 0 0 1680 1027 </string>
+	<string>631 -732 815 498 440 -1050 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>244 179 815 498 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
@@ -4596,7 +4596,9 @@
 	<key>NoSyncInstallationId</key>
 	<string>25147CBC-7B53-470B-AD3E-E73000430C6C</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>29</integer>
+	<integer>38</integer>
+	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
+	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
