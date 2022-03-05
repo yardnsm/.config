@@ -1,1 +1,1 @@
-autocmd BufRead *.tsx set filetype=typescript.jsx
+autocmd BufRead *.tsx set filetype=typescriptreact
