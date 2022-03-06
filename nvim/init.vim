@@ -30,18 +30,15 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Colors
 Plug 'chriskempson/base16-vim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " File tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'wikitopian/hardmode'                " stepping up the game...
-
-Plug 'alvan/vim-closetag'                 " auto-close SGML tags
-Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
 Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
 
@@ -62,23 +59,33 @@ Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for p
 Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plugins
 
-Plug 'junegunn/vim-easy-align'            " an alignment plugin
 Plug 'rstacruz/vim-closer'                " a more conservative version of auto-pairs
 
 Plug 'vimwiki/vimwiki'                    " wiki for vim
 
-Plug 'moll/vim-node'                      " allowg to `gf` properly on `require`
-
-Plug 'kkoomen/vim-doge'                   " documentation generator
-Plug 'sheerun/vim-polyglot'               " one language pack to rule them all
-
-Plug 'reasonml-editor/vim-reason-plus'    " Reason support
+" TreeSitter stuff
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'windwp/nvim-ts-autotag'
 
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
-" Autocompletion
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
+" LSP shit
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'nvim-lua/lsp-status.nvim'
+
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
+
+" Completion engine
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 " MacOS specific plugins
 if has('mac')
@@ -86,6 +93,13 @@ if has('mac')
 endif
 
 call plug#end()
+
+" }}}
+" Lua Integration {{{
+
+lua require('lsp')
+lua require('plugin.cmp')
+lua require('plugin.treesitter')
 
 " }}}
 " Editor {{{
@@ -127,6 +141,9 @@ augroup vimrc_au
   " Unset paste on InsertLeave
   autocmd InsertLeave * silent! set nopaste
 
+  " Set signcolumn for buffers that already have numbers on
+  autocmd BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : &l:signcolumn
+
   " Unset cursorline on leave
   " autocmd WinLeave * set nocursorline
   " autocmd WinEnter * set cursorline
@@ -140,6 +157,7 @@ syntax on                             " enable syntax highlighting
 " Settings for the terminal
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
+  set termguicolors
 
   " Colorscheme overrides
   augroup custom_colors_au
@@ -165,6 +183,35 @@ if !has('gui_vimr')
           \ | highlight MatchTag ctermbg=11 ctermfg=1
           \ | highlight Statement cterm=bold
           \ | highlight StatusLine ctermbg=11 cterm=bold
+          \ | highlight FloatBorder ctermfg=11 ctermbg=0 guifg=#303030 guibg=#151515
+          \
+          \ | highlight LspReferenceText ctermbg=11 guibg=#303030
+          \ | highlight LspReferenceRead ctermbg=11 guibg=#303030
+          \ | highlight LspReferenceWrite ctermbg=11 guibg=#303030
+          \
+          \ | highlight DiagnosticError ctermbg=10 guibg=#202020
+          \ | highlight DiagnosticWarn ctermbg=10 guibg=#202020
+          \ | highlight DiagnosticHint ctermbg=10 guibg=#202020
+          \ | highlight DiagnosticInfo ctermbg=10 guibg=#202020
+          \
+          \ | highlight TelescopeMatching ctermfg=6 cterm=bold guifg=#75B5AA gui=bold
+          \ | highlight link TelescopeTitle TelescopeMatching
+          \ | highlight TelescopeResultsNormal ctermfg=11 guifg=#505050
+          \
+          \ | highlight! PmenuSel guibg=#303030 guifg=#D0D0D0
+          \ | highlight! CmpItemMenu guifg=#505050
+          \ | highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+          \ | highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+          \ | highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+          \ | highlight! link CmpItemKind CmpItemKindDefault
+          \ | highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+          \ | highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+          \ | highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+          \ | highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+          \ | highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+          \ | highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+          \ | highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+          \ | highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
           \
           \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
           \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
@@ -173,7 +220,7 @@ if !has('gui_vimr')
           \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
           \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
           \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
-          \ | highlight User9 ctermfg=0  ctermbg=10            guifg=#151515 guibg=#202020
+          \ | highlight User9 ctermfg=10 ctermbg=0             guifg=#202020 guibg=#151515
 
   augroup END
 endif
@@ -269,7 +316,7 @@ set noundofile                        " disable undofiles
 " set nobackup                          " disable backups
 " set noswapfile                        " disable swaps
 
-" Neevim defaults are great, but vim's not...
+" Neovim defaults are great, but vim's not...
 if !has('nvim')
   set undodir=$XDG_DATA_HOME/vim/undo
   set directory=$XDG_DATA_HOME/vim/swap
@@ -278,20 +325,22 @@ if !has('nvim')
   set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
 
   " Bootstrap directories
-  call bootstrap#Directory(&undodir)
-  call bootstrap#Directory(&directory)
-  call bootstrap#Directory(&backupdir)
-  call bootstrap#Directory(&viewdir)
+  call functions#BootstrapDirectory(&undodir)
+  call functions#BootstrapDirectory(&directory)
+  call functions#BootstrapDirectory(&backupdir)
+  call functions#BootstrapDirectory(&viewdir)
 endif
 
 " }}}
 " Misc {{{
 
 set lazyredraw                        " don't redraw while performing macros
+set winhighlight=Normal:Normal
 
 set timeout
 set timeoutlen=1000
 set ttimeoutlen=50
+set updatetime=300
 
 set splitbelow                        " split below by default
 set splitright                        " split right by default

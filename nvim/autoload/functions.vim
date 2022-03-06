@@ -23,3 +23,10 @@ function! functions#Vimgrepall(pattern)
   exe 'bufdo vimgrepadd ' . a:pattern . ' %'
   cnext
 endfunction
+
+" Bootstrap a directory (create if not exisiting)
+function! functions#BootstrapDirectory(path)
+  if !isdirectory(a:path)
+    call mkdir(a:path, "p")
+  endif
+endfunc

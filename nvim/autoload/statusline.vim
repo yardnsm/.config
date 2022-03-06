@@ -21,32 +21,18 @@ let s:statusline_ft_titles = {
       \ 'qf': '',
       \ }
 
-let s:statusline_visual_percentages = {
-      \ '0': '██',
-      \ '12.5': '▆▆',
-      \ '25': '▅▅',
-      \ '37.5': '▄▄',
-      \ '50': '▃▃',
-      \ '62.5': '▂▂',
-      \ '75': '▁▁',
-      \ '100': '  ',
-      \ }
+let s:statusline_visual_percentages = ["__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"]
 
 " Blocks {{{
 
 function! statusline#VisualPercentage()
-  let l:line_percentage = line('.') * 100 / line('$')
-  let l:last_percentage = 0
+  let l:current_line = line('.')
+  let l:total_lines = line('$')
 
-  for percentage in sort(keys(s:statusline_visual_percentages), 'N')
-    if l:line_percentage <= percentage && l:line_percentage >= l:last_percentage
-      return s:statusline_visual_percentages[percentage]
-    endif
+  let l:index = float2nr(
+        \ ceil((current_line * 1.0) / total_lines * (len(s:statusline_visual_percentages) - 1)))
 
-    let l:last_percentage = percentage
-  endfor
-
-  return ' '
+  return s:statusline_visual_percentages[index]
 endfunction
 
 function! statusline#Paste()
@@ -58,44 +44,42 @@ function! statusline#Spell()
 endfunction
 
 function! statusline#Filetype()
-  return &filetype !=# '' ? &filetype : 'no ft'
+  return &filetype !=# '' ?
+        \ &filetype . ' ' . luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'))") . ' ' :
+        \ 'no ft'
 endfunction
 
 function! statusline#Warnings() abort
-
-  " Check coc first
-  let l:coc_info = get(b:, 'coc_diagnostic_info', {})
-  if !empty(l:coc_info)
-    return l:coc_info['warning']
-  endif
-
-  if !exists('g:loaded_ale')
-    return 0
-  endif
-
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-
-  return l:all_non_errors
+  return luaeval("require('lsp-status').diagnostics()['warnings']")
 endfunction
 
 function! statusline#Errors() abort
+  return luaeval("require('lsp-status').diagnostics()['errors']")
+endfunction
 
-  " Check coc first
-  let l:coc_info = get(b:, 'coc_diagnostic_info', {})
-  if !empty(l:coc_info)
-    return l:coc_info['error']
+function! statusline#LSPStatus() abort
+  let l:client_attahced = luaeval('vim.lsp.buf_get_clients()[1] ~= nil')
+  let l:server_ready = luaeval('vim.lsp.buf.server_ready()')
+
+  if l:client_attahced
+    if l:server_ready
+      return '⋅   '
+    else
+      return '⋅ 勒 '
+    endif
   endif
 
-  if !exists('g:loaded_ale')
-    return 0
+  return ''
+endfunction
+
+function! statusline#Branch() abort
+  let l:branch = FugitiveHead()
+
+  if l:branch != ''
+    return '  ' . l:branch
   endif
 
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-
-  return l:all_errors
+  return ''
 endfunction
 
 " }}}
@@ -135,6 +119,7 @@ function! statusline#BuildStatusLine(mode) abort
 
   if a:mode ==# s:MODE_ACTIVE
     let l:result .= '%3*%1* %f '                     " filename
+    let l:result .= '%3*%{statusline#Branch()}'      " VCS Branch
 
     " Buffer number if in diff node
     if &diff
@@ -149,10 +134,11 @@ function! statusline#BuildStatusLine(mode) abort
     let l:result .= '%3*%='                          " going to the right side
 
     let l:result .= '%3*%{statusline#Filetype()} '   " filetype
+    let l:result .= '%{statusline#LSPStatus()}'      " LSP status
     let l:result .= '%3*%3p%% '                      " line percentage
     let l:result .= '%2* %3l:%-2c '                  " line info
 
-    let l:result .= '%9*%{statusline#VisualPercentage()}'                  " line info
+    let l:result .= '%9*%{statusline#VisualPercentage()}%2* '
 
     " ALE errors and warning
     let l:errors = statusline#Errors()

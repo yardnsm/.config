@@ -1,18 +1,19 @@
 {
   "dependencies": {
-    "coc-css": "^1.2.2",
+    "coc-css": ">=1.3.0",
     "coc-diagnostic": ">=0.2.4",
-    "coc-eslint": "^1.2.3",
-    "coc-html": "^1.2.1",
-    "coc-json": "^1.2.4",
-    "coc-phpls": "^2.1.7",
-    "coc-prettier": "^1.1.11",
-    "coc-python": "^1.2.6",
+    "coc-eslint": ">=1.5.2",
+    "coc-html": ">=1.5.1",
+    "coc-json": ">=1.4.0",
+    "coc-phpls": ">=2.2.1",
+    "coc-prettier": ">=1.1.24",
+    "coc-python": ">=1.2.13",
     "coc-reason": "^0.1.0",
-    "coc-snippets": ">=2.1.17",
+    "coc-snippets": ">=2.4.7",
     "coc-svg": "0.0.13",
-    "coc-tsserver": "^1.4.9",
-    "coc-vimlsp": ">=0.5.1",
-    "coc-xml": "^1.9.5"
+    "coc-tailwindcss": ">=0.7.0",
+    "coc-tsserver": ">=1.9.4",
+    "coc-vimlsp": ">=0.12.5",
+    "coc-xml": ">=1.14.1"
   }
 }
