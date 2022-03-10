@@ -44,22 +44,24 @@ function! statusline#Spell()
 endfunction
 
 function! statusline#Filetype()
+  let l:icon = luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'))")
   return &filetype !=# '' ?
-        \ &filetype . ' ' . luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'))") . ' ' :
+        \ &filetype . (l:icon !=# v:null ? ' ' . l:icon . ' ' : ''):
         \ 'no ft'
 endfunction
 
 function! statusline#Warnings() abort
-  return luaeval("require('lsp-status').diagnostics()['warnings']")
+  return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })')
 endfunction
 
 function! statusline#Errors() abort
-  return luaeval("require('lsp-status').diagnostics()['errors']")
+  return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
 endfunction
 
 function! statusline#LSPStatus() abort
-  let l:client_attahced = luaeval('vim.lsp.buf_get_clients()[1] ~= nil')
-  let l:server_ready = luaeval('vim.lsp.buf.server_ready()')
+  let l:client_attahced = luaeval('#vim.lsp.buf_get_clients()') > 0
+  let l:server_ready = luaeval('vim.lsp.buf.server_ready()') &&
+        \ luaeval('#vim.lsp.util.get_progress_messages()') == 0
 
   if l:client_attahced
     if l:server_ready

@@ -71,8 +71,6 @@ cmp.setup {
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif not check_backspace() then
-        cmp.complete()
       else
         cmp.confirm({ select = true })
       end
@@ -132,7 +130,7 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp", max_item_count = 30 },
     { name = "luasnip", max_item_count = 30 },
-    { name = "buffer", max_item_count = 30 },
+    { name = "buffer", max_item_count = 20, keyword_length = 4 },
     { name = "path", max_item_count = 30 },
   },
 

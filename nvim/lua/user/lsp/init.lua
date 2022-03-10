@@ -1,5 +1,7 @@
 -- vim: set foldmethod=marker foldlevel=0:
---
+
+local M = {}
+
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
   return
@@ -7,7 +9,21 @@ end
 
 local lsp_installer = require("nvim-lsp-installer")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local lsp_status = require('lsp-status')
+
+-- List of servers to use, will be installed via nvim-lsp-installer
+local required_servers = {
+  "bashls",
+  "pyright",
+  "sumneko_lua",
+  "tsserver",
+  "vimls",
+  "tailwindcss",
+  "cssls",
+  "graphql",
+  "intelephense",
+  "jsonls",
+  "eslint",
+}
 
 -- Diagnostics {{{
 
@@ -21,7 +37,11 @@ local signs = {
 }
 
 for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  vim.fn.sign_define(sign.name, {
+    texthl = sign.name,
+    text = sign.text,
+    numhl = "",
+  })
 end
 
 -- Config
@@ -34,11 +54,13 @@ local config = {
   -- Show signs
   signs = {
     active = signs,
+    priority = 90,
   },
 
   update_in_insert = true,
   underline = true,
   severity_sort = true,
+
   float = {
     focusable = false,
     style = "minimal",
@@ -49,41 +71,63 @@ local config = {
   },
 }
 
-vim.diagnostic.config(config)
+local function lsp_setup_dianostics()
+  vim.diagnostic.config(config)
+end
 
 -- }}}
 -- Handlers {{{
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
+local function lsp_setup_handlers()
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
-})
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+  })
+end
 
 -- }}}
--- Misc {{{
+-- Aesthetics {{{
 
--- Fix background in :LspInfo and :LspInstallInfo
-vim.api.nvim_exec(
-  [[
-  augroup lsp_info_hl_fix
-    autocmd!
-    autocmd FileType lspinfo,lsp-installer set winhl=Normal:Normal
-  augroup END
-]],
-  false
-)
+local function lsp_setup_asthetics()
+  -- Fix background in :LspInfo and :LspInstallInfo
+  vim.api.nvim_exec(
+    [[
+      augroup lsp_info_hl_fix
+      autocmd!
+      autocmd FileType lspinfo,lsp-installer set winhl=Normal:Normal
+      augroup END
+    ]],
+    false
+  )
 
--- Borders for :LspInfo
-local lspconfig_window = require("lspconfig.ui.windows")
-local old_defaults = lspconfig_window.default_opts
+  -- Borders for :LspInfo
+  local lspconfig_window = require("lspconfig.ui.windows")
+  local old_defaults = lspconfig_window.default_opts
 
-function lspconfig_window.default_opts(opts)
+  function lspconfig_window.default_opts(opts)
     local win_opts = old_defaults(opts)
     win_opts.border = "rounded"
     return win_opts
+  end
+end
+
+
+-- }}}
+-- Install servers {{{
+
+M.install_required_servers = function()
+  for _, name in pairs(required_servers) do
+    local server_is_found, server = lsp_installer.get_server(name)
+    if server_is_found and not server:is_installed() then
+      print("[LSP] Installing " .. name)
+      lsp_installer.install_sync({name})
+    end
+  end
+
+  print("[LSP] All required servers installed")
 end
 
 -- }}}
@@ -131,16 +175,15 @@ local function lsp_keymaps(bufnr)
   )
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]]
 end
 
 local function on_attach(client, bufnr)
   if client.name == "tsserver" then
     client.resolved_capabilities.document_formatting = false
   end
-
-  -- Set up lsp_status
-  lsp_status.on_attach(client)
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
@@ -150,23 +193,35 @@ local function make_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-  capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
   return capabilities
 end
 
-lsp_installer.on_server_ready(function(server)
-  local capabilities = make_capabilities()
+M.setup = function()
+  lsp_setup_dianostics()
+  lsp_setup_handlers()
+  lsp_setup_asthetics()
 
-  local opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  lsp_installer.on_server_ready(function(server)
+    local capabilities = make_capabilities()
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require("lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  end
+    local opts = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
 
-  server:setup(opts)
-end)
+    if server.name == "sumneko_lua" then
+      local sumneko_opts = require("user.lsp.settings.sumneko_lua")
+      opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+    end
+
+    if server.name == "jsonls" then
+      local sumneko_opts = require("user.lsp.settings.jsonls")
+      opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+    end
+
+    server:setup(opts)
+  end)
+end
+
+return M

@@ -28,15 +28,14 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'lewis6991/impatient.nvim'
+
 " Colors
 Plug 'chriskempson/base16-vim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'wikitopian/hardmode'                " stepping up the game...
 
@@ -60,13 +59,18 @@ Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plugins
 
 Plug 'rstacruz/vim-closer'                " a more conservative version of auto-pairs
+Plug 'alvan/vim-closetag'                 " auto-close SGML tags
+Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
 Plug 'vimwiki/vimwiki'                    " wiki for vim
+
+" Lua plugins
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'windwp/nvim-ts-autotag'
 
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
@@ -74,10 +78,7 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 " LSP shit
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'nvim-lua/lsp-status.nvim'
-
-" Snippets
-Plug 'L3MON4D3/LuaSnip'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Completion engine
 Plug 'hrsh7th/nvim-cmp'
@@ -86,6 +87,9 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'saadparwaiz1/cmp_luasnip'
+
+" Snippets
+Plug 'L3MON4D3/LuaSnip'
 
 " MacOS specific plugins
 if has('mac')
@@ -97,9 +101,16 @@ call plug#end()
 " }}}
 " Lua Integration {{{
 
-lua require('lsp')
-lua require('plugin.cmp')
-lua require('plugin.treesitter')
+" Speed up startup time of lua plugins
+lua require('impatient')
+
+" Setup LSP
+lua require('user.lsp').setup()
+lua require('user.lsp.null-ls')
+
+" Setup Plugins
+lua require('user.plugin.cmp')
+lua require('user.plugin.treesitter')
 
 " }}}
 " Editor {{{
@@ -142,7 +153,7 @@ augroup vimrc_au
   autocmd InsertLeave * silent! set nopaste
 
   " Set signcolumn for buffers that already have numbers on
-  autocmd BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : &l:signcolumn
+  autocmd BufCreate,BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : 'auto'
 
   " Unset cursorline on leave
   " autocmd WinLeave * set nocursorline
@@ -180,7 +191,7 @@ if !has('gui_vimr')
           \ | highlight SpellCap cterm=undercurl ctermbg=4
           \ | highlight SpellRare cterm=undercurl ctermbg=11
           \ | highlight SpellLocal cterm=undercurl ctermbg=8
-          \ | highlight MatchTag ctermbg=11 ctermfg=1
+          \ | highlight MatchTag ctermbg=11 ctermfg=1 guibg=#303030 guifg=#AC4142
           \ | highlight Statement cterm=bold
           \ | highlight StatusLine ctermbg=11 cterm=bold
           \ | highlight FloatBorder ctermfg=11 ctermbg=0 guifg=#303030 guibg=#151515
@@ -198,7 +209,8 @@ if !has('gui_vimr')
           \ | highlight link TelescopeTitle TelescopeMatching
           \ | highlight TelescopeResultsNormal ctermfg=11 guifg=#505050
           \
-          \ | highlight! PmenuSel guibg=#303030 guifg=#D0D0D0
+          \ | highlight! clear PmenuSel
+          \ | highlight! PmenuSel guibg=#303030
           \ | highlight! CmpItemMenu guifg=#505050
           \ | highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
           \ | highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
