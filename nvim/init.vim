@@ -168,7 +168,7 @@ syntax on                             " enable syntax highlighting
 " Settings for the terminal
 if !has('gui_vimr')
   set background=dark                 " assume a dark background
-  set termguicolors
+  set termguicolors                   " use true colors in the treminal
 
   " Colorscheme overrides
   augroup custom_colors_au
@@ -282,7 +282,7 @@ augroup END
 " Folding {{{
 
 set foldmethod=indent                 " base folds on indentation by default
-set foldmarker={{{,}}}                " fold marker
+set foldmarker={{{,}}}                " default fold marker
 set foldlevelstart=10                 " open most folds by default
 set foldnestmax=10                    " max nested folds
 
@@ -309,7 +309,9 @@ endif
 " }}}
 " Indent {{{
 
-set autoindent
+" Default to 2 spaces indentation
+
+set autoindent                        " copy indent from current line when starting a new line
 set smartindent
 set smarttab
 set expandtab                         " use spaces
@@ -357,7 +359,7 @@ set updatetime=300
 set splitbelow                        " split below by default
 set splitright                        " split right by default
 
-set shortmess+=c                      " do not show completion-menu messages
+set shortmess+=cI                     " do not show completion-menu messages + :intro message
 set completeopt-=preview              " disable preview window
 
 " }}}

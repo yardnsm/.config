@@ -22,6 +22,7 @@ function! functions#Vimgrepall(pattern)
   call setqflist([])
   exe 'bufdo vimgrepadd ' . a:pattern . ' %'
   cnext
+  copen
 endfunction
 
 " Bootstrap a directory (create if not exisiting)
