@@ -19,9 +19,9 @@ set encoding=utf-8
 
 set modelines=1                       " enable modelines
 
-" See ~/dotfiles/nvim/setup-python-env.sh
-let g:python_host_prog = $PYENV_ROOT . '/versions/neovim2/bin/python'
-let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
+" See ~/dev/.setup/nvim/install.sh
+" let g:python_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
+" let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
 
 " }}}
 " Plugins {{{
@@ -102,7 +102,7 @@ call plug#end()
 " Lua Integration {{{
 
 " Speed up startup time of lua plugins
-lua require('impatient')
+lua require('user.plugin.impatient')
 
 " Setup LSP
 lua require('user.lsp').setup()

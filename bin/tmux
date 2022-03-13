@@ -2,4 +2,6 @@
 
 # --------------------------------------------------------------------------------------------------
 
-exec /usr/local/bin/tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf" "$@"
+[[ -f "/opt/homebrew/bin/tmux" ]] \
+  && exec /opt/homebrew/bin/tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf" "$@" \
+  || exec /usr/local/bin/tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf" "$@"

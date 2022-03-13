@@ -98,7 +98,9 @@ if [[ -n $IS_MACOS ]]; then
   alias o="open"
   alias oo="open ."
 
-  alias cask='brew cask'
+  # https://stackoverflow.com/questions/64951024/how-can-i-run-two-isolated-installations-of-homebrew/64951025#64951025
+  alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
+  alias ib='PATH=/usr/local/bin:$PATH'
 
   # Start the screen saver
   alias afk="/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"

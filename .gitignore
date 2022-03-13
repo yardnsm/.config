@@ -22,6 +22,7 @@ Session.vim
 /zsh/.zcompdump
 /zsh/.zcompcache
 /zsh/.zsh_history
+/zsh/.zsh_sessions
 
 # Ignore everything in coc
 /coc/*

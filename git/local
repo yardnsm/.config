@@ -1,5 +1,3 @@
-# vim: set foldmethod=marker foldlevel=0 ft=gitconfig:
-
 [user]
   name = {{ GIT_PERSONAL_NAME }}
   email = {{ GIT_PERSONAL_EMAIL }}

@@ -63,6 +63,13 @@ autoload -U edit-command-line
 
 # ---[ Program-specific setups ]--------------------------------------------------------------------
 
+# homebrew {{{
+
+if [[ -n $IS_MACOS ]]; then
+  export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+fi
+
+# }}}
 # pywal {{{
 
 if [[ -d "$PYWAL_HOME" ]]; then
@@ -72,7 +79,7 @@ fi
 # }}}
 # fnm {{{
 
-eval "$(fnm env --multi --fnm-dir "$FNM_DIR")"
+eval "$(fnm env --fnm-dir "$FNM_DIR")"
 
 _fnm_autoload_hook() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then

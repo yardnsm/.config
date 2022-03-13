@@ -177,7 +177,6 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
-  vim.cmd [[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]]
 end
 
 local function on_attach(client, bufnr)
@@ -201,6 +200,8 @@ M.setup = function()
   lsp_setup_dianostics()
   lsp_setup_handlers()
   lsp_setup_asthetics()
+
+  vim.cmd [[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]]
 
   lsp_installer.on_server_ready(function(server)
     local capabilities = make_capabilities()

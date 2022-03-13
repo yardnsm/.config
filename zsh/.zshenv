@@ -62,13 +62,11 @@ export PATH=$XDG_CONFIG_HOME/i3/bin:$PATH
 export PATH=$XDG_CONFIG_HOME/bin:$PATH
 export PATH=/usr/sbin:$PATH
 
+  # Homebrew stuff moved to .zshrc for a better control
 if [[ -n $IS_MACOS ]]; then
 
   # Android SDK dir
   export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-
-  # Homebrew path
-  export PATH=/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
 # ---[ Common locations ]---------------------------------------------------------------------------
@@ -106,7 +104,7 @@ if [[ -f "/usr/libexec/java_home" ]]; then
 fi
 
 # pyenv default version
-export PYENV_VERSION="3.7.7"
+export PYENV_VERSION="3.9.1"
 
 # rbenv version
 export RBENV_VERSION="2.2.4"

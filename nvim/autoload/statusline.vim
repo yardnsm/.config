@@ -44,7 +44,9 @@ function! statusline#Spell()
 endfunction
 
 function! statusline#Filetype()
-  let l:icon = luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'))")
+  let l:icon = luaeval(
+        \ "pcall(require, 'nvim-web-devicons') and (require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'))) or null"
+        \ )
   return &filetype !=# '' ?
         \ &filetype . (l:icon !=# v:null ? ' ' . l:icon . ' ' : ''):
         \ 'no ft'
@@ -75,7 +77,7 @@ function! statusline#LSPStatus() abort
 endfunction
 
 function! statusline#Branch() abort
-  let l:branch = FugitiveHead()
+  let l:branch = exists('*FugitiveHead') ? FugitiveHead() : ''
 
   if l:branch != ''
     return '  ' . l:branch
