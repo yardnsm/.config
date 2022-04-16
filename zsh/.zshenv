@@ -45,6 +45,8 @@ export RBENV_ROOT="$XDG_DATA_HOME/rbenv"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"
 export _Z_DATA="$XDG_DATA_HOME/z/.z"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
@@ -111,3 +113,4 @@ export RBENV_VERSION="2.2.4"
 
 # Tmux Spotify starrer (see ../tmux/playground/spotify_starrer.tmux)
 export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"
+. "$HOME/.cargo/env"

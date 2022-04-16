@@ -96,11 +96,13 @@ add-zsh-hook chpwd _fnm_autoload_hook \
 
 # Autocompletion
 [[ $- == *i* ]] \
-  && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+  && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null \
+  || source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
-[[ -f "/usr/local/opt/fzf/shell/key-bindings.zsh" ]] && \
-  source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+[[ -f "/usr/local/opt/fzf/shell/key-bindings.zsh" ]] \
+  && source "/usr/local/opt/fzf/shell/key-bindings.zsh" 2> /dev/null \
+  || source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
 
 # }}}
 # tmux {{{
@@ -118,6 +120,11 @@ _tmux_update_window_name() {
 
 add-zsh-hook chpwd _tmux_update_window_name \
   && _tmux_update_window_name
+
+# }}}
+# rust {{{
+
+source $CARGO_HOME/env
 
 # }}}
 

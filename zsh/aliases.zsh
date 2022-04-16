@@ -102,6 +102,10 @@ if [[ -n $IS_MACOS ]]; then
   alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
   alias ib='PATH=/usr/local/bin:$PATH'
 
+  # https://vineethbharadwaj.medium.com/m1-mac-switching-terminal-between-x86-64-and-arm64-e45f324184d9
+  alias arm='env /usr/bin/arch -arm64 /bin/zsh'
+  alias intel='env /usr/bin/arch -x86_64 /bin/zsh'
+
   # Start the screen saver
   alias afk="/System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
 
