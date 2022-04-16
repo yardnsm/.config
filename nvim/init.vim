@@ -19,6 +19,9 @@ set encoding=utf-8
 
 set modelines=1                       " enable modelines
 
+let mapleader=','                     " change the map leader
+let maplocalleader=','
+
 " See ~/dev/.setup/nvim/install.sh
 " let g:python_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 " let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
@@ -45,7 +48,6 @@ Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig file
 
 Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
 Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
-Plug 'tmux-plugins/vim-tmux-focus-events' " make focus events work inside tmux
 Plug 'tmux-plugins/vim-tmux'              " some nice stuff for editing `.tmux.conf`
 
 Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
@@ -71,6 +73,7 @@ Plug 'nvim-telescope/telescope.nvim'
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'nvim-treesitter/playground'
 
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
@@ -79,6 +82,7 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'j-hui/fidget.nvim'
 
 " Completion engine
 Plug 'hrsh7th/nvim-cmp'
@@ -111,6 +115,8 @@ lua require('user.lsp.null-ls')
 " Setup Plugins
 lua require('user.plugin.cmp')
 lua require('user.plugin.treesitter')
+lua require('user.plugin.fidget')
+lua require('user.plugin.telescope')
 
 " }}}
 " Editor {{{
@@ -155,6 +161,9 @@ augroup vimrc_au
   " Set signcolumn for buffers that already have numbers on
   autocmd BufCreate,BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : 'auto'
 
+  " Highlight when yanking
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="Yanked" }
+
   " Unset cursorline on leave
   " autocmd WinLeave * set nocursorline
   " autocmd WinEnter * set cursorline
@@ -174,43 +183,67 @@ if !has('gui_vimr')
   augroup custom_colors_au
     autocmd!
 
-    " For gotham
+    " Gotham {{{
+
     autocmd ColorScheme gotham
           \   highlight Folded ctermbg=green ctermfg=blue
           \ | highlight VertSplit ctermfg=4 ctermbg=10
           \ | highlight MatchTag ctermbg=12 ctermfg=9
-
           " \ | highlight CursorLineNr ctermfg=3
 
-    " For base16-classic-dark
+    " }}}
+    " Base16 {{{
+
+
+    " Note that we're referring to the **base16** color codes -- not Vim's cterms!
+    function! s:hi(group, fg, bg, ...)
+      let l:attr = get(a:, 1, "")
+      let l:guisp = get(a:, 2, "")
+
+      let l:fg_hex = a:fg !=# "" ? printf('%.2X', a:fg) : v:null
+      let l:bg_hex = a:bg !=# "" ? printf('%.2X', a:bg) : v:null
+
+      let l:guifg = l:fg_hex !=# v:null ? g:['base16_gui' . l:fg_hex] : ""
+      let l:guibg = l:bg_hex !=# v:null ? g:['base16_gui' . l:bg_hex] : ""
+
+      let l:ctermfg = l:fg_hex !=# v:null ? g:['base16_cterm' . l:fg_hex] : ""
+      let l:ctermbg = l:bg_hex !=# v:null ? g:['base16_cterm' . l:bg_hex] : ""
+
+      cal g:Base16hi(a:group, l:guifg, l:guibg, l:ctermfg, l:ctermbg, l:attr, l:guisp)
+    endfunction
+
     " User1..9 highlights are used for the statusline
-    autocmd ColorScheme base16-classic-dark
+    autocmd ColorScheme base16-*
           \   highlight Comment ctermfg=11
           \ | highlight Folded ctermbg=green ctermfg=11
-          \ | highlight SpellBad cterm=undercurl ctermbg=1
-          \ | highlight SpellCap cterm=undercurl ctermbg=4
-          \ | highlight SpellRare cterm=undercurl ctermbg=11
-          \ | highlight SpellLocal cterm=undercurl ctermbg=8
-          \ | highlight MatchTag ctermbg=11 ctermfg=1 guibg=#303030 guifg=#AC4142
           \ | highlight Statement cterm=bold
           \ | highlight StatusLine ctermbg=11 cterm=bold
-          \ | highlight FloatBorder ctermfg=11 ctermbg=0 guifg=#303030 guibg=#151515
+          \ | call s:hi('MatchTag', 8, 2)
+          \ | call s:hi('FloatBorder', 2, 0)
           \
-          \ | highlight LspReferenceText ctermbg=11 guibg=#303030
-          \ | highlight LspReferenceRead ctermbg=11 guibg=#303030
-          \ | highlight LspReferenceWrite ctermbg=11 guibg=#303030
+          \ | call s:hi('SpellBad', "", 8, "undercurl")
+          \ | call s:hi('SpellCap', "", 13, "undercurl")
+          \ | call s:hi('SpellRare', "", 2, "undercurl")
+          \ | call s:hi('SpellLocal', "", 3, "undercurl")
           \
-          \ | highlight DiagnosticError ctermbg=10 guibg=#202020
-          \ | highlight DiagnosticWarn ctermbg=10 guibg=#202020
-          \ | highlight DiagnosticHint ctermbg=10 guibg=#202020
-          \ | highlight DiagnosticInfo ctermbg=10 guibg=#202020
+          \ | highlight link LspReferenceText Visual
+          \ | highlight link LspReferenceRead Visual
+          \ | highlight link LspReferenceWrite Visual
           \
-          \ | highlight TelescopeMatching ctermfg=6 cterm=bold guifg=#75B5AA gui=bold
+          \ | highlight DiagnosticError ctermbg=10
+          \ | highlight DiagnosticWarn ctermbg=10
+          \ | highlight DiagnosticHint ctermbg=10
+          \ | highlight DiagnosticInfo ctermbg=10
+          \
+          \ | highlight link TelescopeMatching Special
+          \ | call s:hi('TelescopeMatching', 14, "", "bold")
+          \ | highlight link TelescopeResultsNormal Comment
           \ | highlight link TelescopeTitle TelescopeMatching
-          \ | highlight TelescopeResultsNormal ctermfg=11 guifg=#505050
+          \ | highlight link TelescopeBorder FloatBorder
           \
           \ | highlight! clear PmenuSel
-          \ | highlight! PmenuSel guibg=#303030
+          \ | call s:hi('PmenuSel', "", 2, "bold")
+          \
           \ | highlight! CmpItemMenu guifg=#505050
           \ | highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
           \ | highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
@@ -225,14 +258,26 @@ if !has('gui_vimr')
           \ | highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
           \ | highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
           \
-          \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
-          \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
-          \ | highlight User3 ctermfg=6  ctermbg=10            guifg=#75B5AA guibg=#202020
-          \ | highlight User5 ctermfg=4  ctermbg=0  cterm=bold guifg=#6A9FB5 guibg=#151515 gui=bold
-          \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
-          \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
-          \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
-          \ | highlight User9 ctermfg=10 ctermbg=0             guifg=#202020 guibg=#151515
+          \ | call s:hi('Yanked', "", 2)
+          \
+          \ | call s:hi('User1', 7, 2, "bold")
+          \ | call s:hi('User2', 7, 2)
+          \ | call s:hi('User3', 12, 1)
+          \ | call s:hi('User5', 14, 0, "bold")
+          \ | call s:hi('User6', 9, 0, "bold")
+          \ | call s:hi('User7', 8, 0, "bold")
+          \ | call s:hi('User8', 11, 0)
+          \ | call s:hi('User9', 1, 0)
+          " \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
+          " \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
+          " \ | highlight User3 ctermfg=6  ctermbg=10            guifg=#75B5AA guibg=#202020
+          " \ | highlight User5 ctermfg=4  ctermbg=0  cterm=bold guifg=#6A9FB5 guibg=#151515 gui=bold
+          " \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
+          " \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
+          " \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
+          " \ | highlight User9 ctermfg=10 ctermbg=0             guifg=#202020 guibg=#151515
+
+    " }}}
 
   augroup END
 endif
@@ -394,9 +439,6 @@ endif
 
 " }}}
 " Mappings {{{
-
-let mapleader=','                     " change the map leader
-let maplocalleader=','
 
 " Move vertically by visual line
 nnoremap j gj

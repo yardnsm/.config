@@ -1,0 +1,57 @@
+local utils = require("user.utils")
+local null_ls_sources = require("null-ls.sources")
+
+local allowed_servers = {
+  "tsserver",
+  "pyright",
+  "bashls",
+  "sumneko_lua",
+  "vimls",
+  "jsonls",
+}
+
+local get_registered_null_ls_providers = function(filetype)
+  local available_sources = null_ls_sources.get_available(filetype)
+  local registered = {}
+
+  for _, source in ipairs(available_sources) do
+    table.insert(registered, source.name)
+  end
+
+  return registered
+end
+
+local M = {}
+
+M.is_client_attahced = function()
+  return #vim.lsp.buf_get_clients() > 0
+end
+
+M.get_servers_names = function()
+  local buf_clients = vim.lsp.buf_get_clients()
+
+  local buf_ft = vim.bo.filetype
+  local buf_client_names = {}
+
+  for _, client in pairs(buf_clients) do
+    if client.name ~= "null-ls" then
+      table.insert(buf_client_names, client.name)
+    end
+  end
+
+  local null_ls_providers = get_registered_null_ls_providers(buf_ft)
+  vim.list_extend(buf_client_names, null_ls_providers)
+
+  local filtered = {}
+  for _, name in pairs(buf_client_names) do
+    if utils.has_value(allowed_servers, name) then
+      table.insert(filtered, name)
+    end
+  end
+
+  local remaining = #buf_client_names - #filtered
+
+  return table.concat(filtered, ",") .. (remaining > 0 and (" +" .. remaining) or "")
+end
+
+return M

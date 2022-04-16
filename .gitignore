@@ -30,10 +30,14 @@ Session.vim
 
 # Unrelated directories
 /.op
+/op
 /binwalk
 /configstore
 /jellyfin
 /phpbrew
 /subversion
 /z
+/filezilla
+/docker
+/iterm2
 /filezilla

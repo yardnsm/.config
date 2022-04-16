@@ -7,6 +7,7 @@ if not status_ok then
   return
 end
 
+local utils = require("user.utils")
 local lsp_installer = require("nvim-lsp-installer")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -114,6 +115,89 @@ local function lsp_setup_asthetics()
   end
 end
 
+-- }}}
+-- Commands {{{
+
+local function lsp_setup_commands()
+  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+  vim.cmd([[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]])
+end
+
+-- }}}
+-- Quickfix Rename {{{
+
+local function lsp_setup_rename()
+  local function qf_rename()
+    local position_params = vim.lsp.util.make_position_params()
+    position_params.oldName = vim.fn.expand("<cword>")
+
+    local input_params = {
+      prompt = "New name: ",
+      default = position_params.oldName,
+    }
+
+    vim.ui.input(input_params, function(input)
+      if input == nil then
+        utils.log_warning("[LSP] Aborted rename")
+        return
+      end
+
+      position_params.newName = input
+
+      vim.lsp.buf_request(0, "textDocument/rename", position_params, function(err, result, ...)
+        if not result or not result.changes then
+          utils.log_warning(
+            string.format("[LSP] Could not perform rename: %s -> %s", position_params.oldName, position_params.newName)
+          )
+
+          return
+        end
+
+        vim.lsp.handlers["textDocument/rename"](err, result, ...)
+
+        local entries = {}
+        local num_files = 0
+        local num_updates = 0
+
+        for uri, edits in pairs(result.changes) do
+          num_files = num_files + 1
+          local bufnr = vim.uri_to_bufnr(uri)
+
+          for _, edit in ipairs(edits) do
+            local start_line = edit.range.start.line + 1
+            local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+
+            num_updates = num_updates + 1
+
+            table.insert(entries, {
+              bufnr = bufnr,
+              lnum = start_line,
+              col = edit.range.start.character + 1,
+              text = line,
+            })
+          end
+        end
+
+        utils.log(
+          string.format(
+            "[LSP] Renamed %s instance%s in %s file%s. %s",
+            num_updates,
+            num_updates == 1 and "" or "s",
+            num_files,
+            num_files == 1 and "" or "s",
+            num_files > 1 and "To save them run ':cfdo w'" or ""
+          )
+        )
+
+        if num_files > 1 then
+          utils.qf_populate(entries, "r")
+        end
+      end)
+    end)
+  end
+
+  vim.lsp.buf.rename = qf_rename
+end
 
 -- }}}
 -- Install servers {{{
@@ -123,7 +207,7 @@ M.install_required_servers = function()
     local server_is_found, server = lsp_installer.get_server(name)
     if server_is_found and not server:is_installed() then
       print("[LSP] Installing " .. name)
-      lsp_installer.install_sync({name})
+      lsp_installer.install_sync({ name })
     end
   end
 
@@ -159,24 +243,16 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references theme=ivy<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions theme=cursor<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "gl",
-    '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
-    opts
-  )
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 local function on_attach(client, bufnr)
@@ -200,8 +276,8 @@ M.setup = function()
   lsp_setup_dianostics()
   lsp_setup_handlers()
   lsp_setup_asthetics()
-
-  vim.cmd [[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]]
+  lsp_setup_commands()
+  lsp_setup_rename()
 
   lsp_installer.on_server_ready(function(server)
     local capabilities = make_capabilities()
@@ -211,14 +287,10 @@ M.setup = function()
       capabilities = capabilities,
     }
 
-    if server.name == "sumneko_lua" then
-      local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-      opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-    end
-
-    if server.name == "jsonls" then
-      local sumneko_opts = require("user.lsp.settings.jsonls")
-      opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+    -- Extend server opitons
+    local lsp_options_status_ok, lsp_options = pcall(require, "user.lsp.settings." .. server.name)
+    if lsp_options_status_ok then
+      opts = vim.tbl_deep_extend("force", lsp_options, opts)
     end
 
     server:setup(opts)

@@ -13,10 +13,18 @@
 "
 " }}}
 
+const s:diagnostic_highlights = {
+      \ 'info': 5,
+      \ 'warning': 6,
+      \ 'error': 7,
+      \ 'success': 8,
+      \ }
+
 const s:MODE_ACTIVE = 'active'
 const s:MODE_INACTIVE = 'inactive'
 
 let s:statusline_ft_titles = {
+      \ 'netrw': 'Netrw',
       \ 'nerdtree': 'NERD',
       \ 'qf': '',
       \ }
@@ -24,6 +32,8 @@ let s:statusline_ft_titles = {
 let s:statusline_visual_percentages = ["__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"]
 
 " Blocks {{{
+
+" Visual Percentage {{{
 
 function! statusline#VisualPercentage()
   let l:current_line = line('.')
@@ -35,21 +45,47 @@ function! statusline#VisualPercentage()
   return s:statusline_visual_percentages[index]
 endfunction
 
+" }}}
+" Paste mode {{{
+
 function! statusline#Paste()
     return &paste ? '[PASTE]' : ''
 endfunction
+
+" }}}
+" Spell mode {{{
 
 function! statusline#Spell()
     return &spell ? '[SPELL]' : ''
 endfunction
 
-function! statusline#Filetype()
-  let l:icon = luaeval(
-        \ "pcall(require, 'nvim-web-devicons') and (require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e'))) or null"
+" }}}
+" Filetype {{{
+
+function! statusline#Filetype(color)
+  let l:icon_result = luaeval(
+        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e')) }"
         \ )
+
+  let l:icon = len(l:icon_result) ==# 2 ? l:icon_result[0] : v:null
+  let l:hl_group = len(l:icon_result) ==# 2 ? l:icon_result[1] : 'User3'
+
+  if a:color
+    return &filetype !=# '' ?
+          \ ' %#' . l:hl_group . '# ' . (l:icon !=# v:null ? ' ' . l:icon . '  ' . &filetype . '  ' : &filetype) . '%3*':
+          \ 'no ft'
+  endif
+
   return &filetype !=# '' ?
-        \ &filetype . (l:icon !=# v:null ? ' ' . l:icon . ' ' : ''):
+        \ (l:icon !=# v:null ? ' ' . l:icon . '  ' . &filetype . ' ' : &filetype) :
         \ 'no ft'
+endfunction
+
+" }}}
+" Diagnosticss {{{
+
+function! statusline#Infos() abort
+  return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })')
 endfunction
 
 function! statusline#Warnings() abort
@@ -60,21 +96,60 @@ function! statusline#Errors() abort
   return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })')
 endfunction
 
+function! statusline#Diagnostics() abort
+  let l:infos = statusline#Infos()
+  let l:warnings = statusline#Warnings()
+  let l:errors = statusline#Errors()
+
+  let l:highlight = s:diagnostic_highlights['success']
+
+  let l:summary = ''
+
+  if l:infos
+    let l:highlight = s:diagnostic_highlights['info']
+    let l:summary .= printf('%%%s* ‹%d›',
+          \ l:highlight,
+          \ l:infos)
+  endif
+
+  if l:warnings
+    let l:highlight = s:diagnostic_highlights['warning']
+    let l:summary .= printf('%%%s* ‹%d›',
+          \ l:highlight,
+          \ l:warnings)
+  endif
+
+  if l:errors
+    let l:highlight = s:diagnostic_highlights['error']
+    let l:summary .= printf('%%%s* ‹%d›',
+          \ l:highlight,
+          \ l:errors)
+  endif
+
+  let l:summary .= printf('%%%s* ● %%3* ', l:highlight)
+
+  return {
+        \ 'highlight': l:highlight,
+        \ 'summary': l:summary
+        \ }
+endfunction
+
+" }}}
+" LSP Status {{{
+
 function! statusline#LSPStatus() abort
-  let l:client_attahced = luaeval('#vim.lsp.buf_get_clients()') > 0
-  let l:server_ready = luaeval('vim.lsp.buf.server_ready()') &&
-        \ luaeval('#vim.lsp.util.get_progress_messages()') == 0
+  let l:client_attahced = luaeval('require("user.lsp.statusline").is_client_attahced()')
+  let l:server_names = luaeval('require("user.lsp.statusline").get_servers_names()')
 
   if l:client_attahced
-    if l:server_ready
-      return '⋅   '
-    else
-      return '⋅ 勒 '
-    endif
+    return '⋅   ' . l:server_names . ' ⋅ '
   endif
 
   return ''
 endfunction
+
+" }}}
+" VCS Branch {{{
 
 function! statusline#Branch() abort
   let l:branch = exists('*FugitiveHead') ? FugitiveHead() : ''
@@ -85,6 +160,33 @@ function! statusline#Branch() abort
 
   return ''
 endfunction
+
+" }}}
+" VCS Stats {{{
+
+function! statusline#VCSStats() abort
+  let [added, modified, removed] = sy#repo#get_stats()
+
+  let hl_groups = ['SignifySignAdd', 'SignifySignDelete', 'SignifySignChange']
+  let symbols = ['+', '-', '~']
+  let stats = [added, removed, modified]
+
+  let result = ''
+
+  for i in range(len(stats))
+    if stats[i] > 0
+      let result .= '%' . printf('#%s#%s%s ', hl_groups[i], symbols[i], stats[i])
+    endif
+  endfor
+
+  if !empty(result)
+    let result = result[:-2]
+  endif
+
+  return result
+endfunction
+
+" }}}
 
 " }}}
 " Helper functions {{{
@@ -120,63 +222,51 @@ endfunction
 
 function! statusline#BuildStatusLine(mode) abort
   let l:result = ''
+  let focused = g:statusline_winid == win_getid(winnr()) && a:mode !=# s:MODE_INACTIVE
 
-  if a:mode ==# s:MODE_ACTIVE
-    let l:result .= '%3*%1* %f '                     " filename
-    let l:result .= '%3*%{statusline#Branch()}'      " VCS Branch
+  if focused
+    let l:diagnostics = statusline#Diagnostics()
+
+    let l:result .= '%3*%1* %f '                               " filename
+    let l:result .= '%3*%{statusline#Branch()}'                " VCS Branch
+
+    " Buffer number if in diff node
+    if &diff
+      let l:result .= ' [%n]'
+    endif
+
+    let l:result .= '%3* %r'                                   " readonly
+    let l:result .= '%3*%m'                                    " modified
+    let l:result .= '%3*%{statusline#Paste()}'                 " paste
+    let l:result .= '%3*%{statusline#Spell()} '                " spell
+    let l:result .= '%3*%{%statusline#VCSStats()%}%3*'         " VCS Stats
+
+    let l:result .= '%3*%='                                    " going to the right side
+
+    let l:result .= '%3*%{%statusline#Filetype(v:true)%} '     " filetype
+    let l:result .= '%#DiffAdd#%{statusline#LSPStatus()}'      " LSP status
+    let l:result .= '%3*%3p%% '                                " line percentage
+    let l:result .= '%2* %3l:%-2c '                            " line info
+
+    " Visual percentages
+    let l:result .= '%#DevIconSh#%{statusline#VisualPercentage()}%2* '
+
+    " Diagnostics indications
+    let l:result .= l:diagnostics['summary']
+
+  else
+    let l:result .= ' %f '                                     " filename
 
     " Buffer number if in diff node
     if &diff
       let l:result .= '[%n] '
     endif
 
-    let l:result .= '%3* %r'                         " readonly
-    let l:result .= '%3*%m'                          " modified
-    let l:result .= '%3*%{statusline#Paste()}'       " paste
-    let l:result .= '%3*%{statusline#Spell()} '      " spell
+    let l:result .= '%m'                                       " modified
+    let l:result .= '%='                                       " going to the right side
 
-    let l:result .= '%3*%='                          " going to the right side
-
-    let l:result .= '%3*%{statusline#Filetype()} '   " filetype
-    let l:result .= '%{statusline#LSPStatus()}'      " LSP status
-    let l:result .= '%3*%3p%% '                      " line percentage
-    let l:result .= '%2* %3l:%-2c '                  " line info
-
-    let l:result .= '%9*%{statusline#VisualPercentage()}%2* '
-
-    " ALE errors and warning
-    let l:errors = statusline#Errors()
-    let l:warnings = statusline#Warnings()
-
-    if l:warnings
-      if l:errors
-        let l:result .= printf('%%6* ‹%d›', l:warnings)
-      else
-        let l:result .= printf('%%6* ‹%d› ● %%3* ', l:warnings)
-      endif
-    endif
-
-    if l:errors
-      let l:result .= printf('%%7* ‹%d› ● %%3* ', l:errors)
-    endif
-
-    if !l:errors && !l:warnings
-      let l:result .= '%8* ● %3* '
-    endif
-
-  elseif a:mode ==# s:MODE_INACTIVE
-    let l:result .= ' %f '                          " filename
-
-    " Buffer number if in diff node
-    if &diff
-      let l:result .= '[%n] '
-    endif
-
-    let l:result .= '%m'                            " modified
-    let l:result .= '%='                            " going to the right side
-
-    let l:result .= '[%{statusline#Filetype()}] '   " filetype
-    let l:result .= ' ●  '                          " blank indicator, for consistency
+    let l:result .= '[%{statusline#Filetype(v:false)}] '       " filetype
+    let l:result .= ' ●  '                                     " blank indicator, for consistency
   endif
 
   return l:result

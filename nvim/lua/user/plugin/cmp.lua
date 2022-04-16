@@ -9,8 +9,8 @@ if not snip_status_ok then
 end
 
 local check_backspace = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
 -- https://www.nerdfonts.com/cheat-sheet
@@ -42,7 +42,7 @@ local kind_icons = {
   TypeParameter = "",
 }
 
-cmp.setup {
+cmp.setup({
 
   -- Setup LuaSnip
   snippet = {
@@ -60,10 +60,10 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ["<C-e>"] = cmp.mapping {
+    ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
-    },
+    }),
 
     -- Expand snippets
     ["<C-j>"] = cmp.mapping(function(fallback)
@@ -111,9 +111,8 @@ cmp.setup {
   formatting = {
     fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
-
       -- Kind icons
-      vim_item.kind = ' ' .. (kind_icons[vim_item.kind] or '') .. ' ' .. vim_item.kind
+      vim_item.kind = " " .. (kind_icons[vim_item.kind] or "") .. " " .. vim_item.kind
 
       -- Completion menus
       vim_item.menu = ({
@@ -130,15 +129,27 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp", max_item_count = 30 },
     { name = "luasnip", max_item_count = 30 },
-    { name = "buffer", max_item_count = 20, keyword_length = 4 },
     { name = "path", max_item_count = 30 },
-  },
 
-  documentation = {
-    -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    {
+      name = "buffer",
+      max_item_count = 20,
+      keyword_length = 4,
+
+      option = {
+        -- Complete from visible buffers
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end,
+      },
+    },
   },
 
   experimental = {
     ghost_text = false,
   },
-}
+})
