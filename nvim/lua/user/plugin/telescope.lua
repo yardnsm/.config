@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local actions = require("telescope.actions")
+
 telescope.setup({
   defaults = {
     file_ignore_patterns = {
@@ -11,7 +13,17 @@ telescope.setup({
 
     mappings = {
       i = {
-        ["<ESC>"] = "close",
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<ESC>"] = actions.close,
+      },
+    },
+  },
+
+  pickers = {
+    buffers = {
+      mappings = {
+        i = { ["<c-d>"] = actions.delete_buffer },
       },
     },
   },
@@ -23,6 +35,8 @@ vim.api.nvim_set_keymap("n", "<leader>a", ":Telescope live_grep<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers theme=ivy<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope marks theme=dropdown<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>cc", ":Telescope colorscheme<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>h", ":Telescope highlights theme=ivy<CR>", opts)
+vim.api.nvim_set_keymap("n", "z=", ":Telescope spell_suggest theme=cursor<CR>", opts)
 
 if vim.fn.isdirectory(".git") ~= 0 then
   vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope git_files<CR>", opts)

@@ -38,7 +38,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File tree
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 
 Plug 'wikitopian/hardmode'                " stepping up the game...
 
@@ -55,13 +55,10 @@ Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
 Plug 'tpope/vim-surround'                 " easly work with surroundings
 Plug 'tpope/vim-commentary'               " comment stuff out
 Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
-Plug 'tpope/vim-endwise'                  " automatically close `end` blocks (`endif`, `done`, etc.)
 Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
 Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
 Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plugins
 
-Plug 'rstacruz/vim-closer'                " a more conservative version of auto-pairs
-Plug 'alvan/vim-closetag'                 " auto-close SGML tags
 Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
 Plug 'vimwiki/vimwiki'                    " wiki for vim
@@ -74,6 +71,9 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'nvim-treesitter/playground'
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'RRethy/nvim-treesitter-endwise'     " automatically close `end` blocks (`endif`, `done`, etc.)
 
 " My plugins :)
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
@@ -117,6 +117,8 @@ lua require('user.plugin.cmp')
 lua require('user.plugin.treesitter')
 lua require('user.plugin.fidget')
 lua require('user.plugin.telescope')
+lua require('user.plugin.nvim-autopairs')
+lua require('user.plugin.luasnip')
 
 " }}}
 " Editor {{{
@@ -230,10 +232,12 @@ if !has('gui_vimr')
           \ | highlight link LspReferenceRead Visual
           \ | highlight link LspReferenceWrite Visual
           \
-          \ | highlight DiagnosticError ctermbg=10
-          \ | highlight DiagnosticWarn ctermbg=10
-          \ | highlight DiagnosticHint ctermbg=10
-          \ | highlight DiagnosticInfo ctermbg=10
+          \ | call s:hi('DiagnosticSignError', 8, 1, "bold")
+          \ | highlight! DiagnosticSignError guifg=Red
+          \ | call s:hi('DiagnosticSignWarn', 10, 1, "bold")
+          \ | highlight! DiagnosticSignWarn guifg=Yello
+          \ | call s:hi('DiagnosticSignHint', 13, 1, "bold")
+          \ | call s:hi('DiagnosticSignInfo', 13, 1, "bold")
           \
           \ | highlight link TelescopeMatching Special
           \ | call s:hi('TelescopeMatching', 14, "", "bold")

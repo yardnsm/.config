@@ -84,6 +84,10 @@ endfunction
 " }}}
 " Diagnosticss {{{
 
+function! statusline#Hints() abort
+  return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })')
+endfunction
+
 function! statusline#Infos() abort
   return luaeval('#vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })')
 endfunction
@@ -97,6 +101,7 @@ function! statusline#Errors() abort
 endfunction
 
 function! statusline#Diagnostics() abort
+  let l:hints = statusline#Hints()
   let l:infos = statusline#Infos()
   let l:warnings = statusline#Warnings()
   let l:errors = statusline#Errors()
@@ -105,23 +110,30 @@ function! statusline#Diagnostics() abort
 
   let l:summary = ''
 
+  if l:hints
+    let l:highlight = s:diagnostic_highlights['info']
+    let l:summary .= printf('%%%s* ‹!:%d›',
+          \ l:highlight,
+          \ l:hints)
+  endif
+
   if l:infos
     let l:highlight = s:diagnostic_highlights['info']
-    let l:summary .= printf('%%%s* ‹%d›',
+    let l:summary .= printf('%%%s* ‹I:%d›',
           \ l:highlight,
           \ l:infos)
   endif
 
   if l:warnings
     let l:highlight = s:diagnostic_highlights['warning']
-    let l:summary .= printf('%%%s* ‹%d›',
+    let l:summary .= printf('%%%s* ‹W:%d›',
           \ l:highlight,
           \ l:warnings)
   endif
 
   if l:errors
     let l:highlight = s:diagnostic_highlights['error']
-    let l:summary .= printf('%%%s* ‹%d›',
+    let l:summary .= printf('%%%s* ‹E:%d›',
           \ l:highlight,
           \ l:errors)
   endif
