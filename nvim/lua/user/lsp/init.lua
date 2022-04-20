@@ -4,7 +4,9 @@ local M = {}
 
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
-  return
+  return {
+    setup = function () end
+  }
 end
 
 local utils = require("user.utils")

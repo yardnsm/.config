@@ -40,8 +40,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 " File tree
 Plug 'scrooloose/nerdtree'
 
-Plug 'wikitopian/hardmode'                " stepping up the game...
-
 Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
 
 Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
@@ -69,9 +67,10 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'nvim-treesitter/playground'
-Plug 'windwp/nvim-autopairs'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'yardnsm/nvim-autopairs', { 'branch': 'fix/custom-end-pair-endwise' }
 Plug 'windwp/nvim-ts-autotag'
 Plug 'RRethy/nvim-treesitter-endwise'     " automatically close `end` blocks (`endif`, `done`, etc.)
 
@@ -235,7 +234,7 @@ if !has('gui_vimr')
           \ | call s:hi('DiagnosticSignError', 8, 1, "bold")
           \ | highlight! DiagnosticSignError guifg=Red
           \ | call s:hi('DiagnosticSignWarn', 10, 1, "bold")
-          \ | highlight! DiagnosticSignWarn guifg=Yello
+          \ | highlight! DiagnosticSignWarn guifg=Yellow
           \ | call s:hi('DiagnosticSignHint', 13, 1, "bold")
           \ | call s:hi('DiagnosticSignInfo', 13, 1, "bold")
           \

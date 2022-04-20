@@ -64,7 +64,7 @@ endfunction
 
 function! statusline#Filetype(color)
   let l:icon_result = luaeval(
-        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e')) }"
+        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e')) } or {}"
         \ )
 
   let l:icon = len(l:icon_result) ==# 2 ? l:icon_result[0] : v:null
@@ -177,6 +177,10 @@ endfunction
 " VCS Stats {{{
 
 function! statusline#VCSStats() abort
+  if !exists('*sy#start')
+    return ''
+  endif
+
   let [added, modified, removed] = sy#repo#get_stats()
 
   let hl_groups = ['SignifySignAdd', 'SignifySignDelete', 'SignifySignChange']

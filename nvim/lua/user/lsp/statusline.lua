@@ -1,5 +1,9 @@
 local utils = require("user.utils")
-local null_ls_sources = require("null-ls.sources")
+
+local status_ok, null_ls_sources = pcall(require, "null-ls.sources")
+if not status_ok then
+  null_ls_sources = nil
+end
 
 local allowed_servers = {
   "tsserver",
@@ -11,6 +15,10 @@ local allowed_servers = {
 }
 
 local get_registered_null_ls_providers = function(filetype)
+  if null_ls_sources == nil then
+    return {}
+  end
+
   local available_sources = null_ls_sources.get_available(filetype)
   local registered = {}
 
