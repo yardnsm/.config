@@ -64,6 +64,7 @@ Plug 'vimwiki/vimwiki'                    " wiki for vim
 " Lua plugins
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -166,8 +167,8 @@ augroup vimrc_au
   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="Yanked" }
 
   " Unset cursorline on leave
-  " autocmd WinLeave * set nocursorline
-  " autocmd WinEnter * set cursorline
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter * set cursorline
 augroup END
 
 " }}}
@@ -457,6 +458,10 @@ vnoremap < <gv
 nnoremap <leader>sw :%s/\<<C-r><C-w>\>//c<Left><Left>
 nnoremap <leader>ss :%s/<C-r><C-w>//c<Left><Left>
 
+" Substitute the last search
+nmap gs :%s~~
+vmap gs :s~~
+
 " Toggle search highlight
 nnoremap <leader><space> :set hlsearch!<CR>
 
@@ -480,6 +485,7 @@ nnoremap <leader>tn :set relativenumber!<CR>
 nnoremap <leader>tp :set paste!<CR>
 nnoremap <leader>tf :set foldenable!<CR>
 nnoremap <leader>tc :set cursorline!<CR>
+nnoremap <leader>tw :set wrap!<CR>
 
 " Copy to clipboard
 vnoremap <C-c> "+y
@@ -516,6 +522,7 @@ cnoreabbrev Wq wq
 cnoreabbrev WQ wq
 cnoreabbrev qQ q!
 cnoreabbrev bq BQ
+cnoreabbrev bd BQ
 
 " Insert a Shebang
 " https://github.com/junegunn/dotfiles/blob/master/vimrc#L567

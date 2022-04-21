@@ -11,10 +11,15 @@ telescope.setup({
       "package-lock.json",
     },
 
+    prompt_prefix = " › ",
+    selection_caret = "  ",
+
     mappings = {
       i = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        ["<C-h>"] = actions.which_key,
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<ESC>"] = actions.close,
       },
     },
@@ -28,6 +33,8 @@ telescope.setup({
     },
   },
 })
+
+telescope.load_extension('fzf')
 
 local opts = { noremap = true, silent = true }
 

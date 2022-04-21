@@ -245,7 +245,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references theme=ivy<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions theme=cursor<CR>", opts)
@@ -259,7 +259,9 @@ local function lsp_keymaps(bufnr)
 end
 
 local function on_attach(client, bufnr)
-  if client.name == "tsserver" then
+
+  -- Disable formatting for certains servers; let null-ls do its thing!
+  if client.name == "tsserver" or client.name == 'sumneko_lua' then
     client.resolved_capabilities.document_formatting = false
   end
 
