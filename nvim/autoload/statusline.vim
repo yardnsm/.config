@@ -1,23 +1,11 @@
 " Status line configurations
-
-" Highlights Info: {{{
-"
-" User1 - Primary
-" User2 - Secondary
-" User3 - Neutral (bg)
-"
-" User5 - Blue   (neutral) lint indicator
-" User6 - Red    (error)   lint indicator
-" User7 - Yellow (warning) lint indicator
-" User8 - Green  (success) lint indicator
-"
-" }}}
+" Refer to init.vim for highlights info
 
 const s:diagnostic_highlights = {
-      \ 'info': 5,
-      \ 'warning': 6,
-      \ 'error': 7,
-      \ 'success': 8,
+      \ 'info': 'StatusLineIndicatorNeutral',
+      \ 'warning': 'StatusLineIndicatorWarning',
+      \ 'error': 'StatusLineIndicatorError',
+      \ 'success': 'StatusLineIndicatorSuccess',
       \ }
 
 const s:MODE_ACTIVE = 'active'
@@ -26,11 +14,64 @@ const s:MODE_INACTIVE = 'inactive'
 let s:statusline_ft_titles = {
       \ 'netrw': 'Netrw',
       \ 'nerdtree': 'NERD',
+      \ 'TelescopePrompt': 'Telescope',
       \ 'qf': '',
       \ }
 
+let s:winbar_filetype_exclude = [
+      \ "help",
+      \ "netrw",
+      \ "nerdtree",
+      \ "TelescopePrompt"
+      \ ]
+
 let s:statusline_visual_percentages = ["__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██"]
 
+" Helper functions {{{
+
+function! s:GetDevIconForCurrentBuffer() abort
+  let l:icon_result = luaeval(
+        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e')) } or {}"
+        \ )
+
+  let l:icon_color_result = luaeval(
+        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), vim.fn.expand('%:e')) } or {}"
+        \ )
+
+  if len(l:icon_result) !=# 2
+    return v:null
+  endif
+
+  return {
+    \ 'icon': l:icon_result[0],
+    \ 'hl_group': l:icon_result[1],
+    \ 'color': l:icon_color_result[1],
+    \ }
+endfunction
+
+function! statusline#ShouldSetWinbar(ft) abort
+  return index(s:winbar_filetype_exclude, a:ft) ==# -1
+        \ && (&buftype !=# 'nofile' && &buflisted !=# 0) " No for scratch buffers
+endfunction
+
+function! statusline#GetMinimalName(ft) abort
+  if has_key(s:statusline_ft_titles, a:ft)
+    return s:statusline_ft_titles[a:ft]
+  endif
+
+  " Custom handler for :CocList
+  if a:ft ==# 'list'
+    let l:match_list = matchlist(expand('%f'), 'list:\/\/\/\(.\+\)')
+
+    if !empty(l:match_list)
+      return 'CocList [' . l:match_list[1] . ']'
+    endif
+  endif
+
+  return 0
+endfunction
+
+" }}}
 " Blocks {{{
 
 " Visual Percentage {{{
@@ -63,22 +104,32 @@ endfunction
 " Filetype {{{
 
 function! statusline#Filetype(color)
-  let l:icon_result = luaeval(
-        \ "pcall(require, 'nvim-web-devicons') and { require('nvim-web-devicons').get_icon(vim.fn.expand('%:t'), vim.fn.expand('%:e')) } or {}"
-        \ )
+  let l:icon_result = s:GetDevIconForCurrentBuffer()
+  let l:has_result = type(l:icon_result) ==# v:t_dict
 
-  let l:icon = len(l:icon_result) ==# 2 ? l:icon_result[0] : v:null
-  let l:hl_group = len(l:icon_result) ==# 2 ? l:icon_result[1] : 'User3'
+  let l:icon = l:has_result ? l:icon_result['icon'] : v:null
+  let l:hl_group = l:has_result ? l:icon_result['hl_group'] : 'StatusLineNeutral'
 
   if a:color
     return &filetype !=# '' ?
-          \ ' %#' . l:hl_group . '# ' . (l:icon !=# v:null ? ' ' . l:icon . '  ' . &filetype . '  ' : &filetype) . '%3*':
+          \ ' %#' . l:hl_group . '# ' . (l:icon !=# v:null ? ' ' . l:icon . '  ' . &filetype . '  ' : &filetype) . '%#StatusLineNeutral#':
           \ 'no ft'
   endif
 
   return &filetype !=# '' ?
         \ (l:icon !=# v:null ? ' ' . l:icon . '  ' . &filetype . ' ' : &filetype) :
         \ 'no ft'
+endfunction
+
+function! statusline#FileIcon() abort
+  let l:devicon = s:GetDevIconForCurrentBuffer()
+  let l:icon = ''
+
+  if type(l:devicon) ==# v:t_dict
+    let l:icon = '%#' . l:devicon['hl_group'] . "# " . l:devicon['icon']
+  endif
+
+  return l:icon
 endfunction
 
 " }}}
@@ -112,33 +163,33 @@ function! statusline#Diagnostics() abort
 
   if l:hints
     let l:highlight = s:diagnostic_highlights['info']
-    let l:summary .= printf('%%%s* ‹!:%d›',
+    let l:summary .= printf('%%#%s# ‹!:%d›',
           \ l:highlight,
           \ l:hints)
   endif
 
   if l:infos
     let l:highlight = s:diagnostic_highlights['info']
-    let l:summary .= printf('%%%s* ‹I:%d›',
+    let l:summary .= printf('%%#%s# ‹I:%d›',
           \ l:highlight,
           \ l:infos)
   endif
 
   if l:warnings
     let l:highlight = s:diagnostic_highlights['warning']
-    let l:summary .= printf('%%%s* ‹W:%d›',
+    let l:summary .= printf('%%#%s# ‹W:%d›',
           \ l:highlight,
           \ l:warnings)
   endif
 
   if l:errors
     let l:highlight = s:diagnostic_highlights['error']
-    let l:summary .= printf('%%%s* ‹E:%d›',
+    let l:summary .= printf('%%#%s# ‹E:%d›',
           \ l:highlight,
           \ l:errors)
   endif
 
-  let l:summary .= printf('%%%s* ● %%3* ', l:highlight)
+  let l:summary .= printf('%%#%s# ● %%#StatusLineNeutral# ', l:highlight)
 
   return {
         \ 'highlight': l:highlight,
@@ -205,32 +256,27 @@ endfunction
 " }}}
 
 " }}}
-" Helper functions {{{
 
-function! statusline#GetMinimalName(ft) abort
-  if has_key(s:statusline_ft_titles, a:ft)
-    return s:statusline_ft_titles[a:ft]
-  endif
+function! statusline#BuildWinbar(mode) abort
+  let l:bg_hl = a:mode ==# s:MODE_ACTIVE ? 'WinbarActive' : 'WinbarInactive'
 
-  " Custom handler for :CocList
-  if a:ft ==# 'list'
-    let l:match_list = matchlist(expand('%f'), 'list:\/\/\/\(.\+\)')
-
-    if !empty(l:match_list)
-      return 'CocList [' . l:match_list[1] . ']'
-    endif
-  endif
-
-  return 0
+  return
+    \ '%#WinbarNormal#%=' .
+    \ '%#WinbarGutter#▎' .
+    \ '%{%statusline#FileIcon()%}' .
+    \ '%#' . l:bg_hl . '#  %f %m ' .
+    \ '%#WinbarGutter#🮇' .
+    \ '%#WinbarNormal#    '
 endfunction
-
-" }}}
 
 " This mode is for special buffers. It'll show a blank indicator, and the custom name for that
 " buffer. Those buffers are defined in s:statusline_ft_titles.
 function! statusline#BuildMinimalStatusLine(mode) abort
   if a:mode ==# s:MODE_ACTIVE
-    return '%1* %{statusline#GetMinimalName(&ft)}%q %3*%=%5* ● %3* '
+    return
+      \ '%#StatusLinePrimary# %{statusline#GetMinimalName(&ft)}%q ' .
+      \ '%#StatusLineNeutral#%=%#StatusLineIndicatorNeutral# ● %#StatusLineNeutral# '
+
   elseif a:mode ==# s:MODE_INACTIVE
     return ' %{statusline#GetMinimalName(&ft)}%q %= ●  '
   endif
@@ -238,34 +284,35 @@ endfunction
 
 function! statusline#BuildStatusLine(mode) abort
   let l:result = ''
-  let focused = g:statusline_winid == win_getid(winnr()) && a:mode !=# s:MODE_INACTIVE
+  let l:focused = g:statusline_winid == win_getid(winnr()) && a:mode !=# s:MODE_INACTIVE
 
-  if focused
+  if l:focused
     let l:diagnostics = statusline#Diagnostics()
 
-    let l:result .= '%3*%1* %f '                               " filename
-    let l:result .= '%3*%{statusline#Branch()}'                " VCS Branch
+    let l:result .= '%#StatusLinePrimary# %f '                               " filename
+    let l:result .= '%#StatusLineNeutral#%{statusline#Branch()}'             " VCS Branch
 
     " Buffer number if in diff node
     if &diff
       let l:result .= ' [%n]'
     endif
 
-    let l:result .= '%3* %r'                                   " readonly
-    let l:result .= '%3*%m'                                    " modified
-    let l:result .= '%3*%{statusline#Paste()}'                 " paste
-    let l:result .= '%3*%{statusline#Spell()} '                " spell
-    let l:result .= '%3*%{%statusline#VCSStats()%}%3*'         " VCS Stats
+    let l:result .= '%#StatusLineNeutral# %r'                                " readonly
+    let l:result .= '%#StatusLineNeutral#%m'                                 " modified
+    let l:result .= '%#StatusLineNeutral#%{statusline#Paste()}'              " paste
+    let l:result .= '%#StatusLineNeutral#%{statusline#Spell()} '             " spell
+    let l:result .= '%#StatusLineNeutral#%{%statusline#VCSStats()%}'         " VCS Stats
+    let l:result .= '%#StatusLineNeutral#'
 
-    let l:result .= '%3*%='                                    " going to the right side
+    let l:result .= '%#StatusLineNeutral#%='
 
-    let l:result .= '%3*%{%statusline#Filetype(v:true)%} '     " filetype
-    let l:result .= '%#DiffAdd#%{statusline#LSPStatus()}'      " LSP status
-    let l:result .= '%3*%3p%% '                                " line percentage
-    let l:result .= '%2* %3l:%-2c '                            " line info
+    let l:result .= '%#StatusLineNeutral#%{%statusline#Filetype(v:true)%} '  " filetype
+    let l:result .= '%#DiffAdd#%{statusline#LSPStatus()}'                    " LSP status
+    let l:result .= '%#StatusLineNeutral#%3p%% '                             " line percentage
+    let l:result .= '%#StatusLineSecondary# %3l:%-2c '                       " line info
 
     " Visual percentages
-    let l:result .= '%#DevIconSh#%{statusline#VisualPercentage()}%2* '
+    let l:result .= '%#DevIconSh#%{statusline#VisualPercentage()}%#StatusLineSecondary# '
 
     " Diagnostics indications
     let l:result .= l:diagnostics['summary']

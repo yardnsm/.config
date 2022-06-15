@@ -50,3 +50,10 @@ if vim.fn.isdirectory(".git") ~= 0 then
 else
   vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope find_files<CR>", opts)
 end
+
+vim.cmd [[
+  augroup treesitter_au
+    autocmd! * <buffer>
+    autocmd FileType TelescopePrompt lua vim.schedule(function () vim.wo.cursorline = false end)
+  augroup END
+]]

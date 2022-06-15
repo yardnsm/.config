@@ -6,7 +6,7 @@ let g:vimwiki_list = [{
       \ 'path': $VIMWIKI_HOME,
       \ 'syntax': 'markdown',
       \ 'ext': '.md',
-      \ 'index': 'README',
+      \ 'index': 'index',
       \ 'nested_syntaxes': {'python': 'python', 'javascript': 'javascript', 'bash': 'sh'},
       \ }]
 

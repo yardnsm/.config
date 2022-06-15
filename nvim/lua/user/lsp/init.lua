@@ -43,7 +43,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, {
     texthl = sign.name,
     text = sign.text,
-    numhl = "",
+    numhl = "", -- sign.name
   })
 end
 
@@ -220,13 +220,14 @@ end
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        autocmd CursorMoved,WinLeave <buffer> lua vim.lsp.buf.clear_references()
+        autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()
       augroup END
     ]],
       false
@@ -262,7 +263,7 @@ local function on_attach(client, bufnr)
 
   -- Disable formatting for certains servers; let null-ls do its thing!
   if client.name == "tsserver" or client.name == 'sumneko_lua' then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
 
   lsp_keymaps(bufnr)

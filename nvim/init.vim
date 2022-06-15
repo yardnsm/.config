@@ -83,6 +83,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'j-hui/fidget.nvim'
+Plug 'kosayoda/nvim-lightbulb'
 
 " Completion engine
 Plug 'hrsh7th/nvim-cmp'
@@ -119,6 +120,7 @@ lua require('user.plugin.fidget')
 lua require('user.plugin.telescope')
 lua require('user.plugin.nvim-autopairs')
 lua require('user.plugin.luasnip')
+lua require('user.plugin.nvim-lightbulb')
 
 " }}}
 " Editor {{{
@@ -162,13 +164,14 @@ augroup vimrc_au
 
   " Set signcolumn for buffers that already have numbers on
   autocmd BufCreate,BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : 'auto'
+  autocmd FileType nerdtree lua vim.schedule(function () vim.wo.signcolumn = 'auto'; vim.wo.winbar = '' end)
 
   " Highlight when yanking
   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="Yanked" }
 
   " Unset cursorline on leave
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set cursorline
+  autocmd FocusLost,WinLeave * set nocursorline
+  autocmd FocusGained,WinEnter * set cursorline
 augroup END
 
 " }}}
@@ -264,22 +267,18 @@ if !has('gui_vimr')
           \
           \ | call s:hi('Yanked', "", 2)
           \
-          \ | call s:hi('User1', 7, 2, "bold")
-          \ | call s:hi('User2', 7, 2)
-          \ | call s:hi('User3', 12, 1)
-          \ | call s:hi('User5', 14, 0, "bold")
-          \ | call s:hi('User6', 9, 0, "bold")
-          \ | call s:hi('User7', 8, 0, "bold")
-          \ | call s:hi('User8', 11, 0)
-          \ | call s:hi('User9', 1, 0)
-          " \ | highlight User1 ctermfg=15 ctermbg=11 cterm=bold guifg=#F5F5F5 guibg=#303030 gui=bold
-          " \ | highlight User2 ctermfg=15 ctermbg=11            guifg=#F5F5F5 guibg=#303030
-          " \ | highlight User3 ctermfg=6  ctermbg=10            guifg=#75B5AA guibg=#202020
-          " \ | highlight User5 ctermfg=4  ctermbg=0  cterm=bold guifg=#6A9FB5 guibg=#151515 gui=bold
-          " \ | highlight User6 ctermfg=9  ctermbg=0  cterm=bold guifg=#D28445 guibg=#151515 gui=bold
-          " \ | highlight User7 ctermfg=1  ctermbg=0  cterm=bold guifg=#AC4142 guibg=#151515 gui=bold
-          " \ | highlight User8 ctermfg=3  ctermbg=0             guifg=#F4BF75 guibg=#151515
-          " \ | highlight User9 ctermfg=10 ctermbg=0             guifg=#202020 guibg=#151515
+          \ | call s:hi('StatusLinePrimary', 7, 2, "bold")
+          \ | call s:hi('StatusLineSecondary', 7, 2)
+          \ | call s:hi('StatusLineNeutral', 12, 1)
+          \ | call s:hi('StatusLineIndicatorNeutral', 14, 0, "bold")
+          \ | call s:hi('StatusLineIndicatorWarnning', 9, 0, "bold")
+          \ | call s:hi('StatusLineIndicatorError', 8, 0, "bold")
+          \ | call s:hi('StatusLineIndicatorSuccess', 11, 0)
+          \
+          \ | call s:hi('WinbarGutter', 14, "", "bold")
+          \ | call s:hi('WinbarNormal', 14, 1)
+          \ | call s:hi('WinbarActive', 12, "", "bold")
+          \ | call s:hi('WinbarInactive', 1, "")
 
     " }}}
 
@@ -303,7 +302,7 @@ endtry
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }}}
-" Statusline {{{
+" Statusline && Winbar {{{
 
 " Always show the status line
 set laststatus=2
@@ -326,6 +325,28 @@ augroup statusline_au
         \ endif
 augroup END
 
+augroup winbar_au
+  autocmd!
+
+  autocmd BufWinEnter,WinEnter,FocusGained,FileType *
+        \ if statusline#ShouldSetWinbar(&ft) |
+        \   setlocal winbar=%!statusline#BuildWinbar('active') |
+        \ endif
+
+  autocmd WinLeave,FocusLost *
+        \ if statusline#ShouldSetWinbar(&ft) |
+        \   setlocal winbar=%!statusline#BuildWinbar('inactive') |
+        \ endif
+augroup END
+
+" Global status line
+" TODO: refactor a bit
+if has('nvim-0.7.0')
+  set laststatus=3
+  hi clear VertSplit
+  hi VertSplit guifg=#505050
+  set fillchars+=vert:\│
+endif
 
 " }}}
 " Folding {{{
@@ -399,11 +420,6 @@ endif
 
 set lazyredraw                        " don't redraw while performing macros
 set winhighlight=Normal:Normal
-
-set timeout
-set timeoutlen=1000
-set ttimeoutlen=50
-set updatetime=300
 
 set splitbelow                        " split below by default
 set splitright                        " split right by default
