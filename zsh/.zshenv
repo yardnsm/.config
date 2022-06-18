@@ -113,4 +113,3 @@ export RBENV_VERSION="2.2.4"
 
 # Tmux Spotify starrer (see ../tmux/playground/spotify_starrer.tmux)
 export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"
-. "$HOME/.cargo/env"

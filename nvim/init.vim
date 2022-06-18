@@ -226,6 +226,16 @@ if !has('gui_vimr')
           \ | call s:hi('MatchTag', 8, 2)
           \ | call s:hi('FloatBorder', 2, 0)
           \
+          \ | highlight clear SignColumn
+          \ | highlight clear LineNr
+          \ | highlight clear CursorLineNr
+          \ | call s:hi('SignColumn', 3, "")
+          \ | call s:hi('LineNr', 3, "")
+          \ | call s:hi('CursorLineNr', 4, "", "bold")
+          \
+          \ | highlight clear VertSplit
+          \ | call s:hi('VertSplit', 3, "")
+          \
           \ | call s:hi('SpellBad', "", 8, "undercurl")
           \ | call s:hi('SpellCap', "", 13, "undercurl")
           \ | call s:hi('SpellRare', "", 2, "undercurl")
@@ -235,12 +245,12 @@ if !has('gui_vimr')
           \ | highlight link LspReferenceRead Visual
           \ | highlight link LspReferenceWrite Visual
           \
-          \ | call s:hi('DiagnosticSignError', 8, 1, "bold")
+          \ | call s:hi('DiagnosticSignError', 8, "", "bold")
           \ | highlight! DiagnosticSignError guifg=Red
-          \ | call s:hi('DiagnosticSignWarn', 10, 1, "bold")
+          \ | call s:hi('DiagnosticSignWarn', 10, "", "bold")
           \ | highlight! DiagnosticSignWarn guifg=Yellow
-          \ | call s:hi('DiagnosticSignHint', 13, 1, "bold")
-          \ | call s:hi('DiagnosticSignInfo', 13, 1, "bold")
+          \ | call s:hi('DiagnosticSignHint', 13, "", "bold")
+          \ | call s:hi('DiagnosticSignInfo', 13, "", "bold")
           \
           \ | highlight link TelescopeMatching Special
           \ | call s:hi('TelescopeMatching', 14, "", "bold")
@@ -271,14 +281,14 @@ if !has('gui_vimr')
           \ | call s:hi('StatusLineSecondary', 7, 2)
           \ | call s:hi('StatusLineNeutral', 12, 1)
           \ | call s:hi('StatusLineIndicatorNeutral', 14, 0, "bold")
-          \ | call s:hi('StatusLineIndicatorWarnning', 9, 0, "bold")
+          \ | call s:hi('StatusLineIndicatorWarning', 9, 0, "bold")
           \ | call s:hi('StatusLineIndicatorError', 8, 0, "bold")
           \ | call s:hi('StatusLineIndicatorSuccess', 11, 0)
           \
-          \ | call s:hi('WinbarGutter', 14, "", "bold")
-          \ | call s:hi('WinbarNormal', 14, 1)
-          \ | call s:hi('WinbarActive', 12, "", "bold")
-          \ | call s:hi('WinbarInactive', 1, "")
+          \ | call s:hi('WinbarBgActive', 14, 2)
+          \ | call s:hi('WinbarBgInactive', 14, 1)
+          \ | call s:hi('WinbarFgActive', 12, "", "bold")
+          \ | call s:hi('WinbarFgInactive', 1, "")
 
     " }}}
 
@@ -306,6 +316,13 @@ match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Always show the status line
 set laststatus=2
+
+" Global status line
+" TODO: refactor a bit
+if has('nvim-0.7.0')
+  set laststatus=3
+  set fillchars+=vert:\│
+endif
 
 augroup statusline_au
   autocmd!
@@ -338,15 +355,6 @@ augroup winbar_au
         \   setlocal winbar=%!statusline#BuildWinbar('inactive') |
         \ endif
 augroup END
-
-" Global status line
-" TODO: refactor a bit
-if has('nvim-0.7.0')
-  set laststatus=3
-  hi clear VertSplit
-  hi VertSplit guifg=#505050
-  set fillchars+=vert:\│
-endif
 
 " }}}
 " Folding {{{

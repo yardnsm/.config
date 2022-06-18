@@ -258,15 +258,14 @@ endfunction
 " }}}
 
 function! statusline#BuildWinbar(mode) abort
-  let l:bg_hl = a:mode ==# s:MODE_ACTIVE ? 'WinbarActive' : 'WinbarInactive'
+  let l:fg_hl = a:mode ==# s:MODE_ACTIVE ? 'WinbarFgActive' : 'WinbarFgInactive'
+  let l:bg_hl = a:mode ==# s:MODE_ACTIVE ? 'WinbarBgActive' : 'WinbarBgInactive'
 
   return
-    \ '%#WinbarNormal#%=' .
-    \ '%#WinbarGutter#▎' .
+    \ '%#' . l:bg_hl . '# ' .
     \ '%{%statusline#FileIcon()%}' .
-    \ '%#' . l:bg_hl . '#  %f %m ' .
-    \ '%#WinbarGutter#🮇' .
-    \ '%#WinbarNormal#    '
+    \ '%#' . l:fg_hl . '#  %f %m ' .
+    \ '%#' . l:bg_hl . '#'
 endfunction
 
 " This mode is for special buffers. It'll show a blank indicator, and the custom name for that
@@ -328,7 +327,7 @@ function! statusline#BuildStatusLine(mode) abort
     let l:result .= '%m'                                       " modified
     let l:result .= '%='                                       " going to the right side
 
-    let l:result .= '[%{statusline#Filetype(v:false)}] '       " filetype
+    let l:result .= '%{statusline#Filetype(v:false)} '         " filetype
     let l:result .= ' ●  '                                     " blank indicator, for consistency
   endif
 
