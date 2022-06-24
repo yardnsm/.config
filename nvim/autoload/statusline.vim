@@ -262,9 +262,9 @@ function! statusline#BuildWinbar(mode) abort
   let l:bg_hl = a:mode ==# s:MODE_ACTIVE ? 'WinbarBgActive' : 'WinbarBgInactive'
 
   return
-    \ '%#' . l:bg_hl . '# ' .
-    \ '%{%statusline#FileIcon()%}' .
-    \ '%#' . l:fg_hl . '#  %f %m ' .
+    \ '%#' . l:fg_hl . '#     ' .
+    \ '%{%statusline#FileIcon()%} ' .
+    \ '%#' . l:fg_hl . '#%f %m     ' .
     \ '%#' . l:bg_hl . '#'
 endfunction
 
