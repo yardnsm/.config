@@ -109,6 +109,11 @@ call plug#end()
 " Speed up startup time of lua plugins
 lua require('user.plugin.impatient')
 
+" Setup winbar and statusline
+lua require("user.winbar").setup()
+lua require("user.statusline").setup()
+
+
 " Setup LSP
 lua require('user.lsp').setup()
 lua require('user.lsp.null-ls')
@@ -323,38 +328,6 @@ if has('nvim-0.7.0')
   set laststatus=3
   set fillchars+=vert:\│
 endif
-
-augroup statusline_au
-  autocmd!
-
-  autocmd BufWinEnter,WinEnter,FocusGained,FileType *
-        \ if type(statusline#GetMinimalName(&ft)) ==# v:t_string |
-        \   setlocal statusline=%!statusline#BuildMinimalStatusLine('active') |
-        \ else |
-        \   setlocal statusline=%!statusline#BuildStatusLine('active') |
-        \ endif
-
-  autocmd WinLeave,FocusLost *
-        \ if type(statusline#GetMinimalName(&ft)) ==# v:t_string |
-        \   setlocal statusline=%!statusline#BuildMinimalStatusLine('inactive') |
-        \ else |
-        \   setlocal statusline=%!statusline#BuildStatusLine('inactive') |
-        \ endif
-augroup END
-
-augroup winbar_au
-  autocmd!
-
-  autocmd BufWinEnter,WinEnter,FocusGained,FileType *
-        \ if statusline#ShouldSetWinbar(&ft) |
-        \   setlocal winbar=%!statusline#BuildWinbar('active') |
-        \ endif
-
-  autocmd WinLeave,FocusLost *
-        \ if statusline#ShouldSetWinbar(&ft) |
-        \   setlocal winbar=%!statusline#BuildWinbar('inactive') |
-        \ endif
-augroup END
 
 " }}}
 " Folding {{{
