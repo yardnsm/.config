@@ -9,6 +9,11 @@ if not status_ok then
   }
 end
 
+local navic_status_ok, navic = pcall(require, "nvim-navic")
+if not navic_status_ok then
+  navic = nil
+end
+
 local utils = require("user.utils")
 local lsp_installer = require("nvim-lsp-installer")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -268,6 +273,10 @@ local function on_attach(client, bufnr)
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+
+  if navic then
+    navic.attach(client, bufnr)
+  end
 end
 
 local function make_capabilities()

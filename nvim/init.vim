@@ -84,6 +84,7 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'j-hui/fidget.nvim'
 Plug 'kosayoda/nvim-lightbulb'
+Plug 'SmiteshP/nvim-navic'
 
 " Completion engine
 Plug 'hrsh7th/nvim-cmp'
@@ -106,26 +107,7 @@ call plug#end()
 " }}}
 " Lua Integration {{{
 
-" Speed up startup time of lua plugins
-lua require('user.plugin.impatient')
-
-" Setup winbar and statusline
-lua require("user.winbar").setup()
-lua require("user.statusline").setup()
-
-
-" Setup LSP
-lua require('user.lsp').setup()
-lua require('user.lsp.null-ls')
-
-" Setup Plugins
-lua require('user.plugin.cmp')
-lua require('user.plugin.treesitter')
-lua require('user.plugin.fidget')
-lua require('user.plugin.telescope')
-lua require('user.plugin.nvim-autopairs')
-lua require('user.plugin.luasnip')
-lua require('user.plugin.nvim-lightbulb')
+lua require('user')
 
 " }}}
 " Editor {{{
@@ -163,20 +145,7 @@ set fillchars+=vert:\  " ┃
 
 augroup vimrc_au
   autocmd!
-
-  " Unset paste on InsertLeave
-  autocmd InsertLeave * silent! set nopaste
-
-  " Set signcolumn for buffers that already have numbers on
-  autocmd BufCreate,BufEnter * silent! let &l:signcolumn = &l:number == 1 ? 'yes' : 'auto'
   autocmd FileType nerdtree lua vim.schedule(function () vim.wo.signcolumn = 'auto'; vim.wo.winbar = '' end)
-
-  " Highlight when yanking
-  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="Yanked" }
-
-  " Unset cursorline on leave
-  autocmd FocusLost,WinLeave * set nocursorline
-  autocmd FocusGained,WinEnter * set cursorline
 augroup END
 
 " }}}
@@ -245,6 +214,13 @@ if !has('gui_vimr')
           \ | call s:hi('SpellCap', "", 13, "undercurl")
           \ | call s:hi('SpellRare', "", 2, "undercurl")
           \ | call s:hi('SpellLocal', "", 3, "undercurl")
+          \
+          \ | highlight clear SignifySignAdd
+          \ | highlight clear SignifySignChange
+          \ | highlight clear SignifySignDelete
+          \ | call s:hi('SignifySignAdd', 11, "")
+          \ | call s:hi('SignifySignChange', 13, "")
+          \ | call s:hi('SignifySignDelete', 8, "")
           \
           \ | highlight link LspReferenceText Visual
           \ | highlight link LspReferenceRead Visual
@@ -322,8 +298,7 @@ match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Always show the status line
 set laststatus=2
 
-" Global status line
-" TODO: refactor a bit
+" Global status line when available
 if has('nvim-0.7.0')
   set laststatus=3
   set fillchars+=vert:\│
