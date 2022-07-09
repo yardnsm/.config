@@ -170,7 +170,7 @@ M.block_vcs_stats = function ()
 
   local stats = vim.fn['sy#repo#get_stats']()
 
-  local hl_groups = { 'SignifySignAdd', 'SignifySignDelete', 'SignifySignChange' }
+  local hl_groups = { 'SignifyLineAdd', 'SignifyLineDelete', 'SignifyLineChange' }
   local symbols = { '+', '-', '~' }
 
   local result = ''

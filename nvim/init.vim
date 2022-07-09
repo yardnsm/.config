@@ -140,6 +140,15 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 " Change the split border
 set fillchars+=vert:\  " ┃
 
+" Always show the status line
+set laststatus=2
+
+" Global status line when available
+if has('nvim-0.7.0')
+  set laststatus=3
+  set fillchars+=vert:\│
+endif
+
 " }}}
 " Autocommands {{{
 
@@ -266,8 +275,6 @@ if !has('gui_vimr')
           \ | call s:hi('StatusLineIndicatorError', 8, 0, "bold")
           \ | call s:hi('StatusLineIndicatorSuccess', 11, 0)
           \
-          \ | call s:hi('WinbarBgActive', 14, 2)
-          \ | call s:hi('WinbarBgInactive', 14, 1)
           \ | call s:hi('WinbarFgActive', 12, "", "bold")
           \ | call s:hi('WinbarFgInactive', 1, "")
 
@@ -291,18 +298,6 @@ endtry
 
 " Highlight conflict markerts
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" }}}
-" Statusline && Winbar {{{
-
-" Always show the status line
-set laststatus=2
-
-" Global status line when available
-if has('nvim-0.7.0')
-  set laststatus=3
-  set fillchars+=vert:\│
-endif
 
 " }}}
 " Folding {{{
