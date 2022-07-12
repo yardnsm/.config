@@ -16,7 +16,7 @@ local should_render = function()
     return false
   end
 
-  return vim.bo.bufhidden ~= 'wipe'
+  return vim.bo.bufhidden ~= 'wipe' and vim.bo.buflisted
 end
 
 local get_navic = function ()
@@ -55,7 +55,7 @@ M.render = function(mode, bufnr)
   if mode == 'active' then
     result = result .. "%#" .. hl_group .. "#▎"
   else
-    result = result .. ' '
+    result = result .. '%#WinbarFgActive# '
   end
 
   result = result .. "%#" .. fg_hl .. "#"
@@ -71,10 +71,10 @@ end
 
 M.set_winbar_option = function(mode, bufnr)
   if should_render() then
-    vim.api.nvim_set_option_value(
+    pcall(vim.api.nvim_set_option_value,
       "winbar",
       [[%!luaeval('require("user.winbar").render("]] .. mode .. [[", ]] .. (bufnr or "nil") .. [[)')]],
-      { scope = 'local' }
+      { scope = "local" }
     )
   else
     vim.opt_local.winbar = nil

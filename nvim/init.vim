@@ -34,7 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'lewis6991/impatient.nvim'
 
 " Colors
-Plug 'chriskempson/base16-vim'
+Plug 'RRethy/nvim-base16'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File tree
@@ -150,151 +150,14 @@ if has('nvim-0.7.0')
 endif
 
 " }}}
-" Autocommands {{{
-
-augroup vimrc_au
-  autocmd!
-  autocmd FileType nerdtree lua vim.schedule(function () vim.wo.signcolumn = 'auto'; vim.wo.winbar = '' end)
-augroup END
-
-" }}}
 " Colors and Syntax {{{
 
 syntax on                             " enable syntax highlighting
 
-" Settings for the terminal
-if !has('gui_vimr')
-  set background=dark                 " assume a dark background
-  set termguicolors                   " use true colors in the treminal
+set background=dark                 " assume a dark background
+set termguicolors                   " use true colors in the treminal
 
-  " Colorscheme overrides
-  augroup custom_colors_au
-    autocmd!
-
-    " Gotham {{{
-
-    autocmd ColorScheme gotham
-          \   highlight Folded ctermbg=green ctermfg=blue
-          \ | highlight VertSplit ctermfg=4 ctermbg=10
-          \ | highlight MatchTag ctermbg=12 ctermfg=9
-          " \ | highlight CursorLineNr ctermfg=3
-
-    " }}}
-    " Base16 {{{
-
-
-    " Note that we're referring to the **base16** color codes -- not Vim's cterms!
-    function! s:hi(group, fg, bg, ...)
-      let l:attr = get(a:, 1, "")
-      let l:guisp = get(a:, 2, "")
-
-      let l:fg_hex = a:fg !=# "" ? printf('%.2X', a:fg) : v:null
-      let l:bg_hex = a:bg !=# "" ? printf('%.2X', a:bg) : v:null
-
-      let l:guifg = l:fg_hex !=# v:null ? g:['base16_gui' . l:fg_hex] : ""
-      let l:guibg = l:bg_hex !=# v:null ? g:['base16_gui' . l:bg_hex] : ""
-
-      let l:ctermfg = l:fg_hex !=# v:null ? g:['base16_cterm' . l:fg_hex] : ""
-      let l:ctermbg = l:bg_hex !=# v:null ? g:['base16_cterm' . l:bg_hex] : ""
-
-      cal g:Base16hi(a:group, l:guifg, l:guibg, l:ctermfg, l:ctermbg, l:attr, l:guisp)
-    endfunction
-
-    " User1..9 highlights are used for the statusline
-    autocmd ColorScheme base16-*
-          \   highlight Comment ctermfg=11
-          \ | highlight Folded ctermbg=green ctermfg=11
-          \ | highlight Statement cterm=bold
-          \ | highlight StatusLine ctermbg=11 cterm=bold
-          \ | call s:hi('MatchTag', 8, 2)
-          \ | call s:hi('FloatBorder', 2, 0)
-          \
-          \ | highlight clear SignColumn
-          \ | highlight clear LineNr
-          \ | highlight clear CursorLineNr
-          \ | call s:hi('SignColumn', 3, "")
-          \ | call s:hi('LineNr', 3, "")
-          \ | call s:hi('CursorLineNr', 4, "", "bold")
-          \
-          \ | highlight clear VertSplit
-          \ | call s:hi('VertSplit', 3, "")
-          \
-          \ | call s:hi('SpellBad', "", 8, "undercurl")
-          \ | call s:hi('SpellCap', "", 13, "undercurl")
-          \ | call s:hi('SpellRare', "", 2, "undercurl")
-          \ | call s:hi('SpellLocal', "", 3, "undercurl")
-          \
-          \ | highlight clear SignifySignAdd
-          \ | highlight clear SignifySignChange
-          \ | highlight clear SignifySignDelete
-          \ | call s:hi('SignifySignAdd', 11, "")
-          \ | call s:hi('SignifySignChange', 13, "")
-          \ | call s:hi('SignifySignDelete', 8, "")
-          \
-          \ | highlight link LspReferenceText Visual
-          \ | highlight link LspReferenceRead Visual
-          \ | highlight link LspReferenceWrite Visual
-          \
-          \ | call s:hi('DiagnosticSignError', 8, "", "bold")
-          \ | highlight! DiagnosticSignError guifg=Red
-          \ | call s:hi('DiagnosticSignWarn', 10, "", "bold")
-          \ | highlight! DiagnosticSignWarn guifg=Yellow
-          \ | call s:hi('DiagnosticSignHint', 13, "", "bold")
-          \ | call s:hi('DiagnosticSignInfo', 13, "", "bold")
-          \
-          \ | highlight link TelescopeMatching Special
-          \ | call s:hi('TelescopeMatching', 14, "", "bold")
-          \ | highlight link TelescopeResultsNormal Comment
-          \ | highlight link TelescopeTitle TelescopeMatching
-          \ | highlight link TelescopeBorder FloatBorder
-          \
-          \ | highlight! clear PmenuSel
-          \ | call s:hi('PmenuSel', "", 2, "bold")
-          \
-          \ | highlight! CmpItemMenu guifg=#505050
-          \ | highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-          \ | highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-          \ | highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-          \ | highlight! link CmpItemKind CmpItemKindDefault
-          \ | highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-          \ | highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-          \ | highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-          \ | highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-          \ | highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-          \ | highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-          \ | highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-          \ | highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-          \
-          \ | call s:hi('Yanked', "", 2)
-          \
-          \ | call s:hi('StatusLinePrimary', 7, 2, "bold")
-          \ | call s:hi('StatusLineSecondary', 7, 2)
-          \ | call s:hi('StatusLineNeutral', 12, 1)
-          \ | call s:hi('StatusLineIndicatorNeutral', 14, 0, "bold")
-          \ | call s:hi('StatusLineIndicatorWarning', 9, 0, "bold")
-          \ | call s:hi('StatusLineIndicatorError', 8, 0, "bold")
-          \ | call s:hi('StatusLineIndicatorSuccess', 11, 0)
-          \
-          \ | call s:hi('WinbarFgActive', 12, "", "bold")
-          \ | call s:hi('WinbarFgInactive', 1, "")
-
-    " }}}
-
-  augroup END
-endif
-
-try
-  colorscheme base16-classic-dark     " set colorscheme
-
-  " Setup base16-shell
-  if g:colors_name == 'base16-default-dark'
-    if filereadable(expand("~/.vimrc_background"))
-      let base16colorspace=256
-      source ~/.vimrc_background
-    endif
-  endif
-catch
-endtry
+colorscheme base16-classic-dark
 
 " Highlight conflict markerts
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

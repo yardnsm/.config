@@ -63,7 +63,8 @@ M.get_devicon_for_buffer = function (bufnr)
 end
 
 -- }}}
--- Blocks {{{
+
+-- Block: Visual Percentage {{{
 
 M.block_visual_percentage = function ()
   local current_line = vim.fn.line('.')
@@ -76,6 +77,9 @@ M.block_visual_percentage = function ()
   return statusline_visual_percentages[index]
 end
 
+-- }}}
+-- Block: Paste mode {{{
+
 M.block_paste = function ()
   if vim.o.paste then
     return '[PASTE]'
@@ -84,6 +88,9 @@ M.block_paste = function ()
   return ''
 end
 
+-- }}}
+-- Block: Spell mode {{{
+
 M.block_spell = function ()
   if vim.wo.spell then
     return '[SPELL]'
@@ -91,6 +98,9 @@ M.block_spell = function ()
 
   return ''
 end
+
+-- }}}
+-- Block: Filetype {{{
 
 M.block_filetype = function (opts)
   local icon, hl_group = M.get_devicon_for_buffer()
@@ -103,11 +113,14 @@ M.block_filetype = function (opts)
   end
 
   if opts.colors then
-    return ' %#' .. hl_group .. '#  ' .. icon .. '  ' .. filetype .. '  '
+    return ' %#' .. hl_group .. '#  ' .. icon .. '  ' .. filetype .. ' '
   end
 
   return ' ' .. icon .. '  ' .. filetype .. ' '
 end
+
+-- }}}
+-- Block: Diagnostics {{{
 
 M.block_diagnostics = function ()
   local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
@@ -119,28 +132,31 @@ M.block_diagnostics = function ()
 
   local result = ''
 
-  if hints then
+  if hints ~= 0 then
     highlight = diagnostic_highlights.info
     result = result .. vim.fn.printf('%%#%s# ‹!:%d›', highlight, hints)
   end
 
-  if infos then
+  if infos ~= 0 then
     highlight = diagnostic_highlights.info
     result = result .. vim.fn.printf('%%#%s# ‹I:%d›', highlight, infos)
   end
 
-  if warnings then
+  if warnings ~= 0 then
     highlight = diagnostic_highlights.warning
     result = result .. vim.fn.printf('%%#%s# ‹W:%d›', highlight, warnings)
   end
 
-  if errors then
+  if errors ~= 0 then
     highlight = diagnostic_highlights.error
     result = result .. vim.fn.printf('%%#%s# ‹E:%d›', highlight, errors)
   end
 
-  return vim.fn.printf('%%#%s# ● %%#StatusLineNeutral# ', highlight)
+  return result .. vim.fn.printf('%%#%s# ● %%#StatusLineNeutral# ', highlight)
 end
+
+-- }}}
+-- Block: LSP Status {{{
 
 M.block_lsp_status = function ()
   local client_attahced = lsp_statusline_utils.is_client_attahced()
@@ -150,18 +166,24 @@ M.block_lsp_status = function ()
     return ''
   end
 
-  return '⋅   ' .. server_names .. ' ⋅ '
+  return '⋅   ' .. server_names .. ' '
 end
+
+-- }}}
+-- Block: VCS Branch {{{
 
 M.block_vcs_branch = function ()
   local branch = vim.fn.exists('*FugitiveHead') and vim.fn.FugitiveHead() or ''
 
-  if not branch then
+  if branch == '' then
     return ''
   end
 
   return '  ' .. branch
 end
+
+-- }}}
+-- Block: VCS Stats {{{
 
 M.block_vcs_stats = function ()
   if not vim.fn.exists('*sy#start') then
@@ -170,8 +192,8 @@ M.block_vcs_stats = function ()
 
   local stats = vim.fn['sy#repo#get_stats']()
 
-  local hl_groups = { 'SignifyLineAdd', 'SignifyLineDelete', 'SignifyLineChange' }
-  local symbols = { '+', '-', '~' }
+  local hl_groups = { 'SignifyLineAdd', 'SignifyLineChange', 'SignifyLineDelete' }
+  local symbols = { '+', '~', '-' }
 
   local result = ''
 
@@ -192,8 +214,14 @@ M.render_minimal = function(mode)
   local title = get_minimal_name(vim.bo.filetype)
 
   if mode == 'active' then
-    return '%#StatusLinePrimary# ' .. title .. '%q ' ..
-      '%#StatusLineNeutral#%=%#StatusLineIndicatorNeutral# ● %#StatusLineNeutral# '
+    return table.concat({
+      '%#StatusLinePrimary# ',
+      title,
+      '%q ',
+      '%#StatusLineNeutral#',
+      '%=',
+      '%#StatusLineIndicatorNeutral# ● %#StatusLineNeutral# '
+    })
   end
 
   return ' ' .. title .. '%q %= ●  '
@@ -222,8 +250,8 @@ M.render_full = function(mode)
     result = result .. '%#StatusLineNeutral#%='
 
     result = result .. '%#StatusLineNeutral#' .. M.block_filetype({ colors = true })
-    result = result .. '%#DiffAdd# ' .. M.block_lsp_status()
-    result = result .. '%#StatusLineNeutral#%3p%% '
+    result = result .. '%#DiffAdd#' .. M.block_lsp_status() .. ' '
+    result = result .. '%#StatusLineNeutral# %3p%% '
     result = result .. '%#StatusLineSecondary# %3l:%-2c '
 
     result = result .. '%#DevIconSh#' .. M.block_visual_percentage() .. '%#StatusLineSecondary# '

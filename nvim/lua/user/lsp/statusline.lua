@@ -32,11 +32,11 @@ end
 local M = {}
 
 M.is_client_attahced = function()
-  return #vim.lsp.buf_get_clients() > 0
+  return #vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() }) > 0
 end
 
 M.get_servers_names = function()
-  local buf_clients = vim.lsp.buf_get_clients()
+  local buf_clients = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
 
   local buf_ft = vim.bo.filetype
   local buf_client_names = {}

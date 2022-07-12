@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+vim.g.navic_silence = true
+
 navic.setup({
   highlight = false,
   separator = ' > '

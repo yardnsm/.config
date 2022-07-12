@@ -126,8 +126,13 @@ end
 -- Commands {{{
 
 local function lsp_setup_commands()
-  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-  vim.cmd([[ command! LspInstallAll execute 'lua require("user.lsp").install_required_servers()' ]])
+  vim.api.nvim_create_user_command("Format", function ()
+    vim.lsp.buf.format()
+  end, {})
+
+  vim.api.nvim_create_user_command("LspInstallAll", function ()
+    M.install_required_servers()
+  end, {})
 end
 
 -- }}}
@@ -223,21 +228,35 @@ end
 
 -- }}}
 
-local function lsp_highlight_document(client)
+local function lsp_highlight_document(client, bufnr)
+  local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+
   -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved,WinLeave <buffer> lua vim.lsp.buf.clear_references()
-        autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()
-      augroup END
-    ]],
-      false
-    )
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd("CursorHold", {
+      buffer = bufnr,
+      group = augroup,
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+    })
+
+    vim.api.nvim_create_autocmd({ "CursorMoved", "WinLeave" }, {
+      buffer = bufnr,
+      group = augroup,
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+    })
   end
+
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    buffer = bufnr,
+    group = augroup,
+    callback = function()
+      require('nvim-lightbulb').update_lightbulb()
+    end,
+  })
 end
 
 local function lsp_keymaps(bufnr)
@@ -254,7 +273,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions theme=cursor<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -272,7 +291,7 @@ local function on_attach(client, bufnr)
   end
 
   lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
+  lsp_highlight_document(client, bufnr)
 
   if navic then
     navic.attach(client, bufnr)

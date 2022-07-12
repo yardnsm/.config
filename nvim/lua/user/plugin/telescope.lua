@@ -51,9 +51,17 @@ else
   vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope find_files<CR>", opts)
 end
 
-vim.cmd [[
-  augroup treesitter_au
-    autocmd! * <buffer>
-    autocmd FileType TelescopePrompt lua vim.schedule(function () vim.wo.cursorline = false end)
-  augroup END
-]]
+
+-- Autocommands
+
+local augroup = vim.api.nvim_create_augroup("Treesitter", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "TelescopePrompt",
+  group = augroup,
+  callback = function()
+    vim.schedule(function()
+      vim.wo.cursorline = false
+    end)
+  end,
+})

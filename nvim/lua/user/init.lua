@@ -2,6 +2,7 @@
 require('user.plugin.impatient')
 
 require('user.autocommands')
+require('user.colorscheme')
 
 -- Setup winbar and statusline
 require("user.winbar").setup()
