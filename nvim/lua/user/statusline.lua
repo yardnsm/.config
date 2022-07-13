@@ -14,6 +14,7 @@ local statusline_augroup = vim.api.nvim_create_augroup("Statusline", { clear = t
 local statusline_minimal_modes = {
   netrw = 'Netrw',
   nerdtree = 'NERD',
+  NvimTree = 'NvimTree',
   TelescopePrompt = 'Telescope',
   qf = '',
 }
@@ -71,7 +72,7 @@ M.block_visual_percentage = function ()
   local total_lines = vim.fn.line('$')
 
   local index = vim.fn.float2nr(
-    vim.fn.ceil((current_line * 1.0) / total_lines * (#statusline_visual_percentages - 1))
+    vim.fn.ceil((current_line * 1.0) / total_lines * (#statusline_visual_percentages))
   )
 
   return statusline_visual_percentages[index]

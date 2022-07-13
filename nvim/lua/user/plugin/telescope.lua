@@ -31,6 +31,12 @@ telescope.setup({
         i = { ["<c-d>"] = actions.delete_buffer },
       },
     },
+
+    live_grep = {
+      mappings = {
+        i = { ["<c-f>"] = actions.to_fuzzy_refine },
+      },
+    },
   },
 })
 

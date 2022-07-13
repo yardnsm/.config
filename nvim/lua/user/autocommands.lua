@@ -29,18 +29,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- NERDTree shit
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "nerdtree",
-  group = augroup,
-  callback = function()
-    vim.schedule(function()
-      vim.wo.signcolumn = "auto"
-      vim.wo.winbar = ""
-    end)
-  end,
-})
-
 -- Unset cursorline on leave
 vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
   pattern = "*",

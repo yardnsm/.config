@@ -38,7 +38,7 @@ Plug 'RRethy/nvim-base16'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " File tree
-Plug 'scrooloose/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
 

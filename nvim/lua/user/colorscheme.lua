@@ -32,6 +32,8 @@ local setup_base16 = function()
   hi.SignifyLineChange = { guifg = c.base0E, guibg = c.base01 }
   hi.SignifyLineDelete = { guifg = c.base08, guibg = c.base01 }
 
+  hi.NvimTreeRootFolder = "Statement"
+
   hi.LspReferenceText = "Visual"
   hi.LspReferenceRead = "Visual"
   hi.LspReferenceWrite = "Visual"
