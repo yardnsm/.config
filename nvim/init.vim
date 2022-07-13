@@ -241,6 +241,8 @@ set splitright                        " split right by default
 set shortmess+=cI                     " do not show completion-menu messages + :intro message
 set completeopt-=preview              " disable preview window
 
+set updatetime=1000
+
 " }}}
 " Platform-specific stuff {{{
 

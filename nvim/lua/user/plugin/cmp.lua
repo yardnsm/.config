@@ -134,7 +134,7 @@ cmp.setup({
     {
       name = "buffer",
       max_item_count = 20,
-      keyword_length = 4,
+      keyword_length = 2,
 
       option = {
         -- Complete from visible buffers
