@@ -7,7 +7,7 @@ cybu.setup({
   style = {
     border = "rounded",
     padding = 4,
-  }
+  },
 })
 
 -- Keymaps

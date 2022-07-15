@@ -17,7 +17,7 @@ end
 add("$VIMRUNTIME/lua")
 
 -- Add your config
-add(vim.fn.stdpath("config") .. '/lua')
+add(vim.fn.stdpath("config") .. "/lua")
 
 -- Add plugins - THIS MAY MAKE THE SERVER'S START TIME SLOW!!!
 -- add(vim.fn.stdpath("config") .. '/plugged/*/lua')

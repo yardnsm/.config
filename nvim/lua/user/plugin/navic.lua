@@ -7,5 +7,5 @@ vim.g.navic_silence = true
 
 navic.setup({
   highlight = false,
-  separator = ' > '
+  separator = " > ",
 })

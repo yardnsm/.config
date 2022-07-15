@@ -42,8 +42,8 @@ nvim_tree.setup({
           untracked = "?",
           deleted = "-",
           ignored = "",
-        }
-      }
+        },
+      },
     },
   },
 

@@ -5,8 +5,8 @@ end
 
 lightbulb.setup({
   sign = {
-    priority = 80
-  }
+    priority = 80,
+  },
 })
 
 vim.fn.sign_define("LightBulbSign", { text = "", texthl = "DiagnosticSignWarn" })

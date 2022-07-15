@@ -16,7 +16,7 @@ local d = ls.dynamic_node
 local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
 
-local get_comment_format = function ()
+local get_comment_format = function()
   local commentstring = vim.bo.commentstring
 
   if string.sub(commentstring, -1) == "%s" then
@@ -28,74 +28,78 @@ local get_comment_format = function ()
   return { "#", "#", "#", "" }
 end
 
-local get_comment_char = function ()
-  return string.gsub(get_comment_format()[1], '%s+', '')
+local get_comment_char = function()
+  return string.gsub(get_comment_format()[1], "%s+", "")
 end
 
-local get_comment_separator = function ()
-  local prefix = get_comment_char() .. ' '
+local get_comment_separator = function()
+  local prefix = get_comment_char() .. " "
   local textwidth = vim.bo.textwidth
 
-  return prefix .. string.rep('-', textwidth - #prefix)
+  return prefix .. string.rep("-", textwidth - #prefix)
 end
 
 -- all {{{
 
 ls.add_snippets("all", {
   s({
-    trig = 'vml',
-    dscr = 'Foldmarker modeline'
+    trig = "vml",
+    dscr = "Foldmarker modeline",
   }, {
-      f(get_comment_char),
-      t({" vim: set foldmethod=marker foldlevel=0:", ""}),
+  f(get_comment_char),
+  t({ " vim: set foldmethod=marker foldlevel=0:", "" }),
   }),
 
   s({
-    trig = 'scc',
-    dscr = 'Separator comment'
+    trig = "scc",
+    dscr = "Separator comment",
   }, {
-      f(get_comment_separator),
-      t({"", ""}),
+    f(get_comment_separator),
+    t({ "", "" }),
   }),
 
   s({
-    trig = 'pcc',
-    dscr = 'Primary comment'
+    trig = "pcc",
+    dscr = "Primary comment",
   }, {
-      f(get_comment_separator),
-      t({"", ""}),
-      i(1, "Comment Text"),
+    f(get_comment_separator),
+    t({ "", "" }),
+    i(1, "Comment Text"),
   }),
 
   s({
-    trig = 'fcc',
-    dscr = 'Foldable section'
+    trig = "fcc",
+    dscr = "Foldable section",
   }, {
-      f(get_comment_char),
-      t(" "),
-      i(1, "Section Text"),
-      t({" {{{", "", "", "", ""}),
-      f(get_comment_char),
-      t({" }}}"}),
+    f(get_comment_char),
+    t(" "),
+    i(1, "Section Text"),
+    t({ " {{{", "", "", "", "" }),
+    f(get_comment_char),
+    t({ " }}}" }),
   }),
 
-  s('date', {
-    f(function () return vim.fn.strftime("%Y-%m-%d") end)
+  s("date", {
+    f(function()
+      return vim.fn.strftime("%Y-%m-%d")
+    end),
   }),
 
-  s('ddate', {
-    f(function () return vim.fn.strftime("%B %d, %Y") end)
+  s("ddate", {
+    f(function()
+      return vim.fn.strftime("%B %d, %Y")
+    end),
   }),
 
-  s(':cmd', { t('⌘') }),
-  s(':alt', { t('⌥') }),
-  s(':shift', { t('⇧') }),
-  s(':esc', { t('⎋') }),
-  s(':caps', { t('⇪') }),
-  s(':ret', { t('⏎') }),
-  s(':del', { t('⌫') }),
-  s(':tab', { t('⇥') }),
-  s(':shrug', { t('¯\\_(ツ)_/¯') }),
+  s(":cmd", { t("⌘") }),
+  s(":alt", { t("⌥") }),
+  s(":shift", { t("⇧") }),
+  s(":esc", { t("⎋") }),
+  s(":caps", { t("⇪") }),
+  s(":ret", { t("⏎") }),
+  s(":del", { t("⌫") }),
+  s(":tab", { t("⇥") }),
+  s(":shrug", { t("¯\\_(ツ)_/¯") }),
 })
 
 -- }}}
@@ -103,7 +107,8 @@ ls.add_snippets("all", {
 
 ls.add_snippets("html", {
   s("html5", {
-    fmt([[<!DOCTYPE html>
+    fmt(
+      [[<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -113,11 +118,13 @@ ls.add_snippets("html", {
   <body>
     {body}
   </body>
-</html>]], {
+</html>]],
+      {
         title = i(2, "Title"),
         body = i(1),
-      })
-  })
+      }
+    ),
+  }),
 })
 
 -- }}}
@@ -125,11 +132,15 @@ ls.add_snippets("html", {
 
 ls.add_snippets("javascript", {
   s("iife", {
-    fmt([[
+    fmt(
+      [[
 (function () {
   []
 })();
-    ]], { i(1) }, { delimiters = "[]" })
+    ]],
+      { i(1) },
+      { delimiters = "[]" }
+    ),
   }),
 
   s("edl", { t("// eslint-disable-line") }),
@@ -149,18 +160,24 @@ ls.add_snippets("markdown", {
     i(1, "bash"),
     t({ "", "" }),
     i(2, "echo hello"),
-    t({ "", "```" })
+    t({ "", "```" }),
   }),
 
-  s("a", fmt("[{1}]({2})", {
-    i(1, "text"),
-    i(2, "https://"),
-  })),
+  s(
+    "a",
+    fmt("[{1}]({2})", {
+      i(1, "text"),
+      i(2, "https://"),
+    })
+  ),
 
-  s("img", fmt("![{1}]({2})", {
-    i(1, "alt"),
-    i(2, "https://"),
-  })),
+  s(
+    "img",
+    fmt("![{1}]({2})", {
+      i(1, "alt"),
+      i(2, "https://"),
+    })
+  ),
 })
 
 -- }}}

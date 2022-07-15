@@ -5,7 +5,7 @@ local M = {}
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
   return {
-    setup = function () end
+    setup = function() end,
   }
 end
 
@@ -126,11 +126,11 @@ end
 -- Commands {{{
 
 local function lsp_setup_commands()
-  vim.api.nvim_create_user_command("Format", function ()
+  vim.api.nvim_create_user_command("Format", function()
     vim.lsp.buf.format()
   end, {})
 
-  vim.api.nvim_create_user_command("LspInstallAll", function ()
+  vim.api.nvim_create_user_command("LspInstallAll", function()
     M.install_required_servers()
   end, {})
 end
@@ -254,7 +254,7 @@ local function lsp_highlight_document(client, bufnr)
     buffer = bufnr,
     group = augroup,
     callback = function()
-      require('nvim-lightbulb').update_lightbulb()
+      require("nvim-lightbulb").update_lightbulb()
     end,
   })
 end
@@ -284,9 +284,8 @@ local function lsp_keymaps(bufnr)
 end
 
 local function on_attach(client, bufnr)
-
   -- Disable formatting for certains servers; let null-ls do its thing!
-  if client.name == "tsserver" or client.name == 'sumneko_lua' then
+  if client.name == "tsserver" or client.name == "sumneko_lua" then
     client.server_capabilities.document_formatting = false
   end
 

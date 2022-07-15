@@ -40,7 +40,7 @@ telescope.setup({
   },
 })
 
-telescope.load_extension('fzf')
+telescope.load_extension("fzf")
 
 local opts = { noremap = true, silent = true }
 
@@ -56,7 +56,6 @@ if vim.fn.isdirectory(".git") ~= 0 then
 else
   vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope find_files<CR>", opts)
 end
-
 
 -- Autocommands
 
