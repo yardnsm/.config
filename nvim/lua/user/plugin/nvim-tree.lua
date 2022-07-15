@@ -18,8 +18,16 @@ nvim_tree.setup({
     },
   },
 
+  git = {
+    ignore = false,
+  },
+
   renderer = {
+    highlight_git = true,
+
     icons = {
+      git_placement = "after",
+
       show = {
         file = false,
         folder = false,
@@ -33,7 +41,7 @@ nvim_tree.setup({
           renamed = ">",
           untracked = "?",
           deleted = "-",
-          ignored = "◌",
+          ignored = "",
         }
       }
     },

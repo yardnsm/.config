@@ -216,6 +216,7 @@ M.render_minimal = function(mode)
 
   if mode == 'active' then
     return table.concat({
+      '%#StatusLineNeutral# %#DevIconLua#   %#StatusLineNeutral# ',
       '%#StatusLinePrimary# ',
       title,
       '%q ',
@@ -225,7 +226,7 @@ M.render_minimal = function(mode)
     })
   end
 
-  return ' ' .. title .. '%q %= ●  '
+  return '      ' .. title .. '%q %= ●  '
 end
 
 M.render_full = function(mode)
@@ -233,6 +234,7 @@ M.render_full = function(mode)
   local focused = vim.g.statusline_winid == vim.fn.win_getid(vim.fn.winnr()) and mode ~= 'inactive'
 
   if focused then
+    result = result .. '%#StatusLineNeutral# %#DevIconLua#   %#StatusLineNeutral# '
     result = result .. '%#StatusLinePrimary# %f '
     result = result .. '%#StatusLineNeutral#' .. M.block_vcs_branch()
 
@@ -258,7 +260,7 @@ M.render_full = function(mode)
     result = result .. '%#DevIconSh#' .. M.block_visual_percentage() .. '%#StatusLineSecondary# '
     result = result .. M.block_diagnostics()
   else
-    result = result .. ' %f '
+    result = result .. '      %f '
 
     -- Buffer number if in diff mode
     if vim.wo.diff then

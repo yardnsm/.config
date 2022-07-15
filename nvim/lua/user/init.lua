@@ -13,6 +13,7 @@ require('user.lsp').setup()
 require('user.lsp.null-ls')
 
 -- Setup Plugins
+require('user.plugin.cybu')
 require('user.plugin.cmp')
 require('user.plugin.navic')
 require('user.plugin.treesitter')

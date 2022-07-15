@@ -13,6 +13,9 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local window_border_config = cmp.config.window.bordered()
+window_border_config.winhighlight = 'Normal:Normal,FloatBorder:FloatBorder'
+
 -- https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
   Text = "",
@@ -106,6 +109,11 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+  },
+
+  window = {
+    completion = window_border_config,
+    documentation = window_border_config,
   },
 
   formatting = {

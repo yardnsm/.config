@@ -19,6 +19,7 @@ local setup_base16 = function()
   hi.WinBarNC = { guibg = "NONE" }
   hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
   hi.PmenuSel = { guifg = "NONE", guibg = c.base02, gui = "bold" }
+  hi.PmenuThumb = { guifg = "NONE", guibg = c.base03, gui = "bold" }
   hi.Yanked = { guifg = "NONE", guibg = c.base02 }
 
   hi.SpellBad = { guibg = c.base08, gui = "undercurl" }
@@ -26,13 +27,17 @@ local setup_base16 = function()
   hi.SpellRare = { guibg = c.base02, gui = "undercurl" }
   hi.SpellLocal = { guibg = c.base03, gui = "undercurl" }
 
-  hi.DiffChange = { guifg = c.base0E }
+  hi.DiffChange = { guifg = c.base0D }
 
   hi.SignifyLineAdd = { guifg = c.base0B, guibg = c.base01 }
   hi.SignifyLineChange = { guifg = c.base0E, guibg = c.base01 }
   hi.SignifyLineDelete = { guifg = c.base08, guibg = c.base01 }
 
   hi.NvimTreeRootFolder = "Statement"
+  hi.NvimTreeGitDirty = { guifg = c.base09 }
+  hi.NvimTreeGitNew = { guifg = c.base09 }
+  hi.NvimTreeGitStaged = { guifg = c.base0B }
+  hi.NvimTreeGitDeleted = { guifg = c.base08 }
 
   hi.LspReferenceText = "Visual"
   hi.LspReferenceRead = "Visual"
@@ -57,6 +62,7 @@ local setup_base16 = function()
 
   hi.CmpItemKind = "CmpItemKindDefault"
   hi.CmpItemMenu = { guifg = "#505050" }
+  hi.CmpItemAbbr = { guibg = "NONE" }
   hi.CmpItemAbbrDeprecated = { guifg = "#808080", guibg = "NONE", gui = "strikethrough" }
   hi.CmpItemAbbrMatch = { guifg = "#569CD6", guibg = "NONE" }
   hi.CmpItemAbbrMatchFuzzy = { guifg = "#569CD6", guibg = "NONE" }
@@ -69,10 +75,11 @@ local setup_base16 = function()
   hi.CmpItemKindProperty = { guifg = "#D4D4D4", guibg = "NONE" }
   hi.CmpItemKindUnit = { guifg = "#D4D4D4", guibg = "NONE" }
 
+  hi.StatusLineIcon = { guibg = c.base00, guifg = c.base0D, gui = "bold" }
   hi.StatusLinePrimary = { guifg = c.base07, guibg = c.base02, gui = "bold" }
   hi.StatusLineSecondary = { guifg = c.base07, guibg = c.base02 }
   hi.StatusLineNeutral = { guifg = c.base0C, guibg = c.base01 }
-  hi.StatusLineIndicatorNeutral = { guifg = c.base0E, guibg = c.base00, gui = "bold" }
+  hi.StatusLineIndicatorNeutral = { guifg = c.base0D, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorWarning = { guifg = c.base09, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorError = { guifg = c.base08, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorSuccess = { guifg = c.base0B, guibg = c.base00, gui = "bold" }

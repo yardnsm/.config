@@ -14,6 +14,12 @@
 set nocompatible                      " don't behave like Vi
 filetype plugin indent on             " automatically detect file types for indentation
 
+" Use filetype.lua
+if has('nvim')
+  let g:do_filetype_lua = 1
+  let g:did_load_filetypes = 0
+endif
+
 set fileencoding=utf-8
 set encoding=utf-8
 
@@ -65,6 +71,7 @@ Plug 'vimwiki/vimwiki'                    " wiki for vim
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'ghillb/cybu.nvim'
 
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
