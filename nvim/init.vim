@@ -48,11 +48,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
 
-Plug 'editorconfig/editorconfig-vim'      " enable support for editorconfig files
-
 Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
 Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
-Plug 'tmux-plugins/vim-tmux'              " some nice stuff for editing `.tmux.conf`
 
 Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
 Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
@@ -61,7 +58,6 @@ Plug 'tpope/vim-commentary'               " comment stuff out
 Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
 Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
 Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
-Plug 'tpope/vim-scriptease'               " helper commands for writing Vim plugins
 
 Plug 'Valloric/MatchTagAlways'            " highlights matching tags
 
@@ -72,6 +68,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ghillb/cybu.nvim'
+Plug 'gpanders/editorconfig.nvim'         " enable support for editorconfig files
 
 " TreeSitter stuff
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -81,9 +78,6 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'yardnsm/nvim-autopairs', { 'branch': 'fix/custom-end-pair-endwise' }
 Plug 'windwp/nvim-ts-autotag'
 Plug 'RRethy/nvim-treesitter-endwise'     " automatically close `end` blocks (`endif`, `done`, etc.)
-
-" My plugins :)
-Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 " LSP shit
 Plug 'neovim/nvim-lspconfig'
