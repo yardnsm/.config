@@ -122,6 +122,7 @@ set textwidth=100                     " cuz percision matter
 set list                              " show invisibles
 set scrolloff=8                       " allows to scroll of fthe screen
 set hidden                            " allow switching buffers w/o saving
+set backspace=                        " INSERT is for INSERT, not DELETE
 
 set nojoinspaces                      " only insert a single space after '.', '!' and '?' with the join command
 

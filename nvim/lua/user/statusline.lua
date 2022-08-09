@@ -101,6 +101,21 @@ M.block_spell = function()
 end
 
 -- }}}
+-- Block: Search count {{{
+
+M.block_search_count = function()
+  local search = vim.fn.searchcount({maxcount = 0})
+  local current = search.current
+  local total = search.total
+
+  if not vim.go.hlsearch or total == 0 then
+    return ''
+  end
+
+  return "[" .. current .. "/" .. total .. "]"
+end
+
+-- }}}
 -- Block: Filetype {{{
 
 M.block_filetype = function(opts)
@@ -252,6 +267,7 @@ M.render_full = function(mode)
 
     result = result .. "%#StatusLineNeutral#%="
 
+    -- result = result .. "%#StatusLineNeutral# " .. M.block_search_count() .. " "
     result = result .. "%#StatusLineNeutral#" .. M.block_filetype({ colors = true })
     result = result .. "%#DiffAdd#" .. M.block_lsp_status() .. " "
     result = result .. "%#StatusLineNeutral# %3p%% "
