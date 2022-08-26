@@ -47,6 +47,7 @@ export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"
 export _Z_DATA="$XDG_DATA_HOME/z/.z"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
 
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
