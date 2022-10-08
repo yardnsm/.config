@@ -29,15 +29,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Unset cursorline on leave
+-- Unset cursorline && colorcolumn on leave
 vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
   pattern = "*",
   group = augroup,
-  command = "set nocursorline",
+  callback = function()
+    vim.o.cursorline = false
+    vim.o.colorcolumn = 0
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "WinEnter" }, {
   pattern = "*",
   group = augroup,
-  command = "set cursorline",
+  callback = function()
+    vim.o.cursorline = true
+    vim.o.colorcolumn = '+0'
+  end,
 })

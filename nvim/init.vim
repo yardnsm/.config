@@ -9,6 +9,9 @@
 "                     yardnsm's init.vim
 " ------------------------------------------------------------------------------
 
+" This init.vim file is inteded to be used with the latest version of neovim. I tend to prefer to
+" use Vimscript when setting up general options, hence this file is not a Lua one.
+
 " General {{{
 
 set nocompatible                      " don't behave like Vi
@@ -80,8 +83,9 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'RRethy/nvim-treesitter-endwise'     " automatically close `end` blocks (`endif`, `done`, etc.)
 
 " LSP shit
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'j-hui/fidget.nvim'
 Plug 'kosayoda/nvim-lightbulb'
@@ -140,7 +144,7 @@ set showbreak=↪
 set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 
 " Change the split border
-set fillchars+=vert:\  " ┃
+set fillchars+=eob:\ ,vert:\  " ┃
 
 " Always show the status line
 set laststatus=2

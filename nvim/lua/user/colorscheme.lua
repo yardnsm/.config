@@ -15,7 +15,7 @@ local setup_base16 = function()
   hi.SignColumn = { guifg = c.base03, guibg = "NONE" }
   hi.LineNr = { guifg = c.base03, guibg = "NONE" }
   hi.CursorLineNr = { guifg = c.base04, guibg = "NONE", gui = "bold" }
-  hi.StatusLineNC = { guifg = c.base03 }
+  hi.StatusLineNC = { guifg = c.base03, guibg = c.base01 }
   hi.WinBarNC = { guibg = "NONE" }
   hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
   hi.PmenuSel = { guifg = "NONE", guibg = c.base02, gui = "bold" }
@@ -89,7 +89,7 @@ local setup_base16 = function()
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "base16-*",
+  pattern = {"base16-*", "base46-*"},
   group = augroup,
   callback = function()
     setup_base16()

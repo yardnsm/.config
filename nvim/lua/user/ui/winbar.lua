@@ -52,14 +52,14 @@ M.render = function(mode, bufnr)
 
   local result = ""
 
-  if mode == "active" then
-    result = result .. "%#" .. hl_group .. "#▎"
-  else
-    result = result .. "%#WinbarFgActive# "
-  end
+  -- if mode == "active" then
+  --   result = result .. "%#" .. hl_group .. "#▎"
+  -- else
+  --   result = result .. "%#WinbarFgActive# "
+  -- end
 
   result = result .. "%#" .. fg_hl .. "#"
-  result = result .. "%#" .. hl_group .. "# " .. icon .. "  "
+  result = result .. "%#" .. (mode == "active" and hl_group or fg_hl) .. "# " .. icon .. "  "
   result = result .. "%#" .. fg_hl .. "#" .. filename .. " %m "
 
   if mode == "active" then

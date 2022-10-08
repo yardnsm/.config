@@ -276,7 +276,7 @@ M.render_full = function(mode)
     result = result .. "%#DevIconSh#" .. M.block_visual_percentage() .. "%#StatusLineSecondary# "
     result = result .. M.block_diagnostics()
   else
-    result = result .. "      %f "
+    result = result .. "%#StatuslineNC#      %f "
 
     -- Buffer number if in diff mode
     if vim.wo.diff then

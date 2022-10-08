@@ -2,7 +2,7 @@
 
 local M = {}
 
-local status_ok, _ = pcall(require, "lspconfig")
+local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
   return {
     setup = function() end,
@@ -14,11 +14,12 @@ if not navic_status_ok then
   navic = nil
 end
 
-local utils = require("user.utils")
-local lsp_installer = require("nvim-lsp-installer")
+local installer = require("mason-lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
--- List of servers to use, will be installed via nvim-lsp-installer
+local utils = require("user.utils")
+
+-- List of servers to use, will be installed via mason-lspconfig
 local required_servers = {
   "bashls",
   "pyright",
@@ -129,10 +130,6 @@ local function lsp_setup_commands()
   vim.api.nvim_create_user_command("Format", function()
     vim.lsp.buf.format()
   end, {})
-
-  vim.api.nvim_create_user_command("LspInstallAll", function()
-    M.install_required_servers()
-  end, {})
 end
 
 -- }}}
@@ -209,21 +206,6 @@ local function lsp_setup_rename()
   end
 
   vim.lsp.buf.rename = qf_rename
-end
-
--- }}}
--- Install servers {{{
-
-M.install_required_servers = function()
-  for _, name in pairs(required_servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found and not server:is_installed() then
-      print("[LSP] Installing " .. name)
-      lsp_installer.install_sync({ name })
-    end
-  end
-
-  print("[LSP] All required servers installed")
 end
 
 -- }}}
@@ -312,22 +294,29 @@ M.setup = function()
   lsp_setup_commands()
   lsp_setup_rename()
 
-  lsp_installer.on_server_ready(function(server)
-    local capabilities = make_capabilities()
+  installer.setup({
+    ensure_installed = required_servers,
+  })
 
-    local opts = {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+  -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
+  -- load it.
+  installer.setup_handlers({
+    function (server_name)
+      local capabilities = make_capabilities()
 
-    -- Extend server opitons
-    local lsp_options_status_ok, lsp_options = pcall(require, "user.lsp.settings." .. server.name)
-    if lsp_options_status_ok then
-      opts = vim.tbl_deep_extend("force", lsp_options, opts)
+      local opts = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+
+      local lsp_options_status_ok, lsp_options = pcall(require, "user.lsp.settings." .. server_name)
+      if lsp_options_status_ok then
+        opts = vim.tbl_deep_extend("force", lsp_options, opts)
+      end
+
+      lspconfig[server_name].setup(opts)
     end
-
-    server:setup(opts)
-  end)
+  })
 end
 
 return M

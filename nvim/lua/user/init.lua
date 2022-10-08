@@ -5,14 +5,11 @@ require("user.autocommands")
 require("user.colorscheme")
 
 -- Setup winbar and statusline
-require("user.winbar").setup()
-require("user.statusline").setup()
-
--- Setup LSP
-require("user.lsp").setup()
-require("user.lsp.null-ls")
+require("user.ui.winbar").setup()
+require("user.ui.statusline").setup()
 
 -- Setup Plugins
+require("user.plugin.mason")
 require("user.plugin.cybu")
 require("user.plugin.cmp")
 require("user.plugin.navic")
