@@ -107,7 +107,7 @@ if [[ -f "/usr/libexec/java_home" ]]; then
 fi
 
 # pyenv default version
-export PYENV_VERSION="3.9.1"
+export PYENV_VERSION="3.10.5"
 
 # rbenv version
 export RBENV_VERSION="2.2.4"

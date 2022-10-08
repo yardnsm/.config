@@ -127,6 +127,13 @@ add-zsh-hook chpwd _tmux_update_window_name \
 source $CARGO_HOME/env
 
 # }}}
+# pyenv {{{
+
+if command -v "pyenv" &> /dev/null; then
+  eval "$(command pyenv init -)"
+fi
+
+# }}}
 
 # ---[ Misc ]---------------------------------------------------------------------------------------
 
@@ -143,14 +150,14 @@ if command -v "phpbrew" &> /dev/null; then
 fi
 
 # Lazy load pyenv
-if command -v "pyenv" &> /dev/null; then
-  function pyenv() {
-    unset pyenv
+# if command -v "pyenv" &> /dev/null; then
+#   function pyenv() {
+#     unset pyenv
 
-    eval "$(command pyenv init -)"
-    pyenv $@
-  }
-fi
+#     eval "$(command pyenv init -)"
+#     pyenv $@
+#   }
+# fi
 
 # Lazy load rbenv
 if command -v "rbenv" &> /dev/null; then
