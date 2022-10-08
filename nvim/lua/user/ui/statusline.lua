@@ -11,6 +11,8 @@ local M = {}
 
 local statusline_augroup = vim.api.nvim_create_augroup("Statusline", { clear = true })
 
+local icon = ""
+
 local statusline_minimal_modes = {
   netrw = "Netrw",
   nerdtree = "NERD",
@@ -104,12 +106,12 @@ end
 -- Block: Search count {{{
 
 M.block_search_count = function()
-  local search = vim.fn.searchcount({maxcount = 0})
+  local search = vim.fn.searchcount({ maxcount = 0 })
   local current = search.current
   local total = search.total
 
   if not vim.go.hlsearch or total == 0 then
-    return ''
+    return ""
   end
 
   return "[" .. current .. "/" .. total .. "]"
@@ -119,7 +121,7 @@ end
 -- Block: Filetype {{{
 
 M.block_filetype = function(opts)
-  local icon, hl_group = M.get_devicon_for_buffer()
+  local devicon, hl_group = M.get_devicon_for_buffer()
 
   local filetype = vim.bo.filetype
   hl_group = hl_group or "StatusLineNeutral"
@@ -128,11 +130,15 @@ M.block_filetype = function(opts)
     return "no ft"
   end
 
-  if opts.colors then
-    return " %#" .. hl_group .. "#  " .. icon .. "  " .. filetype .. " "
+  if opts.icon == false then
+    devicon = ""
   end
 
-  return " " .. icon .. "  " .. filetype .. " "
+  if opts.colors then
+    return " %#" .. hl_group .. "#  " .. devicon .. "  " .. filetype .. " "
+  end
+
+  return " " .. devicon .. "  " .. filetype .. " "
 end
 
 -- }}}
@@ -168,7 +174,7 @@ M.block_diagnostics = function()
     result = result .. vim.fn.printf("%%#%s# ‹E:%d›", highlight, errors)
   end
 
-  return result .. vim.fn.printf("%%#%s# ● %%#StatusLineNeutral# ", highlight)
+  return result .. vim.fn.printf("%%#%s# ● %%#StatusLineLineInfo# ", highlight)
 end
 
 -- }}}
@@ -208,7 +214,7 @@ M.block_vcs_stats = function()
 
   local stats = vim.fn["sy#repo#get_stats"]()
 
-  local hl_groups = { "SignifyLineAdd", "SignifyLineChange", "SignifyLineDelete" }
+  local hl_groups = { "StatusLineVCSAdd", "StatusLineVCSChange", "StatusLineVCSDelete" }
   local symbols = { "+", "~", "-" }
 
   local result = ""
@@ -231,8 +237,8 @@ M.render_minimal = function(mode)
 
   if mode == "active" then
     return table.concat({
-      "%#StatusLineNeutral# %#DevIconLua#   %#StatusLineNeutral# ",
-      "%#StatusLinePrimary# ",
+      "%#StatusLineIcon# " .. icon .. "  ",
+      "%#StatusLineFileInfo# ",
       title,
       "%q ",
       "%#StatusLineNeutral#",
@@ -241,56 +247,58 @@ M.render_minimal = function(mode)
     })
   end
 
-  return "      " .. title .. "%q %= ●  "
+  -- Same, without the colors
+  return table.concat({
+    " " .. icon .. "   ",
+    title,
+    "%q ",
+    "%=",
+    " ●  ",
+  })
 end
 
 M.render_full = function(mode)
-  local result = ""
   local focused = vim.g.statusline_winid == vim.fn.win_getid(vim.fn.winnr()) and mode ~= "inactive"
 
   if focused then
-    result = result .. "%#StatusLineNeutral# %#DevIconLua#   %#StatusLineNeutral# "
-    result = result .. "%#StatusLinePrimary# %f "
-    result = result .. "%#StatusLineNeutral#" .. M.block_vcs_branch()
+    return table.concat({
+      "%#StatusLineIcon# " .. icon .. "  ",
+      "%#StatusLineFileInfo# %f ",
+      "%#StatusLineGitBranch#" .. M.block_vcs_branch() .. " ",
 
-    -- Buffer number if in diff mode
-    if vim.wo.diff then
-      result = result .. " [%n]"
-    end
+      "%#StatusLineNeutral#",
 
-    result = result .. "%#StatusLineNeutral# %r"
-    result = result .. "%#StatusLineNeutral#%m"
-    result = result .. "%#StatusLineNeutral#" .. M.block_paste()
-    result = result .. "%#StatusLineNeutral#" .. M.block_spell() .. " "
-    result = result .. "%#StatusLineNeutral#" .. M.block_vcs_stats()
-    result = result .. "%#StatusLineNeutral#"
+      M.block_vcs_stats() .. "%#StatusLineNeutral#",
 
-    result = result .. "%#StatusLineNeutral#%="
+      -- Buffer number if in diff mode
+      vim.wo.diff and " [%n]" or "",
 
-    -- result = result .. "%#StatusLineNeutral# " .. M.block_search_count() .. " "
-    result = result .. "%#StatusLineNeutral#" .. M.block_filetype({ colors = true })
-    result = result .. "%#DiffAdd#" .. M.block_lsp_status() .. " "
-    result = result .. "%#StatusLineNeutral# %3p%% "
-    result = result .. "%#StatusLineSecondary# %3l:%-2c "
+      " %r",
+      M.block_paste(),
+      M.block_spell(),
+      "%m",
 
-    result = result .. "%#DevIconSh#" .. M.block_visual_percentage() .. "%#StatusLineSecondary# "
-    result = result .. M.block_diagnostics()
-  else
-    result = result .. "%#StatuslineNC#      %f "
+      "%=",
 
-    -- Buffer number if in diff mode
-    if vim.wo.diff then
-      result = result .. " [%n]"
-    end
+      M.block_filetype({ colors = true }),
+      "%#StatusLineLSPStatus#" .. M.block_lsp_status() .. " ",
 
-    result = result .. "%m"
-    result = result .. "%="
+      "%#StatusLineNeutral# %3p%% ",
+      "%#StatusLineLineInfo# %3l:%-2c ",
 
-    result = result .. M.block_filetype({ colors = false }) .. " "
-    result = result .. " ●  "
+      "%#StatusLineVisualPercentage#" .. M.block_visual_percentage() .. "%#StatusLineSecondary# ",
+      M.block_diagnostics(),
+    })
   end
 
-  return result
+  return table.concat({
+    " " .. icon .. "   ",
+    "%f ",
+    "%m",
+    "%=",
+    M.block_filetype({ colors = false, icon = false }) .. " ",
+    " ●  ",
+  })
 end
 
 M.render = function(mode)
@@ -306,7 +314,7 @@ end
 M.set_statusline_option = function(mode)
   vim.api.nvim_set_option_value(
     "statusline",
-    [[%!luaeval('require("user.statusline").render("]] .. mode .. [[")')]],
+    [[%!luaeval('require("user.ui.statusline").render("]] .. mode .. [[")')]],
     { scope = "local" }
   )
 end

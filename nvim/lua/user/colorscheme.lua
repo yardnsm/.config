@@ -18,7 +18,7 @@ local setup_base16 = function()
   hi.StatusLineNC = { guifg = c.base03, guibg = c.base01 }
   hi.WinBarNC = { guibg = "NONE" }
   hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
-  hi.PmenuSel = { guifg = "NONE", guibg = c.base02, gui = "bold" }
+  hi.PmenuSel = { guifg = "NONE", guibg = c.base02 }
   hi.PmenuThumb = { guifg = "NONE", guibg = c.base03, gui = "bold" }
   hi.Yanked = { guifg = "NONE", guibg = c.base02 }
 
@@ -66,26 +66,71 @@ local setup_base16 = function()
   hi.CmpItemAbbrDeprecated = { guifg = "#808080", guibg = "NONE", gui = "strikethrough" }
   hi.CmpItemAbbrMatch = { guifg = "#569CD6", guibg = "NONE" }
   hi.CmpItemAbbrMatchFuzzy = { guifg = "#569CD6", guibg = "NONE" }
-  hi.CmpItemKindVariable = { guifg = "#9CDCFE", guibg = "NONE" }
-  hi.CmpItemKindInterface = { guifg = "#9CDCFE", guibg = "NONE" }
-  hi.CmpItemKindText = { guifg = "#9CDCFE", guibg = "NONE" }
-  hi.CmpItemKindFunction = { guifg = "#C586C0", guibg = "NONE" }
-  hi.CmpItemKindMethod = { guifg = "#C586C0", guibg = "NONE" }
-  hi.CmpItemKindKeyword = { guifg = "#D4D4D4", guibg = "NONE" }
-  hi.CmpItemKindProperty = { guifg = "#D4D4D4", guibg = "NONE" }
-  hi.CmpItemKindUnit = { guifg = "#D4D4D4", guibg = "NONE" }
 
-  hi.StatusLineIcon = { guibg = c.base00, guifg = c.base0D, gui = "bold" }
-  hi.StatusLinePrimary = { guifg = c.base07, guibg = c.base02, gui = "bold" }
-  hi.StatusLineSecondary = { guifg = c.base07, guibg = c.base02 }
+  hi.StatusLineIcon = "DevIconLua"
+  hi.StatusLineFileInfo = { guifg = c.base07, guibg = c.base02, gui = "bold" }
+  hi.StatusLineGitBranch = { guifg = c.base0C, guibg = c.base01 }
   hi.StatusLineNeutral = { guifg = c.base0C, guibg = c.base01 }
+  hi.StatusLineLSPStatus = "DiffAdd"
+  hi.StatusLineLineInfo = { guifg = c.base07, guibg = c.base02 }
+  hi.StatusLineVisualPercentage = { guifg = c.base0D, guibg = c.base00 }
+
+  hi.StatusLineVCSAdd = 'SignifyLineAdd'
+  hi.StatusLineVCSChange = 'SignifyLineChange'
+  hi.StatusLineVCSDelete = 'SignifyLineDelete'
+
   hi.StatusLineIndicatorNeutral = { guifg = c.base0D, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorWarning = { guifg = c.base09, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorError = { guifg = c.base08, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorSuccess = { guifg = c.base0B, guibg = c.base00, gui = "bold" }
 
-  hi.WinbarFgActive = { guifg = c.base0C, guibg = "NONE", gui = "bold" }
-  hi.WinbarFgInactive = { guifg = c.base01, guibg = "NONE" }
+  hi.WinbarActive = { guifg = c.base0C, guibg = "NONE", gui = "bold" }
+  hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
+  hi.WinbarFill = { guifg = c.base02, guibg = c.base01 }
+
+  -- Refine a bit for base46 colorschemes
+  if vim.g.colors_name:match("^base46") then
+    hi.ColorColumn = { guibg = c.black2 }
+    hi.CursorLine = { guibg = c.black2 }
+
+    hi.TelescopeBorder = { guifg = c.darker_black, guibg = c.darker_black }
+    hi.TelescopePromptBorder = { guifg = c.black2, guibg = c.black2 }
+    hi.TelescopePromptNormal = { guifg = c.white, guibg = c.black2 }
+    hi.TelescopePromptPrefix = { guifg = c.red, guibg = c.black2 }
+    hi.TelescopeNormal = { guibg = c.darker_black }
+    hi.TelescopeResultsNormal = { guifg = c.base03, guibg = c.darker_black }
+    hi.TelescopePreviewTitle = { guifg = c.black, guibg = c.green }
+    hi.TelescopePromptTitle = { guifg = c.black, guibg = c.red }
+    hi.TelescopeResultsTitle = { guifg = c.darker_black, guibg = c.darker_black }
+    hi.TelescopeSelection = { guibg = c.black2, guifg = c.light_grey }
+    hi.TelescopeResultsDiffAdd = { guifg = c.green }
+    hi.TelescopeResultsDiffChange = { guifg = c.yellow }
+    hi.TelescopeResultsDiffDelete = { guifg = c.red }
+
+    hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.black }
+    hi.StatusLineFileInfo = { guifg = c.white, guibg = c.lightbg, gui = 'bold' }
+    hi.StatusLineGitBranch = { guifg = c.light_grey, guibg = c.statusline_bg }
+    hi.StatusLineNeutral = { guifg = c.light_grey, guibg = c.statusline_bg }
+    hi.StatusLineLSPStatus = { guifg = c.green, guibg = c.black }
+    hi.StatusLineLineInfo = { guifg = c.white, guibg = c.lightbg }
+    hi.StatusLineVisualPercentage = { guifg = c.light_grey, guibg = c.black }
+
+    hi.StatusLineVCSAdd = { guifg = c.green, guibg = c.statusline_bg }
+    hi.StatusLineVCSChange = { guifg = c.blue, guibg = c.statusline_bg }
+    hi.StatusLineVCSDelete = { guifg = c.red, guibg = c.statusline_bg }
+
+    hi.StatusLineIndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
+    hi.StatusLineIndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
+    hi.StatusLineIndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
+    hi.StatusLineIndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
+
+    hi.WinbarActive = { guifg = c.white, gui = "bold" }
+    hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
+    hi.WinbarFill = { guifg = c.light_grey, guibg = c.darker_black }
+
+    hi.NvimTreeNormal = { guibg = c.darker_black }
+    hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
+  end
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {

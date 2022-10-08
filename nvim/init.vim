@@ -163,7 +163,7 @@ syntax on                             " enable syntax highlighting
 set background=dark                 " assume a dark background
 set termguicolors                   " use true colors in the treminal
 
-colorscheme base16-classic-dark
+colorscheme base46-classic-dark
 
 " Highlight conflict markerts
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

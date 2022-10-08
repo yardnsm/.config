@@ -45,7 +45,7 @@ telescope.load_extension("fzf")
 local opts = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap("n", "<leader>a", ":Telescope live_grep<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers theme=ivy<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>b", ":Telescope buffers theme=dropdown<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>m", ":Telescope marks theme=dropdown<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>cc", ":Telescope colorscheme<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>h", ":Telescope highlights theme=ivy<CR>", opts)

@@ -14,7 +14,7 @@ local check_backspace = function()
 end
 
 local window_border_config = cmp.config.window.bordered()
-window_border_config.winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
+window_border_config.winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None"
 
 -- https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {

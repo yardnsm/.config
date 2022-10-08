@@ -1,4 +1,6 @@
-local statusline = require("user.statusline")
+-- vim: set foldmethod=marker foldlevel=0:
+
+local statusline = require("user.ui.statusline")
 
 local M = {}
 
@@ -10,6 +12,8 @@ local winbar_filetype_exclude = {
   "nerdtree",
   "TelescopePrompt",
 }
+
+-- Utilities {{{
 
 local should_render = function()
   if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
@@ -32,8 +36,14 @@ local get_navic = function()
   return "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
-M.render = function(mode, bufnr)
-  local fg_hl = mode == "active" and "WinbarFgActive" or "WinbarFgInactive"
+-- }}}
+
+-- Block: File Info {{{
+
+M.block_file_info = function(opts)
+  local bufnr = opts.bufnr
+  local should_use_devicon_hl = opts.color
+  local base_hl = opts.hl
 
   local icon, hl_group = statusline.get_devicon_for_buffer(bufnr)
 
@@ -50,23 +60,54 @@ M.render = function(mode, bufnr)
     icon = ""
   end
 
-  local result = ""
+  return table.concat({
+    should_use_devicon_hl and "%#" .. hl_group .. "#" or "",
+    " " .. icon .. "  ",
 
-  -- if mode == "active" then
-  --   result = result .. "%#" .. hl_group .. "#▎"
-  -- else
-  --   result = result .. "%#WinbarFgActive# "
-  -- end
+    "%#" .. base_hl .. "#",
+    filename,
+    " %m ",
+  })
+end
 
-  result = result .. "%#" .. fg_hl .. "#"
-  result = result .. "%#" .. (mode == "active" and hl_group or fg_hl) .. "# " .. icon .. "  "
-  result = result .. "%#" .. fg_hl .. "#" .. filename .. " %m "
+-- }}}
+-- Block: Navic {{{
 
-  if mode == "active" then
-    result = result .. "%#WinbarFgInactive#" .. get_navic()
+M.block_navic = function()
+  return get_navic()
+end
+
+-- }}}
+-- Block Indent Info {{{
+
+M.block_indent_info = function()
+  local sw = vim.o.sw
+  local et = vim.o.et and "et" or "noet"
+  local tw = vim.o.tw
+
+  return ("sw=%s %s tw=%s "):format(sw, et, tw)
+end
+
+-- }}}
+
+M.render = function(mode, bufnr)
+  local focused = mode == "active"
+  local fileinfo_hl = focused and "WinbarActive" or "WinbarInactive"
+
+  if focused then
+    return table.concat({
+      M.block_file_info({ bufnr = bufnr, color = true, hl = fileinfo_hl }),
+      "%#WinbarFill#",
+      M.block_navic(),
+      "%=",
+      M.block_indent_info(),
+    })
   end
 
-  return result
+  return table.concat({
+    M.block_file_info({ bufnr = bufnr, color = false, hl = fileinfo_hl }),
+    "%#WinbarFill#",
+  })
 end
 
 M.set_winbar_option = function(mode, bufnr)
@@ -74,7 +115,7 @@ M.set_winbar_option = function(mode, bufnr)
     pcall(
       vim.api.nvim_set_option_value,
       "winbar",
-      [[%!luaeval('require("user.winbar").render("]] .. mode .. [[", ]] .. (bufnr or "nil") .. [[)')]],
+      [[%!luaeval('require("user.ui.winbar").render("]] .. mode .. [[", ]] .. (bufnr or "nil") .. [[)')]],
       { scope = "local" }
     )
   else
