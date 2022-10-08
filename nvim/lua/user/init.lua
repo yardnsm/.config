@@ -20,6 +20,7 @@ require("user.plugin.nvim-autopairs")
 require("user.plugin.luasnip")
 require("user.plugin.nvim-lightbulb")
 require("user.plugin.nvim-tree")
+require("user.plugin.gitsigns")
 
 -- Setup LSP
 require("user.lsp").setup()

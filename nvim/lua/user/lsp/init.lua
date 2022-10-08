@@ -36,7 +36,7 @@ local required_servers = {
 
 -- Diagnostics {{{
 
--- Signgs
+-- Signs
 
 local signs = {
   { name = "DiagnosticSignError", text = "E" },

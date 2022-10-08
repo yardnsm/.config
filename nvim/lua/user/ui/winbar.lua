@@ -61,6 +61,7 @@ M.block_file_info = function(opts)
   end
 
   return table.concat({
+    "%#" .. base_hl .. "#",
     should_use_devicon_hl and "%#" .. hl_group .. "#" or "",
     " " .. icon .. "  ",
 

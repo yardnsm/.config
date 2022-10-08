@@ -49,7 +49,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 " File tree
 Plug 'kyazdani42/nvim-tree.lua'
 
-Plug 'mhinz/vim-signify'                  " shows git diff in the gutter
+Plug 'lewis6991/gitsigns.nvim'            " shows git diff in the gutter
 
 Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
 Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard

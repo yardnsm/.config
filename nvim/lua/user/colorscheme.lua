@@ -126,7 +126,7 @@ local setup_base16 = function()
 
     hi.WinbarActive = { guifg = c.white, gui = "bold" }
     hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
-    hi.WinbarFill = { guifg = c.light_grey, guibg = c.darker_black }
+    hi.WinbarFill = { guifg = c.grey_fg, guibg = c.darker_black }
 
     hi.NvimTreeNormal = { guibg = c.darker_black }
     hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }

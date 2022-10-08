@@ -212,7 +212,13 @@ M.block_vcs_stats = function()
     return ""
   end
 
-  local stats = vim.fn["sy#repo#get_stats"]()
+  local stats = vim.b.gitsigns_status_dict
+
+  if stats == nil then
+    return ""
+  end
+
+  stats = { stats.added, stats.changed, stats.removed }
 
   local hl_groups = { "StatusLineVCSAdd", "StatusLineVCSChange", "StatusLineVCSDelete" }
   local symbols = { "+", "~", "-" }
