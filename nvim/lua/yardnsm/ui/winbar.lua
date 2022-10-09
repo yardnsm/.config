@@ -20,7 +20,7 @@ local should_render = function()
     return false
   end
 
-  return vim.bo.bufhidden ~= "wipe" and vim.bo.buflisted
+  return vim.bo.bufhidden ~= "wipe" and vim.bo.buflisted and not vim.wo.diff
 end
 
 local get_navic = function()

@@ -18,6 +18,8 @@ local statusline_minimal_modes = {
   nerdtree = "NERD",
   NvimTree = "NvimTree",
   TelescopePrompt = "Telescope",
+  DiffviewFiles = 'Diffview Files',
+  DiffviewFileHistory = 'Diffview History',
   qf = "",
 }
 

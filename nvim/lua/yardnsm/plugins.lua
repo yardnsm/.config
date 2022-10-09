@@ -51,6 +51,9 @@ return packer.startup(function(use)
   -- File Tree
   use("kyazdani42/nvim-tree.lua")
 
+  -- Lua libraries
+  use("nvim-lua/plenary.nvim")
+
   -- LSP shit
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
@@ -98,6 +101,7 @@ return packer.startup(function(use)
 
   -- Language Support
   use("gpanders/editorconfig.nvim") -- enable support for editorconfig files
+  use("folke/lua-dev.nvim") -- dev setup for neovim
 
   -- File types
   use("vimwiki/vimwiki") -- wiki for vim
@@ -116,13 +120,17 @@ return packer.startup(function(use)
   use("lewis6991/gitsigns.nvim") -- shows git diff in the gutter
   use("kosayoda/nvim-lightbulb")
   use("j-hui/fidget.nvim")
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  use({ "rafcamlet/tabline-framework.nvim", requires = "kyazdani42/nvim-web-devicons" })
 
   -- Goodies
+  use("windwp/nvim-autopairs")
+  use({ "norcalli/nvim-colorizer.lua", event = "User DeferredLoad" })
+
   use({
     "Valloric/MatchTagAlways",
     ft = { "html", "xhtml", "xml", "javascript.jsx", "typescript.jsx", "javascriptreact", "typescriptreact" },
   }) -- highlights matching tags
-  use("windwp/nvim-autopairs") -- highlights matching tags
 
   -- Topoe's reserved area
   use({

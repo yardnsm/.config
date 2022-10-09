@@ -100,6 +100,7 @@ local setup_base16 = function()
     hi.VertSplit = { guifg = c.line }
     hi.WinSeparator = { guifg = c.line }
 
+    hi.TelescopeMatching = { guifg = c.dark_purple, gui = "bold" }
     hi.TelescopeBorder = { guifg = c.darker_black, guibg = c.darker_black }
     hi.TelescopePromptBorder = { guifg = c.black2, guibg = c.black2 }
     hi.TelescopePromptNormal = { guifg = c.white, guibg = c.black2 }
@@ -109,7 +110,7 @@ local setup_base16 = function()
     hi.TelescopePreviewTitle = { guifg = c.black, guibg = c.green }
     hi.TelescopePromptTitle = { guifg = c.black, guibg = c.red }
     hi.TelescopeResultsTitle = { guifg = c.darker_black, guibg = c.darker_black }
-    hi.TelescopeSelection = { guibg = c.black2, guifg = c.light_grey }
+    hi.TelescopeSelection = { guibg = c.black2, guifg = c.base03 }
     hi.TelescopeResultsDiffAdd = { guifg = c.green }
     hi.TelescopeResultsDiffChange = { guifg = c.yellow }
     hi.TelescopeResultsDiffDelete = { guifg = c.red }
@@ -137,6 +138,20 @@ local setup_base16 = function()
 
     hi.NvimTreeNormal = { guibg = c.darker_black }
     hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
+    hi.NvimTreeRootFolder = { guifg = c.red, gui = "bold" }
+
+    hi.DiffviewFilePanelTitle = 'NvimTreeRootFolder'
+    hi.DiffviewFilePanelConflicts = 'NvimTreeRootFolder'
+    hi.DiffviewFilePanelCounter = 'Comment'
+    hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
+    hi.DiffviewNormal = 'NvimTreeNormal'
+    hi.DiffviewWinSeparator = 'NvimTreeWinSeparator'
+
+    -- These work best of base46-classic-dark
+    hi.DiffAdd = { guibg = "#122f2f", guifg = "none" }
+    hi.DiffChange = { guibg = "#222a39", guifg = "none" }
+    hi.DiffText = { guibg = "#2f3f5c", guifg = "none" }
+    hi.DiffDelete = { guibg = "none", guifg = "#4f2739" }
   end
 end
 

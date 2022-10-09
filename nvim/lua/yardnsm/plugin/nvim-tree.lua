@@ -69,11 +69,23 @@ nvim_tree.setup({
 
 -- Keymaps
 
-local opts = { silent = true }
+local is_in_diffview = function()
+  return vim.fn.exists("t:diffview_view_initialized") == 1
+end
 
-vim.keymap.set("n", "<leader>/", ":NvimTreeToggle<CR>", opts)
-vim.keymap.set("n", "<leader>0", ":NvimTreeFocus<CR>", opts)
-vim.keymap.set("n", "<leader><leader>", ":NvimTreeFindFile<CR>", opts)
+local opts = { silent = true, expr = true }
+
+vim.keymap.set("n", "<leader>/", function()
+  return is_in_diffview() and ":DiffviewToggleFiles<CR>" or ":NvimTreeToggle<CR>"
+end, opts)
+
+vim.keymap.set("n", "<leader>0", function()
+  return is_in_diffview() and ":DiffviewFocusFiles<CR>" or ":NvimTreeFocus<CR>"
+end, opts)
+
+vim.keymap.set("n", "<leader><leader>", function()
+  return is_in_diffview() and ":DiffviewFocusFiles<CR>" or ":NvimTreeFindFile<CR>"
+end, opts)
 
 -- Autocommands
 

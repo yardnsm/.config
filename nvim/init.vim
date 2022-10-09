@@ -72,6 +72,9 @@ set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 " Change the split border
 set fillchars+=eob:\ ,vert:\  " ┃
 
+" Make diff mode look better
+set fillchars+=diff:╱
+
 " Always show the status line
 set laststatus=2
 
