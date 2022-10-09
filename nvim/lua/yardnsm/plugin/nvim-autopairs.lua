@@ -1,5 +1,5 @@
 local status_ok, autopairs = pcall(require, "nvim-autopairs")
-local utils = require("user.utils")
+local utils = require("yardnsm.utils")
 if not status_ok then
   return
 end

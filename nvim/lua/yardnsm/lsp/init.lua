@@ -17,7 +17,7 @@ end
 local installer = require("mason-lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-local utils = require("user.utils")
+local utils = require("yardnsm.utils")
 
 -- List of servers to use, will be installed via mason-lspconfig
 local required_servers = {
@@ -309,7 +309,7 @@ M.setup = function()
         capabilities = capabilities,
       }
 
-      local lsp_options_status_ok, lsp_options = pcall(require, "user.lsp.settings." .. server_name)
+      local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
       if lsp_options_status_ok then
         opts = vim.tbl_deep_extend("force", lsp_options, opts)
       end

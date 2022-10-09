@@ -1,6 +1,6 @@
 -- vim: set foldmethod=marker foldlevel=0:
 
-local statusline = require("user.ui.statusline")
+local statusline = require("yardnsm.ui.statusline")
 
 local M = {}
 
@@ -116,7 +116,7 @@ M.set_winbar_option = function(mode, bufnr)
     pcall(
       vim.api.nvim_set_option_value,
       "winbar",
-      [[%!luaeval('require("user.ui.winbar").render("]] .. mode .. [[", ]] .. (bufnr or "nil") .. [[)')]],
+      [[%!luaeval('require("yardnsm.ui.winbar").render("]] .. mode .. [[", ]] .. (bufnr or "nil") .. [[)')]],
       { scope = "local" }
     )
   else

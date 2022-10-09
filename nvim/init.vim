@@ -38,7 +38,7 @@ let maplocalleader=','
 " }}}
 " Lua Integration {{{
 
-lua require('user')
+lua require('yardnsm')
 
 " }}}
 " Editor {{{

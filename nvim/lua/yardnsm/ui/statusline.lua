@@ -5,7 +5,7 @@ if not status_ok then
   nvim_devicons = nil
 end
 
-local lsp_statusline_utils = require("user.lsp.statusline")
+local lsp_statusline_utils = require("yardnsm.lsp.statusline")
 
 local M = {}
 
@@ -320,7 +320,7 @@ end
 M.set_statusline_option = function(mode)
   vim.api.nvim_set_option_value(
     "statusline",
-    [[%!luaeval('require("user.ui.statusline").render("]] .. mode .. [[")')]],
+    [[%!luaeval('require("yardnsm.ui.statusline").render("]] .. mode .. [[")')]],
     { scope = "local" }
   )
 end

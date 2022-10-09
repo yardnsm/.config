@@ -1,4 +1,4 @@
-local utils = require("user.utils")
+local utils = require("yardnsm.utils")
 
 local status_ok, null_ls_sources = pcall(require, "null-ls.sources")
 if not status_ok then
