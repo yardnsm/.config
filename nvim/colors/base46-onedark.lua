@@ -50,4 +50,7 @@ local colors = {
   base0F = "#be5046",
 }
 
-require('base16-colorscheme').setup(colors)
+local status_ok, base16 = pcall(require, "base16-colorscheme")
+if status_ok then
+  base16.setup(colors)
+end
