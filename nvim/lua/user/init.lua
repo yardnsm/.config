@@ -1,6 +1,8 @@
 -- Speed up startup time of lua plugins
 require("user.plugin.impatient")
 
+require("user.plugins")
+
 require("user.autocommands")
 require("user.colorscheme")
 

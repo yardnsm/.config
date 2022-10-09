@@ -9,6 +9,6 @@ lightbulb.setup({
   },
 })
 
-vim.fn.sign_define("LightBulbSign", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("LightBulbSign", { text = "", texthl = "LightBulbSign" })
 
 -- NOTE: the autocmd is defined in ../lsp/init.lua

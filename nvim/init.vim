@@ -9,8 +9,8 @@
 "                     yardnsm's init.vim
 " ------------------------------------------------------------------------------
 
-" This init.vim file is inteded to be used with the latest version of neovim. I tend to prefer to
-" use Vimscript when setting up general options, hence this file is not a Lua one.
+" This init.vim file is inteded to be used with the latest version of neovim. I tend to prefer
+" using Vimscript when setting up general options, hence this file is not a Lua one.
 
 " General {{{
 
@@ -34,80 +34,6 @@ let maplocalleader=','
 " See ~/dev/.setup/nvim/install.sh
 " let g:python_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 " let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
-
-" }}}
-" Plugins {{{
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'lewis6991/impatient.nvim'
-
-" Colors
-Plug 'RRethy/nvim-base16'
-Plug 'kyazdani42/nvim-web-devicons'
-
-" File tree
-Plug 'kyazdani42/nvim-tree.lua'
-
-Plug 'lewis6991/gitsigns.nvim'            " shows git diff in the gutter
-
-Plug 'christoomey/vim-tmux-navigator'     " navigation between tmux and bim splits
-Plug 'roxma/vim-tmux-clipboard'           " integration for vim and tmux's clipboard
-
-Plug 'tpope/vim-fugitive'                 " a git wrapper for vim
-Plug 'tpope/vim-rhubarb'                  " GitHub extension for vim-fugitive
-Plug 'tpope/vim-surround'                 " easly work with surroundings
-Plug 'tpope/vim-commentary'               " comment stuff out
-Plug 'tpope/vim-unimpaired'               " some sensible bracket mappings
-Plug 'tpope/vim-repeat'                   " enable repeating support (`.`) for plugin maps
-Plug 'tpope/vim-eunuch'                   " some unix shell commands helper
-
-Plug 'Valloric/MatchTagAlways'            " highlights matching tags
-
-Plug 'vimwiki/vimwiki'                    " wiki for vim
-
-" Lua plugins
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'ghillb/cybu.nvim'
-Plug 'gpanders/editorconfig.nvim'         " enable support for editorconfig files
-
-" TreeSitter stuff
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-treesitter/playground'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'yardnsm/nvim-autopairs', { 'branch': 'fix/custom-end-pair-endwise' }
-Plug 'windwp/nvim-ts-autotag'
-Plug 'RRethy/nvim-treesitter-endwise'     " automatically close `end` blocks (`endif`, `done`, etc.)
-
-" LSP shit
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'j-hui/fidget.nvim'
-Plug 'kosayoda/nvim-lightbulb'
-Plug 'SmiteshP/nvim-navic'
-
-" Completion engine
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'saadparwaiz1/cmp_luasnip'
-
-" Snippets
-Plug 'L3MON4D3/LuaSnip'
-
-" MacOS specific plugins
-if has('mac')
-  Plug 'junegunn/vim-xmark', { 'do': 'make' }
-endif
-
-call plug#end()
 
 " }}}
 " Lua Integration {{{

@@ -63,7 +63,7 @@ M.block_file_info = function(opts)
   return table.concat({
     "%#" .. base_hl .. "#",
     should_use_devicon_hl and "%#" .. hl_group .. "#" or "",
-    " " .. icon .. "  ",
+    "  " .. icon .. "  ",
 
     "%#" .. base_hl .. "#",
     filename,
@@ -79,7 +79,7 @@ M.block_navic = function()
 end
 
 -- }}}
--- Block Indent Info {{{
+-- Block: Indent Info {{{
 
 M.block_indent_info = function()
   local sw = vim.o.sw
@@ -98,7 +98,7 @@ M.render = function(mode, bufnr)
   if focused then
     return table.concat({
       M.block_file_info({ bufnr = bufnr, color = true, hl = fileinfo_hl }),
-      "%#WinbarFill#",
+      "%#WinbarFill# ",
       M.block_navic(),
       "%=",
       M.block_indent_info(),

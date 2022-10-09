@@ -34,6 +34,12 @@ local required_servers = {
   "eslint",
 }
 
+-- Disable formatting for certains servers; let null-ls do its thing!
+local disable_formatting_on_servers = {
+  "tsserver",
+  "sumneko_lua",
+}
+
 -- Diagnostics {{{
 
 -- Signs
@@ -114,13 +120,7 @@ local function lsp_setup_asthetics()
 
   -- Borders for :LspInfo
   local lspconfig_window = require("lspconfig.ui.windows")
-  local old_defaults = lspconfig_window.default_opts
-
-  function lspconfig_window.default_opts(opts)
-    local win_opts = old_defaults(opts)
-    win_opts.border = "rounded"
-    return win_opts
-  end
+  lspconfig_window.default_options = { border = 'rounded' }
 end
 
 -- }}}
@@ -266,8 +266,8 @@ local function lsp_keymaps(bufnr)
 end
 
 local function on_attach(client, bufnr)
-  -- Disable formatting for certains servers; let null-ls do its thing!
-  if client.name == "tsserver" or client.name == "sumneko_lua" then
+  -- Disable formatting if necessary
+  if vim.tbl_contains(disable_formatting_on_servers, client.name) then
     client.server_capabilities.document_formatting = false
   end
 
@@ -301,7 +301,7 @@ M.setup = function()
   -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
   -- load it.
   installer.setup_handlers({
-    function (server_name)
+    function(server_name)
       local capabilities = make_capabilities()
 
       local opts = {
@@ -315,7 +315,7 @@ M.setup = function()
       end
 
       lspconfig[server_name].setup(opts)
-    end
+    end,
   })
 end
 

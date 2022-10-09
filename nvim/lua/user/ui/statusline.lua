@@ -195,7 +195,7 @@ end
 -- Block: VCS Branch {{{
 
 M.block_vcs_branch = function()
-  local branch = vim.fn.exists("*FugitiveHead") and vim.fn.FugitiveHead() or ""
+  local branch = vim.fn.exists("*FugitiveHead") ~= 0 and vim.fn.FugitiveHead() or ""
 
   if branch == "" then
     return ""

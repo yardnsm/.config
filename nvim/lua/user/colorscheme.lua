@@ -17,10 +17,12 @@ local setup_base16 = function()
   hi.CursorLineNr = { guifg = c.base04, guibg = "NONE", gui = "bold" }
   hi.StatusLineNC = { guifg = c.base03, guibg = c.base01 }
   hi.WinBarNC = { guibg = "NONE" }
-  hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
   hi.PmenuSel = { guifg = "NONE", guibg = c.base02 }
   hi.PmenuThumb = { guifg = "NONE", guibg = c.base03, gui = "bold" }
   hi.Yanked = { guifg = "NONE", guibg = c.base02 }
+
+  hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
+  hi.WinSeparator = { guifg = c.base03, guibg = "NONE" }
 
   hi.SpellBad = { guibg = c.base08, gui = "undercurl" }
   hi.SpellCap = { guibg = c.base0D, gui = "undercurl" }
@@ -47,6 +49,8 @@ local setup_base16 = function()
   hi.DiagnosticSignWarn = { guifg = "Yellow", guibg = "NONE", gui = "bold" }
   hi.DiagnosticSignHint = { guifg = c.base0D, guibg = "NONE", gui = "bold" }
   hi.DiagnosticSignInfo = { guifg = c.base0D, guibg = "NONE", gui = "bold" }
+
+  hi.LightBulbSign = { guifg = "Orange", guibg = "NONE" }
 
   hi.TelescopeMatching = { guifg = c.base0E, gui = "bold" }
   hi.TelescopeResultsNormal = "Comment"
@@ -92,6 +96,9 @@ local setup_base16 = function()
   if vim.g.colors_name:match("^base46") then
     hi.ColorColumn = { guibg = c.black2 }
     hi.CursorLine = { guibg = c.black2 }
+
+    hi.VertSplit = { guifg = c.line }
+    hi.WinSeparator = { guifg = c.line }
 
     hi.TelescopeBorder = { guifg = c.darker_black, guibg = c.darker_black }
     hi.TelescopePromptBorder = { guifg = c.black2, guibg = c.black2 }

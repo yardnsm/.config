@@ -12,6 +12,7 @@ Session.vim
 # Vim plugins
 /nvim/plugged
 /nvim/autoload/plug.vim
+/nvim/plugin/packer_compiled.lua
 
 # Tmux plugins
 /tmux/plugged
