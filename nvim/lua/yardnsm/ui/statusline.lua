@@ -190,7 +190,7 @@ M.block_lsp_status = function()
     return ""
   end
 
-  return "⋅   " .. server_names .. " "
+  return "⋅   " .. server_names .. "  "
 end
 
 -- }}}
@@ -289,7 +289,7 @@ M.render_full = function(mode)
       "%=",
 
       M.block_filetype({ colors = true }),
-      "%#StatusLineLSPStatus#" .. M.block_lsp_status() .. " ",
+      "%#StatusLineLSPStatus#" .. M.block_lsp_status(),
 
       "%#StatusLineNeutral# %3p%% ",
       "%#StatusLineLineInfo# %3l:%-2c ",

@@ -10,16 +10,20 @@ local setup_base16 = function()
   local hi = base16.highlight
 
   hi.MatchTag = { guifg = c.base08, guibg = c.base02 }
-  hi.FloatBorder = { guifg = c.base02, guibg = c.base00 }
-  hi.NormalFloat = "Pmenu"
   hi.SignColumn = { guifg = c.base03, guibg = "NONE" }
+  hi.Yanked = { guifg = "NONE", guibg = c.base02 }
+
+  hi.NormalFloat = "Pmenu"
+  hi.FloatBorder = { guifg = c.base02, guibg = c.base00 }
+
   hi.LineNr = { guifg = c.base03, guibg = "NONE" }
   hi.CursorLineNr = { guifg = c.base04, guibg = "NONE", gui = "bold" }
-  hi.StatusLineNC = { guifg = c.base03, guibg = c.base01 }
-  hi.WinBarNC = { guibg = "NONE" }
+
   hi.PmenuSel = { guifg = "NONE", guibg = c.base02 }
   hi.PmenuThumb = { guifg = "NONE", guibg = c.base03, gui = "bold" }
-  hi.Yanked = { guifg = "NONE", guibg = c.base02 }
+
+  hi.StatusLineNC = { guifg = c.base03, guibg = c.base01 }
+  hi.WinBarNC = { guibg = "NONE" }
 
   hi.VertSplit = { guifg = c.base03, guibg = "NONE" }
   hi.WinSeparator = { guifg = c.base03, guibg = "NONE" }
@@ -94,8 +98,12 @@ local setup_base16 = function()
 
   -- Refine a bit for base46 colorschemes
   if vim.g.colors_name:match("^base46") then
-    hi.ColorColumn = { guibg = c.black2 }
-    hi.CursorLine = { guibg = c.black2 }
+
+    hi.LineNr = { guifg = c.grey }
+    hi.CursorLineNr = { guifg = c.white }
+
+    hi.ColorColumn = { guibg = c.base01 }
+    hi.CursorLine = { guibg = c.base01 }
 
     hi.VertSplit = { guifg = c.line }
     hi.WinSeparator = { guifg = c.line }
@@ -115,7 +123,7 @@ local setup_base16 = function()
     hi.TelescopeResultsDiffChange = { guifg = c.yellow }
     hi.TelescopeResultsDiffDelete = { guifg = c.red }
 
-    hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.black }
+    hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.darker_black }
     hi.StatusLineFileInfo = { guifg = c.white, guibg = c.lightbg, gui = 'bold' }
     hi.StatusLineGitBranch = { guifg = c.light_grey, guibg = c.statusline_bg }
     hi.StatusLineNeutral = { guifg = c.light_grey, guibg = c.statusline_bg }
@@ -134,11 +142,13 @@ local setup_base16 = function()
 
     hi.WinbarActive = { guifg = c.white, gui = "bold" }
     hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
-    hi.WinbarFill = { guifg = c.grey_fg, guibg = c.darker_black }
+    hi.WinbarFill = { guifg = c.grey_fg, guibg = c.black2 }
 
     hi.NvimTreeNormal = { guibg = c.darker_black }
     hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
     hi.NvimTreeRootFolder = { guifg = c.red, gui = "bold" }
+    hi.NvimTreeCursorLine = { guibg = c.black2 }
+    hi.NvimTreeIndentMarker = { guifg = c.grey_fg }
 
     hi.DiffviewFilePanelTitle = 'NvimTreeRootFolder'
     hi.DiffviewFilePanelConflicts = 'NvimTreeRootFolder'

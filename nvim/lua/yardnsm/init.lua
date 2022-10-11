@@ -34,6 +34,8 @@ require("yardnsm.lsp.null-ls")
 
 -- Plugins that should be loaded *after* init.vim has been sourced
 vim.schedule(function()
-  -- require("yardnsm.plugin.bufferline")
   require("yardnsm.plugin.colorizer")
 end)
+
+-- More stuff
+require("yardnsm.misc.tab-label").setup()
