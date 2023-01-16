@@ -74,10 +74,6 @@ fi
 
 # ---[ Common locations ]---------------------------------------------------------------------------
 
-# TODO: remove
-export DOTFILES=$XDG_CONFIG_HOME
-export DOTFILES_LOCAL=$HOME/dotfiles-local
-
 export KNOWLEDGE_HOME=$HOME/knowledge
 export DEV_HOME=$HOME/dev
 export DRAFTS_HOME=$KNOWLEDGE_HOME/drafts
@@ -106,11 +102,13 @@ if [[ -f "/usr/libexec/java_home" ]]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
+# Tmux Spotify starrer (see ../tmux/playground/spotify_starrer.tmux)
+export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"
+
+# ---[ Version managers ]---------------------------------------------------------------------------
+
 # pyenv default version
 export PYENV_VERSION="3.10.5"
 
 # rbenv version
 export RBENV_VERSION="2.2.4"
-
-# Tmux Spotify starrer (see ../tmux/playground/spotify_starrer.tmux)
-export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"

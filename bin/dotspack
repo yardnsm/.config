@@ -7,6 +7,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # Pack (most of) the dotfiles into a zip file
 #
 
+# NOTE These were defined back then as global environment varibles.
+export DOTFILES=$XDG_CONFIG_HOME
+export DOTFILES_LOCAL=$HOME/dotfiles-local
+
 # ---------------------------------------------
 
 pack() {

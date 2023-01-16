@@ -77,21 +77,6 @@ if [[ -d "$PYWAL_HOME" ]]; then
 fi
 
 # }}}
-# fnm {{{
-
-eval "$(fnm env --fnm-dir "$FNM_DIR")"
-
-_fnm_autoload_hook() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    echo "fnm: Found .nvmrc"
-    fnm use
-  fi
-}
-
-add-zsh-hook chpwd _fnm_autoload_hook \
-  && _fnm_autoload_hook
-
-# }}}
 # fzf {{{
 
 # Autocompletion
@@ -122,11 +107,10 @@ add-zsh-hook chpwd _tmux_update_window_name \
   && _tmux_update_window_name
 
 # }}}
-# rust {{{
 
-source $CARGO_HOME/env
+# Version managers
+# Some more configz may be at ./.zshenv
 
-# }}}
 # pyenv {{{
 
 if command -v "pyenv" &> /dev/null; then
@@ -134,30 +118,22 @@ if command -v "pyenv" &> /dev/null; then
 fi
 
 # }}}
+# fnm {{{
 
-# ---[ Misc ]---------------------------------------------------------------------------------------
+eval "$(fnm env --fnm-dir "$FNM_DIR")"
 
-# Lazy load commands {{{
+_fnm_autoload_hook() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    echo "fnm: Found .nvmrc"
+    fnm use
+  fi
+}
 
-# Lazy load phpbrew
-if command -v "phpbrew" &> /dev/null; then
-  function phpbrew() {
-    unset phpbrew
+add-zsh-hook chpwd _fnm_autoload_hook \
+  && _fnm_autoload_hook
 
-    source $PHPBREW_HOME/bashrc
-    phpbrew $@
-  }
-fi
-
-# Lazy load pyenv
-# if command -v "pyenv" &> /dev/null; then
-#   function pyenv() {
-#     unset pyenv
-
-#     eval "$(command pyenv init -)"
-#     pyenv $@
-#   }
-# fi
+# }}}
+# rbenv {{{
 
 # Lazy load rbenv
 if command -v "rbenv" &> /dev/null; then
@@ -170,6 +146,26 @@ if command -v "rbenv" &> /dev/null; then
 fi
 
 # }}}
+# phpbrew {{{
+
+# Lazy load phpbrew
+if command -v "phpbrew" &> /dev/null; then
+  function phpbrew() {
+    unset phpbrew
+
+    source $PHPBREW_HOME/bashrc
+    phpbrew $@
+  }
+fi
+
+# }}}
+# rust {{{
+
+source $CARGO_HOME/env
+
+# }}}
+
+# ---[ Misc ]---------------------------------------------------------------------------------------
 
 # Sourcing
 source $ZDOTDIR/aliases.zsh
