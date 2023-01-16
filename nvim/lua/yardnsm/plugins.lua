@@ -60,6 +60,11 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig")
   use("jose-elias-alvarez/null-ls.nvim")
   use("SmiteshP/nvim-navic")
+  use({
+    "filipdutescu/renamer.nvim",
+    branch = "master",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
 
   -- Telescope and friends
   use({
@@ -67,6 +72,7 @@ return packer.startup(function(use)
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
   })
 
@@ -101,7 +107,7 @@ return packer.startup(function(use)
 
   -- Language Support
   use("gpanders/editorconfig.nvim") -- enable support for editorconfig files
-  use("folke/lua-dev.nvim") -- dev setup for neovim
+  use("folke/neodev.nvim") -- dev setup for neovim
 
   -- File types
   use("vimwiki/vimwiki") -- wiki for vim

@@ -23,9 +23,10 @@ require("yardnsm.plugin.luasnip")
 require("yardnsm.plugin.nvim-lightbulb")
 require("yardnsm.plugin.nvim-tree")
 require("yardnsm.plugin.gitsigns")
-require("yardnsm.plugin.lua-dev")
+require("yardnsm.plugin.neodev")
 require("yardnsm.plugin.diffview")
 require("yardnsm.plugin.tabline")
+require("yardnsm.plugin.renamer")
 
 -- Setup LSP
 -- Make sure to source these *after* the plugins, as some of them may require it.

@@ -12,6 +12,7 @@ local allowed_servers = {
   "sumneko_lua",
   "vimls",
   "jsonls",
+  "gopls",
 }
 
 local get_registered_null_ls_providers = function(filetype)

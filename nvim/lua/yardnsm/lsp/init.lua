@@ -17,8 +17,6 @@ end
 local installer = require("mason-lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-local utils = require("yardnsm.utils")
-
 -- List of servers to use, will be installed via mason-lspconfig
 local required_servers = {
   "bashls",
@@ -133,82 +131,6 @@ local function lsp_setup_commands()
 end
 
 -- }}}
--- Quickfix Rename {{{
-
-local function lsp_setup_rename()
-  local function qf_rename()
-    local position_params = vim.lsp.util.make_position_params()
-    position_params.oldName = vim.fn.expand("<cword>")
-
-    local input_params = {
-      prompt = "New name: ",
-      default = position_params.oldName,
-    }
-
-    vim.ui.input(input_params, function(input)
-      if input == nil then
-        utils.log_warning("[LSP] Aborted rename")
-        return
-      end
-
-      position_params.newName = input
-
-      vim.lsp.buf_request(0, "textDocument/rename", position_params, function(err, result, ...)
-        if not result or not result.changes then
-          utils.log_warning(
-            string.format("[LSP] Could not perform rename: %s -> %s", position_params.oldName, position_params.newName)
-          )
-
-          return
-        end
-
-        vim.lsp.handlers["textDocument/rename"](err, result, ...)
-
-        local entries = {}
-        local num_files = 0
-        local num_updates = 0
-
-        for uri, edits in pairs(result.changes) do
-          num_files = num_files + 1
-          local bufnr = vim.uri_to_bufnr(uri)
-
-          for _, edit in ipairs(edits) do
-            local start_line = edit.range.start.line + 1
-            local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
-
-            num_updates = num_updates + 1
-
-            table.insert(entries, {
-              bufnr = bufnr,
-              lnum = start_line,
-              col = edit.range.start.character + 1,
-              text = line,
-            })
-          end
-        end
-
-        utils.log(
-          string.format(
-            "[LSP] Renamed %s instance%s in %s file%s. %s",
-            num_updates,
-            num_updates == 1 and "" or "s",
-            num_files,
-            num_files == 1 and "" or "s",
-            num_files > 1 and "To save them run ':cfdo w'" or ""
-          )
-        )
-
-        if num_files > 1 then
-          utils.qf_populate(entries, "r")
-        end
-      end)
-    end)
-  end
-
-  vim.lsp.buf.rename = qf_rename
-end
-
--- }}}
 
 local function lsp_highlight_document(client, bufnr)
   local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
@@ -254,7 +176,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua require('renamer').rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
@@ -282,7 +204,7 @@ end
 local function make_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+  capabilities = cmp_nvim_lsp.default_capabilities()
 
   return capabilities
 end
@@ -292,7 +214,6 @@ M.setup = function()
   lsp_setup_handlers()
   lsp_setup_asthetics()
   lsp_setup_commands()
-  lsp_setup_rename()
 
   installer.setup({
     ensure_installed = required_servers,

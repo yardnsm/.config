@@ -32,6 +32,7 @@ for _, rule in ipairs(autopairs.config.rules) do
 end
 
 -- vim-closer replacement
+-- TODO replicate the auto semicolon insertion
 
 -- https://github.com/rstacruz/vim-closer/blob/master/autoload/closer.vim
 local get_closing_for_line = function(line)
@@ -82,4 +83,7 @@ autopairs.add_rule(Rule("[%(%{%[]", "")
   :replace_endpair(function(opts)
     return get_closing_for_line(opts.line)
   end)
-  :end_wise())
+  :end_wise(function(opts)
+    -- Do not endwise if there is no closing
+    return get_closing_for_line(opts.line) ~= ""
+  end))
