@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
   group = augroup,
   callback = function()
     vim.o.cursorline = false
-    vim.o.colorcolumn = 0
+    vim.o.colorcolumn = '0'
   end,
 })
 

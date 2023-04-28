@@ -1,6 +1,6 @@
 " Specific configurations for `html` filetype
 
-" Mappings {{{
+" Mappings
 
 " Auto close html tags + indent:
 "   </         - Write `</`
@@ -10,5 +10,3 @@
 "   `^         - Go the position where the cursor was the last timewhen Insert mode was stopped
 "   a          - Append text after the cursor
 imap <buffer> </ </<C-X><C-O><ESC>==`^a
-
-" }}}
