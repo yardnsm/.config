@@ -1,6 +1,8 @@
-vim.g.colors_name = 'base46-pastelDark'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+local M = {}
+
+M.base_30 = {
   white = "#b5bcc9",
   darker_black = "#10171e",
   black = "#131a21", --  nvim bg
@@ -31,7 +33,9 @@ local colors = {
   lightbg = "#222930",
   pmenu_bg = "#ef8891",
   folder_bg = "#99aee5",
+}
 
+M.base_16 = {
   base0A = "#f5d595",
   base04 = "#4f565d",
   base07 = "#b5bcc9",
@@ -49,6 +53,12 @@ local colors = {
   base09 = "#EDA685",
   base06 = "#d3d9e4",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-pastelDark'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

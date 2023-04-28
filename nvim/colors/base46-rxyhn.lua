@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-rxyhn'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- credits to rice made by https://github.com/rxyhn
+-- This theme is made for @rxyhn's rice :D
+
+local M = {}
+
+M.base_30 = {
   white = "#D9D7D6",
   darker_black = "#000a0e",
   black = "#061115", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#1a2529",
   pmenu_bg = "#78B892",
   folder_bg = "#6791C9",
+}
 
+M.base_16 = {
   base00 = "#061115",
   base01 = "#0C171B",
   base02 = "#101B1F",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#C488EC",
   base0F = "#F16269",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-rxyhn'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-gruvchad'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/sainnhe/gruvbox-material
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#c7b89d",
   darker_black = "#1a1d1e",
   black = "#1e2122", --  nvim bg
@@ -31,24 +36,32 @@ local colors = {
   lightbg = "#2d3031",
   pmenu_bg = "#89b482",
   folder_bg = "#6d8dad",
-
-  base0A = "#e0c080",
-  base04 = "#d4be98",
-  base07 = "#c7b89d",
-  base05 = "#c0b196",
-  base0E = "#d3869b",
-  base0D = "#7daea3",
-  base0C = "#86b17f",
-  base0B = "#a9b665",
-  base02 = "#36393a",
-  base0F = "#d65d0e",
-  base03 = "#404344",
-  base08 = "#ec6b64",
-  base01 = "#2c2f30",
-  base00 = "#1e2122",
-  base09 = "#e78a4e",
-  base06 = "#c3b499",
 }
+
+M.base_16 = {
+  base00 = "#1e2122",
+  base01 = "#2c2f30",
+  base02 = "#36393a",
+  base03 = "#404344",
+  base04 = "#d4be98",
+  base05 = "#c0b196",
+  base06 = "#c3b499",
+  base07 = "#c7b89d",
+  base08 = "#ec6b64",
+  base09 = "#e78a4e",
+  base0A = "#e0c080",
+  base0B = "#a9b665",
+  base0C = "#86b17f",
+  base0D = "#7daea3",
+  base0E = "#d3869b",
+  base0F = "#d65d0e",
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-gruvchad'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

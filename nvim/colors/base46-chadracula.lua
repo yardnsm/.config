@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-chadracula'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original theme https://github.com/dracula/vim
+-- This is a modified version 
+
+local M = {}
+
+M.base_30 = {
   white = "#F8F8F2",
   darker_black = "#222430",
   black = "#282A36", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#41434f",
   pmenu_bg = "#b389ef",
   folder_bg = "#BD93F9",
+}
 
+M.base_16 = {
   base00 = "#282936",
   base01 = "#3a3c4e",
   base02 = "#4d4f68",
@@ -49,6 +56,17 @@ local colors = {
   base0E = "#ff86d3",
   base0F = "#F8F8F2",
 }
+
+M.polish_hl = {
+  ["@function.builtin"] = { fg = M.base_30.cyan },
+  ["@number"] = { fg = M.base_30.purple },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-chadracula'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

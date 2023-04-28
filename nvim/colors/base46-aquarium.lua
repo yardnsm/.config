@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-aquarium'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- credits to original theme https://github.com/FrenzyExists/aquarium-vim
+-- This is just a modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#ced4df",
   darker_black = "#1c1c26",
   black = "#20202A", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#2e2e38",
   pmenu_bg = "#ebb9b9",
   folder_bg = "#b8dceb",
+}
 
+M.base_16 = {
   base00 = "#20202A",
   base01 = "#2c2e3e",
   base02 = "#3D4059",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#f6bbe7",
   base0F = "#eAc1c1",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-aquarium'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

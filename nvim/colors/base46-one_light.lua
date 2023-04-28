@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-one_light'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/one-dark
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#54555b",
   darker_black = "#efeff0",
   black = "#fafafa", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#d3d3d3",
   pmenu_bg = "#5e5f65",
   folder_bg = "#6C6C6C",
+}
 
+M.base_16 = {
   base00 = "#fafafa",
   base01 = "#f4f4f4",
   base02 = "#e5e5e6",
@@ -49,6 +56,24 @@ local colors = {
   base0E = "#a626a4",
   base0F = "#986801",
 }
+
+M.type = "light"
+
+M.polish_hl = {
+  TelescopePromptPrefix = { fg = M.base_30.white },
+  TelescopeSelection = { bg = M.base_30.one_bg, fg = M.base_30.white },
+  ["@punctuation.bracket"] = { fg = M.base_30.nord_blue },
+  FloatBorder = { fg = M.base_16.base05 },
+  DiffAdd = { fg = M.base_16.base05 },
+  TbLineThemeToggleBtn = { bg = M.base_30.one_bg3 },
+  WhichKeyDesc = { fg = M.base_30.white },
+  Pmenu = { bg = M.base_30.black2 },
+  St_pos_text = { fg = M.base_30.white },
+}
+
+vim.g.colors_name = 'base46-one_light'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

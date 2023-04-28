@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-nightowl'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/haishanh/night-owl.vim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#d6deeb",
   darker_black = "#010f20",
   black = "#011627",
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#1a2f40",
   pmenu_bg = "#82aaff",
   folder_bg = "#82aaff",
+}
 
+M.base_16 = {
   base00 = "#011627",
   base01 = "#0c2132",
   base02 = "#172c3d",
@@ -49,6 +56,19 @@ local colors = {
   base0E = "#c792ea",
   base0F = "#f78c6c",
 }
+
+M.polish_hl = {
+  ["@parameter"] = { fg = M.base_30.orange },
+  ["@keyword.return"] = { fg = M.base_30.cyan },
+  ["@conditional"] = { fg = M.base_30.cyan },
+  PmenuSel = { bg = M.base_30.blue },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-nightowl'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

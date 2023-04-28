@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-sweetpastel'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/SweetPastel/pastel
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#FFDEDE",
   darker_black = "#161a1e",
   black = "#1B1F23", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#2f3337",
   pmenu_bg = "#F8B3CC",
   folder_bg = "#A3CBE7",
+}
 
+M.base_16 = {
   base00 = "#1B1F23",
   base01 = "#25292d",
   base02 = "#2f3337",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#CEACE8",
   base0F = "#e5a3a1",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-sweetpastel'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

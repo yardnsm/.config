@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-gruvbox_light'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/morhetz/gruvbox
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#504945",
   darker_black = "#e8dbb2",
   black = "#F2E5BC", --  nvim bg
@@ -31,12 +36,14 @@ local colors = {
   lightbg = "#ddd0a7",
   pmenu_bg = "#739588",
   folder_bg = "#746d69",
+}
 
+M.base_16 = {
   base00 = "#F2E5BC",
-  base01 = "#e5d8af",
-  base02 = "#d8cba2",
-  base03 = "#cabd94",
-  base04 = "#c0b38a",
+  base01 = "#e3d6ad",
+  base02 = "#e5d8af",
+  base03 = "#d8cba2",
+  base04 = "#cabd94",
   base05 = "#504945",
   base06 = "#3c3836",
   base07 = "#282828",
@@ -49,6 +56,16 @@ local colors = {
   base0E = "#8f3f71",
   base0F = "#d65d0e",
 }
+
+M.type = "light"
+
+M.polish_hl = {
+  TbLineThemeToggleBtn = { fg = M.base_30.black, bg = M.base_30.white },
+}
+
+vim.g.colors_name = 'base46-gruvbox_light'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

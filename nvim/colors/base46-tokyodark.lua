@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-tokyodark'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/tiagovla/tokyodark.nvim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#A0A8CD",
   darker_black = "#0c0d18",
   black = "#11121D", --  nvim bg
@@ -8,14 +13,14 @@ local colors = {
   one_bg = "#1d1e29",
   one_bg2 = "#252631",
   one_bg3 = "#252631",
-  grey = "#40414c",
+  grey = "#474853",
   grey_fg = "#474853",
   grey_fg2 = "#4e4f5a",
   light_grey = "#545560",
   red = "#ee6d85",
   baby_pink = "#fd7c94",
   pink = "#fe6D85",
-  line = "#191a25",
+  line = "#252631",
   green = "#98c379",
   vibrant_green = "#95c561",
   nord_blue = "#648ce1",
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#2a2b36",
   pmenu_bg = "#ee6d85",
   folder_bg = "#7199ee",
+}
 
+M.base_16 = {
   base00 = "#11121d",
   base01 = "#1b1c27",
   base02 = "#21222d",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#a485dd",
   base0F = "#f3627a",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-tokyodark'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

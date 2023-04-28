@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-chocolate'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original theme https://gitlab.com/snakedye/chocolate
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#cdc0ad",
   darker_black = "#201d1c",
   black = "#252221", --  nvim bg
@@ -32,12 +37,14 @@ local colors = {
   pmenu_bg = "#859e82",
   folder_bg = "#768b9b",
   beige = "#ab9382",
+}
 
+M.base_16 = {
   base00 = "#252221",
-  base01 = "#2f2c2b",
-  base02 = "#393635",
-  base03 = "#43403f",
-  base04 = "#4d4a49",
+  base01 = "#2b2827",
+  base02 = "#2f2c2b",
+  base03 = "#393635",
+  base04 = "#43403f",
   base05 = "#c8bAA4",
   base06 = "#beae94",
   base07 = "#cdc0ad",
@@ -50,6 +57,24 @@ local colors = {
   base0E = "#c65f5f",
   base0F = "#ab9382",
 }
+
+M.polish_hl = {
+  ["@field"] = { fg = M.base_30.purple },
+  ["@variable"] = { fg = M.base_16.base06 },
+  ["@module"] = { fg = M.base_30.beige },
+  Operator = { fg = M.base_30.blue },
+  ["@attribute"] = { fg = M.base_30.cyan },
+  ["@punctuation.bracket"] = { fg = M.base_16.base06 },
+  ["@parenthesis"] = { link = "@punctuation.bracket" },
+  ["@parameter"] = { fg = M.base_30.green },
+  ["@function.builtin"] = { fg = M.base_30.yellow },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-chocolate'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

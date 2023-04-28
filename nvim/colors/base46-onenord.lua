@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-onenord'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/arcticicestudio/nord-vim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#D8DEE9",
   darker_black = "#252b37",
   black = "#2a303c", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#3f4551",
   pmenu_bg = "#A3BE8C",
   folder_bg = "#7797b7",
+}
 
+M.base_16 = {
   base00 = "#2a303c",
   base01 = "#3B4252",
   base02 = "#434C5E",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#B48EAD",
   base0F = "#d57780",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-onenord'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

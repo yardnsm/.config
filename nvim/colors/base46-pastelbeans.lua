@@ -1,7 +1,6 @@
 -- This theme was ported from https://github.com/NvChad/base46
 
--- Credits to original https://github.com/NTBBloodbath/doom-one.nvim
--- This is modified version of it
+-- credits to chatgpt
 
 local M = {}
 
@@ -17,49 +16,49 @@ M.base_30 = {
   grey_fg = "#474747",
   grey_fg2 = "#4c4c4c",
   light_grey = "#525252",
-  red = "#cf6a4c",
-  baby_pink = "#da7557",
+  red = "#ff9da4",
+  baby_pink = "#FFD3F3",
   pink = "#f0a0c0",
   line = "#2d2d2d", -- for lines like vertsplit
-  green = "#99ad6a",
+  green = "#d1f1a9",
   vibrant_green = "#c2cea6",
-  nord_blue = "#768cb4",
-  blue = "#8197bf",
-  yellow = "#fad07a",
+  nord_blue = "#bbdaff",
+  blue = "#bbdaff",
+  yellow = "#f5d595",
   sun = "#ffb964",
-  purple = "#ea94ea",
+  purple = "#ebbbff",
   dark_purple = "#e58fe5",
   teal = "#668799",
-  orange = "#e78a4e",
-  cyan = "#8fbfdc",
+  orange = "#ffb964",
+  cyan = "#BBFFFF",
   statusline_bg = "#191919",
   lightbg = "#2c2c2c",
-  pmenu_bg = "#8197bf",
-  folder_bg = "#8197bf",
+  pmenu_bg = "#ff9da4",
+  folder_bg = "#bbdaff",
 }
 
 M.base_16 = {
   base00 = "#151515",
-  base01 = "#2e2e2e",
-  base02 = "#3a3a3a",
-  base03 = "#424242",
-  base04 = "#474747",
-  base05 = "#d9d9c4",
-  base06 = "#dedec9",
-  base07 = "#f1f1e5",
-  base08 = "#C6B5DA",
-  base09 = "#c99f4a",
-  base0A = "#e1b655",
-  base0B = "#99ad6a",
-  base0C = "#99ad6a",
-  base0D = "#8fa5cd",
-  base0E = "#e18be1",
-  base0F = "#cf6a4c",
+  base01 = "#202020",
+  base02 = "#303030",
+  base03 = "#505050",
+  base04 = "#b0b0b0",
+  base05 = "#d0d0d0",
+  base06 = "#e0e0e0",
+  base07 = "#f5f5f5",
+  base08 = "#FFDAB9",
+  base09 = "#ffeb99",
+  base0A = "#ebbbff",
+  base0B = "#d1f1a9",
+  base0C = "#c0e9ff",
+  base0D = "#bbdaff",
+  base0E = "#ff9da4",
+  base0F = "#888888",
 }
 
 M.type = "dark"
 
-vim.g.colors_name = 'base46-jellybeans'
+vim.g.colors_name = 'base46-pastelbeans'
 
 local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 

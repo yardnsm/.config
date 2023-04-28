@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-onedark'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/one-dark
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#abb2bf",
   darker_black = "#1b1f27",
   black = "#1e222a", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#2d3139",
   pmenu_bg = "#61afef",
   folder_bg = "#61afef",
+}
 
+M.base_16 = {
   base00 = "#1e222a",
   base01 = "#353b45",
   base02 = "#3e4451",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#c678dd",
   base0F = "#be5046",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-onedark'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-nightfox'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/EdenEast/nightfox.nvim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#cdcecf",
   darker_black = "#121c29",
   black = "#192330",
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#313b48",
   pmenu_bg = "#719cd6",
   folder_bg = "#719cd6",
+}
 
+M.base_16 = {
   base00 = "#192330",
   base01 = "#252f3c",
   base02 = "#313b48",
@@ -47,8 +54,21 @@ local colors = {
   base0C = "#7ad4d6",
   base0D = "#86abdc",
   base0E = "#9d79d6",
-  base0F = "#d85e7c",
+  base0F = "#c0c8d5",
 }
+
+M.polish_hl = {
+  ["@field.key"] = { fg = M.base_16.base05 },
+  ["@operator"] = { fg = M.base_30.dark_purple },
+  ["@keyword"] = { fg = M.base_30.teal },
+  ["@parameter"] = { fg = M.base_30.teal },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-nightfox'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

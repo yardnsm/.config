@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-mountain'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- credit to original theme for existing : https://github.com/mountain-theme/Mountain
+-- NOTE: This is a modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#F0f0f0",
   darker_black = "#090909",
   black = "#0f0f0f", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#292929",
   pmenu_bg = "#8aac8b",
   folder_bg = "#8F8AAC",
+}
 
+M.base_16 = {
   base00 = "#0f0f0f",
   base01 = "#151515",
   base02 = "#191919",
@@ -49,6 +56,16 @@ local colors = {
   base0E = "#ac8aac",
   base0F = "#b39193",
 }
+
+M.polish_hl = {
+  ["@variable"] = { fg = M.base_16.base05 },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-mountain'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

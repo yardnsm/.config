@@ -1,6 +1,8 @@
-vim.g.colors_name = 'base46-nightlamp'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+local M = {}
+
+M.base_30 = {
   white = "#e0d6bd",
   darker_black = "#13141a",
   black = "#18191f", --nvim bg
@@ -31,7 +33,9 @@ local colors = {
   lightbg = "#2b2c32",
   pmenu_bg = "#b58385",
   folder_bg = "#90a0a0",
+}
 
+M.base_16 = {
   base00 = "#18191f",
   base01 = "#222329",
   base02 = "#2c2d33",
@@ -49,6 +53,12 @@ local colors = {
   base0E = "#8e9cb4",
   base0F = "#90a0a0",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-nightlamp'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

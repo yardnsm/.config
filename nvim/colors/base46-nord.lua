@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-nord'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/arcticicestudio/nord-vim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#abb2bf",
   darker_black = "#2a303c",
   black = "#2E3440", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#3f4551",
   pmenu_bg = "#A3BE8C",
   folder_bg = "#7797b7",
+}
 
+M.base_16 = {
   base00 = "#2E3440",
   base01 = "#3B4252",
   base02 = "#434C5E",
@@ -49,6 +56,16 @@ local colors = {
   base0E = "#81A1C1",
   base0F = "#B48EAD",
 }
+
+M.polish_hl = {
+  ["@punctuation.bracket"] = { fg = M.base_30.white },
+  ["@punctuation.delimiter"] = { fg = M.base_30.white },
+}
+M.type = "dark"
+
+vim.g.colors_name = 'base46-nord'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

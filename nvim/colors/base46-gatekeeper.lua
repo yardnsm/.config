@@ -1,6 +1,8 @@
-vim.g.colors_name = 'base46-gatekeeper'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+local M = {}
+
+M.base_30 = {
   white = "#cccdd1",
   darker_black = "#0a0a0a",
   black = "#101010", --  nvim bg
@@ -31,7 +33,9 @@ local colors = {
   lightbg = "#272727",
   pmenu_bg = "#5c6ab2",
   folder_bg = "#29adff",
+}
 
+M.base_16 = {
   base00 = "#101010",
   base01 = "#171717",
   base02 = "#1e1e1e",
@@ -49,6 +53,17 @@ local colors = {
   base0E = "#ff4394",
   base0F = "#ffccaa",
 }
+
+M.polish_hl = {
+  ["@variable"] = { fg = M.base_30.orange },
+  ["@parameter"] = { fg = M.base_30.white },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-gatekeeper'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

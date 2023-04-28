@@ -1,6 +1,8 @@
-vim.g.colors_name = 'base46-catppuccin'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+local M = {}
+
+M.base_30 = {
   white = "#D9E0EE",
   darker_black = "#191828",
   black = "#1E1D2D", --  nvim bg
@@ -32,7 +34,9 @@ local colors = {
   pmenu_bg = "#ABE9B3",
   folder_bg = "#89B4FA",
   lavender = "#c7d1ff",
+}
 
+M.base_16 = {
   base00 = "#1E1D2D",
   base01 = "#282737",
   base02 = "#2f2e3e",
@@ -50,6 +54,18 @@ local colors = {
   base0E = "#CBA6F7",
   base0F = "#F38BA8",
 }
+
+M.polish_hl = {
+  ["@variable"] = { fg = M.base_30.lavender },
+  ["@property"] = { fg = M.base_30.teal },
+  ["@variable.builtin"] = { fg = M.base_30.red },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-catppuccin'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-everforest'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/sainnhe/everforest
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#D3C6AA",
   darker_black = "#272f35",
   black = "#2b3339", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#3d454b",
   pmenu_bg = "#83c092",
   folder_bg = "#7393b3",
+}
 
+M.base_16 = {
   base00 = "#2b3339",
   base01 = "#323c41",
   base02 = "#3a4248",
@@ -49,6 +56,18 @@ local colors = {
   base0E = "#e67e80",
   base0F = "#d699b6",
 }
+
+
+M.type = "dark"
+
+M.polish_hl = {
+  ["@tag"] = { fg = M.base_30.orange },
+  ["@tag.delimiter"] = { fg = M.base_30.green },
+}
+
+vim.g.colors_name = 'base46-everforest'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

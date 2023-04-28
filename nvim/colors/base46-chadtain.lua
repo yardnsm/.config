@@ -1,6 +1,8 @@
-vim.g.colors_name = 'base46-chadtain'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+local M = {}
+
+M.base_30 = {
   white = "#b0b0b0",
   darker_black = "#151b21",
   black = "#1a2026", --  nvim bg
@@ -31,7 +33,9 @@ local colors = {
   lightbg = "#2d3339",
   pmenu_bg = "#8aac8b",
   folder_bg = "#6b8bab",
+}
 
+M.base_16 = {
   base00 = "#1a2026",
   base01 = "#242a30",
   base02 = "#292f35",
@@ -49,6 +53,12 @@ local colors = {
   base0E = "#948fb1",
   base0F = "#ac8a8c",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-chadtain'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

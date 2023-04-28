@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-vscode_dark'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Thanks to original theme for existing https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_plus.json
+-- this is a modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#dee1e6",
   darker_black = "#1a1a1a",
   black = "#1E1E1E", --  nvim bg
@@ -32,7 +37,9 @@ local colors = {
   lightbg = "#303030",
   pmenu_bg = "#60a6e0",
   folder_bg = "#7A8A92",
+}
 
+M.base_16 = {
   --author of this template Tomas Iser, @tomasiser on github,
   base00 = "#1E1E1E",
   base01 = "#262626",
@@ -51,6 +58,21 @@ local colors = {
   base0E = "#C586C0",
   base0F = "#E9E9E9",
 }
+
+M.polish_hl = {
+  ["@parameter"] = { fg = M.base_30.blue },
+  ["@keyword"] = { fg = M.base_30.blue },
+  ["@variable"] = { fg = M.base_30.cyan },
+  ["@field.key"] = { fg = M.base_30.green1 },
+  ["@keyword.return"] = { fg = M.base_16.base0E },
+  ["@keyword.function"] = { fg = M.base_30.teal },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-vscode_dark'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

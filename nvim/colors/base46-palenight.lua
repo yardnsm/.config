@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-palenight'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original theme for existing https://github.com/whizkydee/vscode-palenight-theme
+-- this is a modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#ffffff", -- custom
   darker_black = "#232738",
   black = "#292D3E", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#3c4051",
   pmenu_bg = "#82aaff", -- custom
   folder_bg = "#82aaff",
+}
 
+M.base_16 = {
   base00 = "#292d3e",
   base01 = "#444267",
   base02 = "#32374d",
@@ -49,6 +56,17 @@ local colors = {
   base0E = "#c792ea",
   base0F = "#ff5370",
 }
+
+M.polish_hl = {
+  ["@include"] = { fg = M.base_30.purple },
+  ["@field.key"] = { fg = M.base_30.orange },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-palenight'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

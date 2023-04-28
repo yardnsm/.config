@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-wombat'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original theme https://github.com/arcticicestudio/nord-vim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#e4e0d7",
   darker_black = "#1b1b1b",
   black = "#222222",
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#3c3c3c",
   pmenu_bg = "#95e454",
   folder_bg = "#7BB0C9",
+}
 
+M.base_16 = {
   base00 = "#202020",
   base01 = "#303030",
   base02 = "#373737",
@@ -40,15 +47,25 @@ local colors = {
   base05 = "#d6d2c9",
   base06 = "#ddd9d0",
   base07 = "#e4e0d7",
-  base08 = "#FF8F7E",
-  base09 = "#FFCC66",
+  base08 = "#FFCC66",
+  base09 = "#dc8cff",
   base0A = "#efdeab",
   base0B = "#AEE474",
   base0C = "#7EB6BC",
   base0D = "#88B8F6",
-  base0E = "#dc8cff",
+  base0E = "#FF8F7E",
   base0F = "#dc8c64",
 }
+
+M.polish_hl = {
+  ["@punctuation.bracket"] = { fg = M.base_30.sun },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-wombat'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

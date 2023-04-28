@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-radium'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- credits to original radium theme from https://github.com/dharmx
+-- this is a modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#d4d4d5",
   darker_black = "#0a0d11",
   black = "#101317", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#24282d",
   pmenu_bg = "#3bdda2",
   folder_bg = "#5fb0fc",
+}
 
+M.base_16 = {
   base00 = "#101317",
   base01 = "#1a1d21",
   base02 = "#23262a",
@@ -49,6 +56,17 @@ local colors = {
   base0E = "#c397d8",
   base0F = "#e87979",
 }
+
+M.polish_hl = {
+  ["@punctuation.bracket"] = { fg = M.base_16.base07 },
+  ["@parenthesis"] = { link = "@punctuation.bracket" },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-radium'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

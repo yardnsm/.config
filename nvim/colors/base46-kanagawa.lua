@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-kanagawa'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/rebelot/kanagawa.nvim
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#DCD7BA",
   darker_black = "#191922",
   black = "#1F1F28", --  nvim bg
@@ -31,7 +36,9 @@ local colors = {
   lightbg = "#33333c",
   pmenu_bg = "#a48ec7",
   folder_bg = "#7E9CD8",
+}
 
+M.base_16 = {
   base00 = "#1f1f28",
   base01 = "#2a2a37",
   base02 = "#223249",
@@ -49,6 +56,34 @@ local colors = {
   base0E = "#9c86bf",
   base0F = "#d8616b",
 }
+
+M.polish_hl = {
+  ["@include"] = { fg = M.base_30.purple },
+  ["@uri"] = { fg = M.base_30.blue },
+  ["@tag.delimiter"] = { fg = M.base_30.red },
+
+  ["@field.key"] = {
+    fg = M.base_30.white,
+  },
+
+  ["@punctuation.bracket"] = {
+    fg = M.base_30.pmenu_bg,
+  },
+
+  ["@punctuation.delimiter"] = {
+    fg = M.base_30.white,
+  },
+
+  Number = {
+    fg = M.base_30.baby_pink,
+  },
+}
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-kanagawa'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-solarized_dark'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://github.com/altercation/solarized
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#abb2bf",
   darker_black = "#002530",
   black = "#002b36", --  nvim bg
@@ -31,12 +36,14 @@ local colors = {
   lightbg = "#113c47",
   pmenu_bg = "#268bd2",
   folder_bg = "#268bd2",
+}
 
+M.base_16 = {
   base00 = "#002b36",
-  base01 = "#073642",
-  base02 = "#586e75",
-  base03 = "#657b83",
-  base04 = "#839496",
+  base01 = "#06313c",
+  base02 = "#0a3540",
+  base03 = "#133e49",
+  base04 = "#1b4651",
   base05 = "#93a1a1",
   base06 = "#eee8d5",
   base07 = "#fdf6e3",
@@ -49,6 +56,12 @@ local colors = {
   base0E = "#6c71c4",
   base0F = "#d33682",
 }
+
+M.type = "dark"
+
+vim.g.colors_name = 'base46-solarized_dark'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then

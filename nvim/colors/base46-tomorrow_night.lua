@@ -1,6 +1,11 @@
-vim.g.colors_name = 'base46-tomorrow_night'
+-- This theme was ported from https://github.com/NvChad/base46
 
-local colors = {
+-- Credits to original https://chriskempson/tomorrow-theme
+-- This is modified version of it
+
+local M = {}
+
+M.base_30 = {
   white = "#C5C8C2",
   darker_black = "#191b1d",
   black = "#1d1f21", -- nvim bg
@@ -31,24 +36,37 @@ local colors = {
   lightbg = "#373B41",
   pmenu_bg = "#a4b595",
   folder_bg = "#6f8dab",
-
-  base0A = "#f0c674",
-  base04 = "#b4b7b4",
-  base07 = "#ffffff",
-  base05 = "#c5c8c6",
-  base0E = "#b294bb",
-  base0D = "#81a2be",
-  base0C = "#8abeb7",
-  base0B = "#b5bd68",
-  base02 = "#373b41",
-  base0F = "#a3685a",
-  base03 = "#969896",
-  base08 = "#cc6666",
-  base01 = "#282a2e",
-  base00 = "#1d1f21",
-  base09 = "#de935f",
-  base06 = "#e0e0e0",
 }
+
+M.base_16 = {
+  base00 = "#1d1f21",
+  base01 = "#282a2e",
+  base02 = "#373b41",
+  base03 = "#969896",
+  base04 = "#b4b7b4",
+  base05 = "#c5c8c6",
+  base06 = "#e0e0e0",
+  base07 = "#ffffff",
+  base08 = "#cc6666",
+  base09 = "#de935f",
+  base0A = "#f0c674",
+  base0B = "#b5bd68",
+  base0C = "#8abeb7",
+  base0D = "#81a2be",
+  base0E = "#b294bb",
+  base0F = "#a3685a",
+}
+
+M.type = "dark"
+
+M.polish_hl = {
+  ["@function.builtin"] = { fg = M.base_30.yellow },
+  -- ["@punctuation.bracket"] = { fg = M.base_30.yellow },
+}
+
+vim.g.colors_name = 'base46-tomorrow_night'
+
+local colors = vim.tbl_extend("force", {}, M.base_30, M.base_16)
 
 local status_ok, base16 = pcall(require, "base16-colorscheme")
 if status_ok then
