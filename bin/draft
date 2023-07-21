@@ -43,7 +43,7 @@ main() {
   local -r date_fmt="$(date +%Y-%m-%d)"
   local -r name_fmt=$(sed 's/ /_/g' <<< "$@")
 
-  $EDITOR "$DRAFTS_HOME/${date_fmt}_${name_fmt}.md"
+  $EDITOR "$DRAFTS_HOME/${date_fmt} -- ${name_fmt}.md"
 }
 
 main "$@"
