@@ -245,7 +245,7 @@ M.render_minimal = function(mode)
 
   if mode == "active" then
     return table.concat({
-      "%#StatusLineIcon# " .. icon .. "  ",
+      -- "%#StatusLineIcon# " .. icon .. "  ",
       "%#StatusLineFileInfo# ",
       title,
       "%q ",
@@ -257,7 +257,8 @@ M.render_minimal = function(mode)
 
   -- Same, without the colors
   return table.concat({
-    " " .. icon .. "   ",
+    -- " " .. icon .. "   ",
+    " ",
     title,
     "%q ",
     "%=",
@@ -270,7 +271,7 @@ M.render_full = function(mode)
 
   if focused then
     return table.concat({
-      "%#StatusLineIcon# " .. icon .. "  ",
+      -- "%#StatusLineIcon# " .. icon .. "  ",
       "%#StatusLineFileInfo# %f ",
       "%#StatusLineGitBranch#" .. M.block_vcs_branch() .. " ",
 
@@ -294,13 +295,14 @@ M.render_full = function(mode)
       "%#StatusLineNeutral# %3p%% ",
       "%#StatusLineLineInfo# %3l:%-2c ",
 
-      "%#StatusLineVisualPercentage#" .. M.block_visual_percentage() .. "%#StatusLineSecondary# ",
+      -- "%#StatusLineVisualPercentage#" .. M.block_visual_percentage() .. "%#StatusLineSecondary# ",
       M.block_diagnostics(),
     })
   end
 
   return table.concat({
-    " " .. icon .. "   ",
+    -- " " .. icon .. "   ",
+    " ",
     "%f ",
     "%m",
     "%=",

@@ -21,7 +21,7 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local required_servers = {
   "bashls",
   "pyright",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "vimls",
   "tailwindcss",
