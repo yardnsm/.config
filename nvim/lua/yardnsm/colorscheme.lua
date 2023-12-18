@@ -162,6 +162,9 @@ local setup_base16 = function()
     hi.DiffChange = { guibg = "#222a39", guifg = "none" }
     hi.DiffText = { guibg = "#2f3f5c", guifg = "none" }
     hi.DiffDelete = { guibg = "none", guifg = "#4f2739" }
+
+    -- An attempt to port NvChad's base46 hlgroups
+    -- require("yardnsm.misc.base46-nvchad").setup_highlights()
   end
 end
 
