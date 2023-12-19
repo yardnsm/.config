@@ -2,7 +2,7 @@
 require("yardnsm.lazy")
 
 require("yardnsm.autocommands")
-require("yardnsm.colorscheme")
+require("yardnsm.colorscheme").setup()
 
 -- Setup winbar and statusline
 require("yardnsm.ui.winbar").setup()

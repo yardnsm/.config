@@ -1,14 +1,6 @@
 local augroup = vim.api.nvim_create_augroup("Colorscheme", { clear = true })
 
-local setup_base16 = function()
-  local status_ok, base16 = pcall(require, "base16-colorscheme")
-  if not status_ok then
-    return
-  end
-
-  local c = base16.colors
-  local hi = base16.highlight
-
+local default_base16 = function(c, hi)
   hi.MatchTag = { guifg = c.base08, guibg = c.base02 }
   hi.SignColumn = { guifg = c.base03, guibg = "NONE" }
   hi.Yanked = { guifg = "NONE", guibg = c.base02 }
@@ -83,9 +75,9 @@ local setup_base16 = function()
   hi.StatusLineLineInfo = { guifg = c.base07, guibg = c.base02 }
   hi.StatusLineVisualPercentage = { guifg = c.base0D, guibg = c.base00 }
 
-  hi.StatusLineVCSAdd = 'SignifyLineAdd'
-  hi.StatusLineVCSChange = 'SignifyLineChange'
-  hi.StatusLineVCSDelete = 'SignifyLineDelete'
+  hi.StatusLineVCSAdd = "SignifyLineAdd"
+  hi.StatusLineVCSChange = "SignifyLineChange"
+  hi.StatusLineVCSDelete = "SignifyLineDelete"
 
   hi.StatusLineIndicatorNeutral = { guifg = c.base0D, guibg = c.base00, gui = "bold" }
   hi.StatusLineIndicatorWarning = { guifg = c.base09, guibg = c.base00, gui = "bold" }
@@ -95,83 +87,76 @@ local setup_base16 = function()
   hi.WinbarActive = { guifg = c.base0C, guibg = "NONE", gui = "bold" }
   hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
   hi.WinbarFill = { guifg = c.base02, guibg = c.base01 }
-
-  -- Refine a bit for base46 colorschemes
-  if vim.g.colors_name:match("^base46") then
-
-    hi.LineNr = { guifg = c.grey }
-    hi.CursorLineNr = { guifg = c.white }
-
-    hi.ColorColumn = { guibg = c.base01 }
-    hi.CursorLine = { guibg = c.base01 }
-
-    hi.VertSplit = { guifg = c.line }
-    hi.WinSeparator = { guifg = c.line }
-
-    hi.TelescopeMatching = { guifg = c.dark_purple, gui = "bold" }
-    hi.TelescopeBorder = { guifg = c.darker_black, guibg = c.darker_black }
-    hi.TelescopePromptBorder = { guifg = c.black2, guibg = c.black2 }
-    hi.TelescopePromptNormal = { guifg = c.white, guibg = c.black2 }
-    hi.TelescopePromptPrefix = { guifg = c.red, guibg = c.black2 }
-    hi.TelescopeNormal = { guibg = c.darker_black }
-    hi.TelescopeResultsNormal = { guifg = c.base03, guibg = c.darker_black }
-    hi.TelescopePreviewTitle = { guifg = c.black, guibg = c.green }
-    hi.TelescopePromptTitle = { guifg = c.black, guibg = c.red }
-    hi.TelescopeResultsTitle = { guifg = c.darker_black, guibg = c.darker_black }
-    hi.TelescopeSelection = { guibg = c.black2, guifg = c.base03 }
-    hi.TelescopeResultsDiffAdd = { guifg = c.green }
-    hi.TelescopeResultsDiffChange = { guifg = c.yellow }
-    hi.TelescopeResultsDiffDelete = { guifg = c.red }
-
-    hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.darker_black }
-    hi.StatusLineFileInfo = { guifg = c.white, guibg = c.lightbg, gui = 'bold' }
-    hi.StatusLineGitBranch = { guifg = c.light_grey, guibg = c.statusline_bg }
-    hi.StatusLineNeutral = { guifg = c.light_grey, guibg = c.statusline_bg }
-    hi.StatusLineLSPStatus = { guifg = c.green, guibg = c.black }
-    hi.StatusLineLineInfo = { guifg = c.white, guibg = c.lightbg }
-    hi.StatusLineVisualPercentage = { guifg = c.light_grey, guibg = c.black }
-
-    hi.StatusLineVCSAdd = { guifg = c.green, guibg = c.statusline_bg }
-    hi.StatusLineVCSChange = { guifg = c.blue, guibg = c.statusline_bg }
-    hi.StatusLineVCSDelete = { guifg = c.red, guibg = c.statusline_bg }
-
-    hi.StatusLineIndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
-    hi.StatusLineIndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
-    hi.StatusLineIndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
-    hi.StatusLineIndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
-
-    hi.WinbarActive = { guifg = c.white, gui = "bold" }
-    hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
-    hi.WinbarFill = { guifg = c.grey_fg, guibg = c.black2 }
-
-    hi.NvimTreeNormal = { guibg = c.darker_black }
-    hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
-    hi.NvimTreeRootFolder = { guifg = c.red, gui = "bold" }
-    hi.NvimTreeCursorLine = { guibg = c.black2 }
-    hi.NvimTreeIndentMarker = { guifg = c.grey_fg }
-
-    hi.DiffviewFilePanelTitle = 'NvimTreeRootFolder'
-    hi.DiffviewFilePanelConflicts = 'NvimTreeRootFolder'
-    hi.DiffviewFilePanelCounter = 'Comment'
-    hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
-    hi.DiffviewNormal = 'NvimTreeNormal'
-    hi.DiffviewWinSeparator = 'NvimTreeWinSeparator'
-
-    -- These work best of base46-classic-dark
-    hi.DiffAdd = { guibg = "#122f2f", guifg = "none" }
-    hi.DiffChange = { guibg = "#222a39", guifg = "none" }
-    hi.DiffText = { guibg = "#2f3f5c", guifg = "none" }
-    hi.DiffDelete = { guibg = "none", guifg = "#4f2739" }
-
-    -- An attempt to port NvChad's base46 hlgroups
-    -- require("yardnsm.misc.base46-nvchad").setup_highlights()
-  end
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = {"base16-*", "base46-*"},
-  group = augroup,
-  callback = function()
-    setup_base16()
-  end,
-})
+local default_base46 = function(c, hi)
+  hi.LineNr = { guifg = c.grey }
+  hi.CursorLineNr = { guifg = c.white }
+
+  hi.ColorColumn = { guibg = c.base01 }
+  hi.CursorLine = { guibg = c.base01 }
+
+  hi.VertSplit = { guifg = c.line }
+  hi.WinSeparator = { guifg = c.line }
+
+  hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.darker_black }
+  hi.StatusLineFileInfo = { guifg = c.white, guibg = c.lightbg, gui = "bold" }
+  hi.StatusLineGitBranch = { guifg = c.light_grey, guibg = c.statusline_bg }
+  hi.StatusLineNeutral = { guifg = c.light_grey, guibg = c.statusline_bg }
+  hi.StatusLineLSPStatus = { guifg = c.green, guibg = c.black }
+  hi.StatusLineLineInfo = { guifg = c.white, guibg = c.lightbg }
+  hi.StatusLineVisualPercentage = { guifg = c.light_grey, guibg = c.black }
+
+  hi.StatusLineVCSAdd = { guifg = c.green, guibg = c.statusline_bg }
+  hi.StatusLineVCSChange = { guifg = c.blue, guibg = c.statusline_bg }
+  hi.StatusLineVCSDelete = { guifg = c.red, guibg = c.statusline_bg }
+
+  hi.StatusLineIndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
+  hi.StatusLineIndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
+  hi.StatusLineIndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
+  hi.StatusLineIndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
+
+  hi.WinbarActive = { guifg = c.white, gui = "bold" }
+  hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
+  hi.WinbarFill = { guifg = c.grey_fg, guibg = c.black2 }
+
+  -- These work best of base46-classic-dark
+  hi.DiffAdd = { guibg = "#122f2f", guifg = "none" }
+  hi.DiffChange = { guibg = "#222a39", guifg = "none" }
+  hi.DiffText = { guibg = "#2f3f5c", guifg = "none" }
+  hi.DiffDelete = { guibg = "none", guifg = "#4f2739" }
+
+  -- An attempt to port NvChad's base46 hlgroups
+  -- require("yardnsm.misc.base46-nvchad").setup_highlights()
+end
+
+local M = {}
+
+M.run_handler = function(handler)
+  local status_ok, base16 = pcall(require, "base16-colorscheme")
+  if not status_ok then
+    return
+  end
+
+  local c = base16.colors
+  local hi = base16.highlight
+
+  handler(c, hi)
+end
+
+M.setup_autocmd = function(pattern, handler)
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = pattern,
+    group = augroup,
+    callback = function()
+      M.run_handler(handler)
+    end,
+  })
+end
+
+M.setup = function()
+  M.setup_autocmd({ "base16-*", "base46-*" }, default_base16)
+  M.setup_autocmd("base46-*", default_base46)
+end
+
+return M

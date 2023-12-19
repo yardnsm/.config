@@ -1,5 +1,12 @@
 return {
   {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    init = function()
+      vim.g.skip_ts_context_commentstring_module = true
+    end,
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
 
@@ -9,7 +16,6 @@ return {
     dependencies = {
       { "nvim-treesitter/playground", after = "nvim-treesitter" },
       { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-      { "JoosepAlviste/nvim-ts-context-commentstring", after = "nvim-treesitter" },
       { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
 
       -- automatically close `end` blocks (`endif`, `done`, etc.)

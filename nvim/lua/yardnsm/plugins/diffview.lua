@@ -20,6 +20,15 @@ return {
     },
   },
 
+  setup_base46 = function(c, hi)
+    hi.DiffviewFilePanelTitle = "NvimTreeRootFolder"
+    hi.DiffviewFilePanelConflicts = "NvimTreeRootFolder"
+    hi.DiffviewFilePanelCounter = "Comment"
+    hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
+    hi.DiffviewNormal = "NvimTreeNormal"
+    hi.DiffviewWinSeparator = "NvimTreeWinSeparator"
+  end,
+
   config = function(_, opts)
     require("diffview").setup(opts)
 
