@@ -1,4 +1,8 @@
-local augroup = vim.api.nvim_create_augroup("Colorscheme", { clear = true })
+-- Setup custom highlight groups for base16 and my port of base46
+
+local base16_utils = require("yardnsm.misc.base16-utils")
+
+local M = {}
 
 local default_base16 = function(c, hi)
   hi.MatchTag = { guifg = c.base08, guibg = c.base02 }
@@ -130,33 +134,11 @@ local default_base46 = function(c, hi)
   -- require("yardnsm.misc.base46-nvchad").setup_highlights()
 end
 
-local M = {}
-
-M.run_handler = function(handler)
-  local status_ok, base16 = pcall(require, "base16-colorscheme")
-  if not status_ok then
-    return
-  end
-
-  local c = base16.colors
-  local hi = base16.highlight
-
-  handler(c, hi)
-end
-
-M.setup_autocmd = function(pattern, handler)
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = pattern,
-    group = augroup,
-    callback = function()
-      M.run_handler(handler)
-    end,
-  })
-end
-
+-- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"
+-- fiels.
 M.setup = function()
-  M.setup_autocmd({ "base16-*", "base46-*" }, default_base16)
-  M.setup_autocmd("base46-*", default_base46)
+  base16_utils.attach_handler({ "base16-*", "base46-*" }, default_base16)
+  base16_utils.attach_handler("base46-*", default_base46)
 end
 
 return M

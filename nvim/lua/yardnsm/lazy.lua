@@ -20,14 +20,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- }}}
 
--- TODO make lazy rounded borders (and export it to some global config is I'm here anyways)
-
 -- Hook plugin's spec to allow setting plugins-specific hlgroups for base46;
 -- This allows to add an autocmd to be run when the colorscheme is changed to a base46 one.
 
-local Coloscheme = require("yardnsm.colorscheme")
+-- base46 hooks {{{
 
-local run_on_plugin_config = function(fn)
+local base16_utils = require("yardnsm.misc.base16-utils")
+
+local hook_plugin_config = function(fn)
   local Loader = require("lazy.core.loader")
   local _old_config = Loader.config
 
@@ -38,18 +38,17 @@ local run_on_plugin_config = function(fn)
   end
 end
 
-run_on_plugin_config(function(plugin)
+hook_plugin_config(function(plugin)
   if plugin.setup_base46 == nil then
     return
   end
 
-  -- For lazy-loaded plugins we need to run the handler right away
-  if plugin.lazy and vim.g.colors_name:match("^base46") then
-    Coloscheme.run_handler(plugin.setup_base46)
-  end
-
-  Coloscheme.setup_autocmd("base46-*", plugin.setup_base46)
+  base16_utils.attach_handler("base46-*", plugin.setup_base46)
 end)
+
+-- }}}
+
+-- TODO make lazy rounded borders (and export it to some global config is I'm here anyways)
 
 require("lazy").setup({
   spec = {
