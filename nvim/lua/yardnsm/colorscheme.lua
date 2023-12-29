@@ -69,28 +69,7 @@ local default_base16 = function(c, hi)
   hi.CmpItemAbbr = { guibg = "NONE" }
   hi.CmpItemAbbrDeprecated = { guifg = "#808080", guibg = "NONE", gui = "strikethrough" }
   hi.CmpItemAbbrMatch = { guifg = "#569CD6", guibg = "NONE" }
-  hi.CmpItemAbbrMatchFuzzy = { guifg = "#569CD6", guibg = "NONE" }
-
-  hi.StatusLineIcon = "DevIconLua"
-  hi.StatusLineFileInfo = { guifg = c.base07, guibg = c.base02, gui = "bold" }
-  hi.StatusLineGitBranch = { guifg = c.base0C, guibg = c.base01 }
-  hi.StatusLineNeutral = { guifg = c.base0C, guibg = c.base01 }
-  hi.StatusLineLSPStatus = "DiffAdd"
-  hi.StatusLineLineInfo = { guifg = c.base07, guibg = c.base02 }
-  hi.StatusLineVisualPercentage = { guifg = c.base0D, guibg = c.base00 }
-
-  hi.StatusLineVCSAdd = "SignifyLineAdd"
-  hi.StatusLineVCSChange = "SignifyLineChange"
-  hi.StatusLineVCSDelete = "SignifyLineDelete"
-
-  hi.StatusLineIndicatorNeutral = { guifg = c.base0D, guibg = c.base00, gui = "bold" }
-  hi.StatusLineIndicatorWarning = { guifg = c.base09, guibg = c.base00, gui = "bold" }
-  hi.StatusLineIndicatorError = { guifg = c.base08, guibg = c.base00, gui = "bold" }
-  hi.StatusLineIndicatorSuccess = { guifg = c.base0B, guibg = c.base00, gui = "bold" }
-
-  hi.WinbarActive = { guifg = c.base0C, guibg = "NONE", gui = "bold" }
-  hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
-  hi.WinbarFill = { guifg = c.base02, guibg = c.base01 }
+  hi.CmpItemAbbrMatchFuzzy = { guifg = "#569CD6", guibg = "NONE", gui = "bold" }
 end
 
 local default_base46 = function(c, hi)
@@ -103,26 +82,44 @@ local default_base46 = function(c, hi)
   hi.VertSplit = { guifg = c.line }
   hi.WinSeparator = { guifg = c.line }
 
-  hi.StatusLineIcon = { guifg = c.nord_blue, guibg = c.darker_black }
-  hi.StatusLineFileInfo = { guifg = c.white, guibg = c.lightbg, gui = "bold" }
-  hi.StatusLineGitBranch = { guifg = c.light_grey, guibg = c.statusline_bg }
-  hi.StatusLineNeutral = { guifg = c.light_grey, guibg = c.statusline_bg }
-  hi.StatusLineLSPStatus = { guifg = c.green, guibg = c.black }
-  hi.StatusLineLineInfo = { guifg = c.white, guibg = c.lightbg }
-  hi.StatusLineVisualPercentage = { guifg = c.light_grey, guibg = c.black }
+  hi.FloatBorder = { guifg = c.one_bg3, guibg = c.black }
 
-  hi.StatusLineVCSAdd = { guifg = c.green, guibg = c.statusline_bg }
-  hi.StatusLineVCSChange = { guifg = c.blue, guibg = c.statusline_bg }
-  hi.StatusLineVCSDelete = { guifg = c.red, guibg = c.statusline_bg }
+  hi.DiagnosticHint = { guifg = c.purple }
+  hi.DiagnosticError = { guifg = c.red }
+  hi.DiagnosticWarn = { guifg = c.yellow }
+  hi.DiagnosticInfo = { guifg = c.green }
+  hi.DiagnosticFloatingHint = { guifg = c.purple }
+  hi.DiagnosticFloatingError = { guifg = c.red }
+  hi.DiagnosticFloatingWarn = { guifg = c.yellow }
+  hi.DiagnosticFloatingInfo = { guifg = c.green }
 
-  hi.StatusLineIndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
-  hi.StatusLineIndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
-  hi.StatusLineIndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
-  hi.StatusLineIndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
+  hi.StatusLine = { guifg = c.light_grey, guibg = c.statusline_bg }
+  hi.StatusLineNC = { guifg = c.base03, guibg = c.one_bg }
 
-  hi.WinbarActive = { guifg = c.white, gui = "bold" }
-  hi.WinbarInactive = { guifg = c.base01, guibg = "NONE" }
-  hi.WinbarFill = { guifg = c.grey_fg, guibg = c.black2 }
+  hi.St_Reset = 'StatusLine'
+  hi.St_GitBranch = { guifg = c.base03, guibg = c.statusline_bg }
+  hi.St_FileName = { guifg = c.white, guibg = c.one_bg3, gui = "bold" }
+  hi.St_FileNameSep = { guifg = c.white, guibg = c.one_bg2 }
+  hi.St_FileNameSepSec = { guifg = c.white, guibg = c.one_bg }
+  hi.St_Text = { guifg = c.light_grey, guibg = c.statusline_bg }
+  hi.St_TextDark = { guifg = c.base03, guibg = c.statusline_bg }
+  hi.St_LSP = { guifg = c.green, guibg = c.statusline_bg }
+  hi.St_Filetype = { guifg = c.blue, guibg = c.statusline_bg }
+  hi.St_LineInfo = { guifg = c.white, guibg = c.one_bg }
+  hi.St_LineInfoSecond = { guifg = c.white, guibg = c.one_bg3 }
+
+  hi.St_VCSAdd = { guifg = c.green, guibg = c.statusline_bg }
+  hi.St_VCSChange = { guifg = c.blue, guibg = c.statusline_bg }
+  hi.St_VCSDelete = { guifg = c.red, guibg = c.statusline_bg }
+
+  hi.St_IndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
+  hi.St_IndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
+  hi.St_IndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
+  hi.St_IndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
+
+  hi.Wb_TabActive = { guifg = c.white, gui = "bold" }
+  hi.Wb_TabInactive = { guifg = c.base01, guibg = "NONE" }
+  hi.Wb_Fill = { guifg = c.grey_fg, guibg = c.darker_black }
 
   -- These work best of base46-classic-dark
   hi.DiffAdd = { guibg = "#122f2f", guifg = "none" }
@@ -135,7 +132,7 @@ local default_base46 = function(c, hi)
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"
--- fiels.
+-- field.
 M.setup = function()
   base16_utils.attach_handler({ "base16-*", "base46-*" }, default_base16)
   base16_utils.attach_handler("base46-*", default_base46)

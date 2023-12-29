@@ -2,8 +2,9 @@ return {
   {
     "lewis6991/gitsigns.nvim",
 
+    lazy = false,
+
     opts = {
-      keymaps = {},
       current_line_blame = false,
 
       signs = {

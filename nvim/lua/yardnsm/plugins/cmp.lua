@@ -1,11 +1,11 @@
 -- local cmp_status_ok, cmp = pcall(require, "cmp")
 -- if not cmp_status_ok then
-  -- return
+-- return
 -- end
 
 -- local snip_status_ok, luasnip = pcall(require, "luasnip")
 -- if not snip_status_ok then
-  -- return
+-- return
 -- end
 
 local check_backspace = function()
@@ -15,31 +15,31 @@ end
 
 -- https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
 }
 
 return {
@@ -66,9 +66,9 @@ return {
       -- Setup LuaSnip
       -- TODO fix
       -- snippet = {
-        -- expand = function(args)
-          -- luasnip.lsp_expand(args.body)
-        -- end,
+      -- expand = function(args)
+      -- luasnip.lsp_expand(args.body)
+      -- end,
       -- },
 
       -- Setup mappings
@@ -134,13 +134,13 @@ return {
       },
 
       formatting = {
-        fields = { "abbr", "kind", "menu" },
+        fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           -- Kind icons
-          vim_item.kind = " " .. (kind_icons[vim_item.kind] or "") .. "  " .. vim_item.kind
+          vim_item.kind = " " .. (kind_icons[vim_item.kind] or "") .. "  "
 
           -- Completion menus
-          vim_item.menu = ({
+          vim_item.menu = " " .. ({
             nvim_lsp = "「LSP」",
             luasnip = "「Snippet」",
             buffer = "「Buffer」",

@@ -58,6 +58,10 @@ M.get_servers_names = function()
     end
   end
 
+  if #filtered == 0 then
+    table.insert(filtered, buf_client_names[1])
+  end
+
   local remaining = #buf_client_names - #filtered
 
   return table.concat(filtered, ",") .. (remaining > 0 and (" +" .. remaining) or "")

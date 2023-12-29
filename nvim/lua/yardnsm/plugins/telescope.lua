@@ -67,7 +67,7 @@ return {
     end,
 
     opts = function()
-      local actions = require("telescope.actions") -- TODO this will work?
+      local actions = require("telescope.actions")
 
       return {
         defaults = {
