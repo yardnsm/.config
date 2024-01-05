@@ -61,6 +61,9 @@ return {
       hi.NvimTreeRootFolder = { guifg = c.red, gui = "bold" }
       hi.NvimTreeCursorLine = { guibg = c.black2 }
       hi.NvimTreeIndentMarker = { guifg = c.grey_fg }
+
+      hi.NvimTreeFolderArrowOpen = "Directory"
+      hi.NvimTreeFolderArrowClosed = { guifg = c.grey_fg }
     end,
 
     config = function(_, opts)

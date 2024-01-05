@@ -1,0 +1,211 @@
+#!/bin/bash
+# base16-shell (https://github.com/chriskempson/base16-shell)
+# Base16 Shell template by Chris Kempson (http://chriskempson.com)
+
+scheme_slug="$1"
+base_00_hex="$2"
+base_01_hex="$3"
+base_02_hex="$4"
+base_03_hex="$5"
+base_04_hex="$6"
+base_05_hex="$7"
+base_06_hex="$8"
+base_07_hex="$9"
+base_08_hex="${10}"
+base_09_hex="${11}"
+base_0A_hex="${12}"
+base_0B_hex="${13}"
+base_0C_hex="${14}"
+base_0D_hex="${15}"
+base_0E_hex="${16}"
+base_0F_hex="${17}"
+
+base_00_r="${base_00_hex:0:2}"
+base_00_g="${base_00_hex:2:2}"
+base_00_b="${base_00_hex:4:2}"
+
+base_01_r="${base_01_hex:0:2}"
+base_01_g="${base_01_hex:2:2}"
+base_01_b="${base_01_hex:4:2}"
+
+base_02_r="${base_02_hex:0:2}"
+base_02_g="${base_02_hex:2:2}"
+base_02_b="${base_02_hex:4:2}"
+
+base_03_r="${base_03_hex:0:2}"
+base_03_g="${base_03_hex:2:2}"
+base_03_b="${base_03_hex:4:2}"
+
+base_04_r="${base_04_hex:0:2}"
+base_04_g="${base_04_hex:2:2}"
+base_04_b="${base_04_hex:4:2}"
+
+base_05_r="${base_05_hex:0:2}"
+base_05_g="${base_05_hex:2:2}"
+base_05_b="${base_05_hex:4:2}"
+
+base_06_r="${base_06_hex:0:2}"
+base_06_g="${base_06_hex:2:2}"
+base_06_b="${base_06_hex:4:2}"
+
+base_07_r="${base_07_hex:0:2}"
+base_07_g="${base_07_hex:2:2}"
+base_07_b="${base_07_hex:4:2}"
+
+base_08_r="${base_08_hex:0:2}"
+base_08_g="${base_08_hex:2:2}"
+base_08_b="${base_08_hex:4:2}"
+
+base_09_r="${base_09_hex:0:2}"
+base_09_g="${base_09_hex:2:2}"
+base_09_b="${base_09_hex:4:2}"
+
+base_0A_r="${base_0A_hex:0:2}"
+base_0A_g="${base_0A_hex:2:2}"
+base_0A_b="${base_0A_hex:4:2}"
+
+base_0B_r="${base_0B_hex:0:2}"
+base_0B_g="${base_0B_hex:2:2}"
+base_0B_b="${base_0B_hex:4:2}"
+
+base_0C_r="${base_0C_hex:0:2}"
+base_0C_g="${base_0C_hex:2:2}"
+base_0C_b="${base_0C_hex:4:2}"
+
+base_0D_r="${base_0D_hex:0:2}"
+base_0D_g="${base_0D_hex:2:2}"
+base_0D_b="${base_0D_hex:4:2}"
+
+base_0E_r="${base_0E_hex:0:2}"
+base_0E_g="${base_0E_hex:2:2}"
+base_0E_b="${base_0E_hex:4:2}"
+
+base_0F_r="${base_0F_hex:0:2}"
+base_0F_g="${base_0F_hex:2:2}"
+base_0F_b="${base_0F_hex:4:2}"
+
+export BASE16_THEME=$scheme_slug
+[[ -n "$TMUX" ]] \
+  && tmux set-environment BASE16_THEME "$scheme_slug"
+
+color00="$base_00_r/$base_00_g/$base_00_b" # Base 00 - Black
+color01="$base_08_r/$base_08_g/$base_08_b" # Base 08 - Red
+color02="$base_0B_r/$base_0B_g/$base_0B_b" # Base 0B - Green
+color03="$base_0A_r/$base_0A_g/$base_0A_b" # Base 0A - Yellow
+color04="$base_0D_r/$base_0D_g/$base_0D_b" # Base 0D - Blue
+color05="$base_0E_r/$base_0E_g/$base_0E_b" # Base 0E - Magenta
+color06="$base_0C_r/$base_0C_g/$base_0C_b" # Base 0C - Cyan
+color07="$base_05_r/$base_05_g/$base_05_b" # Base 05 - White
+color08="$base_03_r/$base_03_g/$base_03_b" # Base 03 - Bright Black
+color09=$color01 # Base 08 - Bright Red
+color10=$color02 # Base 0B - Bright Green
+color11=$color03 # Base 0A - Bright Yellow
+color12=$color04 # Base 0D - Bright Blue
+color13=$color05 # Base 0E - Bright Magenta
+color14=$color06 # Base 0C - Bright Cyan
+color15="$base_07_r/$base_07_g/$base_07_b" # Base 07 - Bright White
+color16="$base_09_r/$base_09_g/$base_09_b" # Base 09
+color17="$base_0F_r/$base_0F_g/$base_0F_b" # Base 0F
+color18="$base_01_r/$base_01_g/$base_01_b" # Base 01
+color19="$base_02_r/$base_02_g/$base_02_b" # Base 02
+color20="$base_04_r/$base_04_g/$base_04_b" # Base 04
+color21="$base_06_r/$base_06_g/$base_06_b" # Base 06
+color_foreground="$base_05_r/$base_05_g/$base_05_b" # Base 05
+color_background="$base_00_r/$base_00_g/$base_00_b" # Base 00
+
+if [ -n "$TMUX" ]; then
+  # Tell tmux to pass the escape sequences through
+  # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+  put_template() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $@; }
+  put_template_var() { printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $@; }
+  put_template_custom() { printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $@; }
+elif [ "${TERM%%[-.]*}" = "screen" ]; then
+  # GNU screen (screen, screen-256color, screen-256color-bce)
+  put_template() { printf '\033P\033]4;%d;rgb:%s\007\033\\' $@; }
+  put_template_var() { printf '\033P\033]%d;rgb:%s\007\033\\' $@; }
+  put_template_custom() { printf '\033P\033]%s%s\007\033\\' $@; }
+elif [ "${TERM%%-*}" = "linux" ]; then
+  put_template() { [ $1 -lt 16 ] && printf "\e]P%x%s" $1 $(echo $2 | sed 's/\///g'); }
+  put_template_var() { true; }
+  put_template_custom() { true; }
+else
+  put_template() { printf '\033]4;%d;rgb:%s\033\\' $@; }
+  put_template_var() { printf '\033]%d;rgb:%s\033\\' $@; }
+  put_template_custom() { printf '\033]%s%s\033\\' $@; }
+fi
+
+# 16 color space
+put_template 0  $color00
+put_template 1  $color01
+put_template 2  $color02
+put_template 3  $color03
+put_template 4  $color04
+put_template 5  $color05
+put_template 6  $color06
+put_template 7  $color07
+put_template 8  $color08
+put_template 9  $color09
+put_template 10 $color10
+put_template 11 $color11
+put_template 12 $color12
+put_template 13 $color13
+put_template 14 $color14
+put_template 15 $color15
+
+# 256 color space
+put_template 16 $color16
+put_template 17 $color17
+put_template 18 $color18
+put_template 19 $color19
+put_template 20 $color20
+put_template 21 $color21
+
+# foreground / background / cursor color
+if [ -n "$ITERM_SESSION_ID" ]; then
+  # iTerm2 proprietary escape codes
+  put_template_custom Pg $base_05_hex # foreground
+  put_template_custom Ph $base_00_hex # background
+  put_template_custom Pi $base_05_hex # bold color
+  put_template_custom Pj $base_02_hex # selection color
+  put_template_custom Pk $base_05_hex # selected text color
+  put_template_custom Pl $base_05_hex # cursor
+  put_template_custom Pm $base_00_hex # cursor text
+else
+  put_template_var 10 $color_foreground
+  if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]; then
+    put_template_var 11 $color_background
+    if [ "${TERM%%-*}" = "rxvt" ]; then
+      put_template_var 708 $color_background # internal border (rxvt)
+    fi
+  fi
+  put_template_custom 12 ";7" # cursor (reverse video)
+fi
+
+# clean up
+unset -f put_template
+unset -f put_template_var
+unset -f put_template_custom
+unset color00
+unset color01
+unset color02
+unset color03
+unset color04
+unset color05
+unset color06
+unset color07
+unset color08
+unset color09
+unset color10
+unset color11
+unset color12
+unset color13
+unset color14
+unset color15
+unset color16
+unset color17
+unset color18
+unset color19
+unset color20
+unset color21
+unset color_foreground
+unset color_background

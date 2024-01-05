@@ -92,7 +92,12 @@ syntax on                             " enable syntax highlighting
 set background=dark                 " assume a dark background
 set termguicolors                   " use true colors in the treminal
 
-colorscheme base46-classic-dark
+let s:theme_name_on_load = v:lua.require("yardnsm.misc.base16-shell").get_shell_theme()
+if s:theme_name_on_load != v:null
+  execute "colorscheme" s:theme_name_on_load
+else
+  colorscheme base46-classic-dark
+endif
 
 " Highlight conflict markerts
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

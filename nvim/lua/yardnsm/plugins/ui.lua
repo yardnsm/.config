@@ -28,6 +28,7 @@ return {
     },
   },
 
+  -- TODO fix options
   {
     "j-hui/fidget.nvim",
     -- opts = {

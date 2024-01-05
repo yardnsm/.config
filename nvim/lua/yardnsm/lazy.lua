@@ -48,15 +48,18 @@ end)
 
 -- }}}
 
--- TODO make lazy rounded borders (and export it to some global config is I'm here anyways)
-
 require("lazy").setup({
   spec = {
     { import = "yardnsm.plugins" },
   },
+
   defaults = {
     lazy = false,
     version = false,
+  },
+
+  ui = {
+    border = "rounded"
   },
 
   checker = { enabled = false },

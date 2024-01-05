@@ -76,8 +76,8 @@ local default_base46 = function(c, hi)
   hi.LineNr = { guifg = c.grey }
   hi.CursorLineNr = { guifg = c.white }
 
-  hi.ColorColumn = { guibg = c.base01 }
-  hi.CursorLine = { guibg = c.base01 }
+  hi.ColorColumn = { guibg = c.black2 }
+  hi.CursorLine = { guibg = c.black2 }
 
   hi.VertSplit = { guifg = c.line }
   hi.WinSeparator = { guifg = c.line }
@@ -126,6 +126,31 @@ local default_base46 = function(c, hi)
   hi.DiffChange = { guibg = "#222a39", guifg = "none" }
   hi.DiffText = { guibg = "#2f3f5c", guifg = "none" }
   hi.DiffDelete = { guibg = "none", guifg = "#4f2739" }
+
+  -- Lazy.nvim
+  hi.LazyNormal = "Normal"
+  hi.LazyH1 = { guibg = c.green, guifg = c.black }
+  hi.LazyButton = { guibg = c.one_bg, guifg = c.light_grey }
+  hi.LazyH2 = { guifg = c.red, bold = true, underline = true }
+  hi.LazyReasonPlugin = { guifg = c.red }
+  hi.LazyValue = { guifg = c.teal }
+  hi.LazyDir = { guifg = c.base05 }
+  hi.LazyUrl = { guifg = c.base05 }
+  hi.LazyCommit = { guifg = c.green }
+  hi.LazyNoCond = { guifg = c.red }
+  hi.LazySpecial = { guifg = c.blue }
+  hi.LazyReasonFt = { guifg = c.purple }
+  hi.LazyOperator = { guifg = c.white }
+  hi.LazyReasonKeys = { guifg = c.teal }
+  hi.LazyTaskOutput = { guifg = c.white }
+  hi.LazyCommitIssue = { guifg = c.pink }
+  hi.LazyReasonEvent = { guifg = c.yellow }
+  hi.LazyReasonStart = { guifg = c.white }
+  hi.LazyReasonRuntime = { guifg = c.nord_blue }
+  hi.LazyReasonCmd = { guifg = c.sun }
+  hi.LazyReasonSource = { guifg = c.cyan }
+  hi.LazyReasonImport = { guifg = c.white }
+  hi.LazyProgressDone = { guifg = c.green }
 
   -- An attempt to port NvChad's base46 hlgroups
   -- require("yardnsm.misc.base46-nvchad").setup_highlights()

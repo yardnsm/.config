@@ -6,6 +6,9 @@ local statusline_minimal_modes = {
   netrw = "Netrw",
   nerdtree = "NERD",
   NvimTree = "NvimTree",
+  mason = "Mason",
+  lazy = "Lazy",
+  lspinfo = "LSP Info",
   TelescopePrompt = "Telescope",
   DiffviewFiles = "Diffview Files",
   DiffviewFileHistory = "Diffview History",
@@ -16,7 +19,8 @@ local wrap_filename = function(filename)
   return table.concat({
     "%#St_FileName# ",
     filename,
-    " %#St_FileNameSep# %#St_FileNameSepSec# %#St_Text#",
+    " %#St_Text#",
+    -- " %#St_FileNameSep# %#St_FileNameSepSec# %#St_Text#",
   })
 end
 

@@ -193,7 +193,7 @@ M.vcs_branch = function()
     return ""
   end
 
-  return "   " .. branch .. "  "
+  return "  " .. branch .. "  "
 end
 
 M.vcs_stats = function()
