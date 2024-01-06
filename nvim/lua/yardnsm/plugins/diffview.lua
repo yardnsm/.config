@@ -26,7 +26,7 @@ return {
     hi.DiffviewFilePanelCounter = "Comment"
     hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
     hi.DiffviewNormal = "NvimTreeNormal"
-    hi.DiffviewWinSeparator = "NvimTreeWinSeparator"
+    hi.DiffviewWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
   end,
 
   config = function(_, opts)

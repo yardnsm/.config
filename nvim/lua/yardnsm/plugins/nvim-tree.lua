@@ -62,6 +62,10 @@ return {
       hi.NvimTreeCursorLine = { guibg = c.black2 }
       hi.NvimTreeIndentMarker = { guifg = c.grey_fg }
 
+      hi.NvimTreeGitDirty = { guifg = c.vibrant_green }
+      hi.NvimTreeGitNew = { guifg = c.yellow }
+      hi.NvimTreeGitDeleted = { guifg = c.red }
+
       hi.NvimTreeFolderArrowOpen = "Directory"
       hi.NvimTreeFolderArrowClosed = { guifg = c.grey_fg }
     end,

@@ -107,6 +107,23 @@ add-zsh-hook chpwd _tmux_update_window_name \
   && _tmux_update_window_name
 
 # }}}
+# base16-shell {{{
+
+# Apply BASE16_THEME before each prompt, taking the value from tmux env
+_base16_shell_hook() {
+  [[ -z $TMUX ]] && return;
+
+  theme="$(tmux show-environment BASE16_THEME 2> /dev/null | awk -F'=' '{ print $2 }')"
+
+  if [[ -n "$theme" ]]; then
+    export BASE16_THEME="$theme"
+  fi
+}
+
+add-zsh-hook precmd _base16_shell_hook
+add-zsh-hook preexec _base16_shell_hook
+
+# }}}
 
 # Version managers
 # Some more configz may be at ./.zshenv

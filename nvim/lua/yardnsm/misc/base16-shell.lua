@@ -3,9 +3,6 @@
 
 local base16_utils = require("yardnsm.misc.base16-utils")
 
--- Fetching the env from tmux is a bit slow :(
-local should_use_tmux_env = false
-
 local M = {}
 
 local get_tmux_env = function(name)
@@ -18,10 +15,11 @@ local get_tmux_env = function(name)
   return vim.trim(vim.split(res.stdout, "=")[2])
 end
 
-M.get_shell_theme = function()
+---@param use_tmux boolean Fetching the env from tmux is a bit slow :(
+M.get_shell_theme = function(use_tmux)
   local theme = vim.env.BASE16_THEME
 
-  if should_use_tmux_env and theme == nil and vim.env.TMUX ~= nil then
+  if use_tmux and theme == nil and vim.env.TMUX ~= nil then
     return get_tmux_env('BASE16_THEME')
   end
 
@@ -29,9 +27,12 @@ M.get_shell_theme = function()
 end
 
 M.refresh = function()
-  if vim.g.colors_name == M.get_shell_theme() then
+  if vim.g.colors_name == M.get_shell_theme(false) then
     return
   end
+
+  -- We should also update the env
+  vim.env.BASE16_THEME = vim.g.colors_name
 
   base16_utils.run_handler(function(c)
     local on_exit = function(res)

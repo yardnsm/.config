@@ -26,20 +26,10 @@ local default_base16 = function(c, hi)
 
   hi.SpellBad = { guibg = c.base08, gui = "undercurl" }
   hi.SpellCap = { guibg = c.base0D, gui = "undercurl" }
-  hi.SpellRare = { guibg = c.base02, gui = "undercurl" }
-  hi.SpellLocal = { guibg = c.base03, gui = "undercurl" }
+  hi.SpellRare = { guibg = c.base0E, gui = "undercurl" }
+  hi.SpellLocal = { guibg = c.base0C, gui = "undercurl" }
 
   hi.DiffChange = { guifg = c.base0D }
-
-  hi.SignifyLineAdd = { guifg = c.base0B, guibg = c.base01 }
-  hi.SignifyLineChange = { guifg = c.base0E, guibg = c.base01 }
-  hi.SignifyLineDelete = { guifg = c.base08, guibg = c.base01 }
-
-  hi.NvimTreeRootFolder = "Statement"
-  hi.NvimTreeGitDirty = { guifg = c.base09 }
-  hi.NvimTreeGitNew = { guifg = c.base09 }
-  hi.NvimTreeGitStaged = { guifg = c.base0B }
-  hi.NvimTreeGitDeleted = { guifg = c.base08 }
 
   hi.LspReferenceText = "Visual"
   hi.LspReferenceRead = "Visual"
@@ -79,6 +69,8 @@ local default_base46 = function(c, hi)
   hi.ColorColumn = { guibg = c.black2 }
   hi.CursorLine = { guibg = c.black2 }
 
+  hi.Yanked = { guifg = "NONE", guibg = c.one_bg3 }
+
   hi.VertSplit = { guifg = c.line }
   hi.WinSeparator = { guifg = c.line }
 
@@ -92,6 +84,10 @@ local default_base46 = function(c, hi)
   hi.DiagnosticFloatingError = { guifg = c.red }
   hi.DiagnosticFloatingWarn = { guifg = c.yellow }
   hi.DiagnosticFloatingInfo = { guifg = c.green }
+
+  hi.LspReferenceText = { guibg = c.one_bg3 }
+  hi.LspReferenceRead = "LspReferenceText"
+  hi.LspReferenceWrite = "LspReferenceText"
 
   hi.StatusLine = { guifg = c.light_grey, guibg = c.statusline_bg }
   hi.StatusLineNC = { guifg = c.base03, guibg = c.one_bg }
