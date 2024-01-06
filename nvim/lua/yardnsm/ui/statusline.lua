@@ -20,7 +20,6 @@ local wrap_filename = function(filename)
     "%#St_FileName# ",
     filename,
     " %#St_Text#",
-    -- " %#St_FileNameSep# %#St_FileNameSepSec# %#St_Text#",
   })
 end
 

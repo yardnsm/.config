@@ -65,29 +65,22 @@ end
 local default_base46 = function(c, hi)
   hi.LineNr = { guifg = c.grey }
   hi.CursorLineNr = { guifg = c.white }
-
   hi.ColorColumn = { guibg = c.black2 }
   hi.CursorLine = { guibg = c.black2 }
-
   hi.Yanked = { guifg = "NONE", guibg = c.one_bg3 }
 
   hi.VertSplit = { guifg = c.line }
   hi.WinSeparator = { guifg = c.line }
-
   hi.FloatBorder = { guifg = c.one_bg3, guibg = c.black }
 
   hi.DiagnosticHint = { guifg = c.purple }
   hi.DiagnosticError = { guifg = c.red }
   hi.DiagnosticWarn = { guifg = c.yellow }
   hi.DiagnosticInfo = { guifg = c.green }
-  hi.DiagnosticFloatingHint = { guifg = c.purple }
-  hi.DiagnosticFloatingError = { guifg = c.red }
-  hi.DiagnosticFloatingWarn = { guifg = c.yellow }
-  hi.DiagnosticFloatingInfo = { guifg = c.green }
-
-  hi.LspReferenceText = { guibg = c.one_bg3 }
-  hi.LspReferenceRead = "LspReferenceText"
-  hi.LspReferenceWrite = "LspReferenceText"
+  hi.DiagnosticFloatingHint = "DiagnosticHint"
+  hi.DiagnosticFloatingError = "DiagnosticError"
+  hi.DiagnosticFloatingWarn = "DiagnosticWarn"
+  hi.DiagnosticFloatingInfo = "DiagnosticInfo"
 
   hi.StatusLine = { guifg = c.light_grey, guibg = c.statusline_bg }
   hi.StatusLineNC = { guifg = c.base03, guibg = c.one_bg }
@@ -95,8 +88,6 @@ local default_base46 = function(c, hi)
   hi.St_Reset = 'StatusLine'
   hi.St_GitBranch = { guifg = c.base03, guibg = c.statusline_bg }
   hi.St_FileName = { guifg = c.white, guibg = c.one_bg3, gui = "bold" }
-  hi.St_FileNameSep = { guifg = c.white, guibg = c.one_bg2 }
-  hi.St_FileNameSepSec = { guifg = c.white, guibg = c.one_bg }
   hi.St_Text = { guifg = c.light_grey, guibg = c.statusline_bg }
   hi.St_TextDark = { guifg = c.base03, guibg = c.statusline_bg }
   hi.St_LSP = { guifg = c.green, guibg = c.statusline_bg }

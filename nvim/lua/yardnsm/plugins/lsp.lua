@@ -65,9 +65,15 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
 
+    setup_base46 = function(c, hi)
+      hi.LspReferenceText = { guibg = c.one_bg3 }
+      hi.LspReferenceRead = "LspReferenceText"
+      hi.LspReferenceWrite = "LspReferenceText"
+    end,
+
     config = function()
       config.setup()
-    end
+    end,
   },
 
   {
