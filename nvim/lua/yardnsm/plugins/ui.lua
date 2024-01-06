@@ -14,7 +14,7 @@ return {
     keys = {
       { "[b", "<Plug>(CybuPrev)" },
       { "]b", "<Plug>(CybuNext)" },
-    }
+    },
   },
 
   {
@@ -23,24 +23,24 @@ return {
     opts = {
       sign = {
         priority = 80,
-        text = ""
-      }
+        text = "",
+      },
     },
   },
 
-  -- TODO fix options
   {
     "j-hui/fidget.nvim",
-    -- opts = {
-    --   text = {
-    --     spinner = "dots",
-    --   },
-
-    --   sources = {
-    --     ["null-ls"] = {
-    --       ignore = true,
-    --     },
-    --   },
-    -- }
-  }
+    opts = {
+      progress = {
+        display = {
+          progress_icon = {
+            pattern = "dots",
+          },
+        },
+        ignore = {
+          "null-ls",
+        },
+      },
+    },
+  },
 }

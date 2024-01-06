@@ -152,7 +152,7 @@ ls.filetype_extend("typescriptreact", { "javascript" })
 ls.filetype_extend("javascriptreact", { "javascript" })
 
 -- }}}
--- javascript {{{
+-- markdown {{{
 
 ls.add_snippets("markdown", {
   s("code", {

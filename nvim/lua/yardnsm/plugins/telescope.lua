@@ -26,7 +26,7 @@ return {
             return ":Telescope find_files<CR>"
           end
         end,
-        expr = true, -- TODO remove this? make it inline instead?
+        expr = true,
       },
     },
 

@@ -1,13 +1,3 @@
--- local cmp_status_ok, cmp = pcall(require, "cmp")
--- if not cmp_status_ok then
--- return
--- end
-
--- local snip_status_ok, luasnip = pcall(require, "luasnip")
--- if not snip_status_ok then
--- return
--- end
-
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -64,20 +54,19 @@ return {
 
     cmp.setup({
       -- Setup LuaSnip
-      -- TODO fix
-      -- snippet = {
-      -- expand = function(args)
-      -- luasnip.lsp_expand(args.body)
-      -- end,
-      -- },
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      },
 
       -- Setup mappings
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-n>"] = cmp.mapping.select_next_item(),
 
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 
         ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ["<C-e>"] = cmp.mapping({
@@ -87,22 +76,28 @@ return {
 
         -- Expand snippets
         ["<C-j>"] = cmp.mapping(function(fallback)
+          local luasnip = require("luasnip")
+
           if luasnip.expandable() then
             luasnip.expand()
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
-          else
+          elseif cmp.visible() then
             cmp.confirm({ select = true })
+          else
+            fallback()
           end
-        end, { "i", "c" }),
+        end, { "s", "i", "c" }),
 
         ["<C-k>"] = cmp.mapping(function(fallback)
+          local luasnip = require("luasnip")
+
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
           end
-        end, { "i", "c" }),
+        end, { "s", "i", "c" }),
 
         -- <CR> should be <CR>. Do not fucking select the current item; I have <Tab> for that.
         ["<CR>"] = function(fallback)
@@ -140,12 +135,13 @@ return {
           vim_item.kind = " " .. (kind_icons[vim_item.kind] or "") .. "  "
 
           -- Completion menus
-          vim_item.menu = " " .. ({
-            nvim_lsp = "「LSP」",
-            luasnip = "「Snippet」",
-            buffer = "「Buffer」",
-            path = "「Path」",
-          })[entry.source.name]
+          vim_item.menu = " "
+            .. ({
+              nvim_lsp = "「LSP」",
+              luasnip = "「Snippet」",
+              buffer = "「Buffer」",
+              path = "「Path」",
+            })[entry.source.name]
 
           return vim_item
         end,

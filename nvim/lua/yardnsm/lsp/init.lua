@@ -1,24 +1,11 @@
 -- vim: set foldmethod=marker foldlevel=0:
 
+local augroup = vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
+
 local M = {}
 
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return {
-    setup = function() end,
-  }
-end
-
-local navic_status_ok, navic = pcall(require, "nvim-navic")
-if not navic_status_ok then
-  navic = nil
-end
-
-local installer = require("mason-lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 -- List of servers to use, will be installed via mason-lspconfig
-local required_servers = {
+M.required_servers = {
   "bashls",
   "pyright",
   "lua_ls",
@@ -40,51 +27,49 @@ local disable_formatting_on_servers = {
 
 -- Diagnostics {{{
 
--- Signs
-
-local signs = {
-  { name = "DiagnosticSignError", text = "E" },
-  { name = "DiagnosticSignWarn", text = "W" },
-  { name = "DiagnosticSignHint", text = "!" },
-  { name = "DiagnosticSignInfo", text = "I" },
-}
-
-for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, {
-    texthl = sign.name,
-    text = sign.text,
-    numhl = "", -- sign.name
-  })
-end
-
--- Config
-
-local config = {
-
-  -- Disable virtual text
-  virtual_text = false,
-
-  -- Show signs
-  signs = {
-    active = signs,
-    priority = 90,
-  },
-
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  },
-}
-
 local function lsp_setup_dianostics()
+  -- Signs
+  local signs = {
+    { name = "DiagnosticSignError", text = "E" },
+    { name = "DiagnosticSignWarn", text = "W" },
+    { name = "DiagnosticSignHint", text = "!" },
+    { name = "DiagnosticSignInfo", text = "I" },
+  }
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, {
+      texthl = sign.name,
+      text = sign.text,
+      numhl = "", -- sign.name
+    })
+  end
+
+  -- Config
+
+  local config = {
+
+    -- Disable virtual text
+    virtual_text = false,
+
+    -- Show signs
+    signs = {
+      active = signs,
+      priority = 90,
+    },
+
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
   vim.diagnostic.config(config)
 end
 
@@ -106,19 +91,17 @@ end
 
 local function lsp_setup_asthetics()
   -- Fix background in :LspInfo and :LspInstallInfo
-  vim.api.nvim_exec(
-    [[
-      augroup lsp_info_hl_fix
-      autocmd!
-      autocmd FileType lspinfo,lsp-installer set winhl=Normal:Normal
-      augroup END
-    ]],
-    false
-  )
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "lspinfo", "lsp-installer" },
+    group = augroup,
+    callback = function()
+      vim.opt_local.winhl = "Normal:Normal"
+    end,
+  })
 
   -- Borders for :LspInfo
   local lspconfig_window = require("lspconfig.ui.windows")
-  lspconfig_window.default_options = { border = 'rounded' }
+  lspconfig_window.default_options = { border = "rounded" }
 end
 
 -- }}}
@@ -133,8 +116,6 @@ end
 -- }}}
 
 local function lsp_highlight_document(client, bufnr)
-  local augroup = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_autocmd("CursorHold", {
@@ -187,7 +168,7 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>Format<CR>", opts)
 end
 
-local function on_attach(client, bufnr)
+M.on_attach = function(client, bufnr)
   -- Disable formatting if necessary
   if vim.tbl_contains(disable_formatting_on_servers, client.name) then
     client.server_capabilities.document_formatting = false
@@ -196,15 +177,22 @@ local function on_attach(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client, bufnr)
 
-  if navic then
-    navic.attach(client, bufnr)
+  -- Setup navic
+  if client.supports_method("textDocument/documentSymbol") then
+    local status_ok, navic = pcall(require, "nvim-navic")
+    if status_ok then
+      navic.attach(client, bufnr)
+    end
   end
 end
 
-local function make_capabilities()
+M.make_capabilities = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  capabilities = cmp_nvim_lsp.default_capabilities()
+  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if status_ok then
+    capabilities = cmp_nvim_lsp.default_capabilities()
+  end
 
   return capabilities
 end
@@ -214,30 +202,6 @@ M.setup = function()
   lsp_setup_handlers()
   lsp_setup_asthetics()
   lsp_setup_commands()
-
-  installer.setup({
-    ensure_installed = required_servers,
-  })
-
-  -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
-  -- load it.
-  installer.setup_handlers({
-    function(server_name)
-      local capabilities = make_capabilities()
-
-      local opts = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
-
-      local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
-      if lsp_options_status_ok then
-        opts = vim.tbl_deep_extend("force", lsp_options, opts)
-      end
-
-      lspconfig[server_name].setup(opts)
-    end,
-  })
 end
 
 return M

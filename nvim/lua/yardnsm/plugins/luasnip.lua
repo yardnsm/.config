@@ -2,7 +2,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     lazy = false,
-    enabled = false, -- TODO fix
+    enabled = true,
 
     init = function ()
       require("yardnsm.snippets")
