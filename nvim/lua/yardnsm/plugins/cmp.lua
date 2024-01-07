@@ -170,6 +170,8 @@ return {
         },
       },
 
+      preselect = cmp.PreselectMode.None,
+
       experimental = {
         ghost_text = false,
       },
