@@ -1,3 +1,40 @@
+# --------------------------------------------------------------------------------------------------
+# We'll start by ignore everything
+*
+
+# Allow folders
+!alacritty
+!bin
+!coc
+!compton
+!dunst
+!fontconfig
+!gdb
+!git
+!i2
+!iterm
+!npm
+!nvim
+!rofi
+!stylelint
+!terminfo
+!tmux
+!vim
+!xorg
+!zsh
+
+# Allow files
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.gitmodules
+!clean.sed
+!LICENSE
+!README.md
+
+# --------------------------------------------------------------------------------------------------
+# And now ignoring some stuff again
+
 # Vim shit
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
@@ -5,6 +42,7 @@
 Session.vim
 .netrwhist
 *~
+
 
 # Secretz
 /smudge.sed
@@ -24,25 +62,3 @@ Session.vim
 /zsh/.zcompcache
 /zsh/.zsh_history
 /zsh/.zsh_sessions
-
-# Ignore everything in coc
-/coc/*
-!/coc/extensions/package.json
-
-# Unrelated directories
-/.op
-/op
-/binwalk
-/configstore
-/jellyfin
-/phpbrew
-/subversion
-/z
-/filezilla
-/docker
-/iterm2
-/filezilla
-/gatsby
-/wireshark
-/firebase
-/gcloud
