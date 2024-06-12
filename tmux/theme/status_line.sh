@@ -61,7 +61,7 @@ segment_music() {
     music_icon=""
 
   # Truncate the result
-  [[ ${#spotify} -gt 25 ]] && \
+  [[ ${#spotify} -gt 28 ]] && \
     spotify="$(echo "$spotify" | cut -c 1-25)..."
 
   if [[ -n "$spotify" ]]; then
@@ -91,7 +91,7 @@ segment_battery() {
 
 # Date and time
 segment_date() {
-  tm_segment "$(date +'%d %b %Y %H:%M')" "brightblack"
+  tm_segment "$(date +'%d %b %Y %H:%M')" "grey"
   tm_divider
 }
 
@@ -99,13 +99,7 @@ segment_date() {
 
 # Machine name
 segment_host() {
-  local user
-
-  [[ -n "$SSH_CONNECTION" ]] \
-    && user="$(whoami)@"
-
-
-  tm_segment "$user#h" "colour243"
+  tm_segment "$(whoami)#[fg=yellow]@#h" "blue"
 }
 
 # ---------------------------------------------
