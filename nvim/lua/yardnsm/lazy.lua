@@ -25,7 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- base46 hooks {{{
 
-local base16_utils = require("yardnsm.misc.base16-utils")
+local base46_utils = require("yardnsm.misc.base46-utils")
 
 local hook_plugin_config = function(fn)
   local Loader = require("lazy.core.loader")
@@ -43,7 +43,7 @@ hook_plugin_config(function(plugin)
     return
   end
 
-  base16_utils.attach_handler("base46-*", plugin.setup_base46)
+  base46_utils.attach_handler("base46-*", plugin.setup_base46)
 end)
 
 -- }}}

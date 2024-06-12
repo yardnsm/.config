@@ -1,6 +1,6 @@
--- Setup custom highlight groups for base16 and my port of base46
+-- Setup custom highlight groups for base46 and my port of base46
 
-local base16_utils = require("yardnsm.misc.base16-utils")
+local base46_utils = require("yardnsm.misc.base46-utils")
 
 local M = {}
 
@@ -32,7 +32,7 @@ end
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"
 -- field.
 M.setup = function()
-  base16_utils.attach_handler("base46-*", setup_highlights)
+  base46_utils.attach_handler("base46-*", setup_highlights)
 end
 
 return M

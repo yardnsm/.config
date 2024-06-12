@@ -1,7 +1,7 @@
--- This is a utility that helps extend base16-based highlight groups, using the plugin's very nice
+-- This is a utility that helps extend base46-based highlight groups, using the plugin's very nice
 -- metatable.
 --
--- Depends on the RRethy/nvim-base16 plugin
+-- Depends on the yardnsm/nvim-base46 plugin
 
 local augroup = vim.api.nvim_create_augroup("Colorscheme", { clear = true })
 

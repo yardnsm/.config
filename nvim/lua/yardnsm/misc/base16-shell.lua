@@ -1,7 +1,7 @@
 -- This mini util sets up base16-shell with the appropriate colors for the currently set base16
 -- colorscheme
 
-local base16_utils = require("yardnsm.misc.base16-utils")
+local base46_utils = require("yardnsm.misc.base46-utils")
 
 local M = {}
 
@@ -34,7 +34,7 @@ M.refresh = function()
   -- We should also update the env
   vim.env.BASE16_THEME = vim.g.colors_name
 
-  base16_utils.run_handler(function(c)
+  base46_utils.run_handler(function(c)
     local on_exit = function(res)
       io.write(res.stdout)
     end
@@ -62,7 +62,7 @@ M.refresh = function()
 end
 
 M.setup = function()
-  base16_utils.attach_handler({ "base16-*", "base46-*" }, M.refresh)
+  base46_utils.attach_handler({ "base16-*", "base46-*" }, M.refresh)
 end
 
 return M
