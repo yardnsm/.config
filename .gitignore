@@ -3,34 +3,33 @@
 *
 
 # Allow folders
-!alacritty
-!bin
-!coc
-!compton
-!dunst
-!fontconfig
-!gdb
-!git
-!i2
-!iterm
-!npm
-!nvim
-!rofi
-!stylelint
-!terminfo
-!tmux
-!vim
-!xorg
-!zsh
+!/alacritty
+!/bin
+!/compton
+!/dunst
+!/fontconfig
+!/gdb
+!/git
+!/i2
+!/iterm
+!/npm
+!/nvim
+!/rofi
+!/stylelint
+!/terminfo
+!/tmux
+!/vim
+!/xorg
+!/zsh
 
 # Allow files
-!.editorconfig
-!.gitattributes
-!.gitignore
-!.gitmodules
-!clean.sed
-!LICENSE
-!README.md
+!/.editorconfig
+!/.gitattributes
+!/.gitignore
+!/.gitmodules
+!/clean.sed
+!/LICENSE
+!/README.md
 
 # --------------------------------------------------------------------------------------------------
 # And now ignoring some stuff again
