@@ -9,13 +9,17 @@ return {
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
 
+    cmd = "Telescope",
+
     keys = {
       { "<leader>a", ":Telescope live_grep<CR>" },
       { "<leader>b", ":Telescope buffers theme=dropdown<CR>" },
       { "<leader>m", ":Telescope marks theme=dropdown<CR>" },
+      { "<leader>w", "*#:set hlsearch | :Telescope grep_string<CR>" },
       { "<leader>cc", ":Telescope colorscheme<CR>" },
       { "<leader>h", ":Telescope highlights theme=ivy<CR>" },
       { "z=", ":Telescope spell_suggest theme=cursor<CR>" },
+      { "<C-s>", ":Telescope lsp_dynamic_workspace_symbols<CR>" },
 
       {
         "<C-p>",
@@ -37,11 +41,11 @@ return {
       hi.TelescopePromptNormal = { guifg = c.white, guibg = c.black2 }
       hi.TelescopePromptPrefix = { guifg = c.red, guibg = c.black2 }
       hi.TelescopeNormal = { guibg = c.darker_black }
-      hi.TelescopeResultsNormal = { guifg = c.base03, guibg = c.darker_black }
+      hi.TelescopeResultsNormal = { guifg = c.grey_fg, guibg = c.darker_black }
       hi.TelescopePreviewTitle = { guifg = c.black, guibg = c.green }
       hi.TelescopePromptTitle = { guifg = c.black, guibg = c.red }
       hi.TelescopeResultsTitle = { guifg = c.darker_black, guibg = c.darker_black }
-      hi.TelescopeSelection = { guibg = c.black2, guifg = c.base03 }
+      hi.TelescopeSelection = { guibg = c.black2, guifg = c.grey_fg }
       hi.TelescopeResultsDiffAdd = { guifg = c.green }
       hi.TelescopeResultsDiffChange = { guifg = c.yellow }
       hi.TelescopeResultsDiffDelete = { guifg = c.red }

@@ -26,6 +26,7 @@ return {
 
   -- Wiki for vim
   {
-    "vimwiki/vimwiki"
+    "vimwiki/vimwiki",
+    enabled = false,
   }
 }

@@ -147,25 +147,27 @@ end
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
 
+  -- Jumps
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", ":Telescope lsp_definitions theme=ivy<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gy", ":Telescope lsp_type_definitions theme=ivy<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":Telescope lsp_implementations theme=ivy<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references theme=ivy show_line=false<CR>", opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":Telescope lsp_references theme=ivy<CR>", opts)
-
+  -- Docs
   vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
+  -- Actions
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua require('renamer').rename()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>Format<CR>", opts)
 
+  -- Diagnostics
   vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
-
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>g", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>Format<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -195,6 +197,23 @@ M.make_capabilities = function()
   end
 
   return capabilities
+end
+
+M.setup_handler = function(server_name)
+  local lspconfig = require("lspconfig")
+  local capabilities = M.make_capabilities()
+
+  local server_opts = {
+    on_attach = M.on_attach,
+    capabilities = capabilities,
+  }
+
+  local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
+  if lsp_options_status_ok then
+    server_opts = vim.tbl_deep_extend("force", lsp_options, server_opts)
+  end
+
+  lspconfig[server_name].setup(server_opts)
 end
 
 M.setup = function()

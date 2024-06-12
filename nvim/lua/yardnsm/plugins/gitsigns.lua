@@ -17,11 +17,5 @@ return {
       { "]c", function() require("gitsigns").next_hunk() end },
       { "[c", function() require("gitsigns").prev_hunk() end },
     },
-
-    setup_base46 = function(c, hi)
-      hi.GitSignsAdd = { guifg = c.vibrant_green }
-      hi.GitSignsChange = { guifg = c.blue }
-      hi.GitSignsDelete = { guifg = c.red }
-    end
   }
 }

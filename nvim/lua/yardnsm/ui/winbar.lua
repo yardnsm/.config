@@ -26,6 +26,17 @@ Line.setup({
   option = "winbar",
   renderers = {
 
+    -- Renderer for DAP UI
+    {
+      enabled = function(state)
+        return string.find(state.ft, "^dapui_")
+      end,
+
+      render = function()
+        return "%#St_Reset#%=%#St_FileName#  %f  %#St_Reset#%="
+      end
+    },
+
     -- Renderer for NvimTree
     {
       ft = { "NvimTree", "DiffviewFiles", "DiffviewFileHistory" },

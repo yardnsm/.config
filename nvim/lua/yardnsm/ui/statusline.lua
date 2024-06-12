@@ -13,6 +13,14 @@ local statusline_minimal_modes = {
   DiffviewFiles = "Diffview Files",
   DiffviewFileHistory = "Diffview History",
   qf = "",
+
+  -- DAP
+  ["dap-repl"] = "DAP REPL",
+  dapui_console = "DAP Console",
+  dapui_watches = "DAP Watches",
+  dapui_stacks = "DAP Stacks",
+  dapui_breakpoints = "DAP Breakpoints",
+  dapui_scopes = "DAP Scopes",
 }
 
 local wrap_filename = function(filename)
@@ -59,13 +67,13 @@ Line.setup({
 
         if state.active and state.focused then
           return table.concat({
-            wrap_filename("%f"),
+            "%#St_GitBranch#" .. blocks.vcs_branch(),
+            wrap_filename(blocks.relpath(state.buf)),
 
             -- Buffer number if in diff mode
             vim.wo.diff and " #%n" or "",
 
-            " %r%m",
-            "%#St_GitBranch#" .. blocks.vcs_branch(),
+            "%r%m ",
             blocks.vcs_stats(),
             "%=",
 
@@ -83,7 +91,8 @@ Line.setup({
         end
 
         return table.concat({
-          " %f ",
+          blocks.vcs_branch(),
+          " " .. blocks.relpath(state.buf) .. " ",
           "%m",
           "%=",
           blocks.filetype(state),

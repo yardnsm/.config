@@ -13,13 +13,13 @@ M._defaults = {
 }
 
 M.run_handler = function(handler)
-  local status_ok, base16 = pcall(require, "base16-colorscheme")
+  local status_ok, base46 = pcall(require, "nvim-base46")
   if not status_ok then
     return
   end
 
-  local c = base16.colors
-  local hi = base16.highlight
+  local c = base46.colors
+  local hi = base46.highlight
 
   handler(c, hi)
 end

@@ -43,6 +43,21 @@ local get_devicon_for_buffer = function(bufnr)
   return icon, hl_group, color
 end
 
+-- Sometimes, buffers are being created with the full path (such as when opening file with
+-- NvimTree). I want the path to always be shown relatively to the CWD.
+M.relpath = function (bufnr)
+  local expand_file = bufnr ~= nil and ("#" .. bufnr) or "%"
+
+  local cwd = vim.fn.getcwd() .. "/"
+  local fullpath = vim.fn.expand(expand_file .. ":p")
+
+  if fullpath == "" then
+    return "[No Name]"
+  end
+
+  return string.gsub(fullpath, "^" .. cwd, "")
+end
+
 M.navic = function()
   local navic_ok, navic = pcall(require, "nvim-navic")
   if not navic_ok then
@@ -89,7 +104,7 @@ end
 
 M.indent_info = function()
   local sw = vim.o.shiftwidth
-  local et = vim.o.expandtab and "····" or "»   "
+  local et = vim.o.expandtab and "··  " or "»   "
 
   return ("%s %s "):format(et, sw)
 end
@@ -193,7 +208,7 @@ M.vcs_branch = function()
     return ""
   end
 
-  return "  " .. branch .. "  "
+  return "  " .. branch .. " ⋅"
 end
 
 M.vcs_stats = function()

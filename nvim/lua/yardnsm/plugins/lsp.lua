@@ -8,17 +8,6 @@ return {
         border = "rounded",
       },
     },
-
-    setup_base46 = function(c, hi)
-      hi.MasonNormal = "Normal"
-      hi.MasonHeader = { guibg = c.red, guifg = c.black }
-      hi.MasonHighlight = { guifg = c.blue }
-      hi.MasonHighlightBlock = { guifg = c.black, guibg = c.green }
-      hi.MasonHighlightBlockBold = { link = "MasonHighlightBlock" }
-      hi.MasonHeaderSecondary = { link = "MasonHighlightBlock" }
-      hi.MasonMuted = { guifg = c.light_grey }
-      hi.MasonMutedBlock = { guifg = c.light_grey, guibg = c.one_bg }
-    end,
   },
 
   {
@@ -30,26 +19,11 @@ return {
 
     config = function(_, opts)
       local installer = require("mason-lspconfig")
-      local lspconfig = require("lspconfig")
 
       -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
       -- load it.
       installer.setup_handlers({
-        function(server_name)
-          local capabilities = config.make_capabilities()
-
-          local server_opts = {
-            on_attach = config.on_attach,
-            capabilities = capabilities,
-          }
-
-          local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
-          if lsp_options_status_ok then
-            server_opts = vim.tbl_deep_extend("force", lsp_options, server_opts)
-          end
-
-          lspconfig[server_name].setup(server_opts)
-        end,
+        config.setup_handler
       })
     end,
   },
@@ -73,6 +47,9 @@ return {
 
     config = function()
       config.setup()
+
+      -- Setup manually installed LSPs
+      -- config.setup_handler("gopls")
     end,
   },
 

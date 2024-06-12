@@ -44,6 +44,8 @@ lua require('yardnsm')
 " Editor {{{
 
 set mouse=                            " disable mouse support by default
+" set mouse=nv
+" set mousemodel=popup
 
 set number                            " show line numbers
 set relativenumber                    " set relative numbers
