@@ -65,6 +65,8 @@ autoload -U edit-command-line
 
 # homebrew {{{
 
+# TODO use shellenv
+
 if [[ -n $IS_MACOS ]]; then
   export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
@@ -78,6 +80,8 @@ fi
 
 # }}}
 # fzf {{{
+
+# TODO is there a better way to source these?
 
 # Autocompletion
 [[ $- == *i* ]] \
