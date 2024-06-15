@@ -41,11 +41,6 @@ local setup_highlights = function(c, hi)
   -- And some fixes
   hi.Visual = { guifg = "NONE", guibg = c.one_bg3 }
   hi.FloatBorder = { guifg = c.one_bg3, guibg = c.black }
-
-  hi["@comment.todo"] = { guifg = c.yellow, guibg = c.darker_black }
-  hi["@comment.warning"] = { guifg = c.orange, guibg = c.darker_black }
-  hi["@comment.note"] = { guifg = c.blue, guibg = c.darker_black }
-  hi["@comment.error"] = { guifg = c.red, guibg = c.darker_black }
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"

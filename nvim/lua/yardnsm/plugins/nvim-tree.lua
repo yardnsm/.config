@@ -55,20 +55,11 @@ return {
       },
     },
 
+    ---@param c Base46Table
+    ---@param hi HighlightsTable
     setup_base46 = function(c, hi)
-      hi.NvimTreeNormal = { guibg = c.darker_black }
-      hi.NvimTreeWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
-      hi.NvimTreeRootFolder = { guifg = c.red, gui = "bold" }
-      hi.NvimTreeCursorLine = { guibg = c.black2 }
-      hi.NvimTreeIndentMarker = { guifg = c.grey_fg }
-
       hi.NvimTreeGitDirty = { guifg = c.orange }
-      hi.NvimTreeGitNew = { guifg = c.yellow }
       hi.NvimTreeGitStaged = { guifg = c.vibrant_green }
-      hi.NvimTreeGitDeleted = { guifg = c.red }
-
-      hi.NvimTreeFolderArrowOpen = "Directory"
-      hi.NvimTreeFolderArrowClosed = { guifg = c.grey_fg }
     end,
 
     config = function(_, opts)

@@ -20,6 +20,8 @@ return {
     },
   },
 
+  ---@param c Base46Table
+  ---@param hi HighlightsTable
   setup_base46 = function(c, hi)
     hi.DiffviewFilePanelTitle = "NvimTreeRootFolder"
     hi.DiffviewFilePanelConflicts = "NvimTreeRootFolder"

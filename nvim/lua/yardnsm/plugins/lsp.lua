@@ -39,6 +39,8 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
 
+    ---@param c Base46Table
+    ---@param hi HighlightsTable
     setup_base46 = function(c, hi)
       hi.LspReferenceText = { guibg = c.one_bg3 }
       hi.LspReferenceRead = "LspReferenceText"

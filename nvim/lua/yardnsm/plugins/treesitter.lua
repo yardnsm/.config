@@ -23,6 +23,15 @@ return {
       { "RRethy/nvim-treesitter-endwise", after = "nvim-treesitter" },
     },
 
+    ---@param c Base46Table
+    ---@param hi HighlightsTable
+    setup_base46 = function(c, hi)
+      hi["@comment.todo"] = { guifg = c.yellow, guibg = c.darker_black }
+      hi["@comment.warning"] = { guifg = c.orange, guibg = c.darker_black }
+      hi["@comment.note"] = { guifg = c.blue, guibg = c.darker_black }
+      hi["@comment.error"] = { guifg = c.red, guibg = c.darker_black }
+    end,
+
     ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
