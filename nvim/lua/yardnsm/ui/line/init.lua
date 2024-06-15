@@ -3,7 +3,7 @@ local LineManager = require("yardnsm.ui.line.manager")
 
 ---@class LineState
 ---@field winid integer
----@field buf integer
+---@field bufnr integer -- TODO change to bufnr
 ---@field ft string
 ---@field active boolean wether the current window is active
 ---@field focused boolean wether the current nvim instance is focused
@@ -36,15 +36,15 @@ end
 
 function Line:render()
   local winid = vim.g.statusline_winid
-  local buf = vim.fn.winbufnr(winid)
+  local bufnr = vim.fn.winbufnr(winid)
 
   local active = winid == vim.fn.win_getid(vim.fn.winnr())
-  local ft = vim.api.nvim_get_option_value("ft", { buf = buf })
+  local ft = vim.api.nvim_get_option_value("ft", { buf = bufnr })
 
   ---@type LineState
   local state = {
     winid = winid,
-    buf = buf,
+    bufnr = bufnr,
     ft = ft,
     active = active,
     focused = LineManager.focused,

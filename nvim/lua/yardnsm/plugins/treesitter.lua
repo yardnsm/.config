@@ -10,8 +10,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
 
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync" },
+    -- event = { "BufReadPost", "BufNewFile" },
+    -- cmd = { "TSUpdateSync" },
+    lazy = false, -- Lazy load breaks treesitter for some reason
 
     dependencies = {
       { "nvim-treesitter/playground", after = "nvim-treesitter" },
@@ -33,6 +34,7 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "comment",
         "cpp",
         "c_sharp",
         "css",
@@ -97,6 +99,7 @@ return {
         enable = true,
       },
 
+      -- TODO hey
       textobjects = {
         select = {
           enable = true,

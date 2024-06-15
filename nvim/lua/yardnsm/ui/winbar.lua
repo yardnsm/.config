@@ -15,8 +15,8 @@ local should_render = function(state)
     return false
   end
 
-  local bufhidden = vim.api.nvim_get_option_value("bufhidden", { buf = state.buf })
-  local buflisted = vim.api.nvim_get_option_value("buflisted", { buf = state.buf })
+  local bufhidden = vim.api.nvim_get_option_value("bufhidden", { buf = state.bufnr })
+  local buflisted = vim.api.nvim_get_option_value("buflisted", { buf = state.bufnr })
   local diff = vim.api.nvim_get_option_value("diff", { win = state.winid })
 
   return bufhidden ~= "wipe" and buflisted and not diff

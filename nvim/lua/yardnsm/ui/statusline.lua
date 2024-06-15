@@ -68,7 +68,7 @@ Line.setup({
         if state.active and state.focused then
           return table.concat({
             "%#St_GitBranch#" .. blocks.vcs_branch(),
-            wrap_filename(blocks.relpath(state.buf)),
+            wrap_filename(blocks.relpath(state.bufnr, true)),
 
             -- Buffer number if in diff mode
             vim.wo.diff and " #%n" or "",
@@ -92,7 +92,7 @@ Line.setup({
 
         return table.concat({
           blocks.vcs_branch(),
-          " " .. blocks.relpath(state.buf) .. " ",
+          " " .. blocks.relpath(state.bufnr, true) .. " ",
           "%m",
           "%=",
           blocks.filetype(state),

@@ -70,12 +70,9 @@ return {
         formatting.stylua,
         formatting.black.with({ extra_args = { "--fast" } }),
 
-        diagnostics.shellcheck,
         diagnostics.zsh,
-        diagnostics.flake8,
 
-        code_actions.shellcheck,
-
+        -- code_actions.shellcheck,
         -- hover.dictionary,
       })
     end,

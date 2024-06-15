@@ -5,6 +5,7 @@ local LineManager = {}
 
 ---@type table<string, Line>
 LineManager.lines = {}
+
 LineManager.attached = false
 LineManager.focused = true
 
@@ -22,6 +23,12 @@ LineManager.setup = function()
   vim.api.nvim_set_option_value(
     "winbar",
     [[%!luaeval('require("yardnsm.ui.line.manager").render("winbar")')]],
+    { scope = "global" }
+  )
+
+  vim.api.nvim_set_option_value(
+    "tabline",
+    [[%!luaeval('require("yardnsm.ui.line.manager").render("tabline")')]],
     { scope = "global" }
   )
 

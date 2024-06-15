@@ -45,17 +45,32 @@ end
 
 -- Sometimes, buffers are being created with the full path (such as when opening file with
 -- NvimTree). I want the path to always be shown relatively to the CWD.
-M.relpath = function (bufnr)
+M.relpath = function(bufnr)
   local expand_file = bufnr ~= nil and ("#" .. bufnr) or "%"
+  local relpath = vim.fn.expand(expand_file .. ":~:.")
 
-  local cwd = vim.fn.getcwd() .. "/"
-  local fullpath = vim.fn.expand(expand_file .. ":p")
-
-  if fullpath == "" then
+  if relpath == "" then
     return "[No Name]"
   end
 
-  return string.gsub(fullpath, "^" .. cwd, "")
+  return relpath
+end
+
+M.fullpath = function(bufnr, shorten)
+  local expand_file = bufnr ~= nil and ("#" .. bufnr) or "%"
+
+  local cwdpath = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+  local relpath = vim.fn.expand(expand_file .. ":.")
+
+  if relpath == "" then
+    return "[No Name]"
+  end
+
+  if shorten == true then
+    cwdpath = vim.fn.pathshorten(cwdpath)
+  end
+
+  return vim.fs.joinpath(cwdpath, relpath)
 end
 
 M.navic = function()

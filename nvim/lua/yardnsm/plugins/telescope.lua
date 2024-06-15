@@ -36,19 +36,8 @@ return {
 
     setup_base46 = function(c, hi)
       hi.TelescopeMatching = { guifg = c.dark_purple, gui = "bold" }
-      hi.TelescopeBorder = { guifg = c.darker_black, guibg = c.darker_black }
-      hi.TelescopePromptBorder = { guifg = c.black2, guibg = c.black2 }
-      hi.TelescopePromptNormal = { guifg = c.white, guibg = c.black2 }
-      hi.TelescopePromptPrefix = { guifg = c.red, guibg = c.black2 }
-      hi.TelescopeNormal = { guibg = c.darker_black }
-      hi.TelescopeResultsNormal = { guifg = c.grey_fg, guibg = c.darker_black }
-      hi.TelescopePreviewTitle = { guifg = c.black, guibg = c.green }
-      hi.TelescopePromptTitle = { guifg = c.black, guibg = c.red }
-      hi.TelescopeResultsTitle = { guifg = c.darker_black, guibg = c.darker_black }
       hi.TelescopeSelection = { guibg = c.black2, guifg = c.grey_fg }
-      hi.TelescopeResultsDiffAdd = { guifg = c.green }
-      hi.TelescopeResultsDiffChange = { guifg = c.yellow }
-      hi.TelescopeResultsDiffDelete = { guifg = c.red }
+      hi.TelescopeResultsNormal = { guifg = c.grey_fg, guibg = c.darker_black }
     end,
 
     config = function(_, opts)

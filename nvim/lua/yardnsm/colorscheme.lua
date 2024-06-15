@@ -4,6 +4,8 @@ local base46_utils = require("yardnsm.misc.base46-utils")
 
 local M = {}
 
+---@param c Base46Table
+---@param hi HighlightsTable
 local setup_highlights = function(c, hi)
   hi.St_Reset = 'StatusLine'
   hi.St_GitBranch = { guifg = c.grey_fg, guibg = c.statusline_bg }
@@ -27,6 +29,23 @@ local setup_highlights = function(c, hi)
   hi.Wb_TabActive = { guifg = c.white, gui = "bold" }
   hi.Wb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
   hi.Wb_Fill = { guifg = c.grey_fg, guibg = c.darker_black }
+
+  hi.Tb_Title = { guifg = c.white, guibg = c.black }
+  hi.Tb_Reset = { guifg = c.white, guibg = c.black }
+  hi.Tb_TabActive = { guifg = c.white, guibg = c.darker_black, gui = "bold" }
+  hi.Tb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
+
+  -- This is for the vim.highlight.on_yank in ./autocommands.lua
+  hi.Yanked = { guifg = "NONE", guibg = c.one_bg3 }
+
+  -- And some fixes
+  hi.Visual = { guifg = "NONE", guibg = c.one_bg3 }
+  hi.FloatBorder = { guifg = c.one_bg3, guibg = c.black }
+
+  hi["@comment.todo"] = { guifg = c.yellow, guibg = c.darker_black }
+  hi["@comment.warning"] = { guifg = c.orange, guibg = c.darker_black }
+  hi["@comment.note"] = { guifg = c.blue, guibg = c.darker_black }
+  hi["@comment.error"] = { guifg = c.red, guibg = c.darker_black }
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"
