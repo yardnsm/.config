@@ -10,7 +10,7 @@
 " ------------------------------------------------------------------------------
 
 " This init.vim file is inteded to be used with the latest version of neovim. I tend to prefer
-" using Vimscript when setting up general options, hence this file is not a Lua one.
+" using Vimscript as a DSL for setting options, mappings etc.
 
 " General {{{
 
@@ -93,14 +93,6 @@ syntax on                             " enable syntax highlighting
 
 set background=dark                 " assume a dark background
 set termguicolors                   " use true colors in the treminal
-
-" TODO change to lua
-let s:theme_name_on_load = v:lua.require("yardnsm.misc.base16-shell").get_shell_theme()
-if s:theme_name_on_load != v:null
-  execute "colorscheme" s:theme_name_on_load
-else
-  colorscheme base46-yoru
-endif
 
 " Highlight conflict markerts
 match Error '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

@@ -77,8 +77,8 @@ Line.setup({
             blocks.vcs_stats(),
             "%=",
 
-            "%#St_TextDark#" .. blocks.paste() .. "%#St_Text#",
-            "%#St_TextDark#" .. blocks.spell() .. "%#St_Text#",
+            "%#St_Text#" .. blocks.paste() .. "%#St_Text#",
+            "%#St_Text#" .. blocks.spell() .. "%#St_Text#",
 
             "%#St_LSP#" .. blocks.lsp() .. "%#St_Text#",
             "%#St_Filetype# " .. blocks.filetype(state) .. "%#St_Text#  ",

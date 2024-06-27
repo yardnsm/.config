@@ -1,8 +1,11 @@
 -- Setup custom highlight groups for base46 and my port of base46
 
+local base16_shell = require("yardnsm.misc.base16-shell")
 local base46_utils = require("yardnsm.misc.base46-utils")
 
 local M = {}
+
+M.default_theme = "base46-yoru"
 
 ---@param c Base46Table
 ---@param hi HighlightsTable
@@ -11,7 +14,6 @@ local setup_highlights = function(c, hi)
   hi.St_GitBranch = { guifg = c.grey_fg, guibg = c.statusline_bg }
   hi.St_FileName = { guifg = c.white, guibg = c.statusline_bg, gui = "bold" }
   hi.St_Text = { guifg = c.light_grey, guibg = c.statusline_bg }
-  hi.St_TextDark = { guifg = c.base03, guibg = c.statusline_bg }
   hi.St_LSP = { guifg = c.green, guibg = c.statusline_bg }
   hi.St_Filetype = { guifg = c.green, guibg = c.statusline_bg }
   hi.St_LineInfo = { guifg = c.white, guibg = c.one_bg }
@@ -47,6 +49,12 @@ end
 -- field.
 M.setup = function()
   base46_utils.attach_handler("base46-*", setup_highlights)
+
+  -- Set colorscheme
+  vim.cmd("colorscheme " .. base16_shell.get_shell_theme() or M.default_theme)
+
+  -- Init base16-shell
+  base16_shell.setup()
 end
 
 return M

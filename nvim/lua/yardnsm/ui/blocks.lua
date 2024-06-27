@@ -91,9 +91,9 @@ M.file_tab_like = function(state)
   local focused = state.focused and state.active
 
   local base_hl = focused and "Wb_TabActive" or "Wb_TabInactive"
-  local icon, hl_group = get_devicon_for_buffer(state.buf)
+  local icon, hl_group = get_devicon_for_buffer(state.bufnr)
 
-  local expand_file = state.buf ~= nil and ("#" .. state.buf) or "%"
+  local expand_file = state.bufnr ~= nil and ("#" .. state.bufnr) or "%"
   local filename = vim.fn.expand(expand_file .. ":t")
 
   if filename == "" then
@@ -101,7 +101,7 @@ M.file_tab_like = function(state)
   end
 
   -- Special case for Quickfix
-  if vim.api.nvim_get_option_value("filetype", { buf = state.buf }) == "qf" then
+  if state.ft == "qf" then
     filename = "%q"
     icon = ""
   end

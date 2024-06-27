@@ -10,7 +10,6 @@ return {
 
     init = function()
       require("yardnsm.colorscheme").setup()
-      require("yardnsm.misc.base16-shell").setup()
     end
   },
 }
