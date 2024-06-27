@@ -1,26 +1,57 @@
+local utils = require("yardnsm.utils")
+
 return {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+
     init = function()
       vim.g.skip_ts_context_commentstring_module = true
     end,
+
+    after = "nvim-treesitter",
+
+    opts = {
+      enable = true,
+      enable_autocmd = false,
+    },
+
+    config = function(_, opts)
+      require("ts_context_commentstring").setup(opts)
+
+      -- This is damn ugly..
+      utils.hook(vim.filetype, "get_option", function(get_option, filetype, option)
+        if option ~= "commentstring" then
+          return get_option(filetype, option)
+        end
+
+        return require("ts_context_commentstring.internal").calculate_commentstring()
+      end)
+    end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    after = "nvim-treesitter",
+    opts = {},
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
 
-    -- event = { "BufReadPost", "BufNewFile" },
-    -- cmd = { "TSUpdateSync" },
-    lazy = false, -- Lazy load breaks treesitter for some reason
+    event = utils.merge(utils.LazyFile, { "VeryLazy" }),
+
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+
+    -- Load treesitter early when opening a file from the cmdline (taken from LazyVim)
+    lazy = vim.fn.argc(-1) == 0,
 
     dependencies = {
-      { "nvim-treesitter/playground", after = "nvim-treesitter" },
+      { "nvim-treesitter/playground",                  after = "nvim-treesitter" },
       { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" },
-      { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
 
       -- automatically close `end` blocks (`endif`, `done`, etc.)
-      { "RRethy/nvim-treesitter-endwise", after = "nvim-treesitter" },
+      { "RRethy/nvim-treesitter-endwise",              after = "nvim-treesitter" },
     },
 
     ---@param c Base46Table
@@ -43,35 +74,37 @@ return {
       ensure_installed = {
         "bash",
         "c",
+        "c_sharp",
         "comment",
         "cpp",
-        "c_sharp",
         "css",
         "diff",
         "dockerfile",
         "fish",
+        "git_config",
+        "git_rebase",
         "gitattributes",
         "gitcommit",
-        "git_config",
         "gitignore",
-        "git_rebase",
         "go",
         "gomod",
         "gosum",
+        "html",
         "java",
         "javascript",
         "json",
-        "luadoc",
         "lua",
+        "luadoc",
         "luap",
         "make",
         "python",
         "query",
         "ruby",
         "sql",
+        "tsx",
         "typescript",
-        "vimdoc",
         "vim",
+        "vimdoc",
         "yaml",
       },
 
@@ -95,20 +128,20 @@ return {
         enable = true,
       },
 
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
-
-      autotag = {
-        enable = true,
-      },
-
       endwise = {
         enable = true,
       },
 
-      -- TODO hey
+      incremental_selection = {
+        enable = false,
+        keymaps = {
+          init_selection = "<CR>",
+          node_incremental = "<CR>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
+      },
+
       textobjects = {
         select = {
           enable = true,
@@ -119,6 +152,26 @@ return {
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
+          },
+        },
+
+        move = {
+          enable = true,
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]p"] = "@parameter.inner",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]P"] = "@parameter.inner",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[p"] = "@parameter.inner",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[P"] = "@parameter.inner",
           },
         },
       },

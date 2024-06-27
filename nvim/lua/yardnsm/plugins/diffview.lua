@@ -8,6 +8,7 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
 
   opts = {
+    enhanced_diff_hl = true,
     use_icons = true,
     icons = {
       folder_closed = "",
@@ -18,6 +19,12 @@ return {
       fold_open = "",
       done = "✓",
     },
+
+    hooks = {
+      diff_buf_read = function()
+        vim.opt_local.relativenumber = false
+      end,
+    },
   },
 
   ---@param c Base46Table
@@ -27,8 +34,16 @@ return {
     hi.DiffviewFilePanelConflicts = "NvimTreeRootFolder"
     hi.DiffviewFilePanelCounter = "Comment"
     hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
+    hi.DiffviewFilePanelSelected = { guifg = c.folder_bg }
     hi.DiffviewNormal = "NvimTreeNormal"
     hi.DiffviewWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
+
+    local util = require("nvim-base46.util")
+
+    hi.DiffAdd = { guibg = util.darken(c.vibrant_green, 0.15) }
+    hi.DiffChange = { guibg = util.darken(c.blue, 0.15) }
+    hi.DiffDelete = { guibg = util.darken(c.red, 0.15) }
+    hi.DiffText = { guibg = util.darken(c.blue, 0.25) }
   end,
 
   config = function(_, opts)
@@ -55,6 +70,9 @@ return {
         vim.schedule(function()
           -- Set a tab label
           tab_label.set_label_for_tab(nil, "Diffview History")
+
+          -- A trick to hide colorcolumn from the history pane
+          vim.opt_local.winhl:append("ColorColumn:")
         end)
       end,
     })

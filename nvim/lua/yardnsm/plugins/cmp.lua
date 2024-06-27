@@ -43,20 +43,25 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "saadparwaiz1/cmp_luasnip",
   },
+
+  ---@param c Base46Table
+  ---@param hi HighlightsTable
+  setup_base46 = function(c, hi)
+    hi.CmpBorder = { guifg = c.one_bg3, guibg = c.black }
+  end,
 
   config = function(_, opts)
     local cmp = require("cmp")
 
     local window_border_config = cmp.config.window.bordered()
-    window_border_config.winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None"
+    window_border_config.winhighlight = "Normal:Normal,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None"
 
     cmp.setup({
-      -- Setup LuaSnip
+      -- Setup native snippets
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end,
       },
 
@@ -76,12 +81,8 @@ return {
 
         -- Expand snippets
         ["<C-j>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-
-          if luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
           elseif cmp.visible() then
             cmp.confirm({ select = true })
           else
@@ -90,10 +91,8 @@ return {
         end, { "s", "i", "c" }),
 
         ["<C-k>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
+          if vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
           else
             fallback()
           end
@@ -129,6 +128,7 @@ return {
       },
 
       formatting = {
+        expandable_indicator = true,
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           -- Kind icons
@@ -136,12 +136,13 @@ return {
 
           -- Completion menus
           vim_item.menu = " "
-            .. ({
-              nvim_lsp = "「LSP」",
-              luasnip = "「Snippet」",
-              buffer = "「Buffer」",
-              path = "「Path」",
-            })[entry.source.name]
+              .. ({
+                nvim_lsp = "「LSP」",
+                snippets = "「Snippet」",
+                buffer = "「Buffer」",
+                path = "「Path」",
+                lazydev = "「LazyDev」",
+              })[entry.source.name]
 
           return vim_item
         end,
@@ -149,8 +150,10 @@ return {
 
       sources = {
         { name = "nvim_lsp", max_item_count = 30 },
-        { name = "luasnip", max_item_count = 30 },
-        { name = "path", max_item_count = 30 },
+        { name = "snippets", max_item_count = 30 },
+        { name = "path",     max_item_count = 30 },
+
+        { name = "lazydev",  group_index = 0 },
 
         {
           name = "buffer",

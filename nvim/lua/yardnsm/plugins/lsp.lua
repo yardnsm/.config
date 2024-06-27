@@ -1,11 +1,12 @@
 local config = require("yardnsm.lsp")
+local utils = require("yardnsm.utils")
 
 return {
   {
     "williamboman/mason.nvim",
     opts = {
       ui = {
-        border = "rounded",
+        border = utils.float_borders_style,
       },
     },
   },
@@ -23,19 +24,36 @@ return {
       -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
       -- load it.
       installer.setup_handlers({
-        config.setup_handler
+        config.setup_handler,
       })
     end,
   },
 
+  -- Dev setup for neovim
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    cmd = "LazyDev",
+
+    dependencies = {
+      { "Bilal2453/luvit-meta", lazy = true },
+    },
+
+    opts = {
+      library = {
+        "~/dev/nvim-base46",
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- Dev setup for neovim
-      { "folke/neodev.nvim", opts = {} },
 
-      -- Mason shit
-      "mason.nvim",
+    event = utils.LazyFile,
+
+    dependencies = {
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
 
@@ -50,45 +68,8 @@ return {
     config = function()
       config.setup()
 
-      -- Setup manually installed LSPs
+      -- Setup manually installed LSPs here, for example:
       -- config.setup_handler("gopls")
-    end,
-  },
-
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = { "mason.nvim" },
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-
-      -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins
-      local formatting = null_ls.builtins.formatting
-      local diagnostics = null_ls.builtins.diagnostics
-      local code_actions = null_ls.builtins.code_actions
-      local hover = null_ls.builtins.hover
-
-      opts.sources = vim.list_extend(opts.sources or {}, {
-        formatting.prettier,
-        formatting.stylua,
-        formatting.black.with({ extra_args = { "--fast" } }),
-
-        diagnostics.zsh,
-
-        -- code_actions.shellcheck,
-        -- hover.dictionary,
-      })
-    end,
-  },
-
-  -- Additional setup in ../lsp/init.lua
-  {
-    "SmiteshP/nvim-navic",
-    opts = {
-      highlight = false,
-      separator = " > ",
-    },
-    init = function()
-      vim.g.navic_silence = true
     end,
   },
 }
