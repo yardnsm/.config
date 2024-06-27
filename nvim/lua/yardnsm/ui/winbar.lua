@@ -34,7 +34,7 @@ Line.setup({
 
       render = function()
         return "%#St_Reset#%=%#St_FileName#  %f  %#St_Reset#%="
-      end
+      end,
     },
 
     -- Renderer for NvimTree
@@ -42,7 +42,7 @@ Line.setup({
       ft = { "NvimTree", "DiffviewFiles", "DiffviewFileHistory" },
       render = function()
         return "%#Wb_Fill# "
-      end
+      end,
     },
 
     -- Full winbar
@@ -65,6 +65,16 @@ Line.setup({
           blocks.file_tab_like(state),
           "%#Wb_Fill#",
         })
+      end,
+    },
+
+    -- Blank fill for diff mode (visually more appealing)
+    {
+      enabled = function(state)
+        return vim.api.nvim_get_option_value("diff", { win = state.winid })
+      end,
+      render = function(state)
+        return "%#FoldColumn# %#Wb_TabInactive# "
       end,
     },
   },

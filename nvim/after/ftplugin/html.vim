@@ -9,4 +9,4 @@
 "   ==         - Indent the current line
 "   `^         - Go the position where the cursor was the last timewhen Insert mode was stopped
 "   a          - Append text after the cursor
-imap <buffer> </ </<C-X><C-O><ESC>==`^a
+" imap <buffer> </ </<C-X><C-O><ESC>==`^a

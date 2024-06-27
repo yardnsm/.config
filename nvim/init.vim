@@ -267,6 +267,9 @@ nnoremap <C-y> 3<C-y>
 " Count matches
 nnoremap <leader>C :%s///gn<CR>
 
+" Make <S-Tab> inverse <Tab>
+inoremap <S-Tab> <C-d>
+
 " }}}
 " Commands {{{
 

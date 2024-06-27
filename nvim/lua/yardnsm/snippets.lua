@@ -1,5 +1,7 @@
 -- vim: set foldmethod=marker foldlevel=0:
 
+-- TODO remove from config
+
 local status_ok, ls = pcall(require, "luasnip")
 if not status_ok then
   return
@@ -46,8 +48,8 @@ ls.add_snippets("all", {
     trig = "vml",
     dscr = "Foldmarker modeline",
   }, {
-  f(get_comment_char),
-  t({ " vim: set foldmethod=marker foldlevel=0:", "" }),
+    f(get_comment_char),
+    t({ " vim: set foldmethod=marker foldlevel=0:", "" }),
   }),
 
   s({

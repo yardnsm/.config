@@ -26,8 +26,9 @@ M.get_shell_theme = function(use_tmux)
   return theme
 end
 
-M.refresh = function()
-  if vim.g.colors_name == M.get_shell_theme(false) then
+---@param use_tmux boolean
+M.refresh = function(use_tmux)
+  if vim.g.colors_name == M.get_shell_theme(use_tmux) then
     return
   end
 

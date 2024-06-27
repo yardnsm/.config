@@ -1,5 +1,3 @@
--- Setup custom highlight groups for base46 and my port of base46
-
 local base16_shell = require("yardnsm.misc.base16-shell")
 local base46_utils = require("yardnsm.misc.base46-utils")
 
@@ -32,9 +30,8 @@ local setup_highlights = function(c, hi)
   hi.Wb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
   hi.Wb_Fill = { guifg = c.grey_fg, guibg = c.darker_black }
 
-  hi.Tb_Title = { guifg = c.white, guibg = c.black }
   hi.Tb_Reset = { guifg = c.white, guibg = c.black }
-  hi.Tb_TabActive = { guifg = c.white, guibg = c.darker_black, gui = "bold" }
+  hi.Tb_TabActive = "TabLineSel"
   hi.Tb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
 
   -- This is for the vim.highlight.on_yank in ./autocommands.lua
@@ -42,7 +39,6 @@ local setup_highlights = function(c, hi)
 
   -- And some fixes
   hi.Visual = { guifg = "NONE", guibg = c.one_bg3 }
-  hi.FloatBorder = { guifg = c.one_bg3, guibg = c.black }
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"
@@ -51,7 +47,7 @@ M.setup = function()
   base46_utils.attach_handler("base46-*", setup_highlights)
 
   -- Set colorscheme
-  vim.cmd("colorscheme " .. base16_shell.get_shell_theme() or M.default_theme)
+  vim.cmd("colorscheme " .. (base16_shell.get_shell_theme(false) or M.default_theme))
 
   -- Init base16-shell
   base16_shell.setup()

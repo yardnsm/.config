@@ -1,5 +1,12 @@
 local M = {}
 
+---Consistent float borders
+---@type "none" | "single" | "double" | "rounded"
+M.float_borders_style = "rounded"
+
+-- This is like the LazyFile event in LazyVim
+M.LazyFile = { "BufReadPost", "BufWritePost", "BufNewFile" }
+
 M.log = function(msg)
   vim.api.nvim_echo({ { msg, "Normal" } }, true, {})
 end
@@ -25,6 +32,17 @@ M.has_value = function(tab, val)
   end
 
   return false
+end
+
+M.merge = function(...)
+  return vim.tbl_extend("force", {}, ...)
+end
+
+M.hook = function(tbl, fn, impl)
+  local old_fn = tbl[fn]
+  tbl[fn] = function (...)
+    return impl(old_fn, ...)
+  end
 end
 
 return M

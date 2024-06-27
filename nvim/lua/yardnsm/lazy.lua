@@ -1,6 +1,8 @@
 -- vim: set foldmethod=marker foldlevel=0:
 -- Plugins Setup
 
+local utils = require("yardnsm.utils")
+
 -- lazy.nvim bootstrap {{{
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,13 +31,11 @@ local base46_utils = require("yardnsm.misc.base46-utils")
 
 local hook_plugin_config = function(fn)
   local Loader = require("lazy.core.loader")
-  local _old_config = Loader.config
 
-  Loader.config = function(plugin)
+  utils.hook(Loader, "config", function(config, plugin)
     fn(plugin)
-
-    return _old_config(plugin)
-  end
+    return config(plugin)
+  end)
 end
 
 hook_plugin_config(function(plugin)
@@ -59,14 +59,15 @@ require("lazy").setup({
   },
 
   ui = {
-    border = "rounded"
+    border = utils.float_borders_style,
+    backdrop = 100,
   },
 
   checker = { enabled = false },
   change_detection = { enabled = false },
 
   -- Try to load one of these colorschemes when starting an installation during startup
-  install = { colorscheme = { "base46-classic-dark", "habamax" } },
+  install = { colorscheme = { "default", "habamax" } },
 
   -- Disable some rtp plugins, this is taken from LazyVim's Starter
   performance = {
