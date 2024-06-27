@@ -9,7 +9,7 @@ set -g status-left-length 200
 set -g status-right-length 200
 
 # Pane border
-# setw -g pane-border-status bottom
+setw -g pane-border-status off
 setw -g pane-border-format '─'
 set -g pane-border-style fg=brightblack
 set -g pane-active-border-style fg=blue
@@ -19,10 +19,10 @@ set -g status-style fg=brightwhite,bg=black
 set -g message-style fg=yellow,bg=black
 
 # Window separator
-setw -g window-status-separator '#[fg=brightblack nobold] ⋅ #[bg=default fg=default]'
+setw -g window-status-separator '#[fg=colour240 nobold] ⋅ #[bg=default fg=default]'
 
 # Window item
-setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=red],#[fg=brightblack]}#I #W#{?window_activity_flag,*,}"
+setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=red],#[fg=colour240]}#I #W#{?window_activity_flag,*,}"
 
 # Selected window item
 setw -g window-status-current-format "#[fg=blue bold, bg=black, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
