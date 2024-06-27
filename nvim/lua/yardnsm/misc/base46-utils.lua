@@ -3,15 +3,26 @@
 --
 -- Depends on the yardnsm/nvim-base46 plugin
 
-local augroup = vim.api.nvim_create_augroup("Colorscheme", { clear = true })
+---@alias Base46Handler fun(c: base46.Colors, hi: base46.HighlightsTable)
+
+local augroup = vim.api.nvim_create_augroup("base46_handlers", { clear = true })
+
+---@class Base46HandlerConfig
+local defaults = {
+
+  ---@type boolean set as an autocmd for colorscheme changes
+  autocmd = true,
+
+  ---@type boolean should the handler also be run now
+  force = true,
+
+  ---@type string | string[] pattern to match the colorscheme name
+  pattern = "base46-*",
+}
 
 local M = {}
 
-M._defaults = {
-  autocmd = true,
-  force = true,
-}
-
+---@param handler Base46Handler
 M.run_handler = function(handler)
   local status_ok, base46 = pcall(require, "nvim-base46")
   if not status_ok then
@@ -24,8 +35,12 @@ M.run_handler = function(handler)
   handler(c, hi)
 end
 
-M.attach_handler = function(pattern, handler, opts)
-  opts = vim.tbl_deep_extend("force", {}, M._defaults, opts or {})
+---@param handler Base46Handler
+---@param opts? Base46HandlerConfig
+M.attach_handler = function(handler, opts)
+  opts = vim.tbl_deep_extend("force", {}, defaults, opts or {})
+
+  local pattern = opts.pattern
 
   if opts.force and vim.g.colors_name then
     if type(pattern) == "string" then

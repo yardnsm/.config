@@ -3,7 +3,7 @@ local LineManager = require("yardnsm.ui.line.manager")
 
 ---@class LineState
 ---@field winid integer
----@field bufnr integer -- TODO change to bufnr
+---@field bufnr integer
 ---@field ft string
 ---@field active boolean wether the current window is active
 ---@field focused boolean wether the current nvim instance is focused

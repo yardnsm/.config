@@ -1,6 +1,6 @@
----@type Line
 local Line = require("yardnsm.ui.line")
 local blocks = require("yardnsm.ui.blocks")
+local base46_utils = require("yardnsm.misc.base46-utils")
 
 local winbar_filetype_exclude = {
   "help",
@@ -8,6 +8,13 @@ local winbar_filetype_exclude = {
   "nerdtree",
   "TelescopePrompt",
 }
+
+-- Setup highlights
+base46_utils.attach_handler(function(c, hi)
+  hi.Wb_TabActive = { guifg = c.white, gui = "bold" }
+  hi.Wb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
+  hi.Wb_Fill = { guifg = c.grey_fg, guibg = c.darker_black }
+end)
 
 ---@param state LineState
 local should_render = function(state)
@@ -29,7 +36,7 @@ Line.setup({
     -- Renderer for DAP UI
     {
       enabled = function(state)
-        return string.find(state.ft, "^dapui_")
+        return string.find(state.ft, "^dapui_") ~= nil
       end,
 
       render = function()
@@ -73,7 +80,7 @@ Line.setup({
       enabled = function(state)
         return vim.api.nvim_get_option_value("diff", { win = state.winid })
       end,
-      render = function(state)
+      render = function()
         return "%#FoldColumn# %#Wb_TabInactive# "
       end,
     },

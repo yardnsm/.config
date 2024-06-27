@@ -35,8 +35,7 @@ return {
       },
     },
 
-    ---@param c Base46Table
-    ---@param hi HighlightsTable
+    ---@type Base46Handler
     setup_base46 = function(c, hi)
       hi.TelescopeMatching = { guifg = c.dark_purple, gui = "bold" }
       hi.TelescopeSelection = { guibg = c.black2, guifg = c.grey_fg }

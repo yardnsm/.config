@@ -43,7 +43,7 @@ hook_plugin_config(function(plugin)
     return
   end
 
-  base46_utils.attach_handler("base46-*", plugin.setup_base46)
+  base46_utils.attach_handler(plugin.setup_base46)
 end)
 
 -- }}}

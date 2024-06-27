@@ -63,7 +63,7 @@ M.refresh = function(use_tmux)
 end
 
 M.setup = function()
-  base46_utils.attach_handler({ "base16-*", "base46-*" }, M.refresh)
+  base46_utils.attach_handler(M.refresh)
 end
 
 return M

@@ -45,8 +45,7 @@ return {
     "hrsh7th/cmp-cmdline",
   },
 
-  ---@param c Base46Table
-  ---@param hi HighlightsTable
+  ---@type Base46Handler
   setup_base46 = function(c, hi)
     hi.CmpBorder = { guifg = c.one_bg3, guibg = c.black }
   end,
