@@ -22,7 +22,7 @@ set -g message-style fg=yellow,bg=black
 setw -g window-status-separator '#[fg=colour240 nobold] ⋅ #[bg=default fg=default]'
 
 # Window item
-setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=red],#[fg=colour240]}#I #W#{?window_activity_flag,*,}"
+setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=colour240],#[fg=colour240]}#I #W#{?window_activity_flag,*,}"
 
 # Selected window item
 setw -g window-status-current-format "#[fg=blue bold, bg=black, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
