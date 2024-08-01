@@ -7,9 +7,9 @@ local base46_utils = require("yardnsm.misc.base46-utils")
 
 -- Setup highlights
 base46_utils.attach_handler(function(c, hi)
-  hi.Tb_Reset = { guifg = c.white, guibg = c.black }
+  hi.Tb_Reset = { fg = c.white, bg = c.black }
   hi.Tb_TabActive = "TabLineSel"
-  hi.Tb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
+  hi.Tb_TabInactive = { fg = c.grey_fg, bg = "NONE" }
 end)
 
 Line.setup({

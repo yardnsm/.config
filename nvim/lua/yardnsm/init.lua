@@ -6,7 +6,7 @@ require("yardnsm.autocommands")
 
 -- Setup UI elements
 require("yardnsm.ui.statusline")
-require("yardnsm.ui.winbar")
+-- require("yardnsm.ui.winbar")
 require("yardnsm.ui.tabline")
 
 -- More stuff

@@ -40,9 +40,17 @@ end
 
 M.hook = function(tbl, fn, impl)
   local old_fn = tbl[fn]
-  tbl[fn] = function (...)
+  tbl[fn] = function(...)
     return impl(old_fn, ...)
   end
+end
+
+M.starts_with = function(str, start)
+  return str:sub(1, #start) == start
+end
+
+M.ends_with = function(str, ending)
+  return ending == "" or str:sub(- #ending) == ending
 end
 
 return M

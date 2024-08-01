@@ -1,7 +1,6 @@
-" Specific configurations for `go` filetype
+" Specific configurations for `gomod` filetype
 
 " Indent settings
-
 setlocal noexpandtab
 setlocal shiftwidth=4
 setlocal tabstop=4

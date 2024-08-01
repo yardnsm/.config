@@ -49,17 +49,15 @@ return {
       {
         "<leader><leader>",
         function()
-          return is_in_diffview() and ":DiffviewFocusFiles<CR>" or ":NvimTreeFindFile<CR>"
+          if is_in_diffview() then
+            return ":DiffviewFocusFiles<CR>"
+          end
+
+          return vim.bo.ft == "NvimTree" and ":NvimTreeClose<CR>" or ":NvimTreeFindFile<CR>"
         end,
         expr = true,
       },
     },
-
-    ---@type Base46Handler
-    setup_base46 = function(c, hi)
-      hi.NvimTreeGitDirty = { guifg = c.orange }
-      hi.NvimTreeGitStaged = { guifg = c.vibrant_green }
-    end,
 
     config = function(_, opts)
       require("nvim-tree").setup(opts)
@@ -97,6 +95,10 @@ return {
 
       renderer = {
         highlight_git = true,
+
+        indent_markers = {
+          enable = true,
+        },
 
         icons = {
           git_placement = "after",

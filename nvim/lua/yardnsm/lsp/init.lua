@@ -24,20 +24,20 @@ M.required_servers = {
 }
 
 -- Disable formatting for certains servers; let null-ls do its thing!
-local disable_formatting_on_servers = {
+M.disable_formatting_on_servers = {
   "tsserver",
   "sumneko_lua",
 }
 
 M.on_attach = function(client, bufnr)
   -- Disable formatting if necessary
-  if vim.tbl_contains(disable_formatting_on_servers, client.name) then
+  if vim.tbl_contains(M.disable_formatting_on_servers, client.name) then
     client.server_capabilities.document_formatting = false
   end
 
-  keymaps.setup(bufnr)
-  highlight.setup(client, bufnr)
-  plugins.setup(client, bufnr)
+  keymaps.setup_buffer(bufnr)
+  highlight.setup_buffer(client, bufnr)
+  plugins.setup_buffer(client, bufnr)
 end
 
 M.make_capabilities = function()
@@ -73,6 +73,7 @@ M.setup = function()
   commands.setup()
   rename.setup()
   asthetics.setup()
+  keymaps.setup()
 end
 
 return M

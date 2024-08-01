@@ -47,7 +47,7 @@ return {
 
   ---@type Base46Handler
   setup_base46 = function(c, hi)
-    hi.CmpBorder = { guifg = c.one_bg3, guibg = c.black }
+    hi.CmpBorder = { fg = c.one_bg3, bg = c.black }
   end,
 
   config = function(_, opts)

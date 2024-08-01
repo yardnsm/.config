@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ "FocusLost", "WinLeave" }, {
   group = augroup,
   callback = function()
     vim.o.cursorline = false
-    vim.o.colorcolumn = '0'
+    vim.o.colorcolumn = "0"
   end,
 })
 
@@ -44,6 +44,36 @@ vim.api.nvim_create_autocmd({ "FocusGained", "WinEnter" }, {
   group = augroup,
   callback = function()
     vim.o.cursorline = true
-    vim.o.colorcolumn = '+0'
+    vim.o.colorcolumn = "+0"
   end,
+})
+
+-- Automatically set listchars based on expandtab
+local update_listchars = function()
+  local expandtab = vim.opt_local.expandtab:get()
+  local listchars = vim.opt_local.listchars:get()
+
+  if expandtab then
+    listchars.tab = "» "
+    listchars.lead = " "
+  else
+    listchars.tab = "  "
+    listchars.lead = "·"
+  end
+
+  vim.opt_local.listchars = listchars
+end
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "*",
+  callback = function ()
+    update_listchars()
+  end
+})
+
+vim.api.nvim_create_autocmd({ "OptionSet" }, {
+  pattern = "expandtab",
+  callback = function ()
+    update_listchars()
+  end
 })

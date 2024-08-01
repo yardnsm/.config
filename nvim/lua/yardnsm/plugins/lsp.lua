@@ -4,6 +4,7 @@ local utils = require("yardnsm.utils")
 return {
   {
     "williamboman/mason.nvim",
+    build = ":MasonUpdate",
     opts = {
       ui = {
         border = utils.float_borders_style,
@@ -56,13 +57,6 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-
-    ---@type Base46Handler
-    setup_base46 = function(c, hi)
-      hi.LspReferenceText = { guibg = c.one_bg3 }
-      hi.LspReferenceRead = "LspReferenceText"
-      hi.LspReferenceWrite = "LspReferenceText"
-    end,
 
     config = function()
       config.setup()

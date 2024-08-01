@@ -8,10 +8,7 @@ M.default_theme = "base46-yoru"
 ---@type Base46Handler
 local setup_highlights = function(c, hi)
   -- This is for the vim.highlight.on_yank in ./autocommands.lua
-  hi.Yanked = { guifg = "NONE", guibg = c.one_bg3 }
-
-  -- And some fixes
-  hi.Visual = { guifg = "NONE", guibg = c.one_bg3 }
+  hi.Yanked = { fg = "NONE", bg = c.one_bg3 }
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"

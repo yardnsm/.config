@@ -6,6 +6,11 @@ local get_closing_for_line = function(line)
   local i = -1
   local clo = ""
 
+  -- Do not close if cursor position is not in the end of the line
+  if vim.fn.col(".") ~= vim.fn.col("$") then
+    return ""
+  end
+
   -- TODO replicate the auto semicolon insertion
 
   while true do

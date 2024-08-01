@@ -28,8 +28,8 @@ set encoding=utf-8
 
 set modelines=1                       " enable modelines
 
-let mapleader=','                     " change the map leader
-let maplocalleader=','
+let mapleader="\<space>"
+let maplocalleader="\<space>"
 
 " See ~/dev/.setup/nvim/install.sh
 " let g:python_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
@@ -230,7 +230,7 @@ nmap gs :%s~~
 vmap gs :s~~
 
 " Toggle search highlight
-nnoremap <leader><space> :set hlsearch!<CR>
+nnoremap <leader><CR> :set hlsearch!<CR>
 
 " Enable hlsearch before searching
 nnoremap / :set hlsearch<CR>/
@@ -241,12 +241,13 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>zm
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Space opens/closes folds
-nnoremap <space> za
+nnoremap <CR> za
 
 " Convert the current word to uppercase when in INSERT mode
 inoremap <C-u> <ESC>gUiwgi
 
 " Toggles
+" <leader>t for [t]oggle
 nnoremap <leader>tm :call functions#ToggleMouse()<CR>
 nnoremap <leader>tn :set relativenumber!<CR>
 nnoremap <leader>tp :set paste!<CR>

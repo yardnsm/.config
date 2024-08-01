@@ -29,20 +29,7 @@ return {
 
   ---@type Base46Handler
   setup_base46 = function(c, hi)
-    hi.DiffviewFilePanelTitle = "NvimTreeRootFolder"
-    hi.DiffviewFilePanelConflicts = "NvimTreeRootFolder"
-    hi.DiffviewFilePanelCounter = "Comment"
-    hi.DiffviewFilePanelFileName = { guifg = c.light_grey }
-    hi.DiffviewFilePanelSelected = { guifg = c.folder_bg }
     hi.DiffviewNormal = "NvimTreeNormal"
-    hi.DiffviewWinSeparator = { guifg = c.darker_black, guibg = c.darker_black }
-
-    local util = require("nvim-base46.util")
-
-    hi.DiffAdd = { guibg = util.darken(c.vibrant_green, 0.15) }
-    hi.DiffChange = { guibg = util.darken(c.blue, 0.15) }
-    hi.DiffDelete = { guibg = util.darken(c.red, 0.15) }
-    hi.DiffText = { guibg = util.darken(c.blue, 0.25) }
   end,
 
   config = function(_, opts)

@@ -13,15 +13,20 @@ return {
     cmd = "Telescope",
 
     keys = {
-      { "<leader>a", ":Telescope live_grep<CR>" },
-      { "<leader>b", ":Telescope buffers theme=dropdown<CR>" },
-      { "<leader>m", ":Telescope marks theme=dropdown<CR>" },
-      { "<leader>w", "*#:set hlsearch | :Telescope grep_string<CR>" },
-      { "<leader>cc", ":Telescope colorscheme<CR>" },
-      { "<leader>h", ":Telescope highlights theme=ivy<CR>" },
-      { "z=", ":Telescope spell_suggest theme=cursor<CR>" },
-      { "<C-s>", ":Telescope lsp_dynamic_workspace_symbols<CR>" },
+      -- Find stuff
+      -- <leader>f for [f]ind
+      { "<leader>ff", ":Telescope find_files<CR>" },
+      { "<leader>fa", ":Telescope live_grep<CR>" },
+      { "<leader>fb", ":Telescope buffers theme=dropdown<CR>" },
+      { "<leader>fm", ":Telescope marks theme=dropdown<CR>" },
+      { "<leader>fw", "*#:set hlsearch | :Telescope grep_string<CR>" },
+      { "<leader>fc", ":Telescope colorscheme<CR>" },
+      { "<leader>fh", ":Telescope highlights theme=ivy<CR>" },
 
+      -- Override z= for spell
+      { "z=", ":Telescope spell_suggest theme=cursor<CR>" },
+
+      { "<C-s>", ":Telescope lsp_dynamic_workspace_symbols<CR>" },
       {
         "<C-p>",
         function()
@@ -34,13 +39,6 @@ return {
         expr = true,
       },
     },
-
-    ---@type Base46Handler
-    setup_base46 = function(c, hi)
-      hi.TelescopeMatching = { guifg = c.dark_purple, gui = "bold" }
-      hi.TelescopeSelection = { guibg = c.black2, guifg = c.grey_fg }
-      hi.TelescopeResultsNormal = { guifg = c.grey_fg, guibg = c.darker_black }
-    end,
 
     config = function(_, opts)
       local telescope = require("telescope")

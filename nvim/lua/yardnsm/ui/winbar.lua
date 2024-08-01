@@ -11,9 +11,9 @@ local winbar_filetype_exclude = {
 
 -- Setup highlights
 base46_utils.attach_handler(function(c, hi)
-  hi.Wb_TabActive = { guifg = c.white, gui = "bold" }
-  hi.Wb_TabInactive = { guifg = c.grey_fg, guibg = "NONE" }
-  hi.Wb_Fill = { guifg = c.grey_fg, guibg = c.darker_black }
+  hi.Wb_TabActive = { fg = c.white, bold = true }
+  hi.Wb_TabInactive = { fg = c.grey_fg, bg = "NONE" }
+  hi.Wb_Fill = { fg = c.grey_fg, bg = c.darker_black }
 end)
 
 ---@param state LineState

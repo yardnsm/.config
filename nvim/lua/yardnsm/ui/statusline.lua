@@ -33,23 +33,24 @@ end
 
 -- Setup highlights
 base46_utils.attach_handler(function(c, hi)
+  hi.StatusLineNC = "StatusLine"
   hi.St_Reset = "StatusLine"
-  hi.St_GitBranch = { guifg = c.grey_fg, guibg = c.statusline_bg }
-  hi.St_FileName = { guifg = c.white, guibg = c.statusline_bg, gui = "bold" }
-  hi.St_Text = { guifg = c.light_grey, guibg = c.statusline_bg }
-  hi.St_LSP = { guifg = c.green, guibg = c.statusline_bg }
-  hi.St_Filetype = { guifg = c.green, guibg = c.statusline_bg }
-  hi.St_LineInfo = { guifg = c.white, guibg = c.one_bg }
-  hi.St_LineInfoSecond = { guifg = c.white, guibg = c.one_bg3 }
+  hi.St_GitBranch = { fg = c.grey_fg, bg = c.statusline_bg }
+  hi.St_FileName = { fg = c.white, bg = c.statusline_bg, bold = true }
+  hi.St_Text = { fg = c.light_grey, bg = c.statusline_bg }
+  hi.St_LSP = { fg = c.green, bg = c.statusline_bg }
+  hi.St_Filetype = { fg = c.green, bg = c.statusline_bg }
+  hi.St_LineInfo = { fg = c.white, bg = c.one_bg }
+  hi.St_LineInfoSecond = { fg = c.white, bg = c.one_bg3 }
 
-  hi.St_VCSAdd = { guifg = c.green, guibg = c.statusline_bg }
-  hi.St_VCSChange = { guifg = c.blue, guibg = c.statusline_bg }
-  hi.St_VCSDelete = { guifg = c.red, guibg = c.statusline_bg }
+  hi.St_VCSAdd = { fg = c.green, bg = c.statusline_bg }
+  hi.St_VCSChange = { fg = c.blue, bg = c.statusline_bg }
+  hi.St_VCSDelete = { fg = c.red, bg = c.statusline_bg }
 
-  hi.St_IndicatorNeutral = { guifg = c.nord_blue, guibg = c.black, gui = "bold" }
-  hi.St_IndicatorWarning = { guifg = c.yellow, guibg = c.black, gui = "bold" }
-  hi.St_IndicatorError = { guifg = c.red, guibg = c.black, gui = "bold" }
-  hi.St_IndicatorSuccess = { guifg = c.green, guibg = c.black, gui = "bold" }
+  hi.St_IndicatorNeutral = { fg = c.nord_blue, bg = c.black, bold = true }
+  hi.St_IndicatorWarning = { fg = c.yellow, bg = c.black, bold = true }
+  hi.St_IndicatorError = { fg = c.red, bg = c.black, bold = true }
+  hi.St_IndicatorSuccess = { fg = c.green, bg = c.black, bold = true }
 end)
 
 Line.setup({

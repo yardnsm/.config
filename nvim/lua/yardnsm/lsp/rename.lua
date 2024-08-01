@@ -41,10 +41,22 @@ function qf_rename()
       local num_files = 0
       local num_updates = 0
 
+      ---@type lsp.RenameFile[]
+      local renames = {}
+
       ---@param uri lsp.DocumentUri
       ---@param edits lsp.TextEdit[]
       local function handleTextEdits(uri, edits)
-        local bufnr = vim.uri_to_bufnr(uri)
+        local newUri = nil
+
+        -- Try to figure out of a rename occured somewhere in the path
+        for _, rename in ipairs(renames) do
+          if utils.starts_with(uri, rename.oldUri) then
+            newUri = rename.newUri .. uri:sub(#rename.oldUri + 1)
+          end
+        end
+
+        local bufnr = vim.uri_to_bufnr(newUri or uri)
 
         num_files = num_files + 1
 
@@ -58,8 +70,46 @@ function qf_rename()
             bufnr = bufnr,
             lnum = start_line,
             col = edit.range.start.character + 1,
-            text = line,
+            text = line .. (newUri and " (file renamed from: " .. vim.uri_to_fname(uri) .. ")" or ""),
           })
+        end
+      end
+
+      ---@param doc lsp.CreateFile
+      local function handleCreateFile(doc)
+        local bufnr = vim.uri_to_bufnr(doc.uri)
+
+        table.insert(entries, {
+          bufnr = bufnr,
+          lnum = 0,
+          text = "== File Created ==",
+        })
+      end
+
+      ---@param doc lsp.RenameFile
+      local function handleRenameFile(doc)
+        table.insert(renames, doc)
+      end
+
+      ---@param doc lsp.DeleteFile
+      local function handleDeleteFile(doc)
+        local bufnr = vim.uri_to_bufnr(doc.uri)
+
+        table.insert(entries, {
+          bufnr = bufnr,
+          lnum = 0,
+          text = "== File Deleted ==",
+        })
+      end
+
+      -- Find the creations / deletions / renames first
+      for _, doc in ipairs(result.documentChanges or {}) do
+        if doc.kind == "create" then
+          handleCreateFile(doc)
+        elseif doc.kind == "rename" then
+          handleRenameFile(doc)
+        elseif doc.kind == "delete" then
+          handleDeleteFile(doc)
         end
       end
 
@@ -68,7 +118,9 @@ function qf_rename()
       end
 
       for _, doc in ipairs(result.documentChanges or {}) do
-        handleTextEdits(doc.textDocument.uri, doc.edits)
+        if doc.textDocument ~= nil then
+          handleTextEdits(doc.textDocument.uri, doc.edits)
+        end
       end
 
       utils.log(

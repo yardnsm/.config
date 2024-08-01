@@ -1,4 +1,5 @@
 local M = {}
+local augroup = vim.api.nvim_create_augroup("lsp_plugins", { clear = true })
 
 local function lsp_plugin_navic(client, bufnr)
   if client.supports_method("textDocument/documentSymbol") then
@@ -22,7 +23,7 @@ local function lsp_plugin_lightbulb(bufnr)
   end
 end
 
-M.setup = function(client, bufnr)
+M.setup_buffer = function(client, bufnr)
   lsp_plugin_navic(client, bufnr)
   lsp_plugin_lightbulb(bufnr)
 end

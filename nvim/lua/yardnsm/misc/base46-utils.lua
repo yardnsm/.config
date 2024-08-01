@@ -3,8 +3,6 @@
 --
 -- Depends on the yardnsm/nvim-base46 plugin
 
----@alias Base46Handler fun(c: base46.Colors, hi: base46.HighlightsTable)
-
 local augroup = vim.api.nvim_create_augroup("base46_handlers", { clear = true })
 
 ---@class Base46HandlerConfig
@@ -22,7 +20,7 @@ local defaults = {
 
 local M = {}
 
----@param handler Base46Handler
+---@param handler base46.Handler
 M.run_handler = function(handler)
   local status_ok, base46 = pcall(require, "nvim-base46")
   if not status_ok then
@@ -35,7 +33,7 @@ M.run_handler = function(handler)
   handler(c, hi)
 end
 
----@param handler Base46Handler
+---@param handler base46.Handler
 ---@param opts? Base46HandlerConfig
 M.attach_handler = function(handler, opts)
   opts = vim.tbl_deep_extend("force", {}, defaults, opts or {})
