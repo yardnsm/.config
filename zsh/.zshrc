@@ -33,8 +33,9 @@ ZINIT[HOME_DIR]=$ZDOTDIR/.zinit
 source ${ZINIT[BIN_DIR]}/zinit.zsh
 
 # Pluginz
-zinit light rupa/z
 zinit light zsh-users/zsh-completions
+zinit ice pick="fzf-git.sh"; zinit light junegunn/fzf-git.sh
+zplugin ice as="program" pick="bin/git-dsf"; zplugin light zdharma-continuum/zsh-diff-so-fancy
 
 # Only clone, do not source
 # Sourcing of the prompt happens on top
@@ -65,10 +66,8 @@ autoload -U edit-command-line
 
 # homebrew {{{
 
-# TODO use shellenv
-
 if [[ -n $IS_MACOS ]]; then
-  export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+  eval $(/opt/homebrew/bin/brew shellenv)
 fi
 
 # }}}
@@ -81,17 +80,7 @@ fi
 # }}}
 # fzf {{{
 
-# TODO is there a better way to source these?
-
-# Autocompletion
-[[ $- == *i* ]] \
-  && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null \
-  || source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-[[ -f "/usr/local/opt/fzf/shell/key-bindings.zsh" ]] \
-  && source "/usr/local/opt/fzf/shell/key-bindings.zsh" 2> /dev/null \
-  || source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
+source <(fzf --zsh)
 
 # }}}
 # tmux {{{
@@ -126,6 +115,11 @@ _base16_shell_hook() {
 
 add-zsh-hook precmd _base16_shell_hook
 add-zsh-hook preexec _base16_shell_hook
+
+# }}}
+# zoxide {{{
+
+eval "$(zoxide init zsh)"
 
 # }}}
 
