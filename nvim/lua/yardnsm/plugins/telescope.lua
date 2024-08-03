@@ -24,9 +24,9 @@ return {
       { "<leader>fh", ":Telescope highlights theme=ivy<CR>" },
 
       -- Override z= for spell
-      { "z=", ":Telescope spell_suggest theme=cursor<CR>" },
+      { "z=",         ":Telescope spell_suggest theme=cursor<CR>" },
 
-      { "<C-s>", ":Telescope lsp_dynamic_workspace_symbols<CR>" },
+      { "<C-s>",      ":Telescope lsp_dynamic_workspace_symbols<CR>" },
       {
         "<C-p>",
         function()
@@ -66,6 +66,22 @@ return {
         defaults = {
           file_ignore_patterns = {
             "package-lock.json",
+          },
+
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "-u", -- unrestricted mode
+            "--hidden", -- allow hidden files
+
+            -- ignore .git
+            "-g",
+            "!.git/",
           },
 
           prompt_prefix = " › ",

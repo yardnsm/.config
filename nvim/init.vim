@@ -31,10 +31,6 @@ set modelines=1                       " enable modelines
 let mapleader="\<space>"
 let maplocalleader="\<space>"
 
-" See ~/dev/.setup/nvim/install.sh
-" let g:python_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
-" let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim3/bin/python'
-
 " }}}
 " Lua Integration {{{
 
@@ -54,8 +50,7 @@ set textwidth=100                     " cuz percision matter
 set list                              " show invisibles
 set scrolloff=8                       " allows to scroll of fthe screen
 set hidden                            " allow switching buffers w/o saving
-set backspace=                        " INSERT is for INSERT, not DELETE
-
+set backspace=indent                  " INSERT is for INSERT, not DELETE
 set nojoinspaces                      " only insert a single space after '.', '!' and '?' with the join command
 
 set wildmenu                          " enable wildmenu for completion
@@ -68,6 +63,7 @@ set showcmd                           " show command in normal (when typed)
 set report=0                          " always display the count of lines yanked or deleted on the message line
 
 " Invisibles
+" See also ./lua/yardnsm/autocommands.lua for the listchars change based on expandtab
 set showbreak=↪
 set listchars=tab:\»\ ,space:\ ,eol:\ ,trail:·,nbsp:_ " ¬
 
@@ -116,13 +112,17 @@ set gdefault                          " make search and replace global for the l
 set magic                             " turn magic on for regular expressions
 
 if has('nvim')
-  set inccommand=split                " shows the effects of the substitute
-                                      " command incrementally, as you type
+  set inccommand=split                " shows the effects of the substitute command incrementally, as you type
 endif
 
 " Use `ag` instead of `grep`
 if executable('ag')
   set grepprg=ag\ --vimgrep\ --smart-case\ --hidden\ --ignore\ .git
+endif
+
+" ...and `rg` if present
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --exclude\ .git\ --no-heading
 endif
 
 " }}}
@@ -230,7 +230,8 @@ nmap gs :%s~~
 vmap gs :s~~
 
 " Toggle search highlight
-nnoremap <leader><CR> :set hlsearch!<CR>
+" TODO https://github.com/LazyVim/LazyVim/blob/12818a6cb499456f4903c5d8e68af43753ebc869/lua/lazyvim/config/keymaps.lua#L43-L44
+nnoremap <ESC> :set hlsearch!<CR>
 
 " Enable hlsearch before searching
 nnoremap / :set hlsearch<CR>/
@@ -242,6 +243,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Space opens/closes folds
 nnoremap <CR> za
+
+" Fold Levels
+nnoremap z2 zMzr
+nnoremap z3 zMzrzr
 
 " Convert the current word to uppercase when in INSERT mode
 inoremap <C-u> <ESC>gUiwgi
@@ -258,6 +263,10 @@ nnoremap <leader>tw :set wrap!<CR>
 " Copy to clipboard
 vnoremap <C-c> "+y
 
+" +y to copy to clipboard
+nnoremap + "+
+vnoremap + "+
+
 " Make `S` works like `X` is to `x`
 nnoremap S ch
 
@@ -268,8 +277,40 @@ nnoremap <C-y> 3<C-y>
 " Count matches
 nnoremap <leader>C :%s///gn<CR>
 
-" Make <S-Tab> inverse <Tab>
+" Make <S-Tab> inverse <Tab> (:h i_CTRL-D)
 inoremap <S-Tab> <C-d>
+
+" Paste over selection without updating the yank register
+vnoremap p "_dP
+vnoremap _p p
+
+" Close all
+nnoremap <leader><BS> :qa<CR>
+
+" Move lines
+nnoremap <A-j> <cmd>m .+1<cr>==
+nnoremap <A-k> <cmd>m .-2<cr>==
+inoremap <A-j> <esc><cmd>m .+1<cr>==gi
+inoremap <A-k> <esc><cmd>m .-2<cr>==gi
+vnoremap <A-j> :m '>+1<cr>gv=gv
+vnoremap <A-k> :m '<-2<cr>gv=gv
+
+" https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+
+" Add undo break
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ; ;<C-g>u
+
+" Add a comment above / below
+nnoremap gco o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>
+nnoremap gcO O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>
 
 " }}}
 " Commands {{{

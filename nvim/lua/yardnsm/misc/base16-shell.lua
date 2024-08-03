@@ -6,7 +6,7 @@ local base46_utils = require("yardnsm.misc.base46-utils")
 local M = {}
 
 local get_tmux_env = function(name)
-  local res = vim.system({ 'tmux', 'show-environment', name }):wait()
+  local res = vim.system({ "tmux", "show-environment", name }):wait()
 
   if res.code ~= 0 then
     return nil
@@ -20,15 +20,16 @@ M.get_shell_theme = function(use_tmux)
   local theme = vim.env.BASE16_THEME
 
   if use_tmux and theme == nil and vim.env.TMUX ~= nil then
-    return get_tmux_env('BASE16_THEME')
+    return get_tmux_env("BASE16_THEME")
   end
 
   return theme
 end
 
 ---@param use_tmux boolean
-M.refresh = function(use_tmux)
-  if vim.g.colors_name == M.get_shell_theme(use_tmux) then
+---@param force boolean
+M.refresh = function(use_tmux, force)
+  if not force and vim.g.colors_name == M.get_shell_theme(use_tmux) then
     return
   end
 
@@ -41,7 +42,7 @@ M.refresh = function(use_tmux)
     end
 
     vim.system({
-      'base16-shell',
+      "base16-shell",
       vim.g.colors_name,
       string.sub(c.base00, 2),
       string.sub(c.base01, 2),
@@ -64,6 +65,10 @@ end
 
 M.setup = function()
   base46_utils.attach_handler(M.refresh)
+
+  vim.api.nvim_create_user_command("ThemeRefresh", function()
+    M.refresh(false, true)
+  end, {})
 end
 
 return M

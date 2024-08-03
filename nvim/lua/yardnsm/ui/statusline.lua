@@ -100,6 +100,7 @@ Line.setup({
 
             "%#St_Text#" .. blocks.paste() .. "%#St_Text#",
             "%#St_Text#" .. blocks.spell() .. "%#St_Text#",
+            " ",
 
             "%#St_LSP#" .. blocks.lsp() .. "%#St_Text#",
             "%#St_Filetype# " .. blocks.filetype(state) .. "%#St_Text#  ",

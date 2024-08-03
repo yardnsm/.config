@@ -5,7 +5,7 @@ local M = {}
 
 M.default_theme = "base46-yoru"
 
----@type Base46Handler
+---@type base46.Handler
 local setup_highlights = function(c, hi)
   -- This is for the vim.highlight.on_yank in ./autocommands.lua
   hi.Yanked = { fg = "NONE", bg = c.one_bg3 }

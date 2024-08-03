@@ -12,6 +12,7 @@ local get_closing_for_line = function(line)
   end
 
   -- TODO replicate the auto semicolon insertion
+  -- https://github.com/rstacruz/vim-closer/blob/6007d9db0a35e983af246b667282606612076b07/autoload/closer.vim#L87-L115
 
   while true do
     i, _ = string.find(line, "[%(%)%{%}%[%]]", i + 1)
