@@ -36,6 +36,7 @@ source ${ZINIT[BIN_DIR]}/zinit.zsh
 zinit light zsh-users/zsh-completions
 zinit ice pick="fzf-git.sh"; zinit light junegunn/fzf-git.sh
 zplugin ice as="program" pick="bin/git-dsf"; zplugin light zdharma-continuum/zsh-diff-so-fancy
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
 # Only clone, do not source
 # Sourcing of the prompt happens on top
