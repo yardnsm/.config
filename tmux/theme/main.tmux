@@ -2,14 +2,14 @@
 
 # Status bar config
 set -g status on
-set -g status-position bottom
+set -g status-position top
 set -g status-interval 1
 set -g status-justify left
 set -g status-left-length 200
 set -g status-right-length 200
 
 # Pane border
-setw -g pane-border-status off
+setw -g pane-border-status top
 setw -g pane-border-format '─'
 set -g pane-border-style fg=brightblack
 set -g pane-active-border-style fg=blue
@@ -31,4 +31,4 @@ setw -g window-status-current-format "#[fg=blue bold, bg=black, noreverse]#I #{?
 set -g status-left "#[fg=white bold] #S  "
 
 # Right side: indicator when prefix is selected + right segments
-set -g status-right "#{?client_prefix,#[fg=blue bold]^A#{window-status-separator},}#($XDG_CONFIG_HOME/tmux/theme/status_line.sh)  #[fg=blue]✡ "
+set -g status-right "#{?client_prefix,#[fg=blue bold]^A#{window-status-separator},}#($XDG_CONFIG_HOME/tmux/theme/status_line.sh) "
