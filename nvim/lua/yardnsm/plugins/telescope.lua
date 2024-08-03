@@ -76,7 +76,6 @@ return {
             "--line-number",
             "--column",
             "--smart-case",
-            "-u", -- unrestricted mode
             "--hidden", -- allow hidden files
 
             -- ignore .git

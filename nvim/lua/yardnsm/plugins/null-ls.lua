@@ -12,9 +12,10 @@ return {
       local hover = null_ls.builtins.hover
 
       opts.sources = vim.list_extend(opts.sources or {}, {
-        formatting.prettier,
+        -- formatting.prettier,
         formatting.stylua,
         formatting.black.with({ extra_args = { "--fast" } }),
+        formatting.markdownlint,
 
         diagnostics.zsh,
 

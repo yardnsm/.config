@@ -15,7 +15,7 @@ The setup scripts moved to a new repository, located at
 
 ## Protecting Secrets
 
-I'm using `.gitattributes` filters to mask out sensitive data (This is taken from
+I'm using `.gitattributes` filters to mask out sensitive data (this is taken from
 [rafi/.config](https://github.com/rafi/.config)).
 
 After cloning this repository, you should setup the custom filters (the installer already does this
