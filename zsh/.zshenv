@@ -70,7 +70,17 @@ if [[ -n $IS_MACOS ]]; then
 
   # Android SDK dir
   export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+
+  # libpq
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
+
+# .NET
+export PATH="$PATH:/Users/yardnsm/.dotnet/tools"
+
+# npm
+# This is faster than `npm config get prefix`
+export PATH="$PATH:/Users/yardnsm/.local/share/npm/bin"
 
 # ---[ Common locations ]---------------------------------------------------------------------------
 

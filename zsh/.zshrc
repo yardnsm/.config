@@ -21,6 +21,11 @@ fpath=(
   $fpath
 )
 
+# fpath for homebrew completions
+if [[ -n $IS_MACOS ]]; then
+  fpath+=( "$(/opt/homebrew/bin/brew --prefix)/share/zsh/site-functions" )
+fi
+
 # Zinit setup {{{
 
 # Configuration
@@ -33,10 +38,12 @@ ZINIT[HOME_DIR]=$ZDOTDIR/.zinit
 source ${ZINIT[BIN_DIR]}/zinit.zsh
 
 # Pluginz
-zinit light zsh-users/zsh-completions
-zinit ice pick="fzf-git.sh"; zinit light junegunn/fzf-git.sh
-zplugin ice as="program" pick="bin/git-dsf"; zplugin light zdharma-continuum/zsh-diff-so-fancy
+# Refer to https://github.com/zdharma-continuum/zinit/wiki/Recipes-for-popular-programs
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+zinit light zsh-users/zsh-completions
+zinit light jscutlery/nx-completion
+zinit ice as="program" pick="fzf-git.sh" cloneonly; zinit light junegunn/fzf-git.sh
+zinit ice as="program" pick="bin/git-dsf"; zinit light zdharma-continuum/zsh-diff-so-fancy
 
 # Only clone, do not source
 # Sourcing of the prompt happens on top
@@ -81,7 +88,12 @@ fi
 # }}}
 # fzf {{{
 
-source <(fzf --zsh)
+# https://github.com/jeffreytse/zsh-vi-mode/issues/24#issuecomment-783981662
+zvm_after_init() {
+  bindkey -r '^G' # For fzf-git.sh
+  source <(fzf --zsh)
+  source $ZDOTDIR/.zinit/plugins/junegunn---fzf-git.sh/fzf-git.sh
+}
 
 # }}}
 # tmux {{{
@@ -145,8 +157,8 @@ _fnm_autoload_hook() {
   fi
 }
 
-add-zsh-hook chpwd _fnm_autoload_hook \
-  && _fnm_autoload_hook
+# add-zsh-hook chpwd _fnm_autoload_hook \
+#   && _fnm_autoload_hook
 
 # }}}
 # rbenv {{{
@@ -177,7 +189,9 @@ fi
 # }}}
 # rust {{{
 
-source $CARGO_HOME/env
+if [[ -e "$CARGO_HOME/env" ]]; then
+  source $CARGO_HOME/env
+fi
 
 # }}}
 
