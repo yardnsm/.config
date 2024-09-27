@@ -14,6 +14,13 @@ setw -g pane-border-format '─'
 set -g pane-border-style fg=brightblack
 set -g pane-active-border-style fg=blue
 
+# Popups
+set -g popup-border-style fg=blue
+set -g popup-border-lines rounded
+
+# Mode indicator colors
+set -g mode-style 'fg=gray,bg=brightblack'
+
 # Status bar colors
 set -g status-style fg=brightwhite,bg=black
 set -g message-style fg=yellow,bg=black
@@ -28,7 +35,7 @@ setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg
 setw -g window-status-current-format "#[fg=blue bold, bg=black, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
 
 # Left side: session name
-set -g status-left "#[fg=white bold] #S  "
+set -g status-left "#[fg=white bold] 🏝️ #S  "
 
 # Right side: indicator when prefix is selected + right segments
 set -g status-right "#{?client_prefix,#[fg=blue bold]^A#{window-status-separator},}#($XDG_CONFIG_HOME/tmux/theme/status_line.sh) "
