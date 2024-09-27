@@ -1,4 +1,5 @@
 local Line = require("yardnsm.ui.line")
+local utils = require("yardnsm.utils")
 local tab_label = require("yardnsm.misc.tab-label")
 local base46_utils = require("yardnsm.misc.base46-utils")
 
@@ -26,6 +27,14 @@ Line.setup({
         for tabpagenr = 1, num_tabs do
           local is_active = active_tab == tabpagenr
           local label = tab_label.get_label_for_tab(tabpagenr)
+          local tab_curr_win_ft = vim.api.nvim_get_option_value("ft", {
+            buf = vim.fn.winbufnr(vim.fn.win_getid(vim.fn.tabpagewinnr(tabpagenr), tabpagenr))
+          })
+
+          -- Special case for Neogit
+          if label == nil and utils.starts_with(tab_curr_win_ft, "Neogit") then
+            label = tab_curr_win_ft
+          end
 
           table.insert(
             tabs,
@@ -42,6 +51,7 @@ Line.setup({
         return table.concat({
           "%#Tb_Reset#%=",
           table.concat(tabs),
+          "%#Tb_Reset#%=",
         })
       end,
     },

@@ -217,10 +217,14 @@ M.lsp = function()
 end
 
 M.vcs_branch = function()
-  local branch = vim.fn.exists("*FugitiveHead") ~= 0 and vim.fn.FugitiveHead() or ""
+  local branch = vim.fn.exists("g:gitsigns_head") ~= 0 and vim.g.gitsigns_head or ""
 
   if branch == "" then
     return ""
+  end
+
+  if string.len(branch) > 20 then
+    branch = string.sub(branch, 1, 20) .. "… "
   end
 
   return "  " .. branch .. " ⋅"

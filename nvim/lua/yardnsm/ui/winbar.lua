@@ -14,6 +14,7 @@ base46_utils.attach_handler(function(c, hi)
   hi.Wb_TabActive = { fg = c.white, bold = true }
   hi.Wb_TabInactive = { fg = c.grey_fg, bg = "NONE" }
   hi.Wb_Fill = { fg = c.grey_fg, bg = c.darker_black }
+  hi.Wb_FillInactive = { fg = c.grey_fg, bg = c.statusline_bg }
 end)
 
 ---@param state LineState
@@ -70,7 +71,7 @@ Line.setup({
 
         return table.concat({
           blocks.file_tab_like(state),
-          "%#Wb_Fill#",
+          "%#Wb_FillInactive#",
         })
       end,
     },
