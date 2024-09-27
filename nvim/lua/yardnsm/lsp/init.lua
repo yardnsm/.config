@@ -21,6 +21,7 @@ M.required_servers = {
   "intelephense",
   "jsonls",
   "eslint",
+  "nxls",
 }
 
 -- Disable formatting for certains servers; let null-ls do its thing!
@@ -29,6 +30,8 @@ M.disable_formatting_on_servers = {
   "sumneko_lua",
 }
 
+---@param client vim.lsp.Client
+---@param bufnr number
 M.on_attach = function(client, bufnr)
   -- Disable formatting if necessary
   if vim.tbl_contains(M.disable_formatting_on_servers, client.name) then
@@ -63,6 +66,14 @@ M.setup_handler = function(server_name)
   local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
   if lsp_options_status_ok then
     server_opts = vim.tbl_deep_extend("force", lsp_options, server_opts)
+
+    --- Do not allow overriding on_attach
+    if lsp_options.on_attach ~= nil then
+      server_opts.on_attach = function(...)
+        M.on_attach(...)
+        lsp_options.on_attach(...)
+      end
+    end
   end
 
   lspconfig[server_name].setup(server_opts)

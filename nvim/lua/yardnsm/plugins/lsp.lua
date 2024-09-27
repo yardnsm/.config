@@ -65,4 +65,23 @@ return {
       -- config.setup_handler("gopls")
     end,
   },
+
+  -- For csharp_ls
+  {
+    "Decodetalkers/csharpls-extended-lsp.nvim",
+    enabled = false,
+  },
+  {
+    "iabdelkareem/csharp.nvim",
+    enabled = false,
+    dependencies = {
+      "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+      "mfussenegger/nvim-dap",
+      -- "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+    },
+    config = function()
+      require("mason") -- Mason setup must run before csharp, only if you want to use omnisharp
+      require("csharp").setup()
+    end,
+  },
 }

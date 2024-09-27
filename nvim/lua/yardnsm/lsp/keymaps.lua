@@ -2,10 +2,14 @@ local M = {}
 
 M.setup = function()
   -- Disable the default mappings (:h lsp-defaults-disable)
-  vim.keymap.del("n", "grn")
-  vim.keymap.del("n", "gra")
-  vim.keymap.del("n", "grr")
-  vim.keymap.del("i", "<C-s>")
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function (ev)
+      -- vim.keymap.del("n", "grn", { buffer = ev.buf })
+      -- vim.keymap.del("n", "gra", { buffer = ev.buf })
+      -- vim.keymap.del("n", "grr", { buffer = ev.buf })
+      -- vim.keymap.del("i", "<C-s>", { buffer = ev.buf })
+    end
+  })
 end
 
 M.setup_buffer = function(bufnr)
@@ -35,8 +39,8 @@ M.setup_buffer = function(bufnr)
   )
 
   -- Diagnostics
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", "<cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = true })<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = true })<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>lg", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end

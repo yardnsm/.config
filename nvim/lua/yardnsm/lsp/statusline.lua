@@ -7,6 +7,7 @@ end
 
 local allowed_servers = {
   "tsserver",
+  "vtsls",
   "pyright",
   "bashls",
   "sumneko_lua",
