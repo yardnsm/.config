@@ -17,6 +17,7 @@ return {
       -- <leader>f for [f]ind
       { "<leader>ff", ":Telescope find_files<CR>" },
       { "<leader>fa", ":Telescope live_grep<CR>" },
+      { "<leader>fg", ":Telescope git_status<CR>" },
       { "<leader>fb", ":Telescope buffers theme=dropdown<CR>" },
       { "<leader>fm", ":Telescope marks theme=dropdown<CR>" },
       { "<leader>fw", "*#:set hlsearch | :Telescope grep_string<CR>" },

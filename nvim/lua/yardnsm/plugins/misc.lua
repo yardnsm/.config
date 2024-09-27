@@ -3,10 +3,22 @@ local utils = require("yardnsm.utils")
 return {
 
   -- Devicons for eyecandy
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    "echasnovski/mini.icons",
+    version = false,
+    opts = {},
+
+    config = function(_, opts)
+      require("mini.icons").setup(opts)
+      MiniIcons.mock_nvim_web_devicons()
+    end,
+  },
+
+  -- TODO remove
+  -- { "nvim-tree/nvim-web-devicons", lazy = true },
 
   -- Lua libraries, used by some plugins
-  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim",     lazy = true },
 
   {
     "norcalli/nvim-colorizer.lua",

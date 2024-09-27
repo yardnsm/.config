@@ -22,6 +22,7 @@ local function nvim_tree_on_attach(bufnr)
   vim.keymap.set("n", "go", api.node.open.preview, opts("Open Preview"))
   vim.keymap.set("n", "s", api.node.open.vertical, opts("Open Vertical Split"))
   vim.keymap.set("n", "i", api.node.open.horizontal, opts("Open Horizontal Split"))
+  vim.keymap.set("n", "bb", api.marks.toggle, opts("Toggle Bookmark"))
 
   -- Remove default mappings
   vim.keymap.del("n", "<C-k>", opts(""))
@@ -30,6 +31,10 @@ end
 return {
   {
     "kyazdani42/nvim-tree.lua",
+
+    dependencies = {
+      "echasnovski/mini.icons",
+    },
 
     keys = {
       {
@@ -91,7 +96,26 @@ return {
         exclude = { ".DS_Store", "__pycache__", ".pyc" },
       },
 
-      git = { ignore = false },
+      git = {
+        ignore = false,
+        timeout = 1000,
+      },
+
+      view = {
+        width = {
+          max = 80,
+        },
+
+        float = {
+          enable = false,
+
+          ---@type vim.api.keyset.win_config
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+          },
+        },
+      },
 
       renderer = {
         highlight_git = true,
@@ -104,11 +128,18 @@ return {
           git_placement = "after",
 
           show = {
-            file = false,
-            folder = false,
+            file = true,
+            folder = true,
           },
 
           glyphs = {
+            folder = {
+              default = "󰉖",
+              open = "󰷏",
+              empty = "󰉖",
+              empty_open = "󰷏"
+            },
+
             git = {
               unstaged = "+",
               staged = "+",

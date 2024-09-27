@@ -39,16 +39,16 @@ lua require('yardnsm')
 " }}}
 " Editor {{{
 
-set mouse=                            " disable mouse support by default
-" set mouse=nv
-" set mousemodel=popup
+" set mouse=                            " disable mouse support by default
+set mouse=nv
+set mousemodel=popup
 
 set number                            " show line numbers
 set relativenumber                    " set relative numbers
 set linebreak                         " wraps between words
 set textwidth=100                     " cuz percision matter
 set list                              " show invisibles
-set scrolloff=8                       " allows to scroll of fthe screen
+set scrolloff=8                       " allows to scroll of the screen
 set hidden                            " allow switching buffers w/o saving
 set backspace=indent                  " INSERT is for INSERT, not DELETE
 set nojoinspaces                      " only insert a single space after '.', '!' and '?' with the join command
@@ -262,6 +262,9 @@ nnoremap <leader>tw :set wrap!<CR>
 
 " Copy to clipboard
 vnoremap <C-c> "+y
+
+" Format instead of Ex-mode
+nmap Q gq
 
 " +y to copy to clipboard
 nnoremap + "+

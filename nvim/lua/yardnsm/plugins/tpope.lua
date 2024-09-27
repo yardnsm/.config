@@ -1,6 +1,6 @@
 -- Topoe's reserved area
 return {
-  { "tpope/vim-fugitive" }, -- a git wrapper for vim
+  { "tpope/vim-fugitive", enabled = false }, -- a git wrapper for vim
   { "tpope/vim-rhubarb" }, -- GitHub extension for vim-fugitive
   { "tpope/vim-surround" }, -- easly work with surroundings
   { "tpope/vim-unimpaired" }, -- some sensible bracket mappings

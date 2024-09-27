@@ -4,6 +4,7 @@ local check_backspace = function()
 end
 
 -- https://www.nerdfonts.com/cheat-sheet
+-- TODO remove since we've using mini-icons
 local kind_icons = {
   Text = "",
   Method = "",
@@ -131,7 +132,7 @@ return {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           -- Kind icons
-          vim_item.kind = " " .. (kind_icons[vim_item.kind] or "") .. "  "
+          vim_item.kind = " " .. (MiniIcons.get('lsp', vim_item.kind) or "") .. "  "
 
           -- Completion menus
           vim_item.menu = " "
