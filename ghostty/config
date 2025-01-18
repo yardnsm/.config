@@ -1,0 +1,18 @@
+font-family = "Iosevka"
+font-size = 16
+font-thicken = true
+
+font-feature = -liga
+font-feature = -calt
+font-feature = -dlig
+
+adjust-cell-width = 0
+adjust-cell-height = 4
+
+theme = catppuccin-mocha
+
+window-padding-y = 10,8
+window-padding-balance = true
+
+cursor-invert-fg-bg = true
+cursor-click-to-move = true
