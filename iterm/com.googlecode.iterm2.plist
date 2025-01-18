@@ -3757,9 +3757,9 @@
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
-			<false/>
+			<true/>
 			<key>Blur Radius</key>
-			<real>1.5626548528671265</real>
+			<real>25</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -4386,6 +4386,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>Iosevka 16</string>
+			<key>Only The Default BG Color Uses Transparency</key>
+			<false/>
 			<key>Open Toolbelt</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -4593,7 +4595,7 @@
 			<key>Thin Strokes</key>
 			<integer>0</integer>
 			<key>Transparency</key>
-			<real>0.0</real>
+			<real>0.050000000000000003</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unicode Normalization</key>
@@ -4647,7 +4649,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>12</integer>
 			<key>Working Directory</key>
 			<string>/Users/yardnsm</string>
 		</dict>
@@ -5539,9 +5541,9 @@
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>TerminalMargin</key>
-	<integer>5</integer>
+	<integer>9</integer>
 	<key>TerminalVMargin</key>
-	<integer>5</integer>
+	<integer>9</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
