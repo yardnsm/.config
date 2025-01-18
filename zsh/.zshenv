@@ -119,7 +119,7 @@ export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"
 # ---[ Version managers ]---------------------------------------------------------------------------
 
 # pyenv default version
-export PYENV_VERSION="3.10.5"
+export PYENV_VERSION="3.12.4"
 
 # rbenv version
 export RBENV_VERSION="2.2.4"
