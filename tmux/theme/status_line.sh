@@ -62,7 +62,7 @@ segment_music() {
 
   # Truncate the result
   [[ ${#spotify} -gt 28 ]] && \
-    spotify="$(echo "$spotify" | cut -c 1-25)..."
+    spotify="$(echo "$spotify" | cut -c 1-25)… "
 
   if [[ -n "$spotify" ]]; then
     tm_segment "${music_icon}${spotify}" "cyan"

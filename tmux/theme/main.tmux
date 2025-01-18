@@ -22,17 +22,17 @@ set -g popup-border-lines rounded
 set -g mode-style 'fg=gray,bg=brightblack'
 
 # Status bar colors
-set -g status-style fg=brightwhite,bg=black
+set -g status-style fg=brightwhite,bg=default
 set -g message-style fg=yellow,bg=black
 
 # Window separator
 setw -g window-status-separator '#[fg=colour240 nobold] ⋅ #[bg=default fg=default]'
 
 # Window item
-setw -g window-status-format "#[bg=black, noreverse]#{?window_activity_flag,#[fg=colour240],#[fg=colour240]}#I #W#{?window_activity_flag,*,}"
+setw -g window-status-format "#[bg=default, noreverse]#{?window_activity_flag,#[fg=colour240],#[fg=colour240]}#I #W#{?window_activity_flag,*,}"
 
 # Selected window item
-setw -g window-status-current-format "#[fg=blue bold, bg=black, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
+setw -g window-status-current-format "#[fg=blue bold, bg=default, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
 
 # Left side: session name
 set -g status-left "#[fg=white bold] 🏝️ #S  "
