@@ -64,7 +64,7 @@ Line.setup({
             blocks.file_tab_like(state),
             "%#Wb_Fill# ",
             blocks.navic(),
-            "%=",
+            "%= │ ",
             blocks.indent_info(),
           })
         end
@@ -82,7 +82,7 @@ Line.setup({
         return vim.api.nvim_get_option_value("diff", { win = state.winid })
       end,
       render = function()
-        return "%#FoldColumn# %#Wb_TabInactive# "
+        return "%#Wb_TabInactive# "
       end,
     },
   },

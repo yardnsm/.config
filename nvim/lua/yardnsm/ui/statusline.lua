@@ -6,6 +6,7 @@ local statusline_minimal_modes = {
   netrw = "Netrw",
   nerdtree = "NERD",
   NvimTree = "NvimTree",
+  ["neo-tree"] = "NeoTree",
   mason = "Mason",
   lazy = "Lazy",
   lspinfo = "LSP Info",

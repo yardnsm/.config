@@ -10,11 +10,14 @@ return {
     typescript = {
       tsserver = {
         maxTsServerMemory = 8192,
+        -- log = "verbose",
       },
     },
 
     vtsls = {
       tsserver = {
+        -- In vtsls directory:
+        -- npm install @monodon/typescript-nx-imports-plugin
         globalPlugins = {
           {
             name = "@monodon/typescript-nx-imports-plugin",
@@ -24,6 +27,12 @@ return {
       },
     },
   },
+
+  ---@param client vim.lsp.Client
+  on_init = function(client)
+    -- Disble semantic tokens
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
 
   ---@param client vim.lsp.Client
   on_attach = function(client)
@@ -93,14 +102,18 @@ return {
       end
     end
 
-    vim.lsp.buf.execute_command({
-      command = "_typescript.configurePlugin",
-      arguments = {
-        "@monodon/typescript-nx-imports-plugin",
-        {
-          externalFiles = externalFiles,
+    vim.schedule(function()
+      require("fidget").notify("Configured typescript-nx-imports-plugin with " .. #externalFiles .. " files")
+
+      vim.lsp.buf.execute_command({
+        command = "_typescript.configurePlugin",
+        arguments = {
+          "@monodon/typescript-nx-imports-plugin",
+          {
+            externalFiles = externalFiles,
+          },
         },
-      },
-    })
+      })
+    end)
   end,
 }

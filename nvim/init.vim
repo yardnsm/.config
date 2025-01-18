@@ -190,7 +190,7 @@ endif
 
 " GVim (on windows specific)
 if has('gui')
-  set guifont=Consolas:h10
+  " set guifont=Consolas:h10
 
   set guioptions-=T
   set guioptions-=r

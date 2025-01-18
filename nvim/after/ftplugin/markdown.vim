@@ -5,3 +5,6 @@
 setlocal spell
 setlocal linebreak
 setlocal textwidth=100
+
+" Do not wrap text
+setlocal formatoptions-=t

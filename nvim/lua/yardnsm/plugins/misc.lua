@@ -85,6 +85,24 @@ return {
           "null-ls",
         },
       },
+
+      notification = {
+        window = {
+          winblend = 0,
+          x_padding = 3,
+          y_padding = 1,
+          -- border = utils.float_borders_style,
+        }
+      }
     },
+  },
+
+  -- TODO testing this out
+  {
+    "sphamba/smear-cursor.nvim",
+    enabled = function()
+      return vim.fn.has("gui")
+    end,
+    opts = {},
   },
 }

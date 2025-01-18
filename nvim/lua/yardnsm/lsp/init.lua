@@ -39,17 +39,31 @@ M.on_attach = function(client, bufnr)
   end
 
   keymaps.setup_buffer(bufnr)
-  highlight.setup_buffer(client, bufnr)
   plugins.setup_buffer(client, bufnr)
+
+  -- TODO remove? This is handles by Snacks.nvim
+  -- highlight.setup_buffer(client, bufnr)
 end
 
 M.make_capabilities = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if status_ok then
+  -- Setup nvim-cmp
+  local cmp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if cmp_status_ok then
     capabilities = cmp_nvim_lsp.default_capabilities()
   end
+
+  -- Setup blink.nvim
+  local blink_status_ok, blink_lsp = pcall(require, "blink.cmp")
+  if blink_status_ok then
+    capabilities = blink_lsp.get_lsp_capabilities(capabilities)
+  end
+
+  capabilities.workspace = capabilities.workspace or {}
+  capabilities.workspace.executeCommand = {
+    dynamicRegistration = true,
+  }
 
   return capabilities
 end

@@ -63,6 +63,7 @@ return {
 
       -- Setup manually installed LSPs here, for example:
       -- config.setup_handler("gopls")
+      config.setup_handler("nxls")
     end,
   },
 

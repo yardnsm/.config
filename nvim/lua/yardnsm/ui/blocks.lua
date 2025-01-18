@@ -83,7 +83,7 @@ M.navic = function()
     return ""
   end
 
-  return "%{%v:lua.require'nvim-navic'.get_location()%}"
+  return "%<%-{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
 ---@param state LineState
@@ -121,7 +121,7 @@ M.indent_info = function()
   local sw = vim.o.shiftwidth
   local et = vim.o.expandtab and "··  " or "»   "
 
-  return ("%s %s "):format(et, sw)
+  return ("%s %s "):format(sw, et)
 end
 
 M.visual_percentage = function()
@@ -257,6 +257,23 @@ M.vcs_stats = function()
   if result then
     return string.sub(result, 1, -2)
   end
+end
+
+M.file_tree_offset = function()
+  local file_tree_filetypes = {
+    "neo-tree",
+    "DiffviewFiles",
+  }
+
+  for _, win in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local ft = vim.bo[vim.api.nvim_win_get_buf(win)].ft
+    if vim.tbl_contains(file_tree_filetypes, ft) then
+      local width = vim.api.nvim_win_get_width(win) + 1
+      return string.rep(" ", width)
+    end
+  end
+
+  return ""
 end
 
 return M

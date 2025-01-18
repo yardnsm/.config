@@ -3,38 +3,10 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
--- https://www.nerdfonts.com/cheat-sheet
--- TODO remove since we've using mini-icons
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
 return {
   "hrsh7th/nvim-cmp",
+
+  enabled = true,
 
   -- Load cmp on InsertEnter
   event = "InsertEnter",
@@ -46,7 +18,7 @@ return {
     "hrsh7th/cmp-cmdline",
   },
 
-  ---@type Base46Handler
+  ---@type base46.Handler
   setup_base46 = function(c, hi)
     hi.CmpBorder = { fg = c.one_bg3, bg = c.black }
   end,
@@ -132,7 +104,7 @@ return {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
           -- Kind icons
-          vim_item.kind = " " .. (MiniIcons.get('lsp', vim_item.kind) or "") .. "  "
+          vim_item.kind = " " .. (MiniIcons.get("lsp", vim_item.kind or "") or "") .. "  "
 
           -- Completion menus
           vim_item.menu = " "

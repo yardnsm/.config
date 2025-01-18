@@ -1,4 +1,5 @@
 local Line = require("yardnsm.ui.line")
+local blocks = require("yardnsm.ui.blocks")
 local utils = require("yardnsm.utils")
 local tab_label = require("yardnsm.misc.tab-label")
 local base46_utils = require("yardnsm.misc.base46-utils")
@@ -39,19 +40,27 @@ Line.setup({
           table.insert(
             tabs,
             table.concat({
+              "%" .. tabpagenr .. "T",
               is_active and "%#Tb_TabActive#" or "%#Tb_TabInactive#",
               "   ",
               tabpagenr,
               label ~= nil and (": " .. label) or " [No Label]",
               "   ",
+              "%T",
             })
           )
         end
 
         return table.concat({
+          "%#NeoTreeNormal#",
+          blocks.file_tree_offset(),
+
           "%#Tb_Reset#%=",
           table.concat(tabs),
           "%#Tb_Reset#%=",
+
+          -- We want to always justify the tabs to the middle
+          blocks.file_tree_offset(),
         })
       end,
     },

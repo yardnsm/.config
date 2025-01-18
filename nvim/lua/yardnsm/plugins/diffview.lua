@@ -1,3 +1,7 @@
+local is_in_diffview = function()
+  return vim.fn.exists("t:diffview_view_initialized") == 1
+end
+
 local tab_label = require("yardnsm.misc.tab-label")
 local augroup = vim.api.nvim_create_augroup("Diffview", { clear = true })
 
@@ -6,6 +10,16 @@ local augroup = vim.api.nvim_create_augroup("Diffview", { clear = true })
 return {
   "sindrets/diffview.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+
+  keys = {
+    {
+      "<leader>dd",
+      function()
+        return is_in_diffview() and ":DiffviewClose<CR>" or ":DiffviewOpen<CR>"
+      end,
+      expr = true,
+    },
+  },
 
   opts = {
     enhanced_diff_hl = true,
@@ -27,7 +41,7 @@ return {
     },
   },
 
-  ---@type Base46Handler
+  ---@type base46.Handler
   setup_base46 = function(c, hi)
     hi.DiffviewNormal = "NvimTreeNormal"
   end,
