@@ -2,6 +2,10 @@ local is_in_diffview = function()
   return vim.fn.exists("t:diffview_view_initialized") == 1
 end
 
+local function on_move(data)
+  Snacks.rename.on_rename_file(data.source, data.destination)
+end
+
 local augroup = vim.api.nvim_create_augroup("Neotree", { clear = true })
 
 return {
@@ -146,9 +150,9 @@ return {
         mappings = {
           ["H"] = "toggle_hidden",
 
-          ["/"] = "fuzzy_finder",
+          -- ["/"] = "fuzzy_finder",
           ["D"] = "fuzzy_finder_directory",
-          ["#"] = "fuzzy_sorter",
+          -- ["#"] = "fuzzy_sorter",
 
           ["f"] = "filter_on_submit",
           ["F"] = "clear_filter",
@@ -244,7 +248,7 @@ return {
           ["c"] = "noop",
           ["m"] = "noop",
           ["a"] = "noop",
-          ["/"] = "filter",
+          -- ["/"] = "filter",
           ["f"] = "filter_on_submit",
         },
       },
@@ -257,6 +261,8 @@ return {
           require("neo-tree.command").execute({ action = "close" })
         end,
       },
+      { event = "file_moved", handler = on_move },
+      { event = "file_renamed", handler = on_move },
     },
   },
 }

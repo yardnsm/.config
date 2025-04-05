@@ -1,7 +1,6 @@
 local asthetics = require("yardnsm.lsp.asthetics")
 local commands = require("yardnsm.lsp.commands")
 local diagnostics = require("yardnsm.lsp.diagnostics")
-local highlight = require("yardnsm.lsp.highlight")
 local keymaps = require("yardnsm.lsp.keymaps")
 local plugins = require("yardnsm.lsp.plugins")
 local rename = require("yardnsm.lsp.rename")
@@ -40,9 +39,6 @@ M.on_attach = function(client, bufnr)
 
   keymaps.setup_buffer(bufnr)
   plugins.setup_buffer(client, bufnr)
-
-  -- TODO remove? This is handles by Snacks.nvim
-  -- highlight.setup_buffer(client, bufnr)
 end
 
 M.make_capabilities = function()

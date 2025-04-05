@@ -6,7 +6,7 @@ end
 return {
   "hrsh7th/nvim-cmp",
 
-  enabled = true,
+  enabled = false,
 
   -- Load cmp on InsertEnter
   event = "InsertEnter",

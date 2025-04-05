@@ -47,7 +47,7 @@ Line.setup({
 
     -- Renderer for NvimTree
     {
-      ft = { "NvimTree", "DiffviewFiles", "DiffviewFileHistory" },
+      ft = { "NvimTree", "DiffviewFiles", "DiffviewFileHistory", "snacks_layout_box" },
       render = function()
         return "%#Wb_Fill# "
       end,

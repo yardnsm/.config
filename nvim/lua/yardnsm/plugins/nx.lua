@@ -1,5 +1,17 @@
 return {
   {
+    dir = "~/dev/nx-console.nvim",
+
+    lazy = false,
+    opts = {
+      telescope_style = "borderless",
+    },
+
+    -- init = function()
+    -- end
+  },
+
+  {
     "Equilibris/nx.nvim",
 
     dependencies = {

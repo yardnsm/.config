@@ -36,14 +36,11 @@ return {
     ft = "lua",
     cmd = "LazyDev",
 
-    dependencies = {
-      { "Bilal2453/luvit-meta", lazy = true },
-    },
-
     opts = {
       library = {
         "~/dev/nvim-base46",
         { path = "luvit-meta/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
   },
@@ -63,26 +60,7 @@ return {
 
       -- Setup manually installed LSPs here, for example:
       -- config.setup_handler("gopls")
-      config.setup_handler("nxls")
-    end,
-  },
-
-  -- For csharp_ls
-  {
-    "Decodetalkers/csharpls-extended-lsp.nvim",
-    enabled = false,
-  },
-  {
-    "iabdelkareem/csharp.nvim",
-    enabled = false,
-    dependencies = {
-      "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-      "mfussenegger/nvim-dap",
-      -- "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-    },
-    config = function()
-      require("mason") -- Mason setup must run before csharp, only if you want to use omnisharp
-      require("csharp").setup()
+      -- config.setup_handler("nxls")
     end,
   },
 }

@@ -1,13 +1,17 @@
+local utils = require("yardnsm.utils")
+
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local blink_winhighlights = "Normal:Normal,FloatBorder:BlinkBorder,CursorLine:PmenuSel,Search:None"
+
 return {
   "saghen/blink.cmp",
   lazy = true,
 
-  enabled = false,
+  enabled = true,
 
   -- Load blink on InsertEnter
   event = "InsertEnter",
@@ -28,20 +32,23 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-
     keymap = {
       preset = "default",
 
+      ["<C-g>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-j>"] = { "snippet_forward", "select_and_accept", "fallback" },
       ["<C-k>"] = { "snippet_backward", "fallback" },
 
+      -- I like the super-tab thingy
       ["<Tab>"] = {
         function(cmp)
-          if cmp.windows.autocomplete.win:is_open() then
-            return cmp.select_next()
+          if cmp.is_menu_visible() then
+            cmp.select_next()
+            return true
           end
           if not check_backspace() then
-            return cmp.show()
+            cmp.show()
+            return true
           end
         end,
         "fallback",
@@ -49,7 +56,7 @@ return {
 
       ["<S-Tab>"] = {
         function(cmp)
-          if cmp.windows.autocomplete.win:is_open() then
+          if cmp.is_menu_visible() then
             return cmp.select_prev()
           end
         end,
@@ -57,98 +64,70 @@ return {
       },
     },
 
-    highlight = {
+    appearance = {
+      nerd_font_variant = "mono",
+
+      -- TODO migrate to blink.cmp specific highlights
+      -- https://cmp.saghen.dev/configuration/appearance.html
       use_nvim_cmp_as_default = true,
     },
 
-    nerd_font_variant = "mono",
-
-    windows = {
-      autocomplete = {
-        border = "rounded",
-        winhighlight = "Normal:Normal,FloatBorder:BlinkBorder,CursorLine:PmenuSel,Search:None", -- TODO change to highlights
-
-        scrolloff = 0,
-        selection = "auto_insert",
-
-        draw = {
-          gap = 2,
-          padding = 2,
-          align_to_component = "none",
-
-          columns = { { "kind_icon" }, { "label", "source" } },
-          components = {
-            source = {
-              width = { max = 30 },
-              text = function(ctx)
-                return " "
-                    .. ({
-                      lsp = "「LSP」    ",
-                      snippets = "「Snippet」",
-                      buffer = "「Buffer」 ",
-                      path = "「Path」   ",
-                      lazydev = "「LazyDev」",
-                    })[ctx.item.source_id]
-              end,
-              highlight = "BlinkCmpLabelDescription",
-            },
-          },
+    completion = {
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = true,
         },
       },
 
       documentation = {
         auto_show = true,
-        border = "rounded",
-        winhighlight = "Normal:Normal,FloatBorder:BlinkBorder,CursorLine:PmenuSel,Search:None",
+        window = {
+          border = utils.float_borders_style,
+          winhighlight = blink_winhighlights,
+        },
+      },
+
+      menu = {
+        border = utils.float_borders_style,
+        winhighlight = blink_winhighlights,
+
+        scrolloff = 0,
+
+        draw = {
+          gap = 2,
+          padding = 2,
+          columns = { { "kind_icon" }, { "label", "source_name", gap = 1 } },
+        },
       },
     },
 
-    -- default list of enabled providers defined so that you can extend it
-    -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      completion = {
-        enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-      },
+      default = { "lsp", "path", "snippets", "buffer" },
 
       providers = {
-        ---@diagnostic disable-next-line: missing-fields
         lsp = {
-          fallback_for = { "lazydev" },
-          max_item = 30,
+          fallbacks = { "lazydev" },
+          max_items = 30,
           score_offset = 5,
         },
 
-        ---@diagnostic disable-next-line: missing-fields
-        snippets = { max_item = 30 },
-        ---@diagnostic disable-next-line: missing-fields
-        path = { max_item = 30 },
+        snippets = { max_items = 30 },
+        path = { max_items = 30 },
 
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
         },
 
-        ---@diagnostic disable-next-line: missing-fields
         buffer = {
-          fallback_for = {},
-          max_item = 20,
+          fallbacks = {},
+          max_items = 20,
           min_keyword_length = 2,
         },
       },
     },
 
-    -- Experimental auto-brackets support
-    accept = {
-      auto_brackets = {
-        enabled = true,
-      },
-    },
-
-    -- Experimental signature help support
-    trigger = {
-      signature_help = {
-        enabled = false,
-      },
-    },
+    fuzzy = { implementation = "prefer_rust_with_warning" },
   },
 }
