@@ -1,6 +1,8 @@
+#font-family = "Iosevka"
 font-family = "Iosevka"
 font-size = 16
 font-thicken = true
+font-thicken-strength = 100
 
 font-feature = -liga
 font-feature = -calt
