@@ -45,6 +45,7 @@
     rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
     vcs                     # git status
     time                    # current time
+    terraform_version
 
     # vim_shell               # vim shell indicator (:sh)
     # status                  # exit code of the last command

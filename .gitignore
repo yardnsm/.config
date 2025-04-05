@@ -62,3 +62,4 @@ Session.vim
 /zsh/.zcompcache
 /zsh/.zsh_history
 /zsh/.zsh_sessions
+/zsh/completions/_automation
