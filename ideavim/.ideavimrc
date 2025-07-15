@@ -1,0 +1,106 @@
+" Based on my own init.vim
+" https://github.com/yardnsm/.config/blob/63d245be35a706466c2444176d5506962908cc26/nvim/init.vim
+
+" ----[ Options ]-----------------------------------------------------------------------------------
+
+set number                            " show line numbers
+set relativenumber                    " set relative numbers
+set linebreak                         " wraps between words
+set textwidth=100                     " cuz precision matter
+set list                              " show invisibles
+set scrolloff=8                       " allows to scroll of the screen
+set hidden                            " allow switching buffers w/o saving
+set backspace=indent                  " INSERT is for INSERT, not DELETE
+set nojoinspaces                      " only insert a single space after '.', '!' and '?' with the join command
+
+set cursorline                        " highlight current line (may cause vim to be slower)
+set colorcolumn=+0                    " make the 'colorcolumn' same as 'textwidth'
+
+set incsearch                         " shows matches as you type
+set smartcase                         " if caps, watch case
+set ignorecase                        " ignore case if all lowercase
+set hlsearch                          " highlight search results
+set gdefault                          " make search and replace global for the line
+set magic                             " turn magic on for regular expressions
+
+" ----[ Mappings ]----------------------------------------------------------------------------------
+
+let mapleader="\<space>"
+let maplocalleader="\<space>"
+
+" Move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+nnoremap ^ g^
+nnoremap $ g$
+
+" Keep blocks selected after indenting
+vnoremap > >gv
+vnoremap < <gv
+
+" Substitute the last search
+nmap gs :%s~~
+vmap gs :s~~
+
+" Toggle search highlight
+nnoremap <ESC> :set hlsearch!<CR>
+
+" Enable hlsearch before searching
+nnoremap / :set hlsearch<CR>/
+nnoremap ? :set hlsearch<CR>?
+
+" Space opens/closes folds
+nnoremap <CR> za
+
+" Fold Levels
+nnoremap z2 zMzr
+nnoremap z3 zMzrzr
+
+" Convert the current word to uppercase when in INSERT mode
+inoremap <C-u> <ESC>gUiwgi
+
+" Toggles
+" <leader>t for [t]oggle
+nnoremap <leader>tn :set relativenumber!<CR>
+nnoremap <leader>tp :set paste!<CR>
+nnoremap <leader>tf :set foldenable!<CR>
+nnoremap <leader>tc :set cursorline!<CR>
+nnoremap <leader>tw :set wrap!<CR>
+
+" Format instead of Ex-mode
+nmap Q gq
+
+" Make `S` works like `X` is to `x`
+nnoremap S ch
+
+" Scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" Count matches
+nnoremap <leader>C :%s///gn<CR>
+
+" Make <S-Tab> inverse <Tab> (:h i_CTRL-D)
+inoremap <S-Tab> <C-d>
+
+" Paste over selection without updating the yank register
+vnoremap p "_dP
+vnoremap _p p
+
+" Close all
+nnoremap <leader><BS> :qa<CR>
+
+" Add undo break
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ; ;<C-g>u
+
+map <leader><leader> <Action>(ActivateProjectToolWindow)
+
+" ----[ Plugins ]-----------------------------------------------------------------------------------
+" https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
+
+set NERDTree
+set surround
+set commentary
+set highlightedyank
