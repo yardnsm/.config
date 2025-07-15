@@ -1,5 +1,5 @@
 #font-family = "Iosevka"
-font-family = "Iosevka"
+font-family = "Pragmasevka"
 font-size = 16
 font-thicken = true
 font-thicken-strength = 100
@@ -14,7 +14,9 @@ adjust-cell-height = 4
 theme = catppuccin-mocha
 
 window-padding-y = 10,8
-window-padding-balance = true
+window-padding-balance = false
 
 cursor-invert-fg-bg = true
 cursor-click-to-move = true
+
+macos-titlebar-style = hidden
