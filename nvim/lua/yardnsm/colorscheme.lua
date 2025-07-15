@@ -3,7 +3,7 @@ local base46_utils = require("yardnsm.misc.base46-utils")
 
 local M = {}
 
-M.default_theme = "base46-tomorrow_night"
+M.default_theme = "base46-catppuccin"
 
 ---@type base46.Handler
 local setup_highlights = function(c, hi)

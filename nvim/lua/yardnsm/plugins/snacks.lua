@@ -44,6 +44,7 @@ return {
   },
 
   keys = {
+    -- TODO colorscheme, highlights, buffers, marks, spell
     {
       "<leader>gb",
       function()
@@ -76,5 +77,8 @@ return {
       desc = "Prev Reference",
       mode = { "n", "t" },
     },
+
+    { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+    { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
   },
 }

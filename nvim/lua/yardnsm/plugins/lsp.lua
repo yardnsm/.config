@@ -15,19 +15,15 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
 
-    opts = {
-      ensure_installed = config.required_servers,
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
     },
 
-    config = function(_, opts)
-      local installer = require("mason-lspconfig")
-
-      -- Make the setup more dynamic. When a server loads, check for an appropriate config file then
-      -- load it.
-      installer.setup_handlers({
-        config.setup_handler,
-      })
-    end,
+    opts = {
+      ensure_installed = config.required_servers,
+      automatic_enable = true,
+    },
   },
 
   -- Dev setup for neovim
@@ -45,22 +41,32 @@ return {
     },
   },
 
+  -- Add lazydev to blink.cmp
+  {
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "lazydev" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100, -- show at a higher priority than lsp
+          },
+        },
+      },
+    },
+  },
+
   {
     "neovim/nvim-lspconfig",
-
-    event = utils.LazyFile,
-
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
 
     config = function()
       config.setup()
 
       -- Setup manually installed LSPs here, for example:
-      -- config.setup_handler("gopls")
-      -- config.setup_handler("nxls")
+      -- vim.lsp.enable("gopls")
+      -- vim.lsp.enable("nxls")
     end,
   },
 }

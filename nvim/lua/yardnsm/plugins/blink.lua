@@ -12,6 +12,7 @@ return {
   lazy = true,
 
   enabled = true,
+  version = '1.*',
 
   -- Load blink on InsertEnter
   event = "InsertEnter",
@@ -29,13 +30,19 @@ return {
   -- version = "v0.*",
   build = "cargo build --release",
 
+  opts_extend = {
+    "sources.completion.enabled_providers",
+    "sources.compat",
+    "sources.default",
+  },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = {
       preset = "default",
 
-      ["<C-g>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-h>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-j>"] = { "snippet_forward", "select_and_accept", "fallback" },
       ["<C-k>"] = { "snippet_backward", "fallback" },
 
@@ -98,6 +105,18 @@ return {
           gap = 2,
           padding = 2,
           columns = { { "kind_icon" }, { "label", "source_name", gap = 1 } },
+
+          components = {
+
+            -- Add a border to the source component
+            source_name = {
+              width = { max = 30 },
+              text = function(ctx)
+                return "「" .. ctx.source_name .. "」"
+              end,
+              highlight = "BlinkCmpSource",
+            },
+          },
         },
       },
     },
@@ -114,11 +133,6 @@ return {
 
         snippets = { max_items = 30 },
         path = { max_items = 30 },
-
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-        },
 
         buffer = {
           fallbacks = {},

@@ -1,10 +1,10 @@
 local utils = require("yardnsm.utils")
-local lsp_util = require("lspconfig.util")
+local on_attach = require("yardnsm.lsp").on_attach
 
 local enable_nx_imports_plugin = true
 
 return {
-  root_dir = lsp_util.root_pattern("nx.json", "tsconfig.json", "package.json", "jsconfig.json", ".git"),
+  root_markers = { "nx.json", "tsconfig.json", "package.json", "jsconfig.json", ".git" },
 
   settings = {
     typescript = {
@@ -35,7 +35,10 @@ return {
   end,
 
   ---@param client vim.lsp.Client
-  on_attach = function(client)
+  ---@param bufnr number
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+
     -- This is an adaptation of the following, in order to support auto-completion of imports from
     -- other nx libraries in the same workspace:
     -- https://github.com/nrwl/nx-console/blob/master/libs/vscode/typescript-plugin/src/lib/typescript-plugin.ts
@@ -53,8 +56,8 @@ return {
 
     local Path = require("plenary.path")
 
-    local root_dir = client.root_dir
-    -- local root_dir = vim.fs.root(client.root_dir, { "nx.json" })
+    -- local root_dir = client.root_dir
+    local root_dir = vim.fs.root(client.root_dir, { "nx.json" })
 
     ---@type Path
     local workspaceRoot = Path:new(root_dir)
@@ -65,7 +68,10 @@ return {
       return
     end
 
-    local tsconfig = vim.json.decode(workspaceConfig:read() or "")
+    local status_ok, tsconfig = pcall(vim.json.decode, workspaceConfig:read() or "")
+    if not status_ok then
+      return
+    end
 
     -- TODO take tsconfig.json if tsconfig.compilerOptions == nil
     if tsconfig.compilerOptions == nil then

@@ -14,11 +14,8 @@ return {
     end,
   },
 
-  -- TODO remove
-  -- { "nvim-tree/nvim-web-devicons", lazy = true },
-
   -- Lua libraries, used by some plugins
-  { "nvim-lua/plenary.nvim",     lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
 
   {
     "norcalli/nvim-colorizer.lua",
@@ -33,15 +30,6 @@ return {
   {
     "Valloric/MatchTagAlways",
     ft = { "html", "xhtml", "xml", "javascript.jsx", "typescript.jsx", "javascriptreact", "typescriptreact" },
-  },
-
-  -- Enable support for editorconfig files
-  { "gpanders/editorconfig.nvim" },
-
-  -- Wiki for vim
-  {
-    "vimwiki/vimwiki",
-    enabled = false,
   },
 
   -- Nice buffer switching UI
@@ -92,12 +80,11 @@ return {
           x_padding = 3,
           y_padding = 1,
           -- border = utils.float_borders_style,
-        }
-      }
+        },
+      },
     },
   },
 
-  -- TODO testing this out
   {
     "sphamba/smear-cursor.nvim",
     enabled = function()

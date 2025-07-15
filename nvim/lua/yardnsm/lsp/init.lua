@@ -12,21 +12,23 @@ M.required_servers = {
   "bashls",
   "pyright",
   "lua_ls",
-  "tsserver",
+  -- "tsserver",
+  "vtsls",
   "vimls",
   "tailwindcss",
   "cssls",
-  "graphql",
-  "intelephense",
+  -- "graphql",
+  -- "intelephense",
   "jsonls",
   "eslint",
-  "nxls",
+  -- "nxls",
 }
 
 -- Disable formatting for certains servers; let null-ls do its thing!
 M.disable_formatting_on_servers = {
   "tsserver",
-  "sumneko_lua",
+  "vtsls",
+  "lua_ls",
 }
 
 ---@param client vim.lsp.Client
@@ -34,23 +36,23 @@ M.disable_formatting_on_servers = {
 M.on_attach = function(client, bufnr)
   -- Disable formatting if necessary
   if vim.tbl_contains(M.disable_formatting_on_servers, client.name) then
-    client.server_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   keymaps.setup_buffer(bufnr)
   plugins.setup_buffer(client, bufnr)
 end
 
-M.make_capabilities = function()
+local make_capabilities = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  -- Setup nvim-cmp
+  -- Setup nvim-cmp, if installed
   local cmp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if cmp_status_ok then
     capabilities = cmp_nvim_lsp.default_capabilities()
   end
 
-  -- Setup blink.nvim
+  -- Setup blink.nvim, if installed
   local blink_status_ok, blink_lsp = pcall(require, "blink.cmp")
   if blink_status_ok then
     capabilities = blink_lsp.get_lsp_capabilities(capabilities)
@@ -64,37 +66,17 @@ M.make_capabilities = function()
   return capabilities
 end
 
-M.setup_handler = function(server_name)
-  local lspconfig = require("lspconfig")
-  local capabilities = M.make_capabilities()
-
-  local server_opts = {
-    on_attach = M.on_attach,
-    capabilities = capabilities,
-  }
-
-  local lsp_options_status_ok, lsp_options = pcall(require, "yardnsm.lsp.settings." .. server_name)
-  if lsp_options_status_ok then
-    server_opts = vim.tbl_deep_extend("force", lsp_options, server_opts)
-
-    --- Do not allow overriding on_attach
-    if lsp_options.on_attach ~= nil then
-      server_opts.on_attach = function(...)
-        M.on_attach(...)
-        lsp_options.on_attach(...)
-      end
-    end
-  end
-
-  lspconfig[server_name].setup(server_opts)
-end
-
 M.setup = function()
   diagnostics.setup()
   commands.setup()
   rename.setup()
   asthetics.setup()
   keymaps.setup()
+
+  vim.lsp.config("*", {
+    on_attach = M.on_attach,
+    capabilities = make_capabilities(),
+  })
 end
 
 return M
