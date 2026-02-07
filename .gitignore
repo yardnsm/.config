@@ -46,7 +46,6 @@ Session.vim
 .netrwhist
 *~
 
-
 # Secretz
 /smudge.sed
 
@@ -66,3 +65,7 @@ Session.vim
 /zsh/.zsh_history
 /zsh/.zsh_sessions
 /zsh/completions/_automation
+
+# Work stuff
+/zsh/local.zsh
+/bin/claude
