@@ -99,7 +99,8 @@ segment_date() {
 
 # Machine name
 segment_host() {
-  tm_segment "$(whoami)#[fg=yellow]@#h" "blue"
+  # tm_segment "$(whoami)#[fg=yellow]@#h" "blue"
+  tm_segment "$(whoami)#[fg=yellow]@$(scutil --get LocalHostName)" "blue"
 }
 
 # ---------------------------------------------

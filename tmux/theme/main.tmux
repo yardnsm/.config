@@ -35,7 +35,8 @@ setw -g window-status-format "#[bg=default, noreverse]#{?window_activity_flag,#[
 setw -g window-status-current-format "#[fg=blue bold, bg=default, noreverse]#I #{?window_zoomed_flag,[#W],#W}"
 
 # Left side: session name
-set -g status-left "#[fg=white bold] 🏝️ #S  "
+set -g status-left "#[fg=white bold]  🏝️  #S  "
+# set -g status-left "#[fg=white bold] 🎗️ #S  "
 
 # Right side: indicator when prefix is selected + right segments
 set -g status-right "#{?client_prefix,#[fg=blue bold]^A#{window-status-separator},}#($XDG_CONFIG_HOME/tmux/theme/status_line.sh) "
