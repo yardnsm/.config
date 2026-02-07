@@ -31,6 +31,14 @@ return {
       right = { "fold" },
     },
 
+    terminal = {
+      win = {
+        wo = {
+          -- winhighlight = "Normal:Normal,WinBar:NeoTreeNormal"
+        }
+      }
+    },
+
     picker = {
       layout = {
         layout = {

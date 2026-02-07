@@ -29,12 +29,6 @@ return {
   },
 
   ---@param client vim.lsp.Client
-  on_init = function(client)
-    -- Disble semantic tokens
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-
-  ---@param client vim.lsp.Client
   ---@param bufnr number
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
@@ -110,8 +104,8 @@ return {
 
     vim.schedule(function()
       require("fidget").notify("Configured typescript-nx-imports-plugin with " .. #externalFiles .. " files")
-
-      vim.lsp.buf.execute_command({
+      client:exec_cmd({
+        title = "Configure typescript-nx-imports-plugin",
         command = "_typescript.configurePlugin",
         arguments = {
           "@monodon/typescript-nx-imports-plugin",
@@ -120,6 +114,16 @@ return {
           },
         },
       })
+
+      -- vim.lsp.buf.execute_command({
+      --   command = "_typescript.configurePlugin",
+      --   arguments = {
+      --     "@monodon/typescript-nx-imports-plugin",
+      --     {
+      --       externalFiles = externalFiles,
+      --     },
+      --   },
+      -- })
     end)
   end,
 }

@@ -9,6 +9,9 @@ M.default_theme = "base46-catppuccin"
 local setup_highlights = function(c, hi)
   -- This is for the vim.highlight.on_yank in ./autocommands.lua
   hi.Yanked = { fg = "NONE", bg = c.one_bg3 }
+
+  -- This for transparent background
+  -- hi.Normal = { bg = "NONE" }
 end
 
 -- Make sure to call "setup" before loading the colorscheme. Preferably on the plugin's spec "init"

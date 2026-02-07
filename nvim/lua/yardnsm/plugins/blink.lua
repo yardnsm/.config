@@ -12,7 +12,6 @@ return {
   lazy = true,
 
   enabled = true,
-  version = '1.*',
 
   -- Load blink on InsertEnter
   event = "InsertEnter",
@@ -27,7 +26,7 @@ return {
   end,
 
   -- use a release tag to download pre-built binaries
-  -- version = "v0.*",
+  -- version = '1.*',
   build = "cargo build --release",
 
   opts_extend = {

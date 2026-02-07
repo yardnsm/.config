@@ -65,6 +65,7 @@ return {
     sources = {
       "filesystem",
       "document_symbols",
+      "nx-console",
     },
 
     close_if_last_window = true,
@@ -85,6 +86,10 @@ return {
         {
           source = "document_symbols",
           display_name = " Symbols ",
+        },
+        {
+          source = "nx-console",
+          display_name = " NX ",
         },
       },
     },
@@ -142,6 +147,15 @@ return {
 
         ["<"] = "prev_source",
         [">"] = "next_source",
+      },
+    },
+
+    ["nx-console"] = {
+      window = {
+        mappings = {
+          ["<CR>"] = "open_or_run",
+          ["R"] = "refresh",
+        },
       },
     },
 

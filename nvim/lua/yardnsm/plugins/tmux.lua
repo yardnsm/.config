@@ -1,8 +1,8 @@
 return {
   -- Navigation between tmux and vim splits
-  {
-    "christoomey/vim-tmux-navigator"
-  },
+  -- {
+  --   "christoomey/vim-tmux-navigator"
+  -- },
 
   -- Integration for vim and tmux's clipboard
   {

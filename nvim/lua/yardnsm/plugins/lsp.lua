@@ -6,6 +6,10 @@ return {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
       ui = {
         border = utils.float_borders_style,
       },
@@ -68,5 +72,16 @@ return {
       -- vim.lsp.enable("gopls")
       -- vim.lsp.enable("nxls")
     end,
+  },
+
+  -- C# support
+  { "Decodetalkers/csharpls-extended-lsp.nvim", enabled = false },
+  {
+    "seblyng/roslyn.nvim",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
   },
 }

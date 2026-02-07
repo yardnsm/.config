@@ -3,13 +3,46 @@ return {
     dir = "~/dev/nx-console.nvim",
 
     lazy = false,
+    submodules = false,
+
+    ---@type nx_console.Config
     opts = {
-      telescope_style = "borderless",
+      picker = 'snacks',
+      command_runner = function(cmd) return require("nx-console.runners").yeet()(cmd) end,
+    },
+
+    dependencies = {
+      "samharju/yeet.nvim",
+      "akinsho/toggleterm.nvim"
+    },
+
+    keys = {
+      {
+        "<leader>nf",
+        ":Neotree reveal source=nx-console<CR>",
+        desc = "Nx Projects",
+      },
+      {
+        "<leader>nt",
+        function()
+          require("nx-console").pickers.targets_current()
+        end,
+        desc = "Nx Targets",
+      },
+      {
+        "<leader>ng",
+        function()
+          require("nx-console").pickers.generators()
+        end,
+        desc = "Nx Generators",
+      },
     },
 
     -- init = function()
     -- end
   },
+
+  {"samharju/yeet.nvim", lazy = false},
 
   {
     "Equilibris/nx.nvim",
@@ -47,7 +80,7 @@ return {
       require("nx.logging").warn = function() end
       require("nx.logging").error = function() end
 
-      require('nx').setup(opts)
+      require("nx").setup(opts)
     end,
 
     keys = {

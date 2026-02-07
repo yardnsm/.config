@@ -22,6 +22,9 @@ local statusline_minimal_modes = {
   dapui_stacks = "DAP Stacks",
   dapui_breakpoints = "DAP Breakpoints",
   dapui_scopes = "DAP Scopes",
+
+  snacks_picker_input = "Snacks Picker",
+  snacks_terminal = "Snacks Terminal"
 }
 
 local wrap_filename = function(filename)

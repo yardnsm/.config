@@ -87,9 +87,7 @@ return {
 
   {
     "sphamba/smear-cursor.nvim",
-    enabled = function()
-      return vim.fn.has("gui")
-    end,
+    enabled = false,
     opts = {},
   },
 }

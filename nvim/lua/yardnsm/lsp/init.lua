@@ -29,6 +29,14 @@ M.disable_formatting_on_servers = {
   "tsserver",
   "vtsls",
   "lua_ls",
+  "tsgo",
+}
+
+M.disable_semantic_tokens_on_servers = {
+  "vtsls",
+  "tsserver",
+  "tsgo",
+  "roslyn"
 }
 
 ---@param client vim.lsp.Client
@@ -37,6 +45,11 @@ M.on_attach = function(client, bufnr)
   -- Disable formatting if necessary
   if vim.tbl_contains(M.disable_formatting_on_servers, client.name) then
     client.server_capabilities.documentFormattingProvider = false
+  end
+
+  -- Disable semantic tokens if necessary
+  if vim.tbl_contains(M.disable_semantic_tokens_on_servers, client.name) then
+    client.server_capabilities.semanticTokensProvider = nil
   end
 
   keymaps.setup_buffer(bufnr)

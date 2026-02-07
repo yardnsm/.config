@@ -262,6 +262,8 @@ nnoremap <leader>tw :set wrap!<CR>
 
 " Copy to clipboard
 vnoremap <C-c> "+y
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 
 " Format instead of Ex-mode
 nmap Q gq

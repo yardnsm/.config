@@ -24,6 +24,9 @@ M.setup = function()
   -- Borders for :LspInfo
   local lspconfig_window = require("lspconfig.ui.windows")
   lspconfig_window.default_options = { border = utils.float_borders_style }
+
+  -- Change semantic tokens priority to not override treesitter
+  vim.highlight.priorities.semantic_tokens = 95
 end
 
 return M

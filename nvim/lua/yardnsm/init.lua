@@ -1,8 +1,8 @@
 -- Setup plugins and shit
 require("yardnsm.lazy")
 
--- Autocommands
 require("yardnsm.autocommands")
+require("yardnsm.keymaps")
 
 -- Setup UI elements
 require("yardnsm.ui.statusline")
