@@ -202,3 +202,5 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/config.zsh
 source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/syntax.zsh
+
+[[ -e $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh

@@ -64,6 +64,7 @@ export PYWAL_HOME="$XDG_CACHE_HOME/wal"
 export PATH=$XDG_CONFIG_HOME/i3/bin:$PATH
 export PATH=$XDG_CONFIG_HOME/bin:$PATH
 export PATH=/usr/sbin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
   # Homebrew stuff moved to .zshrc for a better control
 if [[ -n $IS_MACOS ]]; then
@@ -115,6 +116,9 @@ fi
 
 # Tmux Spotify starrer (see ../tmux/playground/spotify_starrer.tmux)
 export TMUX_SPOTIFY_API_KEY="{{ TMUX_SPOTIFY_API_KEY }}"
+
+# nx.dev
+export NX_TUI=false
 
 # ---[ Version managers ]---------------------------------------------------------------------------
 
