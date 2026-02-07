@@ -1,8 +1,9 @@
 #font-family = "Iosevka"
 font-family = "Pragmasevka"
+
 font-size = 16
 font-thicken = true
-font-thicken-strength = 100
+font-thicken-strength = 50
 
 font-feature = -liga
 font-feature = -calt
@@ -11,7 +12,7 @@ font-feature = -dlig
 adjust-cell-width = 0
 adjust-cell-height = 4
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 window-padding-y = 10,8
 window-padding-balance = false
@@ -20,3 +21,12 @@ cursor-invert-fg-bg = true
 cursor-click-to-move = true
 
 macos-titlebar-style = hidden
+macos-option-as-alt = true
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
+# background-opacity = 0.95
+# background-blur = true
+
+custom-shader = shaders/cursor_smear_fade.glsl
